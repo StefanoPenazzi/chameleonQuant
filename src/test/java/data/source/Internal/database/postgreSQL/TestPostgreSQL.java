@@ -20,7 +20,7 @@ class TestPostgreSQL {
 
 	@Test
 	void testConnection() {
-	    String url = "jdbc:postgresql://127.0.0.1:5432/testdb";
+	    String url = "jdbc:postgresql://127.0.0.1:5432/chameleonquant";
         String user = "user1";
         String password = "user1";
 
