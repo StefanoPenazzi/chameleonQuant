@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS stocks, forex, cryptocurrencies;
+
+CREATE TABLE IF NOT EXISTS stocks (
+    symbol VARCHAR(25),
+    interval VARCHAR(10),
+    timestamp timestamp,
+    open double precision,
+    high double precision,
+    low double precision,
+    close double precision,
+    volume bigint,
+    UNIQUE(symbol,interval,timestamp)
+);
+
+CREATE TABLE IF NOT EXISTS forex (
+    from_currency_code VARCHAR(25), 
+    to_currency_code VARCHAR(25), 
+    interval VARCHAR(10),
+    timestamp timestamp,
+    UNIQUE(from_currency_code,to_currency_code,interval,timestamp)
+);
+
+CREATE TABLE IF NOT EXISTS cryptocurrencies(
+    
+);
