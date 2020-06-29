@@ -28,7 +28,6 @@ public class CreateSchema {
 		String url = urlPar;
         String user = userPar;
         String password = passwordPar;
-        String author = authorPar;
         String query = queryPar;
 
         try (Connection con = DriverManager.getConnection(url, user, password);
