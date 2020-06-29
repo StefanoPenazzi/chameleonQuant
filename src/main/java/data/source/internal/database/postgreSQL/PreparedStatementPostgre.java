@@ -32,7 +32,7 @@ public class PreparedStatementPostgre implements PreparedStatementInterface {
 
         } catch (SQLException ex) {
 
-            Logger lgr = Logger.getLogger(CreateSchema.class.getName());
+            Logger lgr = Logger.getLogger(PreparedStatementPostgre.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
 	}
