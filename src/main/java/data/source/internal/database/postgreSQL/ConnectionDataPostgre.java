@@ -3,11 +3,13 @@
  */
 package data.source.internal.database.postgreSQL;
 
+import data.source.internal.database.ConnectionData;
+
 /**
  * @author stefanopenazzi
  *
  */
-public class ConnectionDataImpl implements ConnectionData {
+public class ConnectionDataPostgre implements ConnectionData {
 
 	private String ip;
 	private String port;
@@ -15,7 +17,7 @@ public class ConnectionDataImpl implements ConnectionData {
 	private String password;
 	private String dataBase;
 	
-	public ConnectionDataImpl(String user,String password,String ip,String port,String database) {
+	public ConnectionDataPostgre(String user,String password,String ip,String port,String database) {
 		this.ip = ip;
 		this.port = port;
 		this.user = user;

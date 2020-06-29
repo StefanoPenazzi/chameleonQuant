@@ -11,26 +11,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import data.source.internal.database.ConnectionData;
+import data.source.internal.database.PreparedStatementInterface;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class CreateSchema {
+public class PreparedStatementPostgre implements PreparedStatementInterface {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		createSchema(args[0],args[1],args[2],args[3],args[4]);
-	}
-	
-	public static void createSchema(String urlPar,String userPar,String passwordPar,String authorPar,String queryPar) {
-		
-		String url = urlPar;
-        String user = userPar;
-        String password = passwordPar;
-        String query = queryPar;
+	public PreparedStatementPostgre(ConnectionData cd,String query) {
+		String url = cd.getUrl();
+        String user = cd.getUser();
+        String password = cd.getPassword();
 
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(query)) {
@@ -44,11 +36,4 @@ public class CreateSchema {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
 	}
-	
-    public static void createSchema(ConnectionData cd,String query) {
-		
-    	PreparedStatementPostgre psp = new PreparedStatementPostgre(cd,query);
-		
-	}
-
 }

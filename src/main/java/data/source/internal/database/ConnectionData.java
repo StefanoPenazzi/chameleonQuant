@@ -1,7 +1,7 @@
 /**
  * 
  */
-package data.source.internal.database.postgreSQL;
+package data.source.internal.database;
 
 /**
  * @author stefanopenazzi
