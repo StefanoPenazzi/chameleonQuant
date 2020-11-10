@@ -66,7 +66,9 @@ public class AlphaVantageConnector implements APIConnector {
 
 	      String line;
 	      while ((line = bufferedReader.readLine()) != null) {
-	        responseBuilder.append(line);
+	    	  //TODO /n is necessary only for csv files
+	        responseBuilder.append(line+"\n");
+	        //responseBuilder.append("");
 	      }
 	      bufferedReader.close();
 	      return responseBuilder.toString();

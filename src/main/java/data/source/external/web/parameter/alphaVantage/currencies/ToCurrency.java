@@ -18,7 +18,7 @@ public class ToCurrency implements APIParameter {
 
 	  @Override
 	  public String getKey() {
-	    return "to_currency";
+	    return "to_symbol";
 	  }
 
 	  @Override
