@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
    <head>
-      <title>HTML Hyperlinks</title>
+      
    </head>
 
    <body>
-      <h1>Company</h1>
+      <h1>The framework provides a library to connect the chameleon to a database</h1>
       <p>
-         We’re a <a href="https://www.influxdata.com/">team</a> of professionals working
-         hard to provide free learning content.
+         Database supported are: 
       </p>
+      <ul>
+        <li><a href="https://www.influxdata.com/">influxDb</a></li>
+      </ul>
    </body>
 </html>
