@@ -4,6 +4,8 @@
  
 <html>
 <head>
+ 
+<link rel="stylesheet" href="mystyle.css">
   
 </head>
 <body>
@@ -17,6 +19,7 @@
 
 <h1>First step into the jungle</h1>
 <h3>Your survival kit</h3>
+<img width="600" height="650" src="src/main/site/resources/generalScm.PNG" style="margin-right: 10px;" class="center" />
 <h3>Make some practice</h3>
 <h3>Share with friends</h3>
 
