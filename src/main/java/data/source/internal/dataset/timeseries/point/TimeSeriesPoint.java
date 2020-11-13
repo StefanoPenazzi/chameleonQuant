@@ -1,7 +1,7 @@
 /**
  * 
  */
-package data.source.internal.format;
+package data.source.internal.dataset.timeseries.point;
 
 import java.util.Date;
 
