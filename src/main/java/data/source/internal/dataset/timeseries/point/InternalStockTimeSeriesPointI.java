@@ -7,7 +7,7 @@ package data.source.internal.dataset.timeseries.point;
  * @author stefanopenazzi
  *
  */
-public interface StockTimeSeriesPoint extends TimeSeriesPoint {
+public interface InternalStockTimeSeriesPointI extends InternalTimeSeriesPoint {
 
 	public double getClose();
 	public double getHigh();

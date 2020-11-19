@@ -3,9 +3,10 @@
  */
 package data.source.internal.dataset.timeseries.datastructure;
 
+import java.time.Instant;
 import java.util.Date;
 
-import data.source.internal.dataset.timeseries.point.TimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
 /**
  * @author stefanopenazzi
@@ -14,27 +15,40 @@ import data.source.internal.dataset.timeseries.point.TimeSeriesPoint;
 public class PTrie implements TimeSeriesDataStructureI {
 
 	@Override
-	public TimeSeriesDataStructureI getRange(Date start, Date end) {
+	public TimeSeriesDataStructureI getRange(Instant startTime, Instant endTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TimeSeriesPoint getPoint(Date date) {
+	public InternalTimeSeriesPoint getPoint(Instant time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TimeSeriesPoint getUpwardsPoint(Date date) {
+	public InternalTimeSeriesPoint getCeilingPoint(Instant time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TimeSeriesPoint getDownwardsPoint(Date date) {
+	public InternalTimeSeriesPoint getFloorPoint(Instant time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public void addPoint(InternalTimeSeriesPoint tsp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePoint(InternalTimeSeriesPoint tsp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

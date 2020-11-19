@@ -9,6 +9,7 @@ import org.influxdb.annotation.Column;
 import org.influxdb.annotation.Measurement;
 
 import data.source.external.database.Mirror;
+import data.source.internal.dataset.timeseries.point.InternalStockTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -16,7 +17,7 @@ import data.source.external.database.Mirror;
  */
 
 @Measurement(name = "IBM")
-public class StockTimeSeries implements Mirror {
+public class StockTimeSeriesPoint implements Mirror,InternalStockTimeSeriesPointI {
 
 	    @Column(name = "time")
 	    private Instant time;
@@ -35,5 +36,40 @@ public class StockTimeSeries implements Mirror {
 	 
 	    @Column(name = "volume")
 	    private Double volume;
+
+		@Override
+		public Instant getTime() {
+			return time;
+		}
+
+		@Override
+		public Object[] getValues() {
+			return null;
+		}
+
+		@Override
+		public double getClose() {
+			return close;
+		}
+
+		@Override
+		public double getHigh() {
+			return high;
+		}
+
+		@Override
+		public double getLow() {
+			return low;
+		}
+
+		@Override
+		public double getOpen() {
+			return open;
+		}
+
+		@Override
+		public double getVolume() {
+			return volume;
+		}
 	   
 }

@@ -3,16 +3,17 @@
  */
 package data.source.internal.dataset.timeseries.point;
 
+import java.time.Instant;
 import java.util.Date;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class StockTimeSeriesPointImpl implements StockTimeSeriesPoint  {
+public class InternalStockTimeSeriesPointImpl implements InternalStockTimeSeriesPointI  {
 
 	
-	private final Date date;
+	private final Instant time;
 	private final double open;
 	private final double close;
 	private final double high;
@@ -20,9 +21,9 @@ public class StockTimeSeriesPointImpl implements StockTimeSeriesPoint  {
 	private final double volume;
 	
 	
-	public StockTimeSeriesPointImpl(Date date,double open,double close,double high,double low,double volume) {
+	public InternalStockTimeSeriesPointImpl(Instant time,double open,double close,double high,double low,double volume) {
 		
-		this.date = date;
+		this.time = time;
 		this.open = open;
 		this.close = close;
 		this.high = high;
@@ -31,9 +32,9 @@ public class StockTimeSeriesPointImpl implements StockTimeSeriesPoint  {
 	}
 
 	@Override
-	public Date getDate() {
+	public Instant getTime() {
 		
-		return date;
+		return time;
 	}
 
 	@Override

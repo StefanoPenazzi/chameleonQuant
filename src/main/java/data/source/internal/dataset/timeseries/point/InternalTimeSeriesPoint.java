@@ -3,16 +3,16 @@
  */
 package data.source.internal.dataset.timeseries.point;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author stefanopenazzi
  *
  */
-public interface TimeSeriesPoint {
+public interface InternalTimeSeriesPoint {
 	
 	
-	public Date getDate();
+	public Instant getTime();
 	public Object[] getValues();
 	
 
