@@ -9,11 +9,10 @@ import java.util.Date;
  * @author stefanopenazzi
  *
  */
-public class AlphaVantageStockTimeSeriesPoint implements StockTimeSeriesPoint  {
+public class StockTimeSeriesPointImpl implements StockTimeSeriesPoint  {
 
-	private final Date startDate;
-	private final Date centralDate;
-	private final Date endDate;
+	
+	private final Date date;
 	private final double open;
 	private final double close;
 	private final double high;
@@ -21,37 +20,24 @@ public class AlphaVantageStockTimeSeriesPoint implements StockTimeSeriesPoint  {
 	private final double volume;
 	
 	
-	public AlphaVantageStockTimeSeriesPoint(Date startDate,Date centralDate,Date endDate,double open,double close,double high,double low,double volume) {
-		this.startDate = startDate;
-		this.centralDate = centralDate;
-		this.endDate = endDate;
+	public StockTimeSeriesPointImpl(Date date,double open,double close,double high,double low,double volume) {
+		
+		this.date = date;
 		this.open = open;
 		this.close = close;
 		this.high = high;
 		this.low = low;
 		this.volume = volume;
 	}
-	
+
 	@Override
-	public Date getStartDate() {
+	public Date getDate() {
 		
-		return startDate;
+		return date;
 	}
 
 	@Override
-	public Date getCentralDate() {
-		
-		return centralDate;
-	}
-
-	@Override
-	public Date getEndDate() {
-	
-		return endDate;
-	}
-
-	@Override
-	public Object[] getValue() {
+	public Object[] getValues() {
 		// TODO Auto-generated method stub
 		return null;
 	}

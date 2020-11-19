@@ -17,10 +17,10 @@ import data.source.internal.dataset.timeseries.point.TimeSeriesPoint;
  *
  */
 
-public class BTree implements TimeSeriesDS {
+public class BTree implements TimeSeriesDataStructureI {
 
 	@Override
-	public TimeSeriesDS getRange(Date start, Date end) {
+	public TimeSeriesDataStructureI getRange(Date start, Date end) {
 		// TODO Auto-generated method stub
 		return null;
 	}

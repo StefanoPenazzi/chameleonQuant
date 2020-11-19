@@ -11,10 +11,10 @@ import data.source.internal.dataset.timeseries.point.TimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public class PTrie implements TimeSeriesDS {
+public class PTrie implements TimeSeriesDataStructureI {
 
 	@Override
-	public TimeSeriesDS getRange(Date start, Date end) {
+	public TimeSeriesDataStructureI getRange(Date start, Date end) {
 		// TODO Auto-generated method stub
 		return null;
 	}

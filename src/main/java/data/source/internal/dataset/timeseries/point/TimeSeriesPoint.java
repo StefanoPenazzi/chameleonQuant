@@ -11,10 +11,9 @@ import java.util.Date;
  */
 public interface TimeSeriesPoint {
 	
-	public Date getStartDate();
-	public Date getCentralDate();
-	public Date getEndDate();
-	public Object[] getValue();
+	
+	public Date getDate();
+	public Object[] getValues();
 	
 
 }
