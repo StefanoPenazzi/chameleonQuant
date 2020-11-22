@@ -5,6 +5,7 @@ package data.source.internal.dataset.timeseries.datastructure;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.Iterator;
 
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
@@ -48,6 +49,24 @@ public class PTrie implements TimeSeriesDataStructureI {
 	public void removePoint(InternalTimeSeriesPoint tsp) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public InternalTimeSeriesPoint getFirst() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InternalTimeSeriesPoint getLast() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<InternalTimeSeriesPoint> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

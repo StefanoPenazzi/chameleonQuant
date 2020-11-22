@@ -6,6 +6,7 @@ package data.source.internal.dataset.timeseries.datastructure;
 import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -64,6 +65,22 @@ public class RBTree implements TimeSeriesDataStructureI {
 	public synchronized void removePoint(InternalTimeSeriesPoint tsp) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public InternalTimeSeriesPoint getFirst() {
+		return map.firstEntry().getValue();
+	}
+
+	@Override
+	public InternalTimeSeriesPoint getLast() {
+		map.lastEntry().getValue();
+		return null;
+	}
+
+	@Override
+	public Iterator<InternalTimeSeriesPoint> iterator() {
+		return map.values().iterator();
 	}
 
 }

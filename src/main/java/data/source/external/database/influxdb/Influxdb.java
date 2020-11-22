@@ -171,5 +171,8 @@ public class Influxdb implements Database {
 		return res;
 	}
 
+	public InfluxDB getInfluxDB() {
+		return this.influxDB;
+	}
 	
 }

@@ -8,6 +8,9 @@ import java.time.Instant;
 import org.influxdb.annotation.Column;
 import org.influxdb.annotation.Measurement;
 
+import com.google.inject.Inject;
+
+import data.source.annotation.InternalTimeSeries.Function;
 import data.source.external.database.Mirror;
 import data.source.internal.dataset.timeseries.point.InternalStockTimeSeriesPointI;
 
@@ -16,25 +19,30 @@ import data.source.internal.dataset.timeseries.point.InternalStockTimeSeriesPoin
  *
  */
 
-@Measurement(name = "IBM")
+@Measurement(name = "")
 public class StockTimeSeriesPoint implements Mirror,InternalStockTimeSeriesPointI {
 
 	    @Column(name = "time")
 	    private Instant time;
 	 
 	    @Column(name = "open")
+	    @Function(name = "first")
 	    private Double open;
 	    
 	    @Column(name = "close")
+	    @Function(name = "last")
 	    private Double close;
 	 
 	    @Column(name = "high")
+	    @Function(name = "max")
 	    private Double high;
 	 
 	    @Column(name = "low")
+	    @Function(name = "min")
 	    private Double low;
 	 
 	    @Column(name = "volume")
+	    @Function(name = "sum")
 	    private Double volume;
 
 		@Override
@@ -71,5 +79,10 @@ public class StockTimeSeriesPoint implements Mirror,InternalStockTimeSeriesPoint
 		public double getVolume() {
 			return volume;
 		}
+		
+		@Inject
+		public
+		StockTimeSeriesPoint(){}
+		
 	   
 }

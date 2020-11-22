@@ -44,6 +44,12 @@
 		    <artifactId>log4j-core</artifactId>
 		    <version>2.13.0</version>
 		 </dependency>
+		
+		<dependency>
+		    <groupId>com.google.inject</groupId>
+		    <artifactId>guice</artifactId>
+		    <version>4.2.3</version>
+		</dependency>
 
     </dependencies>
     <build>
