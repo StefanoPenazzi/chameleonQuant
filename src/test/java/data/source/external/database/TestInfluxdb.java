@@ -8,6 +8,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -86,6 +87,36 @@ class TestInfluxdb {
 		Object[] options = {true,',','"'};
 		idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockTimeSeriesPoint.class ,options);
 		idb.close();
+	}
+	
+	@Test
+	void testPipeLineAlphaVantMultipleBatchStocks() {
+		
+		List<String> stocks = Arrays.asList("AAPL","AMZN","TSLA","FB","BRK.A","C");
+		
+		for (String stock: stocks) {
+			
+			String csvPath = System.getProperty("user.dir")+"/output/"+stock+"_"+Function.TIME_SERIES_INTRADAY_EXTENDED+"_"+Interval.ONE_MIN+"_"+Slice.YEAR1MONTH1+"_"+OutputSize.FULL+"_"+OutputType.CSV+".csv";
+			
+			AlphaVantageConnector avc = new AlphaVantageConnector("84AHX76LXVJ25F65",10000);
+			String test = avc.call(Function.TIME_SERIES_INTRADAY_EXTENDED,new Symbol(stock),Interval.ONE_MIN,Slice.YEAR1MONTH1,OutputSize.FULL,OutputType.CSV);
+			try {
+				TxtUtils.stringToFile(test,csvPath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Influxdb idb = new Influxdb();
+			final String serverURL = "http://127.0.0.1:7086", username = "stefanopenazzi", password = "korky1987";
+			String[] dbCon = {serverURL,username,password};
+			//the server must be on(service influxdb start) otherwise the connection will not be successful
+			idb.connect(dbCon);
+			Object[] options = {true,',','"'};
+			idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockTimeSeriesPoint.class ,options);
+			idb.close();
+		}
+
 	}
 	
 	@Test
