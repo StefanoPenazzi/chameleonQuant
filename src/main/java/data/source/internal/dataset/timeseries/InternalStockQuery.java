@@ -5,22 +5,19 @@ package data.source.internal.dataset.timeseries;
 
 import java.util.Date;
 
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryInfluxdb.Interval;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryInfluxdb.Market;
-
 /**
  * @author stefanopenazzi
  *
  */
-public class InternalQuery {
+public class InternalStockQuery implements InternalTimeSeriesQueryI {
 
 	private final Date startDate;
 	private final Date endDate;
-	private final Market market;
+	private final String market;
 	private final String code;
-	private final Interval inter;
+	private final String inter;
 	
-	public InternalQuery(Date startDate, Date endDate, Market market, String code, Interval inter) {
+	public InternalStockQuery(Date startDate, Date endDate, String market, String code, String inter) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.market = market;
@@ -36,7 +33,7 @@ public class InternalQuery {
 		return this.endDate;
 	}
 	
-	public Market getMarket() {
+	public String getMarket() {
 		return this.market;
 	}
 	
@@ -44,8 +41,14 @@ public class InternalQuery {
 		return this.code;
 	}
 	
-	public Interval getInterval() {
+	public String getInterval() {
 		return this.inter;
+	}
+
+	@Override
+	public String getId() {
+		
+		return code;
 	}
 	
 }

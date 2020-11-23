@@ -11,8 +11,6 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public interface InternalTimeSeriesQueryI {
-	
-	public String getId();
-
+public interface InternalTimeSeriesQueryRequest {
+	public List<? extends InternalTimeSeriesPoint> getResult(InternalTimeSeriesQueryI iq);
 }

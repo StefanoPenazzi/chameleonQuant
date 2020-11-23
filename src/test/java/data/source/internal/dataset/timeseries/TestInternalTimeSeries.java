@@ -15,9 +15,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.multibindings.MapBinder;
 
+import data.source.external.database.influxdb.InternalTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryInfluxdb.Interval;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryInfluxdb.Market;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
@@ -35,15 +34,16 @@ class TestInternalTimeSeries {
 		
 	     Date startDate = sdf.parse("2020/10/19 00:00:00");
 		 Date endDate = null;
-		 Market market = Market.US_STOCKS;
-		 String code = "AAPL";
-		 Interval inter = Interval.HOUR8;
+		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
+		 String code = "FB";
+		 String inter = "8h";
 		
 		 Injector injector = Guice.createInjector(new BasicModule());
 		 
-		InternalQuery  query = new InternalQuery (startDate,endDate,market,code,inter);
-		InternalTimeSeriesFromInfluxdbFactory itsf  = injector.getInstance(InternalTimeSeriesFromInfluxdbFactory.class);
-		InternalStockTimeSeriesImpl<RBTree> its =  itsf.createTimeSeries(new ArrayList<String>(),query);
+		InternalStockQuery  query = new InternalStockQuery (startDate,endDate,market,code,inter);
+		InternalTimeSeriesFactoryImpl itsf  = injector.getInstance(InternalTimeSeriesFactoryImpl.class);
+		InternalTimeSeriesQueryInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryInfluxdb.class);
+		InternalStockTimeSeriesImpl<RBTree> its =  itsf.createTimeSeries(new ArrayList<String>(),itsq,query);
 		
 		System.out.println();
 	}
@@ -52,9 +52,9 @@ class TestInternalTimeSeries {
 		 
 	    @Override
 	    protected void configure() {
-	        MapBinder<Market, InternalTimeSeriesPoint> mapbinderInternalTimeSeriesPoint
-	            = MapBinder.newMapBinder(binder(), Market.class, InternalTimeSeriesPoint.class);
-	        mapbinderInternalTimeSeriesPoint.addBinding(Market.US_STOCKS).to(StockTimeSeriesPoint.class);
+	        MapBinder<String, InternalTimeSeriesPoint> mapbinderInternalTimeSeriesPoint
+	            = MapBinder.newMapBinder(binder(), String.class, InternalTimeSeriesPoint.class);
+	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockTimeSeriesPoint.class);
 	       
 	      
 	    MapBinder<String,TimeSeriesCleanerI> mapbinderTimeSeriesCleaner

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package data.source.internal.dataset.timeseries;
+package data.source.external.database.influxdb;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -19,26 +19,28 @@ import org.influxdb.impl.InfluxDBResultMapper;
 import com.google.inject.Inject;
 
 import data.source.annotation.InternalTimeSeries.Function;
-import data.source.external.database.influxdb.Influxdb;
+import data.source.internal.dataset.timeseries.InternalStockQuery;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequest;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesQueryInfluxdb {
+public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryRequest {
 	
-	private Map<Market,InternalTimeSeriesPoint> internalTimeSeriesPointMap;
+	private Map<String,InternalTimeSeriesPoint> internalTimeSeriesPointMap;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
 	@Inject
-	public InternalTimeSeriesQueryInfluxdb(Map<Market,InternalTimeSeriesPoint> internalTimeSeriesPointMap) {
+	public InternalTimeSeriesQueryInfluxdb(Map<String,InternalTimeSeriesPoint> internalTimeSeriesPointMap) {
 		this.internalTimeSeriesPointMap = internalTimeSeriesPointMap;
 	}
 	
-	private String getStringQuery(InternalQuery iq) {
+	private String getStringQuery(InternalStockQuery iq) {
 		
 		//"SELECT first(open) AS open, last(close) AS close, max(high) AS high, min(low) AS low, sum(volume) AS volume FROM "+stock+" WHERE time>'2020-10-19 09:30:00'  GROUP BY time(8h)
 		
@@ -52,7 +54,6 @@ public class InternalTimeSeriesQueryInfluxdb {
 		
 		
 		//build the fields
-		//TODO qui non prende nessun field!!!!!!!!!!!!!!
 		Field[] fields = internalTimeSeriesPointMap.get(iq.getMarket()).getClass().getDeclaredFields();
 		for(Field field: fields) {
 			Annotation[] annotations = field.getDeclaredAnnotations();
@@ -78,7 +79,7 @@ public class InternalTimeSeriesQueryInfluxdb {
 		 if (res.charAt(res.length() - 1) == ' ' && res.charAt(res.length() - 2) ==',') {
 			 res = res.substring(0, res.length() - 2);
 		}
-		res = res + " FROM "+iq.getCode()+" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval().getInterval()+")" ;
+		res = res + " FROM "+iq.getCode()+" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval()+")" ;
 		
 		return res;
 	}
@@ -87,8 +88,10 @@ public class InternalTimeSeriesQueryInfluxdb {
 		return null;
 	}
 	
-	public List<? extends InternalTimeSeriesPoint> getResult(InternalQuery iq){
-		
+	@Override
+	public List<? extends InternalTimeSeriesPoint> getResult(InternalTimeSeriesQueryI iqI){
+		//TODO what if this is not an InternalStockQuery 
+		InternalStockQuery iq = (InternalStockQuery)iqI;
 		Influxdb idb = new Influxdb();
 		final String serverURL = "http://127.0.0.1:7086", username = "stefanopenazzi", password = "korky1987";
 		String[] dbCon = {serverURL,username,password};
@@ -96,7 +99,7 @@ public class InternalTimeSeriesQueryInfluxdb {
 		idb.connect(dbCon);
 		
 		//Query data from InfluxDB
-		Query query = new Query(getStringQuery(iq), iq.getMarket().getMarket());
+		Query query = new Query(getStringQuery(iq), iq.getMarket());
 		QueryResult queryResult = idb.getInfluxDB().query(query);
 		//Convert QueryResult to POJO
 		String measurement = iq.getCode();
