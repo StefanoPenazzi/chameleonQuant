@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface InternalTimeSeriesFactoryI {
 	
-	public AbstractInternalTimeSeries createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequest itsReq ,InternalTimeSeriesQueryI iq);
+	public InternalTimeSeriesAbstract createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI itsReq ,InternalTimeSeriesQueryI iq);
 
 }

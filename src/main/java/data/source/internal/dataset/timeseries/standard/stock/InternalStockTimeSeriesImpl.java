@@ -1,10 +1,11 @@
 /**
  * 
  */
-package data.source.internal.dataset.timeseries;
+package data.source.internal.dataset.timeseries.standard.stock;
 
 import java.util.List;
 
+import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
 
@@ -14,7 +15,7 @@ import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStruc
  */
 
 
-public class InternalStockTimeSeriesImpl <T extends TimeSeriesDataStructureI> extends AbstractInternalTimeSeries<T> {
+public class InternalStockTimeSeriesImpl <T extends TimeSeriesDataStructureI> extends InternalTimeSeriesAbstract<T> {
 	
 //	 @Inject private Map<String,TimeSeriesCleanerI> cleaners;
 	

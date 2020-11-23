@@ -20,6 +20,9 @@ import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeri
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
+import data.source.internal.dataset.timeseries.standard.stock.InternalStockQuery;
+import data.source.internal.dataset.timeseries.standard.stock.InternalStockTimeSeriesImpl;
 
 /**
  * @author stefanopenazzi

@@ -1,14 +1,19 @@
 /**
  * 
  */
-package data.source.internal.dataset.timeseries;
+package data.source.internal.dataset.timeseries.standard;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.google.inject.Inject;
+
+import data.source.internal.dataset.timeseries.InternalTimeSeriesFactoryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
+import data.source.internal.dataset.timeseries.standard.stock.InternalStockTimeSeriesImpl;
 
 
 
@@ -34,7 +39,7 @@ public class InternalTimeSeriesFactoryImpl implements InternalTimeSeriesFactoryI
 	}
 	
 	@Override
-	public InternalStockTimeSeriesImpl<RBTree> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequest itsReq ,InternalTimeSeriesQueryI iq) {
+	public InternalStockTimeSeriesImpl<RBTree> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI itsReq ,InternalTimeSeriesQueryI iq) {
 		
 		this.cleanersList = new ArrayList<>();
 		
@@ -44,8 +49,6 @@ public class InternalTimeSeriesFactoryImpl implements InternalTimeSeriesFactoryI
 				cleanersList.add(tsc);
 			}
 		}
-		
-		
 		return new InternalStockTimeSeriesImpl<RBTree>(new RBTree(itsReq.getResult(iq)) ,iq.getId(),cleanersList);
 	}
 

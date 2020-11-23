@@ -1,9 +1,11 @@
 /**
  * 
  */
-package data.source.internal.dataset.timeseries;
+package data.source.internal.dataset.timeseries.standard.stock;
 
 import java.util.Date;
+
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 
 /**
  * @author stefanopenazzi

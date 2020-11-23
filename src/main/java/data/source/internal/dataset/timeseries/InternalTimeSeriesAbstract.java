@@ -17,13 +17,13 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public abstract class AbstractInternalTimeSeries <T extends TimeSeriesDataStructureI> implements InternalTimeSeriesI {
+public abstract class InternalTimeSeriesAbstract <T extends TimeSeriesDataStructureI> implements InternalTimeSeriesI {
 	
 	private final T tsd;
 	private final String id;
 	private boolean singleInterval;
 	
-	public AbstractInternalTimeSeries(T tsd,String id, List<? extends TimeSeriesCleanerI> cleaners) {
+	public InternalTimeSeriesAbstract(T tsd,String id, List<? extends TimeSeriesCleanerI> cleaners) {
 		
 		this.id = id;
 		this.tsd = initialize(tsd,cleaners);

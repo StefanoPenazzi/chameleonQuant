@@ -19,16 +19,16 @@ import org.influxdb.impl.InfluxDBResultMapper;
 import com.google.inject.Inject;
 
 import data.source.annotation.InternalTimeSeries.Function;
-import data.source.internal.dataset.timeseries.InternalStockQuery;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequest;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.standard.stock.InternalStockQuery;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryRequest {
+public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryRequestI {
 	
 	private Map<String,InternalTimeSeriesPoint> internalTimeSeriesPointMap;
 	
