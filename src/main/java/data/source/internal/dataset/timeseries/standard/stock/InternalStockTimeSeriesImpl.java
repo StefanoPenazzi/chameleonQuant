@@ -6,6 +6,7 @@ package data.source.internal.dataset.timeseries.standard.stock;
 import java.util.List;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
 
@@ -22,8 +23,8 @@ public class InternalStockTimeSeriesImpl <T extends TimeSeriesDataStructureI> ex
 	/**
 	 * @param tsd
 	 */
-	public InternalStockTimeSeriesImpl( T tsd,String id,List<? extends TimeSeriesCleanerI> newCleaners) {
-		super(tsd,id,newCleaners);
+	public InternalStockTimeSeriesImpl( T tsd,InternalTimeSeriesQueryI itsq,List<? extends TimeSeriesCleanerI> newCleaners) {
+		super(tsd,itsq,newCleaners);
 		
 	}
 

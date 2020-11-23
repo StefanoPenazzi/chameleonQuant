@@ -49,7 +49,7 @@ public class InternalTimeSeriesFactoryImpl implements InternalTimeSeriesFactoryI
 				cleanersList.add(tsc);
 			}
 		}
-		return new InternalStockTimeSeriesImpl<RBTree>(new RBTree(itsReq.getResult(iq)) ,iq.getId(),cleanersList);
+		return new InternalStockTimeSeriesImpl<RBTree>(new RBTree(itsReq.getResult(iq)) ,iq,cleanersList);
 	}
 
 }

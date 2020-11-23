@@ -3,9 +3,7 @@
  */
 package data.source.internal.dataset.timeseries;
 
-import java.util.List;
-
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import java.util.Date;
 
 /**
  * @author stefanopenazzi
@@ -14,5 +12,11 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 public interface InternalTimeSeriesQueryI {
 	
 	public String getId();
+	public Date getStartDate();
+	public Date getEndDate(); 
+	//TODO this doesn t work for indicators gdp etc. Reflections are prob better
+	public String getMarket(); 
+	public String getCode();
+	public String getInterval(); 
 
 }

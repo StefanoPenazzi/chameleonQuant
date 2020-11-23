@@ -4,6 +4,7 @@
 package data.source.internal.dataset.timeseries.standard.stock;
 
 import java.util.Date;
+import java.util.Objects;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 
@@ -11,6 +12,8 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
  * @author stefanopenazzi
  *
  */
+
+//better to have an abstract class
 public class InternalStockQuery implements InternalTimeSeriesQueryI {
 
 	private final Date startDate;
@@ -27,22 +30,27 @@ public class InternalStockQuery implements InternalTimeSeriesQueryI {
 		this.inter = inter;
 	}
 	
+	@Override
 	public Date getStartDate() {
 		return this.startDate;
 	}
 	
+	@Override
 	public Date getEndDate() {
 		return this.endDate;
 	}
 	
+	@Override
 	public String getMarket() {
 		return this.market;
 	}
 	
+	@Override
 	public String getCode() {
 		return this.code;
 	}
 	
+	@Override
 	public String getInterval() {
 		return this.inter;
 	}
@@ -51,6 +59,13 @@ public class InternalStockQuery implements InternalTimeSeriesQueryI {
 	public String getId() {
 		
 		return code;
+	}
+	
+	//better using reflection even here
+	@Override
+	public int hashCode() {
+		//TODO get the has code of the query
+		return Objects.hash(getCode(),getMarket(),getInterval(),getStartDate(),getEndDate());
 	}
 	
 }

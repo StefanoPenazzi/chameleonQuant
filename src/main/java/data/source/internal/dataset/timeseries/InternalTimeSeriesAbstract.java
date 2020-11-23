@@ -20,12 +20,12 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 public abstract class InternalTimeSeriesAbstract <T extends TimeSeriesDataStructureI> implements InternalTimeSeriesI {
 	
 	private final T tsd;
-	private final String id;
+	private final InternalTimeSeriesQueryI itsq;
 	private boolean singleInterval;
 	
-	public InternalTimeSeriesAbstract(T tsd,String id, List<? extends TimeSeriesCleanerI> cleaners) {
+	public InternalTimeSeriesAbstract(T tsd,InternalTimeSeriesQueryI itsq, List<? extends TimeSeriesCleanerI> cleaners) {
 		
-		this.id = id;
+		this.itsq = itsq;
 		this.tsd = initialize(tsd,cleaners);
 	}
 	
@@ -86,8 +86,8 @@ public abstract class InternalTimeSeriesAbstract <T extends TimeSeriesDataStruct
 	}
 
 	@Override
-	public String getId() {
-		return this.id;
+	public InternalTimeSeriesQueryI getQuery() {
+		return this.itsq;
 	}
 
 	@Override
@@ -126,7 +126,8 @@ public abstract class InternalTimeSeriesAbstract <T extends TimeSeriesDataStruct
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id,getInterval(),getFirstInstant(),getLastInstant());
+		//TODO get the has code of the query
+		return Objects.hash(getInterval(),getFirstInstant(),getLastInstant());
 	}
 	
 }
