@@ -15,7 +15,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.multibindings.MapBinder;
 
-import data.source.external.database.influxdb.InternalTimeSeriesQueryInfluxdb;
+import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
+import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
@@ -43,9 +44,9 @@ class TestInternalTimeSeries {
 		
 		 Injector injector = Guice.createInjector(new BasicModule());
 		 
-		InternalStockQuery  query = new InternalStockQuery (startDate,endDate,market,code,inter);
+		 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,code,inter);
 		InternalTimeSeriesFactoryImpl itsf  = injector.getInstance(InternalTimeSeriesFactoryImpl.class);
-		InternalTimeSeriesQueryInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryInfluxdb.class);
+		InternalTimeSeriesQueryRequestInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryRequestInfluxdb.class);
 		InternalStockTimeSeriesImpl<RBTree> its =  itsf.createTimeSeries(new ArrayList<String>(),itsq,query);
 		
 		System.out.println();

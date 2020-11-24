@@ -92,7 +92,7 @@ class TestInfluxdb {
 	@Test
 	void testPipeLineAlphaVantMultipleBatchStocks() {
 		
-		List<String> stocks = Arrays.asList("AAPL","AMZN","TSLA","FB","BRK.A","C");
+		List<String> stocks = Arrays.asList("AAPL","AMZN","TSLA","FB","BRK-A","C");
 		
 		for (String stock: stocks) {
 			

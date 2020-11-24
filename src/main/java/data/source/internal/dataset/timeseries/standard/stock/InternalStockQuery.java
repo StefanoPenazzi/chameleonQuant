@@ -40,12 +40,12 @@ public class InternalStockQuery implements InternalTimeSeriesQueryI {
 		return this.endDate;
 	}
 	
-	@Override
+	
 	public String getMarket() {
 		return this.market;
 	}
 	
-	@Override
+	
 	public String getCode() {
 		return this.code;
 	}
@@ -58,14 +58,7 @@ public class InternalStockQuery implements InternalTimeSeriesQueryI {
 	@Override
 	public String getId() {
 		
-		return code;
-	}
-	
-	//better using reflection even here
-	@Override
-	public int hashCode() {
-		//TODO get the has code of the query
-		return Objects.hash(getCode(),getMarket(),getInterval(),getStartDate(),getEndDate());
+		return this.code;
 	}
 	
 }

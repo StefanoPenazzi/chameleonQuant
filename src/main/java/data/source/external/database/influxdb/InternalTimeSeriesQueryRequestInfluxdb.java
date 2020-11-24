@@ -5,19 +5,25 @@ package data.source.external.database.influxdb;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.influxdb.annotation.Column;
 import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
 import org.influxdb.impl.InfluxDBResultMapper;
 import com.google.inject.Inject;
 
+import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.Function;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
@@ -28,7 +34,9 @@ import data.source.internal.dataset.timeseries.standard.stock.InternalStockQuery
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryRequestI {
+public class InternalTimeSeriesQueryRequestInfluxdb implements InternalTimeSeriesQueryRequestI {
+	
+	private static final Logger logger = LogManager.getLogger(InternalTimeSeriesQueryRequestInfluxdb.class);
 	
 	private Map<String,InternalTimeSeriesPoint> internalTimeSeriesPointMap;
 	
@@ -36,7 +44,7 @@ public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryR
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
 	@Inject
-	public InternalTimeSeriesQueryInfluxdb(Map<String,InternalTimeSeriesPoint> internalTimeSeriesPointMap) {
+	public InternalTimeSeriesQueryRequestInfluxdb(Map<String,InternalTimeSeriesPoint> internalTimeSeriesPointMap) {
 		this.internalTimeSeriesPointMap = internalTimeSeriesPointMap;
 	}
 	
@@ -88,10 +96,36 @@ public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryR
 		return null;
 	}
 	
+	// all the reflections utils should be in the same package not like this
+	public Method getMethodsAnnotatedWith(final Class<?> type, final Class<? extends Annotation> annotation, String name) throws Exception {
+	    final List<Method> methods = new ArrayList<Method>();
+	    Class<?> klass = type;
+	    while (klass != Object.class) { 
+	        for (final Method method : klass.getDeclaredMethods()) {
+	            if (method.isAnnotationPresent(annotation)) {
+	                Annotation annotInstance = method.getAnnotation(annotation);
+	                if(annotInstance.annotationType().equals(InternalQueryInfo.class) ) {
+	                	InternalQueryInfo aInstance = (InternalQueryInfo)annotInstance;
+	                	if(aInstance.name().equals(name)) {
+	                		methods.add(method);
+	                	}
+	                }
+	            }
+	        }
+	        // move to the upper class in the hierarchy in search for more methods
+	        klass = klass.getSuperclass();
+	    }
+	    if(methods.size() != 1) {
+	    	throw new Exception(); 
+	    }
+	    return methods.get(0);
+	}
+	
+	
 	@Override
 	public List<? extends InternalTimeSeriesPoint> getResult(InternalTimeSeriesQueryI iqI){
 		//TODO what if this is not an InternalStockQuery 
-		InternalStockQuery iq = (InternalStockQuery)iqI;
+		InternalStockTimeSeriesQueryInfluxdb iq = (InternalStockTimeSeriesQueryInfluxdb)iqI;
 		Influxdb idb = new Influxdb();
 		final String serverURL = "http://127.0.0.1:7086", username = "stefanopenazzi", password = "korky1987";
 		String[] dbCon = {serverURL,username,password};
@@ -99,7 +133,23 @@ public class InternalTimeSeriesQueryInfluxdb implements InternalTimeSeriesQueryR
 		idb.connect(dbCon);
 		
 		//Query data from InfluxDB
-		Query query = new Query(getStringQuery(iq), iq.getMarket());
+		String db = "";
+		try {
+			db = (String)(getMethodsAnnotatedWith(InternalStockTimeSeriesQueryInfluxdb.class,InternalQueryInfo.class,"database").invoke(iq));
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Query query = new Query(getStringQuery(iq),db);
 		QueryResult queryResult = idb.getInfluxDB().query(query);
 		//Convert QueryResult to POJO
 		String measurement = iq.getCode();
