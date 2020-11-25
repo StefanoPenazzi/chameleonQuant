@@ -20,7 +20,7 @@ import data.source.internal.dataset.timeseries.point.InternalStockTimeSeriesPoin
  */
 
 @Measurement(name = "")
-public class StockTimeSeriesPoint implements Mirror,InternalStockTimeSeriesPointI {
+public class StockTimeSeriesPointInfluxdb implements Mirror,InternalStockTimeSeriesPointI {
 
 	    @Column(name = "time")
 	    private Instant time;
@@ -82,7 +82,7 @@ public class StockTimeSeriesPoint implements Mirror,InternalStockTimeSeriesPoint
 		
 		@Inject
 		public
-		StockTimeSeriesPoint(){}
+		StockTimeSeriesPointInfluxdb(){}
 		
 	   
 }

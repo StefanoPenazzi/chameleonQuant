@@ -15,18 +15,18 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public interface InternalTimeSeriesI {
+public interface InternalTimeSeriesI<T extends InternalTimeSeriesPoint> {
 	
-	public TimeSeriesDataStructureI getRange(Instant timeStart, Instant timeEnd);
-	
-	
-	public InternalTimeSeriesPoint getPoint(Instant time);
+	public TimeSeriesDataStructureI<T> getRange(Instant timeStart, Instant timeEnd);
 	
 	
-	public InternalTimeSeriesPoint getCeilingPoint(Instant time);
+	public T getPoint(Instant time);
 	
 	
-	public InternalTimeSeriesPoint getFloorPoint(Instant time);
+	public T getCeilingPoint(Instant time);
+	
+	
+	public T getFloorPoint(Instant time);
 	
 	
 	public boolean getSingleInterval();

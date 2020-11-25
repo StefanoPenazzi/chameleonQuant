@@ -13,16 +13,16 @@ import org.junit.jupiter.api.Test;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.TypeLiteral;
 import com.google.inject.multibindings.MapBinder;
 
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPoint;
+import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
-import data.source.internal.dataset.timeseries.standard.stock.InternalStockQuery;
 import data.source.internal.dataset.timeseries.standard.stock.InternalStockTimeSeriesImpl;
 
 /**
@@ -31,6 +31,7 @@ import data.source.internal.dataset.timeseries.standard.stock.InternalStockTimeS
  */
 class TestInternalTimeSeries {
 
+	
 	@Test
 	void testInternalTimeSeriesFromInfluxDB() throws ParseException {
 	    
@@ -44,10 +45,10 @@ class TestInternalTimeSeries {
 		
 		 Injector injector = Guice.createInjector(new BasicModule());
 		 
-		 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,code,inter);
-		InternalTimeSeriesFactoryImpl itsf  = injector.getInstance(InternalTimeSeriesFactoryImpl.class);
+		InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,code,inter);
+		InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb> itsf  = injector.getInstance(Key.get(new TypeLiteral<InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb>>(){}));
 		InternalTimeSeriesQueryRequestInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryRequestInfluxdb.class);
-		InternalStockTimeSeriesImpl<RBTree> its =  itsf.createTimeSeries(new ArrayList<String>(),itsq,query);
+		InternalStockTimeSeriesImpl<StockTimeSeriesPointInfluxdb> its =  itsf.createTimeSeries(new ArrayList<String>(),itsq,query);
 		
 		System.out.println();
 	}
@@ -58,11 +59,11 @@ class TestInternalTimeSeries {
 	    protected void configure() {
 	        MapBinder<String, InternalTimeSeriesPoint> mapbinderInternalTimeSeriesPoint
 	            = MapBinder.newMapBinder(binder(), String.class, InternalTimeSeriesPoint.class);
-	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockTimeSeriesPoint.class);
+	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockTimeSeriesPointInfluxdb.class);
 	       
 	      
-	    MapBinder<String,TimeSeriesCleanerI> mapbinderTimeSeriesCleaner
-	        = MapBinder.newMapBinder(binder(), String.class, TimeSeriesCleanerI.class);
+	    MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> mapbinderTimeSeriesCleaner
+	        = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>(){});
    
 	    }
 	}

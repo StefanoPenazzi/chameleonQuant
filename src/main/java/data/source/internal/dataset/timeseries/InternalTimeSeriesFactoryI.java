@@ -5,12 +5,14 @@ package data.source.internal.dataset.timeseries;
 
 import java.util.List;
 
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+
 /**
  * @author stefanopenazzi
  *
  */
-public interface InternalTimeSeriesFactoryI {
+public interface InternalTimeSeriesFactoryI<T extends InternalTimeSeriesPoint> {
 	
-	public InternalTimeSeriesAbstract createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI itsReq ,InternalTimeSeriesQueryI iq);
+	public InternalTimeSeriesAbstract<T> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesQueryI iq);
 
 }

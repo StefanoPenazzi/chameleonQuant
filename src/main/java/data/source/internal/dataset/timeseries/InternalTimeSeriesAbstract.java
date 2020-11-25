@@ -17,53 +17,53 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public abstract class InternalTimeSeriesAbstract <T extends TimeSeriesDataStructureI> implements InternalTimeSeriesI {
+public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPoint> implements InternalTimeSeriesI<T> {
 	
-	private final T tsd;
+	private final TimeSeriesDataStructureI<T> tsd;
 	private final InternalTimeSeriesQueryI itsq;
 	private boolean singleInterval;
 	
-	public InternalTimeSeriesAbstract(T tsd,InternalTimeSeriesQueryI itsq, List<? extends TimeSeriesCleanerI> cleaners) {
+	public InternalTimeSeriesAbstract(TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesQueryI itsq, List<? extends TimeSeriesCleanerI<T>> cleaners) {
 		
 		this.itsq = itsq;
 		this.tsd = initialize(tsd,cleaners);
 	}
 	
 	//data cleaning and general rules should be provided externally (how to manage null values, gaps, etc)
-	public T initialize(T tsd,List<? extends TimeSeriesCleanerI> cleaners) {
+	public TimeSeriesDataStructureI<T> initialize(TimeSeriesDataStructureI<T> tsd,List<? extends TimeSeriesCleanerI<T>> cleaners) {
 		
-		T tsdInter = tsd;
+		TimeSeriesDataStructureI<T> tsdInter = tsd;
 		tsdInter = firstTimeSeriesAdjustment(tsdInter);
 		
 		for(TimeSeriesCleanerI c: cleaners) {
-			tsdInter = (T) c.clean(tsdInter);
+			tsdInter = c.clean(tsdInter);
 		}
 		tsdInter = lastTimeSeriesAdjustment(tsdInter);
 		return tsdInter;
 	}
 	
-	public abstract T firstTimeSeriesAdjustment(T tsd);
+	public abstract TimeSeriesDataStructureI<T> firstTimeSeriesAdjustment(TimeSeriesDataStructureI<T> tsd);
 	
-	public abstract T lastTimeSeriesAdjustment(T tsd);
+	public abstract TimeSeriesDataStructureI<T> lastTimeSeriesAdjustment(TimeSeriesDataStructureI<T> tsd);
 	
 	@Override
-	public T getRange(Instant startTime, Instant endTime) {
-		return (T) this.tsd.getRange(startTime, endTime);
+	public TimeSeriesDataStructureI<T> getRange(Instant startTime, Instant endTime) {
+		return this.tsd.getRange(startTime, endTime);
 	}
 	
 	@Override
-	public InternalTimeSeriesPoint getPoint(Instant time) {
-		return this.tsd.getPoint(time);
-	}
-
-	@Override
-	public InternalTimeSeriesPoint getCeilingPoint(Instant time) {
-		return this.tsd.getCeilingPoint(time);
+	public T getPoint(Instant time) {
+		return (T) this.tsd.getPoint(time);
 	}
 
 	@Override
-	public InternalTimeSeriesPoint getFloorPoint(Instant time) {
-		return this.tsd.getFloorPoint(time);
+	public T getCeilingPoint(Instant time) {
+		return (T) this.tsd.getCeilingPoint(time);
+	}
+
+	@Override
+	public T getFloorPoint(Instant time) {
+		return (T) this.tsd.getFloorPoint(time);
 	}
 	
 	public T getRange(Date startDate, Date endDate) {

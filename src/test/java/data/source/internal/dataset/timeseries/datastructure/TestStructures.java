@@ -15,7 +15,7 @@ import org.influxdb.annotation.Measurement;
 import org.junit.jupiter.api.Test;
 
 import data.source.external.database.influxdb.Influxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPoint;
+import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
 
 /**
  * @author stefanopenazzi
@@ -38,7 +38,7 @@ class TestStructures {
 		 
 		    
 		     // Get the annotation on Test
-		    Measurement stss =  StockTimeSeriesPoint.class.getAnnotation(Measurement.class);
+		    Measurement stss =  StockTimeSeriesPointInfluxdb.class.getAnnotation(Measurement.class);
 		    if (stss == null) {
 		      throw new RuntimeException("please add @Measurement for StockTimeSeries");
 		    }
@@ -66,7 +66,7 @@ class TestStructures {
 		    
 		    
 		
-		List<StockTimeSeriesPoint> sts = (List<StockTimeSeriesPoint>) idb.performQuery("SELECT first(open) AS open, last(close) AS close, max(high) AS high, min(low) AS low, sum(volume) AS volume FROM "+stock+" WHERE time>'2020-10-19 09:30:00'  GROUP BY time(8h)", "US_STOCKS_TIME_SERIES_INTRADAY_1MIN", StockTimeSeriesPoint.class );
+		List<StockTimeSeriesPointInfluxdb> sts = (List<StockTimeSeriesPointInfluxdb>) idb.performQuery("SELECT first(open) AS open, last(close) AS close, max(high) AS high, min(low) AS low, sum(volume) AS volume FROM "+stock+" WHERE time>'2020-10-19 09:30:00'  GROUP BY time(8h)", "US_STOCKS_TIME_SERIES_INTRADAY_1MIN", StockTimeSeriesPointInfluxdb.class );
 		
 		RBTree rbt = new RBTree(sts);
 		System.out.println();

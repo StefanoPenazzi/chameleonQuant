@@ -21,7 +21,7 @@ import com.google.inject.multibindings.MapBinder;
 
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPoint;
+import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
@@ -66,7 +66,7 @@ class TestDataset {
 	    protected void configure() {
 	        MapBinder<String, InternalTimeSeriesPoint> mapbinderInternalTimeSeriesPoint
 	            = MapBinder.newMapBinder(binder(), String.class, InternalTimeSeriesPoint.class);
-	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockTimeSeriesPoint.class);
+	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockTimeSeriesPointInfluxdb.class);
 	       
 	      
 	    MapBinder<String,TimeSeriesCleanerI> mapbinderTimeSeriesCleaner
