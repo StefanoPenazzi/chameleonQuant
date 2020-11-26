@@ -19,6 +19,7 @@ import com.google.inject.multibindings.MapBinder;
 
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
+import data.source.external.database.influxdb.TimeSeriesCleanerNullValuesStockInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
@@ -48,7 +49,7 @@ class TestInternalTimeSeries {
 		InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,code,inter);
 		InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb> itsf  = injector.getInstance(Key.get(new TypeLiteral<InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb>>(){}));
 		InternalTimeSeriesQueryRequestInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryRequestInfluxdb.class);
-		InternalStockTimeSeriesImpl<StockTimeSeriesPointInfluxdb> its =  itsf.createTimeSeries(new ArrayList<String>(),itsq,query);
+		InternalStockTimeSeriesImpl<StockTimeSeriesPointInfluxdb> its =  itsf.createTimeSeries(new ArrayList<String>() {{add("NULL_INFLUXDB");}},itsq,query);
 		
 		System.out.println();
 	}
@@ -64,6 +65,8 @@ class TestInternalTimeSeries {
 	      
 	    MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> mapbinderTimeSeriesCleaner
 	        = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>(){});
+	    
+	    mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
    
 	    }
 	}

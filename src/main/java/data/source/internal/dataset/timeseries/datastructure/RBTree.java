@@ -63,7 +63,7 @@ public class RBTree<T extends InternalTimeSeriesPoint> implements TimeSeriesData
 
 	@Override
 	public synchronized void removePoint(T tsp) {
-		// TODO Auto-generated method stub
+		map.remove(tsp.getTime());
 		
 	}
 
