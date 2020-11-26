@@ -44,31 +44,31 @@ public class InternalStockTimeSeriesPointImpl implements InternalStockTimeSeries
 	}
 
 	@Override
-	public double getClose() {
+	public Double getClose() {
 	
 		return close;
 	}
 
 	@Override
-	public double getHigh() {
+	public Double getHigh() {
 		
 		return high;
 	}
 
 	@Override
-	public double getLow() {
+	public Double getLow() {
 	
 		return low;
 	}
 
 	@Override
-	public double getOpen() {
+	public Double getOpen() {
 		
 		return open;
 	}
 
 	@Override
-	public double getVolume() {
+	public Double getVolume() {
 		
 		return volume;
 	}

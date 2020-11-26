@@ -17,11 +17,10 @@ public class TimeSeriesCleanerNullValuesStockInfluxdb <T extends StockTimeSeries
 	@Override
 	public TimeSeriesDataStructureI<T> clean(TimeSeriesDataStructureI<T> tsd) {
 		for(T itp: tsd) {
-			/*
-			 * if(itp.getClose() == null) {
-			 * 
-			 * }
-			 */
+			  //if(itp.getClose() null) {
+			  //
+			  //}
+			 
 		}
 		return null;
 	}

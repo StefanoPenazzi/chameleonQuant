@@ -9,10 +9,10 @@ package data.source.internal.dataset.timeseries.point;
  */
 public interface InternalStockTimeSeriesPointI extends InternalTimeSeriesPoint {
 
-	public double getClose();
-	public double getHigh();
-	public double getLow();
-	public double getOpen();
-	public double getVolume();
+	public Double getClose();
+	public Double getHigh();
+	public Double getLow();
+	public Double getOpen();
+	public Double getVolume();
 	
 }
