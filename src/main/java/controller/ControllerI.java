@@ -19,6 +19,6 @@ package controller;
  *
  */
 
-public interface ControlerI extends Runnable{
+public interface ControllerI extends Runnable{
 
 }
