@@ -15,15 +15,11 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
-import com.google.inject.TypeLiteral;
-import com.google.inject.multibindings.MapBinder;
+
 import controller.Controller;
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
-import data.source.external.database.influxdb.TimeSeriesCleanerNullValuesStockInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
-import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
 
 
@@ -61,6 +57,8 @@ class TestDataset {
 	
 	@Test
 	void testDatasetController() throws ParseException, InstantiationException, IllegalAccessException {
+		
+		
 		List<String> stocks = Arrays.asList("AAPL","AMZN","TSLA","FB","C");
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");

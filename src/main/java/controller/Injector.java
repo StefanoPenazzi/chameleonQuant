@@ -46,7 +46,7 @@ public final class Injector {
 		}
 		com.google.inject.Injector injector = Guice.createInjector(guiceModules);
 		//com.google.inject.Injector rInjector = injector.createChildInjector(Modules.combine(guiceModules));
-		//printInjector(rInjector, logger);
+		printInjector(injector, logger);
 		return injector;
 	}
 	
