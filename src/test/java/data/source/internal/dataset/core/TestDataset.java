@@ -20,6 +20,8 @@ import controller.Controller;
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesI;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
 
 
@@ -80,6 +82,8 @@ class TestDataset {
 			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeries(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
+		 
+		 InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
 		System.out.println();
 	}

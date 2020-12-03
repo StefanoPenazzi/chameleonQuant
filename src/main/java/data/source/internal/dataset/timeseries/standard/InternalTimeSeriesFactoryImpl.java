@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesFactoryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
@@ -41,7 +42,7 @@ public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> im
 	}
 	
 	@Override
-	public InternalStockTimeSeriesImpl<T> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesQueryI iq) {
+	public InternalStockTimeSeriesImpl<T> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesQueryAbstract iq) {
 		
 		this.cleanersList = new ArrayList<>();
 		

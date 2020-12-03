@@ -13,6 +13,6 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  */
 public interface InternalTimeSeriesFactoryI<T extends InternalTimeSeriesPoint> {
 	
-	public InternalTimeSeriesAbstract<T> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesQueryI iq);
+	public InternalTimeSeriesAbstract<T> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesQueryAbstract iq);
 
 }

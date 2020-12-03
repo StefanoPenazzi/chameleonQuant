@@ -6,6 +6,7 @@ package data.source.internal.dataset.timeseries.standard.stock;
 import java.util.Date;
 import java.util.Objects;
 
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 
 /**
@@ -14,7 +15,7 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
  */
 
 //better to have an abstract class
-public class InternalStockQuery implements InternalTimeSeriesQueryI {
+public class InternalStockQuery extends InternalTimeSeriesQueryAbstract {
 
 	private final Date startDate;
 	private final Date endDate;

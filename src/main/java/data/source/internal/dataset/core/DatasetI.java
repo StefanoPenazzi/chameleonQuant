@@ -4,6 +4,7 @@
 package data.source.internal.dataset.core;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
@@ -14,7 +15,7 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 public interface DatasetI {
 	
 	public void addTimeSeries(InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its);
-	public boolean removeTimeSeries(InternalTimeSeriesQueryI itq);
-	public InternalTimeSeriesI<?> getTimeSeries(InternalTimeSeriesQueryI itq);
+	public boolean removeTimeSeries(InternalTimeSeriesQueryAbstract itq);
+	public InternalTimeSeriesI<?> getTimeSeries(InternalTimeSeriesQueryAbstract itq);
 
 }

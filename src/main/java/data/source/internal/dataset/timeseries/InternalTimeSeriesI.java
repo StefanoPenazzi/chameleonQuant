@@ -43,6 +43,6 @@ public interface InternalTimeSeriesI<T extends InternalTimeSeriesPoint> {
 	 *
 	 */
 	
-	public InternalTimeSeriesQueryI getQuery();
+	public InternalTimeSeriesQueryAbstract getQuery();
 
 }

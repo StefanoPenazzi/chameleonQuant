@@ -20,10 +20,10 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPoint> implements InternalTimeSeriesI<T> {
 	
 	private final TimeSeriesDataStructureI<T> tsd;
-	private final InternalTimeSeriesQueryI itsq;
+	private final InternalTimeSeriesQueryAbstract itsq;
 	private boolean singleInterval;
 	
-	public InternalTimeSeriesAbstract(TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesQueryI itsq, List<? extends TimeSeriesCleanerI<T>> cleaners) {
+	public InternalTimeSeriesAbstract(TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesQueryAbstract itsq, List<? extends TimeSeriesCleanerI<T>> cleaners) {
 		
 		this.itsq = itsq;
 		this.tsd = initialize(tsd,cleaners);
@@ -86,7 +86,7 @@ public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPo
 	}
 
 	@Override
-	public InternalTimeSeriesQueryI getQuery() {
+	public InternalTimeSeriesQueryAbstract getQuery() {
 		return this.itsq;
 	}
 
