@@ -10,7 +10,7 @@ import java.util.Objects;
  * @author stefanopenazzi
  *
  */
-public abstract class InternalTimeSeriesQueryAbstract implements InternalTimeSeriesQueryI {
+public abstract class InternalTimeSeriesIdAbstract implements InternalTimeSeriesIdI {
 
 		@Override
 		public int hashCode() {
@@ -25,10 +25,10 @@ public abstract class InternalTimeSeriesQueryAbstract implements InternalTimeSer
 			if(o == this) {
 				return true;
 			}
-			if(!(o instanceof InternalTimeSeriesQueryAbstract) ) {
+			if(!(o instanceof InternalTimeSeriesIdAbstract) ) {
 				return false;
 			}
-			InternalTimeSeriesQueryAbstract ob = (InternalTimeSeriesQueryAbstract)o;
+			InternalTimeSeriesIdAbstract ob = (InternalTimeSeriesIdAbstract)o;
 			
 			String sd = getStartDate() == null ? "0" : getStartDate().toString();
 			String ed = getEndDate() == null ? "0" : getEndDate().toString();

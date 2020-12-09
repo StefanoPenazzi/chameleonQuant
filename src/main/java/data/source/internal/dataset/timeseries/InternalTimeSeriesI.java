@@ -5,6 +5,7 @@ package data.source.internal.dataset.timeseries;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Iterator;
 
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
@@ -43,6 +44,8 @@ public interface InternalTimeSeriesI<T extends InternalTimeSeriesPoint> {
 	 *
 	 */
 	
-	public InternalTimeSeriesQueryAbstract getQuery();
+	public InternalTimeSeriesIdAbstract getQuery();
+	
+	public Iterator<T> iterator();
 
 }

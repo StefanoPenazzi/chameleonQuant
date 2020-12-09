@@ -6,13 +6,13 @@ package data.source.external.database.influxdb;
 import java.util.Date;
 
 import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
-import data.source.internal.dataset.timeseries.standard.stock.InternalStockQuery;
+import data.source.internal.dataset.timeseries.standard.InternalStockId;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class InternalStockTimeSeriesQueryInfluxdb extends InternalStockQuery {
+public class InternalStockTimeSeriesQueryInfluxdb extends InternalStockId {
 
 	/**
 	 * @param startDate

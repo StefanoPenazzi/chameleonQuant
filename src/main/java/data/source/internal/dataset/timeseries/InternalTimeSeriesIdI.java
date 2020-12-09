@@ -9,7 +9,7 @@ import java.util.Date;
  * @author stefanopenazzi
  *
  */
-public interface InternalTimeSeriesQueryI {
+public interface InternalTimeSeriesIdI {
 	
 	public String getId();
 	public Date getStartDate();

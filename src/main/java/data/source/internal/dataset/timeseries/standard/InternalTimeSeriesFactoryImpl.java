@@ -10,13 +10,13 @@ import com.google.inject.Inject;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesFactoryI;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
+import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.standard.stock.InternalStockTimeSeriesImpl;
 
 
 
@@ -42,7 +42,7 @@ public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> im
 	}
 	
 	@Override
-	public InternalStockTimeSeriesImpl<T> createTimeSeries(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesQueryAbstract iq) {
+	public InternalTimeSeriesAbstract<T> createTimeSeriesQueryRequest(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesIdAbstract iq) {
 		
 		this.cleanersList = new ArrayList<>();
 		
@@ -52,7 +52,28 @@ public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> im
 				cleanersList.add(tsc);
 			}
 		}
-		return new InternalStockTimeSeriesImpl<T>(new RBTree<T>(itsReq.getResult(iq)) ,iq,cleanersList);
+		return new InternalTimeSeriesImpl<T>(new RBTree<T>(itsReq.getResult(iq)) ,iq,cleanersList);
+	}
+
+	@Override
+	public InternalTimeSeriesAbstract<T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,
+			InternalTimeSeriesIdAbstract iq) {
+		return new InternalTimeSeriesImpl<T>(tsd ,iq,cleanersList);
+		
+	}
+
+	@Override
+	public InternalTimeSeriesAbstract<T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,
+			InternalTimeSeriesIdAbstract iq, List<String> cleanersId) {
+        this.cleanersList = new ArrayList<>();
+		
+		for(String s : cleanersId) {
+			TimeSeriesCleanerI<T> tsc = (TimeSeriesCleanerI<T>) cleaners.get(s);
+			if(tsc != null) {
+				cleanersList.add(tsc);
+			}
+		}
+		return new InternalTimeSeriesImpl<T>(tsd ,iq,cleanersList);
 	}
 
 }

@@ -22,10 +22,10 @@ import org.influxdb.impl.InfluxDBResultMapper;
 
 import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.Function;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.standard.stock.InternalStockQuery;
+import data.source.internal.dataset.timeseries.standard.InternalStockId;
 
 /**
  * @author stefanopenazzi
@@ -45,7 +45,7 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 		this.itmp = itmp;
 	}
 	
-	private String getStringQuery(InternalStockQuery iq) {
+	private String getStringQuery(InternalStockId iq) {
 		
 		//"SELECT first(open) AS open, last(close) AS close, max(high) AS high, min(low) AS low, sum(volume) AS volume FROM "+stock+" WHERE time>'2020-10-19 09:30:00'  GROUP BY time(8h)
 		
@@ -115,7 +115,7 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 	}
 	
 	@Override
-	public List<T> getResult(InternalTimeSeriesQueryI iqI) {
+	public List<T> getResult(InternalTimeSeriesIdI iqI) {
 		//TODO what if this is not an InternalStockQuery 
 				InternalStockTimeSeriesQueryInfluxdb iq = (InternalStockTimeSeriesQueryInfluxdb)iqI;
 				Influxdb idb = new Influxdb();

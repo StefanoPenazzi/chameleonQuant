@@ -5,7 +5,7 @@ package data.source.external.database;
 
 import java.util.List;
 
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
 /**
@@ -13,6 +13,6 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  *
  */
 public interface QueryDbI {
-	public List<? extends InternalTimeSeriesPoint> getResult(InternalTimeSeriesQueryI iq);
+	public List<? extends InternalTimeSeriesPoint> getResult(InternalTimeSeriesIdI iq);
 
 }

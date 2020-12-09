@@ -3,9 +3,12 @@
  */
 package data.source.internal.dataset.core;
 
+import java.util.Iterator;
+
+import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesI;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
 /**
@@ -14,8 +17,10 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  */
 public interface DatasetI {
 	
-	public void addTimeSeries(InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its);
-	public boolean removeTimeSeries(InternalTimeSeriesQueryAbstract itq);
-	public InternalTimeSeriesI<?> getTimeSeries(InternalTimeSeriesQueryAbstract itq);
+	public void addTimeSeries(InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint> its);
+	public boolean removeTimeSeries(InternalTimeSeriesIdAbstract itq);
+	public InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint> getTimeSeries(InternalTimeSeriesIdAbstract itq);
+	public Iterator<InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint>> iterator();
+	
 
 }

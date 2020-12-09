@@ -6,6 +6,7 @@ package data.source.internal.dataset.timeseries;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,10 +21,10 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPoint> implements InternalTimeSeriesI<T> {
 	
 	private final TimeSeriesDataStructureI<T> tsd;
-	private final InternalTimeSeriesQueryAbstract itsq;
+	private final InternalTimeSeriesIdAbstract itsq;
 	private boolean singleInterval;
 	
-	public InternalTimeSeriesAbstract(TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesQueryAbstract itsq, List<? extends TimeSeriesCleanerI<T>> cleaners) {
+	public InternalTimeSeriesAbstract(TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesIdAbstract itsq, List<? extends TimeSeriesCleanerI<T>> cleaners) {
 		
 		this.itsq = itsq;
 		this.tsd = initialize(tsd,cleaners);
@@ -86,7 +87,7 @@ public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPo
 	}
 
 	@Override
-	public InternalTimeSeriesQueryAbstract getQuery() {
+	public InternalTimeSeriesIdAbstract getQuery() {
 		return this.itsq;
 	}
 
@@ -122,6 +123,11 @@ public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPo
 
 	public Date getLastDate() {
 		return Date.from(tsd.getLast().getTime());
+	}
+	
+	@Override
+	public Iterator<T> iterator() {
+		return tsd.iterator();
 	}
 	
 	@Override

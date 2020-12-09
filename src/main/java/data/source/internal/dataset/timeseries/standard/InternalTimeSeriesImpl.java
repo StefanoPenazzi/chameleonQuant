@@ -1,13 +1,14 @@
 /**
  * 
  */
-package data.source.internal.dataset.timeseries.standard.stock;
+package data.source.internal.dataset.timeseries.standard;
 
+import java.util.Iterator;
 import java.util.List;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
@@ -18,14 +19,14 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  */
 
 
-public class InternalStockTimeSeriesImpl <T extends InternalTimeSeriesPoint> extends InternalTimeSeriesAbstract<T> {
+public class InternalTimeSeriesImpl <T extends InternalTimeSeriesPoint> extends InternalTimeSeriesAbstract<T> {
 	
 //	 @Inject private Map<String,TimeSeriesCleanerI> cleaners;
 	
 	/**
 	 * @param tsd
 	 */
-	public InternalStockTimeSeriesImpl( TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesQueryAbstract itsq,List<? extends TimeSeriesCleanerI<T>> newCleaners) {
+	public InternalTimeSeriesImpl( TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesIdAbstract itsq,List<? extends TimeSeriesCleanerI<T>> newCleaners) {
 		super(tsd,itsq,newCleaners);
 		
 	}
@@ -41,6 +42,7 @@ public class InternalStockTimeSeriesImpl <T extends InternalTimeSeriesPoint> ext
 		// TODO Auto-generated method stub
 		return tsd;
 	}
+
 	
 }
 	

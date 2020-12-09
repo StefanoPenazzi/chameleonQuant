@@ -1,13 +1,13 @@
 /**
  * 
  */
-package data.source.internal.dataset.timeseries.standard.stock;
+package data.source.internal.dataset.timeseries.standard;
 
 import java.util.Date;
 import java.util.Objects;
 
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryAbstract;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 
 /**
  * @author stefanopenazzi
@@ -15,7 +15,7 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryI;
  */
 
 //better to have an abstract class
-public class InternalStockQuery extends InternalTimeSeriesQueryAbstract {
+public class InternalStockId extends InternalTimeSeriesIdAbstract {
 
 	private final Date startDate;
 	private final Date endDate;
@@ -23,7 +23,7 @@ public class InternalStockQuery extends InternalTimeSeriesQueryAbstract {
 	private final String code;
 	private final String inter;
 	
-	public InternalStockQuery(Date startDate, Date endDate, String market, String code, String inter) {
+	public InternalStockId(Date startDate, Date endDate, String market, String code, String inter) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.market = market;

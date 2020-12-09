@@ -24,7 +24,7 @@ import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeri
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
-import data.source.internal.dataset.timeseries.standard.stock.InternalStockTimeSeriesImpl;
+import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
 
 /**
  * @author stefanopenazzi
@@ -49,7 +49,7 @@ class TestInternalTimeSeries {
 		InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,code,inter);
 		InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb> itsf  = injector.getInstance(Key.get(new TypeLiteral<InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb>>(){}));
 		InternalTimeSeriesQueryRequestInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryRequestInfluxdb.class);
-		InternalStockTimeSeriesImpl<StockTimeSeriesPointInfluxdb> its =  itsf.createTimeSeries(new ArrayList<String>() {{add("NULL_INFLUXDB");}},itsq,query);
+		InternalTimeSeriesImpl<StockTimeSeriesPointInfluxdb> its =  (InternalTimeSeriesImpl<StockTimeSeriesPointInfluxdb>) itsf.createTimeSeriesQueryRequest(new ArrayList<String>() {{add("NULL_INFLUXDB");}},itsq,query);
 		
 		System.out.println();
 	}
