@@ -26,6 +26,7 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.standard.InternalStockId;
+import data.source.utils.IO.ReflectionsUtils;
 
 /**
  * @author stefanopenazzi
@@ -89,31 +90,6 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 		return res;
 	}
 	
-	// all the reflections utils should be in the same package not like this
-	public Method getMethodsAnnotatedWith(final Class<?> type, final Class<? extends Annotation> annotation, String name) throws Exception {
-	    final List<Method> methods = new ArrayList<Method>();
-	    Class<?> klass = type;
-	    while (klass != Object.class) { 
-	        for (final Method method : klass.getDeclaredMethods()) {
-	            if (method.isAnnotationPresent(annotation)) {
-	                Annotation annotInstance = method.getAnnotation(annotation);
-	                if(annotInstance.annotationType().equals(InternalQueryInfo.class) ) {
-	                	InternalQueryInfo aInstance = (InternalQueryInfo)annotInstance;
-	                	if(aInstance.name().equals(name)) {
-	                		methods.add(method);
-	                	}
-	                }
-	            }
-	        }
-	        // move to the upper class in the hierarchy in search for more methods
-	        klass = klass.getSuperclass();
-	    }
-	    if(methods.size() != 1) {
-	    	throw new Exception(); 
-	    }
-	    return methods.get(0);
-	}
-	
 	@Override
 	public List<T> getResult(InternalTimeSeriesIdI iqI) {
 		//TODO what if this is not an InternalStockQuery 
@@ -127,7 +103,7 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 				//Query data from InfluxDB
 				String db = "";
 				try {
-					db = (String)(getMethodsAnnotatedWith(InternalStockTimeSeriesQueryInfluxdb.class,InternalQueryInfo.class,"database").invoke(iq));
+					db = (String)(ReflectionsUtils.getMethodsAnnotatedWith(InternalStockTimeSeriesQueryInfluxdb.class,InternalQueryInfo.class,"database").invoke(iq));
 				} catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

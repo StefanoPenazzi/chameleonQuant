@@ -42,5 +42,11 @@ public interface InternalTimeSeries {
 	public @interface Function {
 	  String name() default "";
 	}
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface TagName {
+	  String name() default "";
+	}
 
 }

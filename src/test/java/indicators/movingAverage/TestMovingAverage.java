@@ -30,7 +30,7 @@ import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactor
 class TestMovingAverage {
 
 	@Test
-	void testSimpleMovingAverage() throws ParseException {
+	void testSimpleMovingAverage() throws Exception {
          List<String> stocks = Arrays.asList("AAPL","AMZN","TSLA","FB","C");
 		
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
@@ -53,7 +53,7 @@ class TestMovingAverage {
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 SimpleMovingAverage sma = new SimpleMovingAverage(dts);
+		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,"close",5);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

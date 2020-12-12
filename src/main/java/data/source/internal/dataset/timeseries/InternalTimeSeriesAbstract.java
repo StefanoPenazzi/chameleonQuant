@@ -5,9 +5,13 @@ package data.source.internal.dataset.timeseries;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
@@ -136,4 +140,17 @@ public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPo
 		return Objects.hash(getInterval(),getFirstInstant(),getLastInstant());
 	}
 	
+	@Override
+	public List<T> getList() {
+		return tsd.getList();
+	}
+	
+	@Override
+	public String getString() {
+		String s = itsq.getString() + "\n";
+		for(T point: getList()) {
+			s = s + point.getString() + "\n";
+		}
+		return s;
+	}
 }

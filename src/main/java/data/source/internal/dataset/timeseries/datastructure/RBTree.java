@@ -4,10 +4,12 @@
 package data.source.internal.dataset.timeseries.datastructure;
 
 import java.time.Instant;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -20,7 +22,6 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 public class RBTree<T extends InternalTimeSeriesPoint> implements TimeSeriesDataStructureI<T> {
 
 	private TreeMap<Instant,T> map;
-	
 	
 	public RBTree(List<T> input) {
 		initialize(input);
@@ -74,13 +75,29 @@ public class RBTree<T extends InternalTimeSeriesPoint> implements TimeSeriesData
 
 	@Override
 	public T getLast() {
-		map.lastEntry().getValue();
-		return null;
+		return map.lastEntry().getValue();
 	}
 
 	@Override
 	public Iterator<T> iterator() {
 		return (Iterator<T>) map.values().iterator();
+	}
+
+	@Override
+	public List<T> getList() {
+		List<T> l = new ArrayList<T>(this.map.values());
+		Collections.sort(l, new Comparator<T>() {
+			@Override
+			public int compare(T arg0, T arg1) {
+				 return arg0.getTime().compareTo(arg1.getTime());
+			}
+	    });
+		return Collections.unmodifiableList(l);
+	}
+
+	@Override
+	public T getPointByIndex(int i) {
+		return null;
 	}
 
 }

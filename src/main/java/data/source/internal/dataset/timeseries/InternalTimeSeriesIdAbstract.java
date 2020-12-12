@@ -40,4 +40,11 @@ public abstract class InternalTimeSeriesIdAbstract implements InternalTimeSeries
 			}
 			return false;
 		}
+		
+		@Override
+		public String getString() {
+			//String s = "id: " + this.getId() + " start date:"+ this.getStartDate().toString() + " end date:"+ this.getEndDate().toString() + " interval:"+ this.getInterval();
+			String s = "id: " + this.getId();
+			return s;
+		}
 }

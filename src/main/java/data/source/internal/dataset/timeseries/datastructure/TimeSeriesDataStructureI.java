@@ -6,6 +6,8 @@ package data.source.internal.dataset.timeseries.datastructure;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
@@ -23,6 +25,8 @@ public interface TimeSeriesDataStructureI<T extends InternalTimeSeriesPoint> ext
 	public T getFloorPoint(Instant time);
 	public void addPoint(T tsp);
 	public void removePoint(T tsp);
+	public T getPointByIndex(int i);
 	public Iterator<T> iterator();
+	public List<T> getList();
 
 }

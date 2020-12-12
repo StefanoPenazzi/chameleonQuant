@@ -6,6 +6,8 @@ package data.source.internal.dataset.timeseries.datastructure;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
 
@@ -75,6 +77,16 @@ public class BTree implements TimeSeriesDataStructureI {
 		return null;
 	}
 
-	
+	@Override
+	public InternalTimeSeriesPoint getPointByIndex(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public List getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

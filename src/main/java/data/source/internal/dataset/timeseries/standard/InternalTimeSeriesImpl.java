@@ -3,6 +3,7 @@
  */
 package data.source.internal.dataset.timeseries.standard;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +29,11 @@ public class InternalTimeSeriesImpl <T extends InternalTimeSeriesPoint> extends 
 	 */
 	public InternalTimeSeriesImpl( TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesIdAbstract itsq,List<? extends TimeSeriesCleanerI<T>> newCleaners) {
 		super(tsd,itsq,newCleaners);
+		
+	}
+	
+	public InternalTimeSeriesImpl( TimeSeriesDataStructureI<T> tsd,InternalTimeSeriesIdAbstract itsq) {
+		super(tsd,itsq,new ArrayList<>());
 		
 	}
 
