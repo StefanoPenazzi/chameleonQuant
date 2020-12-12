@@ -6,7 +6,9 @@ package data.source.utils.IO;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.TagName;
@@ -66,6 +68,46 @@ public class ReflectionsUtils {
 				    	throw new Exception(); 
 				    }
 				    return methods.get(0);
+				}
+				
+		
+				public static Map<String,Method> getAllMethodsAnnotatedWithTag(final Class<?> type, final Class<? extends Annotation> annotation) throws Exception {
+				    final Map<String,Method> methods = new HashMap<String,Method>();
+				    Class<?> klass = type;
+				    while (klass != Object.class) { 
+				        for (final Method method : klass.getDeclaredMethods()) {
+				            if (method.isAnnotationPresent(annotation)) {
+				                Annotation annotInstance = method.getAnnotation(annotation);
+				                if(annotInstance.annotationType().equals(TagName.class) ) {
+				                	TagName aInstance = (TagName)annotInstance;
+				                	methods.put(aInstance.name(),method);
+				                }
+				            }
+				        }
+				        // move to the upper class in the hierarchy in search for more methods
+				        klass = klass.getSuperclass();
+				    }
+				    return methods;
+				}
+				
+				
+				public static Map<String,Object> getPointTagsAsMap(final Class<?> type, final Class<? extends Annotation> annotation, Object obj) throws Exception {
+				    final Map<String,Object> pointTagsMap = new HashMap<String,Object>();
+				    Class<?> klass = type;
+				    while (klass != Object.class) { 
+				        for (final Method method : klass.getDeclaredMethods()) {
+				            if (method.isAnnotationPresent(annotation)) {
+				                Annotation annotInstance = method.getAnnotation(annotation);
+				                if(annotInstance.annotationType().equals(TagName.class) ) {
+				                	TagName aInstance = (TagName)annotInstance;
+				                	pointTagsMap.put(aInstance.name(),method.invoke(obj));
+				                }
+				            }
+				        }
+				        // move to the upper class in the hierarchy in search for more methods
+				        klass = klass.getSuperclass();
+				    }
+				    return pointTagsMap;
 				}
 
 }

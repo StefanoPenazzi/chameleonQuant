@@ -13,7 +13,7 @@ import data.source.annotation.InternalTimeSeries.TagName;
  * @author stefanopenazzi
  *
  */
-public class InternalSingleTagTimeSeriesPoint<T> implements InternalTimeSeriesPoint {
+public class InternalSingleTagTimeSeriesPoint<T> extends InternalTimeSeriesPointAbstract {
 
 	private final Instant time;
 	private final T value;
@@ -33,19 +33,6 @@ public class InternalSingleTagTimeSeriesPoint<T> implements InternalTimeSeriesPo
 	@TagName(name = "value")
 	public T getValue() {
 		return this.value;
-	}
-	
-
-	@Override
-	public Map<String, Object> getTagsMap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getString() {
-		String s = "date: "+ Date.from(this.time).toString() + " value: " + this.value.toString();
-		return s;
 	}
 
 }

@@ -16,13 +16,13 @@ import java.util.Objects;
 
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
  *
  */
-public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPoint> implements InternalTimeSeriesI<T> {
+public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPointI> implements InternalTimeSeriesI<T> {
 	
 	private final TimeSeriesDataStructureI<T> tsd;
 	private final InternalTimeSeriesIdAbstract itsq;
@@ -76,17 +76,17 @@ public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPo
 	}
 	
 	
-	public InternalTimeSeriesPoint getPoint(Date date) {
+	public InternalTimeSeriesPointI getPoint(Date date) {
 		return this.tsd.getPoint(date.toInstant());
 	}
 
 	
-	public InternalTimeSeriesPoint getCeilingPoint(Date date) {
+	public InternalTimeSeriesPointI getCeilingPoint(Date date) {
 		return this.tsd.getCeilingPoint(date.toInstant());
 	}
 
 	
-	public InternalTimeSeriesPoint getFloorPoint(Date date) {
+	public InternalTimeSeriesPointI getFloorPoint(Date date) {
 		return this.tsd.getFloorPoint(date.toInstant());
 	}
 

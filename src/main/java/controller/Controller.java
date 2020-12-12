@@ -13,7 +13,7 @@ import com.google.inject.multibindings.MapBinder;
 import controller.defaults.ControllerDefaultsModule;
 import data.source.external.database.influxdb.TimeSeriesCleanerNullValuesStockInfluxdb;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 
 /**
@@ -50,9 +50,9 @@ public final class Controller implements ControllerI {
 		 
 		@Override
 	    protected void configure() {	  
-			  MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> mapbinderTimeSeriesCleaner = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>(){});
+			  MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> mapbinderTimeSeriesCleaner = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>(){});
 			  
-			  mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
+			  mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
 			 
 	    }
 	}

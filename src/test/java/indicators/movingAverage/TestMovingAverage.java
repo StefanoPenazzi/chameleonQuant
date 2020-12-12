@@ -53,7 +53,7 @@ class TestMovingAverage {
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,"close",5);
+		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,"close",14);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

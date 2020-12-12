@@ -22,7 +22,7 @@ import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfl
 import data.source.external.database.influxdb.TimeSeriesCleanerNullValuesStockInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
 
@@ -58,15 +58,15 @@ class TestInternalTimeSeries {
 		 
 	    @Override
 	    protected void configure() {
-	        MapBinder<String, InternalTimeSeriesPoint> mapbinderInternalTimeSeriesPoint
-	            = MapBinder.newMapBinder(binder(), String.class, InternalTimeSeriesPoint.class);
+	        MapBinder<String, InternalTimeSeriesPointI> mapbinderInternalTimeSeriesPoint
+	            = MapBinder.newMapBinder(binder(), String.class, InternalTimeSeriesPointI.class);
 	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockTimeSeriesPointInfluxdb.class);
 	       
 	      
-	    MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> mapbinderTimeSeriesCleaner
-	        = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>(){});
+	    MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> mapbinderTimeSeriesCleaner
+	        = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>(){});
 	    
-	    mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
+	    mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
    
 	    }
 	}

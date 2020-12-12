@@ -9,13 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
  *
  */
-public interface TimeSeriesDataStructureI<T extends InternalTimeSeriesPoint> extends Iterable<T> {
+public interface TimeSeriesDataStructureI<T extends InternalTimeSeriesPointI> extends Iterable<T> {
 	
 	public TimeSeriesDataStructureI getRange(Instant startTime, Instant endTime);
 	public T getPoint(Instant time);

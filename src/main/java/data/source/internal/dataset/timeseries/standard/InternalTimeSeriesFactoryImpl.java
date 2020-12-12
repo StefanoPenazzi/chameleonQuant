@@ -16,7 +16,7 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 
 
@@ -24,9 +24,9 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> implements InternalTimeSeriesFactoryI<T> {
+public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPointI> implements InternalTimeSeriesFactoryI<T> {
 
-	private Map<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> cleaners;
+	private Map<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> cleaners;
 	
 	private List<TimeSeriesCleanerI<T>> cleanersList;
 	
@@ -34,7 +34,7 @@ public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> im
 	//would it be better to have cleaners in enum?
 	//should we have default cleaners?
 	@Inject
-	public InternalTimeSeriesFactoryImpl(Map<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> cleaners) {
+	public InternalTimeSeriesFactoryImpl(Map<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> cleaners) {
 		this.cleaners = cleaners;
 		
 		
@@ -42,7 +42,7 @@ public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> im
 	}
 	
 	@Override
-	public InternalTimeSeriesAbstract<T> createTimeSeriesQueryRequest(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesIdAbstract iq) {
+	public InternalTimeSeriesImpl<T> createTimeSeriesQueryRequest(List<String> cleanersId, InternalTimeSeriesQueryRequestI<T> itsReq ,InternalTimeSeriesIdAbstract iq) {
 		
 		this.cleanersList = new ArrayList<>();
 		
@@ -56,14 +56,14 @@ public class InternalTimeSeriesFactoryImpl<T extends InternalTimeSeriesPoint> im
 	}
 
 	@Override
-	public InternalTimeSeriesAbstract<T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,
+	public InternalTimeSeriesImpl <T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,
 			InternalTimeSeriesIdAbstract iq) {
 		return new InternalTimeSeriesImpl<T>(tsd ,iq,cleanersList);
 		
 	}
 
 	@Override
-	public InternalTimeSeriesAbstract<T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,
+	public InternalTimeSeriesImpl <T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,
 			InternalTimeSeriesIdAbstract iq, List<String> cleanersId) {
         this.cleanersList = new ArrayList<>();
 		

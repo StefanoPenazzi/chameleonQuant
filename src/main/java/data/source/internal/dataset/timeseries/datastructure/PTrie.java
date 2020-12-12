@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -24,56 +24,56 @@ public class PTrie implements TimeSeriesDataStructureI {
 	}
 
 	@Override
-	public InternalTimeSeriesPoint getPoint(Instant time) {
+	public InternalTimeSeriesPointI getPoint(Instant time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public InternalTimeSeriesPoint getCeilingPoint(Instant time) {
+	public InternalTimeSeriesPointI getCeilingPoint(Instant time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public InternalTimeSeriesPoint getFloorPoint(Instant time) {
+	public InternalTimeSeriesPointI getFloorPoint(Instant time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addPoint(InternalTimeSeriesPoint tsp) {
+	public void addPoint(InternalTimeSeriesPointI tsp) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removePoint(InternalTimeSeriesPoint tsp) {
+	public void removePoint(InternalTimeSeriesPointI tsp) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public InternalTimeSeriesPoint getFirst() {
+	public InternalTimeSeriesPointI getFirst() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public InternalTimeSeriesPoint getLast() {
+	public InternalTimeSeriesPointI getLast() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Iterator<InternalTimeSeriesPoint> iterator() {
+	public Iterator<InternalTimeSeriesPointI> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
 	@Override
-	public InternalTimeSeriesPoint getPointByIndex(int i) {
+	public InternalTimeSeriesPointI getPointByIndex(int i) {
 		// TODO Auto-generated method stub
 		return null;
 	}

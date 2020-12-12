@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * 
@@ -18,7 +18,7 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  * @author stefanopenazzi
  *
  */
-public interface InternalTimeSeriesI<T extends InternalTimeSeriesPoint> {
+public interface InternalTimeSeriesI<T extends InternalTimeSeriesPointI> {
 	
 	public TimeSeriesDataStructureI<T> getRange(Instant timeStart, Instant timeEnd);
 	

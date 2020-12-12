@@ -11,7 +11,7 @@ import java.util.Map;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 
 /**
@@ -20,10 +20,10 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  */
 public class DatasetImpl implements DatasetI {
 
-	private Map<InternalTimeSeriesIdAbstract,InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint>> datasetMap = new HashMap<InternalTimeSeriesIdAbstract,InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint>>();
+	private Map<InternalTimeSeriesIdAbstract,InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>> datasetMap = new HashMap<InternalTimeSeriesIdAbstract,InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>>();
 	
 	@Override
-	public void addTimeSeries(InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint> its) {
+	public void addTimeSeries(InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI> its) {
 		datasetMap.put(its.getQuery(), its);
 	}
 
@@ -38,7 +38,7 @@ public class DatasetImpl implements DatasetI {
 	}
 
 	@Override
-	public InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint> getTimeSeries(InternalTimeSeriesIdAbstract its) {
+	public InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI> getTimeSeries(InternalTimeSeriesIdAbstract its) {
 		
 //		Iterator it = datasetMap.entrySet().iterator();
 //	    while (it.hasNext()) {
@@ -54,7 +54,7 @@ public class DatasetImpl implements DatasetI {
 	}
 
 	@Override
-	public Iterator<InternalTimeSeriesAbstract<? extends InternalTimeSeriesPoint>> iterator() {
+	public Iterator<InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>> iterator() {
 		return datasetMap.values().iterator();
 	}
 }

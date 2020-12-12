@@ -14,7 +14,7 @@ import com.google.inject.multibindings.MapBinder;
 import com.google.inject.util.Modules;
 
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -24,7 +24,7 @@ public abstract class AbstractModule implements Module {
 
 	private Binder binder;
 	
-	private MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> mapbinderTimeSeriesCleaner;
+	private MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> mapbinderTimeSeriesCleaner;
 	
 	//@Inject
 	//com.google.inject.Injector injector;
@@ -39,7 +39,7 @@ public abstract class AbstractModule implements Module {
 		this.binder = binder.skipSources(AbstractModule.class);
 		
 		mapbinderTimeSeriesCleaner
-	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>>(){});
+	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>(){});
 		
 		this.install();
 		System.out.println();
@@ -52,7 +52,7 @@ public abstract class AbstractModule implements Module {
 		binder.install(module);
 	}
 	
-	protected final LinkedBindingBuilder<TimeSeriesCleanerI<? extends InternalTimeSeriesPoint>> addInternalTimeSeriesCleaner(final String name ) {
+	protected final LinkedBindingBuilder<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> addInternalTimeSeriesCleaner(final String name ) {
 		return mapbinderTimeSeriesCleaner.addBinding(name);
 	}
 	

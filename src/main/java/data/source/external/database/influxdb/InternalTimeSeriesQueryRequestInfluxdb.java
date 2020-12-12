@@ -24,7 +24,7 @@ import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.Function;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 import data.source.internal.dataset.timeseries.standard.InternalStockId;
 import data.source.utils.IO.ReflectionsUtils;
 
@@ -32,7 +32,7 @@ import data.source.utils.IO.ReflectionsUtils;
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeriesPoint> implements InternalTimeSeriesQueryRequestI<T> {
+public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeriesPointI> implements InternalTimeSeriesQueryRequestI<T> {
 	
 	private static final Logger logger = LogManager.getLogger(InternalTimeSeriesQueryRequestInfluxdb.class);
 	

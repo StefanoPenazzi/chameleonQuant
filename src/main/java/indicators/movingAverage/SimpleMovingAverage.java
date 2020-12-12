@@ -17,7 +17,7 @@ import data.source.internal.dataset.core.DatasetI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.point.InternalSingleTagTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesIdImpl;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
 import data.source.utils.IO.ReflectionsUtils;
@@ -27,10 +27,10 @@ import indicators.IndicatorAbstract;
  * @author stefanopenazzi
  *
  */
-public class SimpleMovingAverage extends IndicatorAbstract {
+public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends IndicatorAbstract {
 
-	private final InternalTimeSeriesAbstract itsRef;
-	private InternalTimeSeriesAbstract itsRes;
+	private final InternalTimeSeriesImpl<T> itsRef;
+	private InternalTimeSeriesImpl <InternalSingleTagTimeSeriesPoint<Double>> itsRes;
 	private final int periods;
 	private final String tagName;
 	
@@ -39,14 +39,14 @@ public class SimpleMovingAverage extends IndicatorAbstract {
 	 */
 	public SimpleMovingAverage(DatasetI dataSet,String tagName,int periods) {
 		super(dataSet);
-		itsRef = this.dataSet.iterator().next();
+		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.iterator().next();
 		this.periods= periods;
 		this.tagName = tagName;
 	}
 	
 	public void create() throws Exception {
 	   System.out.println(itsRef.getString());
-	   List<InternalTimeSeriesPoint> itsRefList = itsRef.getList();
+	   List<InternalTimeSeriesPointI> itsRefList = (List<InternalTimeSeriesPointI>) itsRef.getList();
 	   List<InternalSingleTagTimeSeriesPoint<Double>> res = new ArrayList<>(); 
 	   if(itsRefList.size() < periods) {}  // run exception
 	   int firstRemoveIndex = 0;
@@ -70,10 +70,10 @@ public class SimpleMovingAverage extends IndicatorAbstract {
 	        firstRemoveIndex++;
 	   }
 	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"","");
-	   InternalTimeSeriesImpl its = new InternalTimeSeriesImpl(new RBTree(res),id);
+	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
 	   System.out.println(itsRef.getString());
 	   System.out.println();
-	   System.out.println(its.getString());
+	   System.out.println(itsRes.getString());
 	   
 	}
 

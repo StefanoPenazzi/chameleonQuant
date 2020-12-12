@@ -12,7 +12,7 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -20,7 +20,7 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
  */
 
 
-public class InternalTimeSeriesImpl <T extends InternalTimeSeriesPoint> extends InternalTimeSeriesAbstract<T> {
+public class InternalTimeSeriesImpl <T extends InternalTimeSeriesPointI> extends InternalTimeSeriesAbstract<T> {
 	
 //	 @Inject private Map<String,TimeSeriesCleanerI> cleaners;
 	

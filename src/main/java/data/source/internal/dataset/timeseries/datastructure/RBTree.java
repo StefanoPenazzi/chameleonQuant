@@ -13,13 +13,13 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPoint;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class RBTree<T extends InternalTimeSeriesPoint> implements TimeSeriesDataStructureI<T> {
+public class RBTree<T extends InternalTimeSeriesPointI> implements TimeSeriesDataStructureI<T> {
 
 	private TreeMap<Instant,T> map;
 	

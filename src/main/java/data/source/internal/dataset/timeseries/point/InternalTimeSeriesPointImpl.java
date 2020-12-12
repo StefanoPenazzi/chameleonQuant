@@ -10,25 +10,11 @@ import java.util.Map;
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesPointImpl implements InternalTimeSeriesPoint {
+public class InternalTimeSeriesPointImpl extends InternalTimeSeriesPointAbstract {
 
 	@Override
 	public Instant getTime() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public Map<String, Object> getTagsMap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 }
