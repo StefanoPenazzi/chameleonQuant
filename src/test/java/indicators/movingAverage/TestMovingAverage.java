@@ -3,19 +3,13 @@
  */
 package indicators.movingAverage;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
 import com.google.inject.Key;
-
 import controller.Controller;
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
@@ -53,7 +47,7 @@ class TestMovingAverage {
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,"close",14);
+		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"TSLA",inter),"low",7);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

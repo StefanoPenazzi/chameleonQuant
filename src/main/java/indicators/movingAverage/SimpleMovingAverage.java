@@ -15,6 +15,7 @@ import data.source.annotation.InternalTimeSeries.TagName;
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.internal.dataset.core.DatasetI;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
 import data.source.internal.dataset.timeseries.point.InternalSingleTagTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
@@ -44,14 +45,20 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
 		this.tagName = tagName;
 	}
 	
+	public SimpleMovingAverage(DatasetI dataSet,InternalTimeSeriesIdAbstract id,String tagName,int periods) {
+		super(dataSet);
+		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		this.periods= periods;
+		this.tagName = tagName;
+	}
+	
 	public void create() throws Exception {
-	   System.out.println(itsRef.getString());
 	   List<InternalTimeSeriesPointI> itsRefList = (List<InternalTimeSeriesPointI>) itsRef.getList();
 	   List<InternalSingleTagTimeSeriesPoint<Double>> res = new ArrayList<>(); 
 	   if(itsRefList.size() < periods) {}  // run exception
 	   int firstRemoveIndex = 0;
 //	   // reflection invoked just once
-       Method method = ReflectionsUtils.getMethodsAnnotatedWithTag(itsRefList.get(0).getClass(),TagName.class,tagName);
+       Method method = itsRefList.get(0).getTagMethod(tagName);
 	   double count = itsRefList.stream().limit(periods).mapToDouble(point -> {
            try { 
         	   Double result = (Double) method.invoke(point);
@@ -62,18 +69,15 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
        }).sum();
 	   res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(periods-1).getTime(),count/periods));
 	   for(int i = periods;i<itsRefList.size();i++) {
-		   System.out.println(count);
-		   System.out.println((Double)method.invoke(itsRefList.get(firstRemoveIndex)));
-		   System.out.println((Double)method.invoke(itsRefList.get(i)));
 	        count = count -  (Double)method.invoke(itsRefList.get(firstRemoveIndex)) + (Double)method.invoke(itsRefList.get(i));
 	        res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(i).getTime(),count/periods));
 	        firstRemoveIndex++;
 	   }
 	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"","");
 	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
-	   System.out.println(itsRef.getString());
-	   System.out.println();
-	   System.out.println(itsRes.getString());
+//	   System.out.println(itsRef.getString());
+//	   System.out.println();
+//	   System.out.println(itsRes.getString());
 	   
 	}
 
