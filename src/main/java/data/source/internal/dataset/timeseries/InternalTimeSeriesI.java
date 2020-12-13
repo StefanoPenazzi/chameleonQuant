@@ -3,6 +3,7 @@
  */
 package data.source.internal.dataset.timeseries;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Iterator;
@@ -45,4 +46,6 @@ public interface InternalTimeSeriesI<T extends InternalTimeSeriesPointI> {
 	
 	public List<T> getList();
 	public String getString();
+	
+	public Method getTagMethod(String tagName);
 }

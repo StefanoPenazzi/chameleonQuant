@@ -14,6 +14,7 @@ import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.TagName;
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.internal.dataset.core.DatasetI;
+import data.source.internal.dataset.core.DatasetImpl;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
 import data.source.internal.dataset.timeseries.datastructure.RBTree;
@@ -52,13 +53,13 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
 		this.tagName = tagName;
 	}
 	
-	public void create() throws Exception {
+	public DatasetImpl create() throws Exception {
 	   List<InternalTimeSeriesPointI> itsRefList = (List<InternalTimeSeriesPointI>) itsRef.getList();
 	   List<InternalSingleTagTimeSeriesPoint<Double>> res = new ArrayList<>(); 
 	   if(itsRefList.size() < periods) {}  // run exception
 	   int firstRemoveIndex = 0;
 //	   // reflection invoked just once
-       Method method = itsRefList.get(0).getTagMethod(tagName);
+       Method method = itsRef.getTagMethod(tagName);
 	   double count = itsRefList.stream().limit(periods).mapToDouble(point -> {
            try { 
         	   Double result = (Double) method.invoke(point);
@@ -73,8 +74,11 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
 	        res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(i).getTime(),count/periods));
 	        firstRemoveIndex++;
 	   }
-	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"","");
+	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"MA","");
 	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
+	   DatasetImpl ds = new DatasetImpl();
+	   ds.addTimeSeries(itsRes);
+	   return ds;
 //	   System.out.println(itsRef.getString());
 //	   System.out.println();
 //	   System.out.println(itsRes.getString());

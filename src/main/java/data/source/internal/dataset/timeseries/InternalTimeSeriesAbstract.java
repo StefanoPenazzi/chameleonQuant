@@ -3,6 +3,7 @@
  */
 package data.source.internal.dataset.timeseries;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -152,5 +153,10 @@ public abstract class InternalTimeSeriesAbstract <T extends InternalTimeSeriesPo
 			s = s + point.getString() + "\n";
 		}
 		return s;
+	}
+	
+	@Override 
+	public Method getTagMethod(String tagName) {
+		return tsd.getFirst().getTagMethod(tagName);
 	}
 }
