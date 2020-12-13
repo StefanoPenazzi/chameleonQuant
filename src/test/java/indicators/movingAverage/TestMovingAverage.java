@@ -53,5 +53,36 @@ class TestMovingAverage {
 		
 		System.out.println();
 	}
+	
+	@Test
+	void testExponentialMovingAverage() throws Exception {
+         List<String> stocks = Arrays.asList("AAPL","AMZN","TSLA","FB","C");
+		
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		
+	     Date startDate = sdf.parse("2020/10/19 00:00:00");
+		 Date endDate = null;
+		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
+		 String inter = "8h";
+		
+		 Controller controller = new Controller();
+		 controller.run();
+		 
+		 InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb>>() {});
+		 InternalTimeSeriesQueryRequestInfluxdb<StockTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockTimeSeriesPointInfluxdb>(new StockTimeSeriesPointInfluxdb());
+		 
+		 DatasetImpl dts = new DatasetImpl();
+		 
+		 for(String stock: stocks) {
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+		 }
+		 
+		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"TSLA",inter),"low",3);
+		 sma.create();
+		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
+		
+		System.out.println();
+	}
 
 }
