@@ -1,0 +1,348 @@
+Symbol	Description
+AL	Aluminum
+AL.C	Aluminum Continuation
+ALF21	Aluminum {Jan 21}
+ALG21	Aluminum {Feb 21}
+ALH21	Aluminum {Mar 21}
+ALJ21	Aluminum {Apr 21}
+ALK21	Aluminum {May 21}
+ALM21	Aluminum {Jun 21}
+ALN21	Aluminum {Jul 21}
+ALQ21	Aluminum {Aug 21}
+ALU21	Aluminum {Sep 21}
+ALV21	Aluminum {Oct 21}
+ALX20	Aluminum {Nov 20}
+ALX21	Aluminum {Nov 21}
+ALZ20	Aluminum {Dec 20}
+ALZ21	Aluminum {Dec 21}
+G9.C	Gold Enhanced Deliv Continuation
+G9F21	Gold Enhanced Deliv {Jan 21}
+G9G21	Gold Enhanced Deliv {Feb 21}
+G9G22	Gold Enhanced Deliv {Feb 22}
+G9J21	Gold Enhanced Deliv {Apr 21}
+G9M21	Gold Enhanced Deliv {Jun 21}
+G9M22	Gold Enhanced Deliv {Jun 22}
+G9M23	Gold Enhanced Deliv {Jun 23}
+G9M24	Gold Enhanced Deliv {Jun 24}
+G9M25	Gold Enhanced Deliv {Jun 25}
+G9M26	Gold Enhanced Deliv {Jun 26}
+G9Q21	Gold Enhanced Deliv {Aug 21}
+G9Q22	Gold Enhanced Deliv {Aug 22}
+G9V21	Gold Enhanced Deliv {Oct 21}
+G9V22	Gold Enhanced Deliv {Oct 22}
+G9X20	Gold Enhanced Deliv {Nov 20}
+G9Z20	Gold Enhanced Deliv {Dec 20}
+G9Z21	Gold Enhanced Deliv {Dec 21}
+G9Z22	Gold Enhanced Deliv {Dec 22}
+G9Z23	Gold Enhanced Deliv {Dec 23}
+G9Z24	Gold Enhanced Deliv {Dec 24}
+G9Z25	Gold Enhanced Deliv {Dec 25}
+GA.C	Gold Shanghai USD Continuation
+GAF21	Gold Shanghai USD {Jan 21}
+GAG21	Gold Shanghai USD {Feb 21}
+GAJ21	Gold Shanghai USD {Apr 21}
+GAM21	Gold Shanghai USD {Jun 21}
+GAQ21	Gold Shanghai USD {Aug 21}
+GAV21	Gold Shanghai USD {Oct 21}
+GAX20	Gold Shanghai USD {Nov 20}
+GAZ20	Gold Shanghai USD {Dec 20}
+GC	Gold
+GC.C	Gold Continuation
+GCF21	Gold {Jan 21}
+GCG21	Gold {Feb 21}
+GCG22	Gold {Feb 22}
+GCJ21	Gold {Apr 21}
+GCJ22	Gold {Apr 22}
+GCM21	Gold {Jun 21}
+GCM22	Gold {Jun 22}
+GCM23	Gold {Jun 23}
+GCM24	Gold {Jun 24}
+GCM25	Gold {Jun 25}
+GCM26	Gold {Jun 26}
+GCQ21	Gold {Aug 21}
+GCQ22	Gold {Aug 22}
+GCV21	Gold {Oct 21}
+GCV22	Gold {Oct 22}
+GCX20	Gold {Nov 20}
+GCZ20	Gold {Dec 20}
+GCZ21	Gold {Dec 21}
+GCZ22	Gold {Dec 22}
+GCZ23	Gold {Dec 23}
+GCZ24	Gold {Dec 24}
+GCZ25	Gold {Dec 25}
+GQ.C	Gold Shanghai CNH Continuation
+GQF21	Gold Shanghai CNH {Jan 21}
+GQG21	Gold Shanghai CNH {Feb 21}
+GQJ21	Gold Shanghai CNH {Apr 21}
+GQM21	Gold Shanghai CNH {Jun 21}
+GQQ21	Gold Shanghai CNH {Aug 21}
+GQV21	Gold Shanghai CNH {Oct 21}
+GQX20	Gold Shanghai CNH {Nov 20}
+GQZ20	Gold Shanghai CNH {Dec 20}
+GR.C	Gold Micro Continuation
+GRG21	Gold Micro {Feb 21}
+GRG22	Gold Micro {Feb 22}
+GRJ21	Gold Micro {Apr 21}
+GRJ22	Gold Micro {Apr 22}
+GRM21	Gold Micro {Jun 21}
+GRM22	Gold Micro {Jun 22}
+GRQ21	Gold Micro {Aug 21}
+GRQ22	Gold Micro {Aug 22}
+GRV21	Gold Micro {Oct 21}
+GRV22	Gold Micro {Oct 22}
+GRZ20	Gold Micro {Dec 20}
+GRZ21	Gold Micro {Dec 21}
+GW.C	Gold Kilo Continuation
+GWF21	Gold Kilo {Jan 21}
+GWG21	Gold Kilo {Feb 21}
+GWJ21	Gold Kilo {Apr 21}
+GWM21	Gold Kilo {Jun 21}
+GWQ21	Gold Kilo {Aug 21}
+GWV21	Gold Kilo {Oct 21}
+GWZ20	Gold Kilo {Dec 20}
+GWZ21	Gold Kilo {Dec 21}
+HG	High Grade Copper
+HG.C	High Grade Copper Continuation
+HGF21	High Grade Copper {Jan 21}
+HGF22	High Grade Copper {Jan 22}
+HGG21	High Grade Copper {Feb 21}
+HGG22	High Grade Copper {Feb 22}
+HGH21	High Grade Copper {Mar 21}
+HGH22	High Grade Copper {Mar 22}
+HGH23	High Grade Copper {Mar 23}
+HGH24	High Grade Copper {Mar 24}
+HGH25	High Grade Copper {Mar 25}
+HGJ21	High Grade Copper {Apr 21}
+HGJ22	High Grade Copper {Apr 22}
+HGK21	High Grade Copper {May 21}
+HGK22	High Grade Copper {May 22}
+HGK23	High Grade Copper {May 23}
+HGK24	High Grade Copper {May 24}
+HGK25	High Grade Copper {May 25}
+HGM21	High Grade Copper {Jun 21}
+HGM22	High Grade Copper {Jun 22}
+HGN21	High Grade Copper {Jul 21}
+HGN22	High Grade Copper {Jul 22}
+HGN23	High Grade Copper {Jul 23}
+HGN24	High Grade Copper {Jul 24}
+HGN25	High Grade Copper {Jul 25}
+HGQ21	High Grade Copper {Aug 21}
+HGQ22	High Grade Copper {Aug 22}
+HGU21	High Grade Copper {Sep 21}
+HGU22	High Grade Copper {Sep 22}
+HGU23	High Grade Copper {Sep 23}
+HGU24	High Grade Copper {Sep 24}
+HGU25	High Grade Copper {Sep 25}
+HGV21	High Grade Copper {Oct 21}
+HGV22	High Grade Copper {Oct 22}
+HGX20	High Grade Copper {Nov 20}
+HGX21	High Grade Copper {Nov 21}
+HGX22	High Grade Copper {Nov 22}
+HGZ20	High Grade Copper {Dec 20}
+HGZ21	High Grade Copper {Dec 21}
+HGZ22	High Grade Copper {Dec 22}
+HGZ23	High Grade Copper {Dec 23}
+HGZ24	High Grade Copper {Dec 24}
+HGZ25	High Grade Copper {Dec 25}
+HJ.C	High Grade Copper(F) Continuation
+HJF21	High Grade Copper(F) {Jan 21}
+HJF22	High Grade Copper(F) {Jan 22}
+HJG21	High Grade Copper(F) {Feb 21}
+HJG22	High Grade Copper(F) {Feb 22}
+HJH21	High Grade Copper(F) {Mar 21}
+HJH22	High Grade Copper(F) {Mar 22}
+HJH23	High Grade Copper(F) {Mar 23}
+HJH24	High Grade Copper(F) {Mar 24}
+HJH25	High Grade Copper(F) {Mar 25}
+HJJ21	High Grade Copper(F) {Apr 21}
+HJJ22	High Grade Copper(F) {Apr 22}
+HJK21	High Grade Copper(F) {May 21}
+HJK22	High Grade Copper(F) {May 22}
+HJK23	High Grade Copper(F) {May 23}
+HJK24	High Grade Copper(F) {May 24}
+HJK25	High Grade Copper(F) {May 25}
+HJM21	High Grade Copper(F) {Jun 21}
+HJM22	High Grade Copper(F) {Jun 22}
+HJN21	High Grade Copper(F) {Jul 21}
+HJN22	High Grade Copper(F) {Jul 22}
+HJN23	High Grade Copper(F) {Jul 23}
+HJN24	High Grade Copper(F) {Jul 24}
+HJN25	High Grade Copper(F) {Jul 25}
+HJQ21	High Grade Copper(F) {Aug 21}
+HJQ22	High Grade Copper(F) {Aug 22}
+HJU21	High Grade Copper(F) {Sep 21}
+HJU22	High Grade Copper(F) {Sep 22}
+HJU23	High Grade Copper(F) {Sep 23}
+HJU24	High Grade Copper(F) {Sep 24}
+HJU25	High Grade Copper(F) {Sep 25}
+HJV21	High Grade Copper(F) {Oct 21}
+HJV22	High Grade Copper(F) {Oct 22}
+HJX20	High Grade Copper(F) {Nov 20}
+HJX21	High Grade Copper(F) {Nov 21}
+HJZ20	High Grade Copper(F) {Dec 20}
+HJZ21	High Grade Copper(F) {Dec 21}
+HJZ22	High Grade Copper(F) {Dec 22}
+HJZ23	High Grade Copper(F) {Dec 23}
+HJZ24	High Grade Copper(F) {Dec 24}
+HV.C	US Midwest Steel CRU Continuation
+HVF21	US Midwest Steel CRU {Jan 21}
+HVF22	US Midwest Steel CRU {Jan 22}
+HVG21	US Midwest Steel CRU {Feb 21}
+HVH21	US Midwest Steel CRU {Mar 21}
+HVJ21	US Midwest Steel CRU {Apr 21}
+HVK21	US Midwest Steel CRU {May 21}
+HVK22	US Midwest Steel CRU {May 22}
+HVM21	US Midwest Steel CRU {Jun 21}
+HVN21	US Midwest Steel CRU {Jul 21}
+HVQ21	US Midwest Steel CRU {Aug 21}
+HVU21	US Midwest Steel CRU {Sep 21}
+HVV21	US Midwest Steel CRU {Oct 21}
+HVX20	US Midwest Steel CRU {Nov 20}
+HVX21	US Midwest Steel CRU {Nov 21}
+HVZ20	US Midwest Steel CRU {Dec 20}
+HVZ21	US Midwest Steel CRU {Dec 21}
+LD.C	Lead Continuation
+LDF21	Lead {Jan 21}
+LDG21	Lead {Feb 21}
+LDH21	Lead {Mar 21}
+LDJ21	Lead {Apr 21}
+LDK21	Lead {May 21}
+LDM21	Lead {Jun 21}
+LDN21	Lead {Jul 21}
+LDQ21	Lead {Aug 21}
+LDU21	Lead {Sep 21}
+LDV21	Lead {Oct 21}
+LDX20	Lead {Nov 20}
+LDX21	Lead {Nov 21}
+LDZ20	Lead {Dec 20}
+QC.C	Copper Mini Continuation
+QCF21	Copper Mini {Jan 21}
+QCF22	Copper Mini {Jan 22}
+QCG21	Copper Mini {Feb 21}
+QCG22	Copper Mini {Feb 22}
+QCH21	Copper Mini {Mar 21}
+QCH22	Copper Mini {Mar 22}
+QCH23	Copper Mini {Mar 23}
+QCH24	Copper Mini {Mar 24}
+QCH25	Copper Mini {Mar 25}
+QCJ21	Copper Mini {Apr 21}
+QCJ22	Copper Mini {Apr 22}
+QCK21	Copper Mini {May 21}
+QCK22	Copper Mini {May 22}
+QCK23	Copper Mini {May 23}
+QCK24	Copper Mini {May 24}
+QCK25	Copper Mini {May 25}
+QCM21	Copper Mini {Jun 21}
+QCM22	Copper Mini {Jun 22}
+QCN21	Copper Mini {Jul 21}
+QCN22	Copper Mini {Jul 22}
+QCN23	Copper Mini {Jul 23}
+QCN24	Copper Mini {Jul 24}
+QCN25	Copper Mini {Jul 25}
+QCQ21	Copper Mini {Aug 21}
+QCQ22	Copper Mini {Aug 22}
+QCU21	Copper Mini {Sep 21}
+QCU22	Copper Mini {Sep 22}
+QCU23	Copper Mini {Sep 23}
+QCU24	Copper Mini {Sep 24}
+QCU25	Copper Mini {Sep 25}
+QCV21	Copper Mini {Oct 21}
+QCV22	Copper Mini {Oct 22}
+QCX21	Copper Mini {Nov 21}
+QCX22	Copper Mini {Nov 22}
+QCZ20	Copper Mini {Dec 20}
+QCZ21	Copper Mini {Dec 21}
+QCZ22	Copper Mini {Dec 22}
+QCZ23	Copper Mini {Dec 23}
+QCZ24	Copper Mini {Dec 24}
+QI.C	Silver Mini Continuation
+QIF21	Silver Mini {Jan 21}
+QIF22	Silver Mini {Jan 22}
+QIH21	Silver Mini {Mar 21}
+QIH22	Silver Mini {Mar 22}
+QIK21	Silver Mini {May 21}
+QIK22	Silver Mini {May 22}
+QIN21	Silver Mini {Jul 21}
+QIN22	Silver Mini {Jul 22}
+QIU21	Silver Mini {Sep 21}
+QIU22	Silver Mini {Sep 22}
+QIZ20	Silver Mini {Dec 20}
+QIZ21	Silver Mini {Dec 21}
+QO.C	Gold Mini Continuation
+QOG21	Gold Mini {Feb 21}
+QOG22	Gold Mini {Feb 22}
+QOJ21	Gold Mini {Apr 21}
+QOJ22	Gold Mini {Apr 22}
+QOM21	Gold Mini {Jun 21}
+QOM22	Gold Mini {Jun 22}
+QOQ21	Gold Mini {Aug 21}
+QOQ22	Gold Mini {Aug 22}
+QOV21	Gold Mini {Oct 21}
+QOV22	Gold Mini {Oct 22}
+QOZ20	Gold Mini {Dec 20}
+QOZ21	Gold Mini {Dec 21}
+SI	Silver
+SI.C	Silver Continuation
+SIF21	Silver {Jan 21}
+SIF22	Silver {Jan 22}
+SIG21	Silver {Feb 21}
+SIH21	Silver {Mar 21}
+SIH22	Silver {Mar 22}
+SIK21	Silver {May 21}
+SIK22	Silver {May 22}
+SIN21	Silver {Jul 21}
+SIN22	Silver {Jul 22}
+SIN23	Silver {Jul 23}
+SIN24	Silver {Jul 24}
+SIN25	Silver {Jul 25}
+SIU21	Silver {Sep 21}
+SIU22	Silver {Sep 22}
+SIX20	Silver {Nov 20}
+SIZ20	Silver {Dec 20}
+SIZ21	Silver {Dec 21}
+SIZ22	Silver {Dec 22}
+SIZ23	Silver {Dec 23}
+SIZ24	Silver {Dec 24}
+SO.C	Silver Micro Continuation
+SOF21	Silver Micro {Jan 21}
+SOG21	Silver Micro {Feb 21}
+SOH21	Silver Micro {Mar 21}
+SOK21	Silver Micro {May 21}
+SON21	Silver Micro {Jul 21}
+SOU21	Silver Micro {Sep 21}
+SOX20	Silver Micro {Nov 20}
+SOZ20	Silver Micro {Dec 20}
+TR	Iron Ore 62% Fe CFR
+TR.C	Iron Ore 62% Fe CFR Continuation
+TRF21	Iron Ore 62% Fe CFR {Jan 21}
+TRG21	Iron Ore 62% Fe CFR {Feb 21}
+TRH21	Iron Ore 62% Fe CFR {Mar 21}
+TRJ21	Iron Ore 62% Fe CFR {Apr 21}
+TRK21	Iron Ore 62% Fe CFR {May 21}
+TRM21	Iron Ore 62% Fe CFR {Jun 21}
+TRN21	Iron Ore 62% Fe CFR {Jul 21}
+TRQ21	Iron Ore 62% Fe CFR {Aug 21}
+TRU21	Iron Ore 62% Fe CFR {Sep 21}
+TRV21	Iron Ore 62% Fe CFR {Oct 21}
+TRX20	Iron Ore 62% Fe CFR {Nov 20}
+TRX21	Iron Ore 62% Fe CFR {Nov 21}
+TRZ20	Iron Ore 62% Fe CFR {Dec 20}
+TRZ21	Iron Ore 62% Fe CFR {Dec 21}
+UX.C	Uranium Continuation
+UXQ21	Uranium {Aug 21}
+UXU21	Uranium {Sep 21}
+UXZ20	Uranium {Dec 20}
+ZA.C	Zinc Continuation
+ZAF21	Zinc {Jan 21}
+ZAG21	Zinc {Feb 21}
+ZAH21	Zinc {Mar 21}
+ZAJ21	Zinc {Apr 21}
+ZAK21	Zinc {May 21}
+ZAM21	Zinc {Jun 21}
+ZAN21	Zinc {Jul 21}
+ZAQ21	Zinc {Aug 21}
+ZAU21	Zinc {Sep 21}
+ZAV21	Zinc {Oct 21}
+ZAX20	Zinc {Nov 20}
+ZAX21	Zinc {Nov 21}
+ZAZ20	Zinc {Dec 20}

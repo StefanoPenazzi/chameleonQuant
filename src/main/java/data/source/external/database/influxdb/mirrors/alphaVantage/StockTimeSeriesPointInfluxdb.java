@@ -28,7 +28,7 @@ public class StockTimeSeriesPointInfluxdb extends InternalTimeSeriesPointAbstrac
 	 * @param volume
 	 */
 
-		@Column(name = "time")
+		@Column(name = "timestamp")
 	    private Instant time;
 	 
 	    @Column(name = "open")

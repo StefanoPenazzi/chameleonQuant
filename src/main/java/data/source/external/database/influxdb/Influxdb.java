@@ -61,7 +61,7 @@ public class Influxdb implements Database {
 	}
 
 	 /**
-     * Write a scv file into the database
+     * Write a csv file into the database
      *
      * @param dbName
      *            database name
@@ -91,7 +91,10 @@ public class Influxdb implements Database {
 		
 		Map<String,Class<?>> mirrorMapType =  getMapTypes(mirror);
 		
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
+		DateFormat formatIntraday = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
+		DateFormat formatDaily = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+		String timeIntraday = "time";
+		String timeDaily = "timestamp";
 		
 		BatchPoints batchPoints = BatchPoints
 				  .database(dbName)
@@ -101,7 +104,7 @@ public class Influxdb implements Database {
 			
 			Number date = null;
 			try {
-				date = format.parse(m.get("time")).getTime();
+				date = formatDaily.parse(m.get(timeDaily)).getTime();
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -109,7 +112,7 @@ public class Influxdb implements Database {
 			Builder bui = Point.measurement(table)
 					  .time(date, TimeUnit.MILLISECONDS);
 			for(String key: m.keySet()) {
-				if(!key.equals("time") && mirrorMapType.containsKey(key)) {
+				if(!key.equals(timeDaily) && mirrorMapType.containsKey(key)) {
 					
 					if( mirrorMapType.get(key) == Double.class) {
 						bui.addField(key,Double.parseDouble(m.get(key)));

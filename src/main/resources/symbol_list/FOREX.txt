@@ -1,0 +1,1004 @@
+Symbol	Description
+AEDAUD	UAE Dirham / Australian Dollar
+AEDCAD	UAE Dirham / Canadian Dollar
+AEDCHF	UAE Dirham / Swiss Franc
+AEDDKK	UAE Dirham / Danish Krone
+AEDEUR	UAE Dirham / Euro Dollar
+AEDGBP	UAE Dirham / Pound Sterling
+AEDINR	UAE Dirham / Indian Rupee
+AEDJPY	UAE Dirham / Japanese Yen
+AEDNOK	UAE Dirham / Norwegian Krone
+AEDNZD	UAE Dirham / New Zealand Dollar
+AEDPKR	UAE Dirham / Pakistan Rupee
+AEDSAR	UAE Dirham / Saudi Riyal
+AEDSEK	UAE Dirham / Swedish Krona
+AEDUSD	UAE Dirham / US Dollar
+AEDZAR	UAE Dirham / South African Rand
+ALLGBP	Lek / Pound Sterling
+ARSAUD	Argentine Peso / Australian Dollar
+ARSBRL	Argentine Peso / Brazilian Real
+ARSCAD	Argentine Peso / Canadian Dollar
+ARSCHF	Argentine Peso / Swiss Franc
+ARSEUR	Argentine Peso / Euro Dollar
+ARSGBP	Argentine Peso / Pound Sterling
+ARSHKD	Argentine Peso / Hong Kong Dollar
+ARSJPY	Argentine Peso / Japanese Yen
+ARSMXN	Argentine Peso / Mexican Peso
+ARSSGD	Argentine Peso / Singapore Dollar
+ARSUSD	Argentine Peso / US Dollar
+ARSZAR	Argentine Peso / South African Rand
+AUDAED	Australian Dollar / UAE Dirham
+AUDARS	Australian Dollar / Argentine Peso
+AUDBRL	Australian Dollar / Brazilian Real
+AUDCAD	Australian Dollar / Canadian Dollar
+AUDCHF	Australian Dollar / Swiss Franc
+AUDCNH	Australian Dollar / Renminbi (Offshore)
+AUDCNY	Australian Dollar / Yuan Renminbi
+AUDCZK	Australian Dollar / Czech Koruna
+AUDDKK	Australian Dollar / Danish Krone
+AUDEUR	Australian Dollar / Euro Dollar
+AUDFJD	Australian Dollar / Fiji Dollar
+AUDGBP	Australian Dollar / Pound Sterling
+AUDHKD	Australian Dollar / Hong Kong Dollar
+AUDHUF	Australian Dollar / Hungarian Forint
+AUDIDR	Australian Dollar / Indian Rupiah
+AUDILS	Australian Dollar / New Israeli Sheqel
+AUDINR	Australian Dollar / Indian Rupee
+AUDJPY	Australian Dollar / Japanese Yen
+AUDKRW	Australian Dollar / Korean Won
+AUDMXN	Australian Dollar / Mexican Peso
+AUDMYR	Australian Dollar / Malaysian Ringgit
+AUDNOK	Australian Dollar / Norwegian Krone
+AUDNZD	Australian Dollar / New Zealand Dollar
+AUDPHP	Australian Dollar / Philippine Peso
+AUDPKR	Australian Dollar / Pakistan Rupee
+AUDPLN	Australian Dollar / Polish Zloty
+AUDSEK	Australian Dollar / Swedish Krona
+AUDSGD	Australian Dollar / Singapore Dollar
+AUDTHB	Australian Dollar / Thai Baht
+AUDTRY	Australian Dollar / Turkish Lira
+AUDTWD	Australian Dollar / New Taiwan Dollar
+AUDUSD	Australian Dollar / US Dollar
+AUDZAR	Australian Dollar / South African Rand
+AWGUSD	Aruban Guilder / US Dollar
+BDTGBP	Taka / Pound Sterling
+BDTJPY	Taka / Japanese Yen
+BGNCNY	Bulgarian Lev / Yuan Renminbi
+BGNDKK	Bulgarian Lev / Danish Krone
+BGNUSD	Bulgarian Lev / US Dollar
+BHDEUR	Bahraini Dinar / Euro Dollar
+BHDPKR	Bahraini Dinar / Pakistan Rupee
+BHDUSD	Bahraini Dinar / US Dollar
+BNDGBP	Brunei Dollar / Pound Sterling
+BRLARS	Brazilian Real / Argentine Peso
+BRLAUD	Brazilian Real / Australian Dollar
+BRLCAD	Brazilian Real / Canadian Dollar
+BRLCHF	Brazilian Real / Swiss Franc
+BRLEUR	Brazilian Real / Euro Dollar
+BRLHKD	Brazilian Real / Hong Kong Dollar
+BRLJPY	Brazilian Real / Japanese Yen
+BRLKRW	Brazilian Real / Korean Won
+BRLMXN	Brazilian Real / Mexican Peso
+BRLRUB	Brazilian Real / Russian Ruble
+BRLSEK	Brazilian Real / Swedish Krona
+BRLSGD	Brazilian Real / Singapore Dollar
+BRLUSD	Brazilian Real / US Dollar
+BRLZAR	Brazilian Real / South African Rand
+BWPCHF	Pula / Swiss Franc
+BWPEUR	Pula / Euro Dollar
+BWPGBP	Pula / Pound Sterling
+BWPUSD	Pula / US Dollar
+BWPZAR	Pula / South African Rand
+CADAED	Canadian Dollar / UAE Dirham
+CADARS	Canadian Dollar / Argentine Peso
+CADAUD	Canadian Dollar / Australian Dollar
+CADBRL	Canadian Dollar / Brazilian Real
+CADCHF	Canadian Dollar / Swiss Franc
+CADCNH	Canadian Dollar / Renminbi (Offshore)
+CADCNY	Canadian Dollar / Yuan Renminbi
+CADDKK	Canadian Dollar / Danish Krone
+CADEUR	Canadian Dollar / Euro Dollar
+CADGBP	Canadian Dollar / Pound Sterling
+CADHKD	Canadian Dollar / Hong Kong Dollar
+CADIDR	Canadian Dollar / Indian Rupiah
+CADILS	Canadian Dollar / New Israeli Sheqel
+CADINR	Canadian Dollar / Indian Rupee
+CADJPY	Canadian Dollar / Japanese Yen
+CADKRW	Canadian Dollar / Korean Won
+CADKWD	Canadian Dollar / Kuwaiti Dinar
+CADMXN	Canadian Dollar / Mexican Peso
+CADMYR	Canadian Dollar / Malaysian Ringgit
+CADNOK	Canadian Dollar / Norwegian Krone
+CADNZD	Canadian Dollar / New Zealand Dollar
+CADPKR	Canadian Dollar / Pakistan Rupee
+CADPLN	Canadian Dollar / Polish Zloty
+CADRUB	Canadian Dollar / Russian Ruble
+CADSEK	Canadian Dollar / Swedish Krona
+CADSGD	Canadian Dollar / Singapore Dollar
+CADTHB	Canadian Dollar / Thai Baht
+CADTRY	Canadian Dollar / Turkish Lira
+CADTWD	Canadian Dollar / New Taiwan Dollar
+CADUSD	Canadian Dollar / US Dollar
+CADZAR	Canadian Dollar / South African Rand
+CDFUSD	Franc Congolais / US Dollar
+CHFAED	Swiss Franc / UAE Dirham
+CHFARS	Swiss Franc / Argentine Peso
+CHFAUD	Swiss Franc / Australian Dollar
+CHFBRL	Swiss Franc / Brazilian Real
+CHFBWP	Swiss Franc / Pula
+CHFCAD	Swiss Franc / Canadian Dollar
+CHFCNH	Swiss Franc / Renminbi (Offshore)
+CHFCNY	Swiss Franc / Yuan Renminbi
+CHFCZK	Swiss Franc / Czech Koruna
+CHFDKK	Swiss Franc / Danish Krone
+CHFEUR	Swiss Franc / Euro Dollar
+CHFGBP	Swiss Franc / Pound Sterling
+CHFHKD	Swiss Franc / Hong Kong Dollar
+CHFHUF	Swiss Franc / Hungarian Forint
+CHFIDR	Swiss Franc / Indian Rupiah
+CHFILS	Swiss Franc / New Israeli Sheqel
+CHFINR	Swiss Franc / Indian Rupee
+CHFJPY	Swiss Franc / Japanese Yen
+CHFKRW	Swiss Franc / Korean Won
+CHFMXN	Swiss Franc / Mexican Peso
+CHFMYR	Swiss Franc / Malaysian Ringgit
+CHFNOK	Swiss Franc / Norwegian Krone
+CHFNZD	Swiss Franc / New Zealand Dollar
+CHFPKR	Swiss Franc / Pakistan Rupee
+CHFPLN	Swiss Franc / Polish Zloty
+CHFRON	Swiss Franc / Romanian Leu
+CHFRUB	Swiss Franc / Russian Ruble
+CHFSEK	Swiss Franc / Swedish Krona
+CHFSGD	Swiss Franc / Singapore Dollar
+CHFSZL	Swiss Franc / Lilangeni
+CHFTHB	Swiss Franc / Thai Baht
+CHFTRY	Swiss Franc / Turkish Lira
+CHFTWD	Swiss Franc / New Taiwan Dollar
+CHFUSD	Swiss Franc / US Dollar
+CHFZAR	Swiss Franc / South African Rand
+CLPEUR	Chilean Peso / Euro Dollar
+CLPGBP	Chilean Peso / Pound Sterling
+CLPUSD	Chilean Peso / US Dollar
+CNHHKD	Renminbi (Offshore) / Hong Kong Dollar
+CNHIDR	Renminbi (Offshore) / Indonesian Rupiah
+CNHINR	Renminbi (Offshore) / Indian Rupee
+CNHJPY	Renminbi (Offshore) / Japanese Yen
+CNHKRW	Renminbi (Offshore) / Korean Won
+CNHPHP	Renminbi (Offshore) / Philippine Peso
+CNHTHB	Renminbi (Offshore) / Thai Baht
+CNHTWD	Renminbi (Offshore) / New Taiwan Dollar
+CNYAUD	Yuan Renminbi / Australian Dollar
+CNYBGN	Yuan Renminbi / Bulgarian Lev
+CNYCAD	Yuan Renminbi / Canadian Dollar
+CNYCHF	Yuan Renminbi / Swiss Franc
+CNYDKK	Yuan Renminbi / Danish Krone
+CNYEUR	Yuan Renminbi / Euro Dollar
+CNYGBP	Yuan Renminbi / Pound Sterling
+CNYHKD	Yuan Renminbi / Hong Kong Dollar
+CNYJPY	Yuan Renminbi / Japanese Yen
+CNYKRW	Yuan Renminbi / Korean Won
+CNYMYR	Yuan Renminbi / Malaysian Ringgit
+CNYNZD	Yuan Renminbi / New Zealand Dollar
+CNYUSD	Yuan Renminbi / US Dollar
+CNYZAR	Yuan Renminbi / South African Rand
+COPDKK	Colombian Peso / Danish Krone
+CRCGBP	Costa Rican Colon / Pound Sterling
+CYPZAR	Cyprus Pound / South African Rand
+CZKCHF	Czech Koruna / Swiss Franc
+CZKDKK	Czech Koruna / Danish Krone
+CZKEUR	Czech Koruna / Euro Dollar
+CZKJPY	Czech Koruna / Japanese Yen
+CZKMXN	Czech Koruna / Mexican Peso
+CZKNOK	Czech Koruna / Norwegian Krone
+CZKPLN	Czech Koruna / Polish Zloty
+CZKSEK	Czech Koruna / Swedish Krona
+CZKUSD	Czech Koruna / US Dollar
+DJFGBP	Djibouti Franc / Pound Sterling
+DKKAED	Danish Krone / UAE Dirham
+DKKAUD	Danish Krone / Australian Dollar
+DKKBGN	Danish Krone / Bulgarian Lev
+DKKCAD	Danish Krone / Canadian Dollar
+DKKCHF	Danish Krone / Swiss Franc
+DKKCNY	Danish Krone / Yuan Renminbi
+DKKCOP	Danish Krone / Colombian Peso
+DKKCZK	Danish Krone / Czech Koruna
+DKKEUR	Danish Krone / Euro Dollar
+DKKGBP	Danish Krone / Pound Sterling
+DKKHKD	Danish Krone / Hong Kong Dollar
+DKKHUF	Danish Krone / Hungarian Forint
+DKKINR	Danish Krone / Indian Rupee
+DKKISK	Danish Krone / Iceland Krona
+DKKJPY	Danish Krone / Japanese Yen
+DKKMXN	Danish Krone / Mexican Peso
+DKKMYR	Danish Krone / Malaysian Ringgit
+DKKNOK	Danish Krone / Norwegian Krone
+DKKNZD	Danish Krone / New Zealand Dollar
+DKKPHP	Danish Krone / Philippine Peso
+DKKPKR	Danish Krone / Pakistan Rupee
+DKKPLN	Danish Krone / Polish Zloty
+DKKSEK	Danish Krone / Swedish Krona
+DKKSGD	Danish Krone / Singapore Dollar
+DKKTHB	Danish Krone / Thai Baht
+DKKTRY	Danish Krone / Turkish Lira
+DKKTWD	Danish Krone / New Taiwan Dollar
+DKKUAH	Danish Krone / Hryvnia
+DKKUSD	Danish Krone / US Dollar
+DKKZAR	Danish Krone / South African Rand
+DOPGBP	Dominican Peso / Pound Sterling
+DZDEUR	Algerian Dinar / Euro Dollar
+DZDUSD	Algerian Dinar / US Dollar
+EGPEUR	Egyptian Pound / Euro Dollar
+EGPJPY	Egyptian Pound / Japanese Yen
+EGPPKR	Egyptian Pound / Pakistan Rupee
+EGPUSD	Egyptian Pound / US Dollar
+ETBGBP	Ethiopian Birr / Pound Sterling
+EURAED	Euro Dollar / UAE Dirham
+EURAFN	Euro Dollar / Afghani
+EURALL	Euro Dollar / Lek
+EURAMD	Euro Dollar / Armenian Dram
+EURARS	Euro Dollar / Argentine Peso
+EURAUD	Euro Dollar / Australian Dollar
+EURBBD	Euro Dollar / Barbados Dollar
+EURBDT	Euro Dollar / Taka
+EURBGN	Euro Dollar / Bulgarian Lev
+EURBHD	Euro Dollar / Bahraini Dinar
+EURBIF	Euro Dollar / Burundi Franc
+EURBND	Euro Dollar / Brunei Dollar
+EURBOB	Euro Dollar / Boliviano
+EURBRL	Euro Dollar / Brazilian Real
+EURBSD	Euro Dollar / Bahamian Dollar
+EURBWP	Euro Dollar / Pula
+EURBZD	Euro Dollar / Belize Dollar
+EURCAD	Euro Dollar / Canadian Dollar
+EURCHF	Euro Dollar / Swiss Franc
+EURCLP	Euro Dollar / Chilean Peso
+EURCNH	Euro Dollar / Renminbi (Offshore)
+EURCNY	Euro Dollar / Yuan Renminbi
+EURCOP	Euro Dollar / Colombian Peso
+EURCRC	Euro Dollar / Costa Rican Colon
+EURCZK	Euro Dollar / Czech Koruna
+EURDJF	Euro Dollar / Djibouti Franc
+EURDKK	Euro Dollar / Danish Krone
+EURDOP	Euro Dollar / Dominican Peso
+EURDZD	Euro Dollar / Algerian Dinar
+EUREGP	Euro Dollar / Egyptian Pound
+EURETB	Euro Dollar / Ethiopian Birr
+EURFJD	Euro Dollar / Fiji Dollar
+EURGBP	Euro Dollar / Pound Sterling
+EURGHS	Euro Dollar / Cedi
+EURGMD	Euro Dollar / Dalasi
+EURGNF	Euro Dollar / Guinea Franc
+EURGTQ	Euro Dollar / Guatemalan Quetzal
+EURHKD	Euro Dollar / Hong Kong Dollar
+EURHNL	Euro Dollar / Honduran Lempira
+EURHRK	Euro Dollar / Croatian kuna
+EURHTG	Euro Dollar / Gourde
+EURHUF	Euro Dollar / Hungarian Forint
+EURIDR	Euro Dollar / Indian Rupiah
+EURILS	Euro Dollar / New Israeli Sheqel
+EURINR	Euro Dollar / Indian Rupee
+EURIQD	Euro Dollar / Iraqi Dinar
+EURISK	Euro Dollar / Iceland Krona
+EURJMD	Euro Dollar / Jamaican Dollar
+EURJOD	Euro Dollar / Jordanian Dinar
+EURJPY	Euro Dollar / Japanese Yen
+EURKES	Euro Dollar / Kenyan Shilling
+EURKHR	Euro Dollar / Riel
+EURKRW	Euro Dollar / Korean Won
+EURKWD	Euro Dollar / Kuwaiti Dinar
+EURKYD	Euro Dollar / Cayman Islands Dollar
+EURKZT	Euro Dollar / Tenge
+EURLAK	Euro Dollar / Kip
+EURLBP	Euro Dollar / Lebanese Pound
+EURLKR	Euro Dollar / Sri Lanka Rupee
+EURLSL	Euro Dollar / Loti
+EURLYD	Euro Dollar / Lybian Dinar
+EURMAD	Euro Dollar / Moroccan Dirham
+EURMDL	Euro Dollar / Moldovan Leu
+EURMKD	Euro Dollar / Denar
+EURMMK	Euro Dollar / Kyat
+EURMOP	Euro Dollar / Pataca
+EURMUR	Euro Dollar / Mauritius Rupee
+EURMVR	Euro Dollar / Rufiyaa
+EURMWK	Euro Dollar / Kwacha
+EURMXN	Euro Dollar / Mexican Peso
+EURMYR	Euro Dollar / Malaysian Ringgit
+EURNAD	Euro Dollar / Namibia Dollar
+EURNGN	Euro Dollar / Naira
+EURNIO	Euro Dollar / Cordoba Oro
+EURNOK	Euro Dollar / Norwegian Krone
+EURNPR	Euro Dollar / Nepalese Rupee
+EURNZD	Euro Dollar / New Zealand Dollar
+EUROMR	Euro Dollar / Rial Omani
+EURPAB	Euro Dollar / Balboa
+EURPEN	Euro Dollar / Nuevo Sol
+EURPGK	Euro Dollar / Papua New Guinea Kina
+EURPHP	Euro Dollar / Philippine Peso
+EURPKR	Euro Dollar / Pakistan Rupee
+EURPLN	Euro Dollar / Polish Zloty
+EURPYG	Euro Dollar / Guarani
+EURQAR	Euro Dollar / Qatari Rial
+EURRON	Euro Dollar / Romanian Leu
+EURRSD	Euro Dollar / Serbian Dinar
+EURRUB	Euro Dollar / Russian Ruble
+EURRWF	Euro Dollar / Rwanda Franc
+EURSAR	Euro Dollar / Saudi Riyal
+EURSCR	Euro Dollar / Seychelles Rupee
+EURSEK	Euro Dollar / Swedish Krona
+EURSGD	Euro Dollar / Singapore Dollar
+EURSOS	Euro Dollar / Somali Shilling
+EURSVC	Euro Dollar / El Salvador Colon
+EURSZL	Euro Dollar / Lilangeni
+EURTHB	Euro Dollar / Thai Baht
+EURTND	Euro Dollar / Tunisian Dinar
+EURTRY	Euro Dollar / Turkish Lira
+EURTTD	Euro Dollar / Trinidad and Tobago Dollar
+EURTWD	Euro Dollar / New Taiwan Dollar
+EURTZS	Euro Dollar / Tanzanian Shilling
+EURUAH	Euro Dollar / Hryvnia
+EURUGX	Euro Dollar / Uganda Shilling
+EURUSD	Euro Dollar / US Dollar
+EURUYU	Euro Dollar / Peso Uruguayo
+EURUZS	Euro Dollar / Uzbekistan Sum
+EURVND	Euro Dollar / Dong
+EURYER	Euro Dollar / Yemeni Rial
+EURZAR	Euro Dollar / South African Rand
+FJDGBP	Fiji Dollar / Pound Sterling
+FJDUSD	Fiji Dollar / US Dollar
+GBPAED	Pound Sterling / UAE Dirham
+GBPALL	Pound Sterling / Lek
+GBPARS	Pound Sterling / Argentine Peso
+GBPAUD	Pound Sterling / Australian Dollar
+GBPBDT	Pound Sterling / Taka
+GBPBGN	Pound Sterling / Bulgarian Lev
+GBPBHD	Pound Sterling / Bahraini Dinar
+GBPBIF	Pound Sterling / Burundi Franc
+GBPBMD	Pound Sterling / Bermudian Dollar
+GBPBND	Pound Sterling / Brunei Dollar
+GBPBRL	Pound Sterling / Brazilian Real
+GBPBWP	Pound Sterling / Pula
+GBPCAD	Pound Sterling / Canadian Dollar
+GBPCHF	Pound Sterling / Swiss Franc
+GBPCLP	Pound Sterling / Chilean Peso
+GBPCNH	Pound Sterling / Renminbi (Offshore)
+GBPCNY	Pound Sterling / Yuan Renminbi
+GBPCOP	Pound Sterling / Colombian Peso
+GBPCRC	Pound Sterling / Costa Rican Colon
+GBPCZK	Pound Sterling / Czech Koruna
+GBPDJF	Pound Sterling / Djibouti Franc
+GBPDKK	Pound Sterling / Danish Krone
+GBPDOP	Pound Sterling / Dominican Peso
+GBPDZD	Pound Sterling / Algerian Dinar
+GBPEGP	Pound Sterling / Egyptian Pound
+GBPETB	Pound Sterling / Ethiopian Birr
+GBPEUR	Pound Sterling / Euro Dollar
+GBPFJD	Pound Sterling / Fiji Dollar
+GBPGTQ	Pound Sterling / Guatemalan Quetzal
+GBPHKD	Pound Sterling / Hong Kong Dollar
+GBPHNL	Pound Sterling / Honduran Lempira
+GBPHRK	Pound Sterling / Croatian kuna
+GBPHTG	Pound Sterling / Gourde
+GBPHUF	Pound Sterling / Hungarian Forint
+GBPIDR	Pound Sterling / Indian Rupiah
+GBPILS	Pound Sterling / New Israeli Sheqel
+GBPINR	Pound Sterling / Indian Rupee
+GBPIQD	Pound Sterling / Iraqi Dinar
+GBPISK	Pound Sterling / Iceland Krona
+GBPJMD	Pound Sterling / Jamaican Dollar
+GBPJOD	Pound Sterling / Jordanian Dinar
+GBPJPY	Pound Sterling / Japanese Yen
+GBPKES	Pound Sterling / Kenyan Shilling
+GBPKRW	Pound Sterling / Korean Won
+GBPKWD	Pound Sterling / Kuwaiti Dinar
+GBPKZT	Pound Sterling / Tenge
+GBPLBP	Pound Sterling / Lebanese Pound
+GBPLKR	Pound Sterling / Sri Lanka Rupee
+GBPMAD	Pound Sterling / Moroccan Dirham
+GBPMUR	Pound Sterling / Mauritius Rupee
+GBPMVR	Pound Sterling / Rufiyaa
+GBPMWK	Pound Sterling / Kwacha
+GBPMXN	Pound Sterling / Mexican Peso
+GBPMYR	Pound Sterling / Malaysian Ringgit
+GBPNGN	Pound Sterling / Naira
+GBPNIO	Pound Sterling / Cordoba Oro
+GBPNOK	Pound Sterling / Norwegian Krone
+GBPNZD	Pound Sterling / New Zealand Dollar
+GBPOMR	Pound Sterling / Rial Omani
+GBPPEN	Pound Sterling / Nuevo Sol
+GBPPGK	Pound Sterling / Papua New Guinea Kina
+GBPPHP	Pound Sterling / Philippine Peso
+GBPPKR	Pound Sterling / Pakistan Rupee
+GBPPLN	Pound Sterling / Polish Zloty
+GBPQAR	Pound Sterling / Qatari Rial
+GBPRON	Pound Sterling / Romanian Leu
+GBPRUB	Pound Sterling / Russian Ruble
+GBPSAR	Pound Sterling / Saudi Riyal
+GBPSCR	Pound Sterling / Seychelles Rupee
+GBPSEK	Pound Sterling / Swedish Krona
+GBPSGD	Pound Sterling / Singapore Dollar
+GBPSZL	Pound Sterling / Lilangeni
+GBPTHB	Pound Sterling / Thai Baht
+GBPTND	Pound Sterling / Tunisian Dinar
+GBPTRY	Pound Sterling / Turkish Lira
+GBPTTD	Pound Sterling / Trinidad and Tobago Dollar
+GBPTWD	Pound Sterling / New Taiwan Dollar
+GBPUAH	Pound Sterling / Hryvnia
+GBPUSD	Pound Sterling / US Dollar
+GBPVND	Pound Sterling / Dong
+GBPXAF	Pound Sterling / CFA Franc BEAC
+GBPXCD	Pound Sterling / East Caribbean Dollar
+GBPXPF	Pound Sterling / CFP Franc
+GBPZAR	Pound Sterling / South African Rand
+GHSEUR	Cedi / Euro Dollar
+GHSUSD	Cedi / US Dollar
+GTQGBP	Guatemalan Quetzal / Pound Sterling
+HKDARS	Hong Kong Dollar / Argentine Peso
+HKDAUD	Hong Kong Dollar / Australian Dollar
+HKDBRL	Hong Kong Dollar / Brazilian Real
+HKDCAD	Hong Kong Dollar / Canadian Dollar
+HKDCHF	Hong Kong Dollar / Swiss Franc
+HKDCNY	Hong Kong Dollar / Yuan Renminbi
+HKDDKK	Hong Kong Dollar / Danish Krone
+HKDEUR	Hong Kong Dollar / Euro Dollar
+HKDGBP	Hong Kong Dollar / Pound Sterling
+HKDIDR	Hong Kong Dollar / Indian Rupiah
+HKDINR	Hong Kong Dollar / Indian Rupee
+HKDJPY	Hong Kong Dollar / Japanese Yen
+HKDKRW	Hong Kong Dollar / Korean Won
+HKDMXN	Hong Kong Dollar / Mexican Peso
+HKDMYR	Hong Kong Dollar / Malaysian Ringgit
+HKDNZD	Hong Kong Dollar / New Zealand Dollar
+HKDPKR	Hong Kong Dollar / Pakistan Rupee
+HKDPLN	Hong Kong Dollar / Polish Zloty
+HKDSEK	Hong Kong Dollar / Swedish Krona
+HKDSGD	Hong Kong Dollar / Singapore Dollar
+HKDTHB	Hong Kong Dollar / Thai Baht
+HKDTWD	Hong Kong Dollar / New Taiwan Dollar
+HKDUSD	Hong Kong Dollar / US Dollar
+HKDZAR	Hong Kong Dollar / South African Rand
+HNLGBP	Honduran Lempira / Pound Sterling
+HRKEUR	Croatian kuna / Euro Dollar
+HRKPLN	Croatian kuna / Polish Zloty
+HRKUSD	Croatian kuna / US Dollar
+HTGGBP	Gourde / Pound Sterling
+HUFCHF	Hungarian Forint / Swiss Franc
+HUFDKK	Hungarian Forint / Danish Krone
+HUFEUR	Hungarian Forint / Euro Dollar
+HUFPLN	Hungarian Forint / Polish Zloty
+HUFUSD	Hungarian Forint / US Dollar
+IDRAUD	Indonesia Rupiah / Australian Dollar
+IDRCAD	Indonesia Rupiah / Canadian Dollar
+IDRCHF	Indonesia Rupiah / Swiss Franc
+IDRCNY	Indonesia Rupiah / Yuan Renminbi
+IDREUR	Indonesia Rupiah / Euro Dollar
+IDRGBP	Indonesia Rupiah / Pound Sterling
+IDRHKD	Indonesia Rupiah / Hong Kong Dollar
+IDRINR	Indonesia Rupiah / Indian Rupee
+IDRJPY	Indonesia Rupiah / Japanese Yen
+IDRKRW	Indonesia Rupiah / Korean Won
+IDRMYR	Indonesia Rupiah / Malaysian Ringgit
+IDRNZD	Indonesia Rupiah / New Zealand Dollar
+IDRSGD	Indonesia Rupiah / Singapore Dollar
+IDRTHB	Indonesia Rupiah / Thai Baht
+IDRTWD	Indonesia Rupiah / New Taiwan Dollar
+IDRUSD	Indonesia Rupiah / US Dollar
+IDRZAR	Indonesia Rupiah / South African Rand
+ILSAUD	New Israeli Sheqel / Australian Dollar
+ILSCAD	New Israeli Sheqel / Canadian Dollar
+ILSCHF	New Israeli Sheqel / Swiss Franc
+ILSJOD	New Israeli Sheqel / Jordanian Dinar
+ILSJPY	New Israeli Sheqel / Japanese Yen
+ILSPLN	New Israeli Sheqel / Polish Zloty
+ILSSEK	New Israeli Sheqel / Swedish Krona
+ILSUSD	New Israeli Sheqel / US Dollar
+INRAUD	Indian Rupee / Australian Dollar
+INRCAD	Indian Rupee / Canadian Dollar
+INRCHF	Indian Rupee / Swiss Franc
+INRCNY	Indian Rupee / Yuan Renminbi
+INREUR	Indian Rupee / Euro Dollar
+INRGBP	Indian Rupee / Pound Sterling
+INRHKD	Indian Rupee / Hong Kong Dollar
+INRJPY	Indian Rupee / Japanese Yen
+INRKRW	Indian Rupee / Korean Won
+INRMYR	Indian Rupee / Malaysian Ringgit
+INRNZD	Indian Rupee / New Zealand Dollar
+INRPKR	Indian Rupee / Pakistan Rupee
+INRSEK	Indian Rupee / Swedish Krona
+INRTHB	Indian Rupee / Thai Baht
+INRTWD	Indian Rupee / New Taiwan Dollar
+INRUSD	Indian Rupee / US Dollar
+INRZAR	Indian Rupee / South African Rand
+IQDGBP	Iraqi Dinar / Pound Sterling
+ISKCHF	Iceland Krona / Swiss Franc
+ISKDKK	Iceland Krona / Danish Krone
+ISKGBP	Iceland Krona / Pound Sterling
+JMDGBP	Jamaican Dollar / Pound Sterling
+JODAED	Jordanian Dinar / UAE Dirham
+JODEUR	Jordanian Dinar / Euro Dollar
+JODILS	Jordanian Dinar / New Israeli Sheqel
+JODUSD	Jordanian Dinar / US Dollar
+JPYAED	Japanese Yen / UAE Dirham
+JPYARS	Japanese Yen / Argentine Peso
+JPYAUD	Japanese Yen / Australian Dollar
+JPYBRL	Japanese Yen / Brazilian Real
+JPYCAD	Japanese Yen / Canadian Dollar
+JPYCHF	Japanese Yen / Swiss Franc
+JPYCLP	Japanese Yen / Chilean Peso
+JPYCNY	Japanese Yen / Yuan Renminbi
+JPYCZK	Japanese Yen / Czech Koruna
+JPYDKK	Japanese Yen / Danish Krone
+JPYEUR	Japanese Yen / Euro Dollar
+JPYGBP	Japanese Yen / Pound Sterling
+JPYHKD	Japanese Yen / Hong Kong Dollar
+JPYIDR	Japanese Yen / Indian Rupiah
+JPYILS	Japanese Yen / New Israeli Sheqel
+JPYINR	Japanese Yen / Indian Rupee
+JPYKRW	Japanese Yen / Korean Won
+JPYMXN	Japanese Yen / Mexican Peso
+JPYMYR	Japanese Yen / Malaysian Ringgit
+JPYNOK	Japanese Yen / Norwegian Krone
+JPYNZD	Japanese Yen / New Zealand Dollar
+JPYPKR	Japanese Yen / Pakistan Rupee
+JPYPLN	Japanese Yen / Polish Zloty
+JPYRUB	Japanese Yen / Russian Ruble
+JPYSEK	Japanese Yen / Swedish Krona
+JPYTHB	Japanese Yen / Thai Baht
+JPYTWD	Japanese Yen / New Taiwan Dollar
+JPYUSD	Japanese Yen / US Dollar
+JPYZAR	Japanese Yen / South African Rand
+KESEUR	Kenyan Shilling / Euro Dollar
+KESUSD	Kenyan Shilling / US Dollar
+KESZAR	Kenyan Shilling / South African Rand
+KMFUSD	Comoro Franc / US Dollar
+KRWAUD	Korean Won / Australian Dollar
+KRWBRL	Korean Won / Brazilian Real
+KRWCAD	Korean Won / Canadian Dollar
+KRWCHF	Korean Won / Swiss Franc
+KRWCNY	Korean Won / Yuan Renminbi
+KRWEUR	Korean Won / Euro Dollar
+KRWHKD	Korean Won / Hong Kong Dollar
+KRWIDR	Korean Won / Indian Rupiah
+KRWINR	Korean Won / Indian Rupee
+KRWJPY	Korean Won / Japanese Yen
+KRWMYR	Korean Won / Malaysian Ringgit
+KRWNZD	Korean Won / New Zealand Dollar
+KRWRUB	Korean Won / Russian Ruble
+KRWSEK	Korean Won / Swedish Krona
+KRWSGD	Korean Won / Singapore Dollar
+KRWTHB	Korean Won / Thai Baht
+KRWTWD	Korean Won / New Taiwan Dollar
+KRWUSD	Korean Won / US Dollar
+KRWZAR	Korean Won / South African Rand
+KWDAED	Kuwaiti Dinar / UAE Dirham
+KWDGBP	Kuwaiti Dinar / Pound Sterling
+KWDPKR	Kuwaiti Dinar / Pakistan Rupee
+KWDUSD	Kuwaiti Dinar / US Dollar
+KZTGBP	Tenge / Pound Sterling
+LBPUSD	Lebanese Pound / US Dollar
+LKRUSD	Sri Lanka Rupee / US Dollar
+LRDUSD	Liberian Dollar / US Dollar
+MADGBP	Moroccan Dirham / Pound Sterling
+MADUSD	Moroccan Dirham / US Dollar
+MDLEUR	Moldovan Leu / Euro Dollar
+MDLUSD	Moldovan Leu / US Dollar
+MKDUSD	Denar / US Dollar
+MUREUR	Mauritius Rupee / Euro Dollar
+MURGBP	Mauritius Rupee / Pound Sterling
+MURUSD	Mauritius Rupee / US Dollar
+MURZAR	Mauritius Rupee / South African Rand
+MVRUSD	Rufiyaa / US Dollar
+MWKGBP	Kwacha / Pound Sterling
+MXNARS	Mexican Peso / Argentine Peso
+MXNAUD	Mexican Peso / Australian Dollar
+MXNBRL	Mexican Peso / Brazilian Real
+MXNCAD	Mexican Peso / Canadian Dollar
+MXNCHF	Mexican Peso / Swiss Franc
+MXNCZK	Mexican Peso / Czech Koruna
+MXNDKK	Mexican Peso / Danish Krone
+MXNEUR	Mexican Peso / Euro Dollar
+MXNGBP	Mexican Peso / Pound Sterling
+MXNHKD	Mexican Peso / Hong Kong Dollar
+MXNJPY	Mexican Peso / Japanese Yen
+MXNSGD	Mexican Peso / Singapore Dollar
+MXNUSD	Mexican Peso / US Dollar
+MXNZAR	Mexican Peso / South African Rand
+MYRAUD	Malaysian Ringgit / Australian Dollar
+MYRCAD	Malaysian Ringgit / Canadian Dollar
+MYRCHF	Malaysian Ringgit / Swiss Franc
+MYRCNH	Malaysian Ringgit / Renminbi (Offshore)
+MYRCNY	Malaysian Ringgit / Yuan Renminbi
+MYRDKK	Malaysian Ringgit / Danish Krone
+MYREUR	Malaysian Ringgit / Euro Dollar
+MYRHKD	Malaysian Ringgit / Hong Kong Dollar
+MYRIDR	Malaysian Ringgit / Indian Rupiah
+MYRINR	Malaysian Ringgit / Indian Rupee
+MYRJPY	Malaysian Ringgit / Japanese Yen
+MYRKRW	Malaysian Ringgit / Korean Won
+MYRNZD	Malaysian Ringgit / New Zealand Dollar
+MYRPKR	Malaysian Ringgit / Pakistan Rupee
+MYRSGD	Malaysian Ringgit / Singapore Dollar
+MYRTHB	Malaysian Ringgit / Thai Baht
+MYRTWD	Malaysian Ringgit / New Taiwan Dollar
+MYRUSD	Malaysian Ringgit / US Dollar
+MYRZAR	Malaysian Ringgit / South African Rand
+NGNGBP	Naira / Pound Sterling
+NGNJPY	Naira / Japanese Yen
+NIOGBP	Cordoba Oro / Pound Sterling
+NOKCAD	Norwegian Krone / Canadian Dollar
+NOKCHF	Norwegian Krone / Swiss Franc
+NOKCNH	Norwegian Krone / Renminbi (Offshore)
+NOKDKK	Norwegian Krone / Danish Krone
+NOKEUR	Norwegian Krone / Euro Dollar
+NOKGBP	Norwegian Krone / Pound Sterling
+NOKINR	Norwegian Krone / Indian Rupee
+NOKJPY	Norwegian Krone / Japanese Yen
+NOKPLN	Norwegian Krone / Polish Zloty
+NOKSEK	Norwegian Krone / Swedish Krona
+NOKUSD	Norwegian Krone / US Dollar
+NOKZAR	Norwegian Krone / South African Rand
+NZDAED	New Zealand Dollar / UAE Dirham
+NZDAUD	New Zealand Dollar / Australian Dollar
+NZDCAD	New Zealand Dollar / Canadian Dollar
+NZDCHF	New Zealand Dollar / Swiss Franc
+NZDCNH	New Zealand Dollar / Renminbi (Offshore)
+NZDCNY	New Zealand Dollar / Yuan Renminbi
+NZDCZK	New Zealand Dollar / Czech Koruna
+NZDDKK	New Zealand Dollar / Danish Krone
+NZDEUR	New Zealand Dollar / Euro Dollar
+NZDGBP	New Zealand Dollar / Pound Sterling
+NZDHKD	New Zealand Dollar / Hong Kong Dollar
+NZDHUF	New Zealand Dollar / Hungarian Forint
+NZDIDR	New Zealand Dollar / Indian Rupiah
+NZDINR	New Zealand Dollar / Indian Rupee
+NZDJPY	New Zealand Dollar / Japanese Yen
+NZDKRW	New Zealand Dollar / Korean Won
+NZDMXN	New Zealand Dollar / Mexican Peso
+NZDMYR	New Zealand Dollar / Malaysian Ringgit
+NZDNOK	New Zealand Dollar / Norwegian Krone
+NZDPKR	New Zealand Dollar / Pakistan Rupee
+NZDPLN	New Zealand Dollar / Polish Zloty
+NZDSEK	New Zealand Dollar / Swedish Krona
+NZDSGD	New Zealand Dollar / Singapore Dollar
+NZDTHB	New Zealand Dollar / Thai Baht
+NZDTRY	New Zealand Dollar / Turkish Lira
+NZDTWD	New Zealand Dollar / New Taiwan Dollar
+NZDUSD	New Zealand Dollar / US Dollar
+NZDZAR	New Zealand Dollar / South African Rand
+OMRAED	Rial Omani / UAE Dirham
+OMRGBP	Rial Omani / Pound Sterling
+OMRPKR	Rial Omani / Pakistan Rupee
+OMRUSD	Rial Omani / US Dollar
+OMRZAR	Rial Omani / South African Rand
+PENGBP	Nuevo Sol / Pound Sterling
+PGKGBP	Papua New Guinea Kina / Pound Sterling
+PHPDKK	Philippine Peso / Danish Krone
+PHPGBP	Philippine Peso / Pound Sterling
+PHPJPY	Philippine Peso / Japanese Yen
+PHPUSD	Philippine Peso / US Dollar
+PKRGBP	Pakistan Rupee / Pound Sterling
+PKRJPY	Pakistan Rupee / Japanese Yen
+PKRZAR	Pakistan Rupee / South African Rand
+PLNCHF	Polish Zloty / Swiss Franc
+PLNCZK	Polish Zloty / Czech Koruna
+PLNDKK	Polish Zloty / Danish Krone
+PLNEUR	Polish Zloty / Euro Dollar
+PLNGBP	Polish Zloty / Pound Sterling
+PLNHUF	Polish Zloty / Hungarian Forint
+PLNILS	Polish Zloty / New Israeli Sheqel
+PLNJPY	Polish Zloty / Japanese Yen
+PLNNOK	Polish Zloty / Norwegian Krone
+PLNSEK	Polish Zloty / Swedish Krona
+PLNUSD	Polish Zloty / US Dollar
+QARAED	Qatari Rial / UAE Dirham
+QARGBP	Qatari Rial / Pound Sterling
+QARPKR	Qatari Rial / Pakistan Rupee
+QARUSD	Qatari Rial / US Dollar
+QARZAR	Qatari Rial / South African Rand
+RONCHF	Romanian Leu / Swiss Franc
+RONGBP	Romanian Leu / Pound Sterling
+RONUSD	Romanian Leu / US Dollar
+RUBCHF	Russian Ruble / Swiss Franc
+RUBGBP	Russian Ruble / Pound Sterling
+RUBJPY	Russian Ruble / Japanese Yen
+RUBKRW	Russian Ruble / Korean Won
+RUBPLN	Russian Ruble / Polish Zloty
+RUBUSD	Russian Ruble / US Dollar
+SAREUR	Saudi Riyal / Euro Dollar
+SARPKR	Saudi Riyal / Pakistan Rupee
+SARUSD	Saudi Riyal / US Dollar
+SCRGBP	Seychelles Rupee / Pound Sterling
+SCRUSD	Seychelles Rupee / US Dollar
+SEKAUD	Swedish Krona / Australian Dollar
+SEKCAD	Swedish Krona / Canadian Dollar
+SEKCHF	Swedish Krona / Swiss Franc
+SEKCNH	Swedish Krona / Renminbi (Offshore)
+SEKCZK	Swedish Krona / Czech Koruna
+SEKDKK	Swedish Krona / Danish Krone
+SEKEUR	Swedish Krona / Euro Dollar
+SEKGBP	Swedish Krona / Pound Sterling
+SEKILS	Swedish Krona / New Israeli Sheqel
+SEKINR	Swedish Krona / Indian Rupee
+SEKJPY	Swedish Krona / Japanese Yen
+SEKNOK	Swedish Krona / Norwegian Krone
+SEKPLN	Swedish Krona / Polish Zloty
+SEKUSD	Swedish Krona / US Dollar
+SEKZAR	Swedish Krona / South African Rand
+SGDAED	Singapore Dollar / UAE Dirham
+SGDARS	Singapore Dollar / Argentine Peso
+SGDAUD	Singapore Dollar / Australian Dollar
+SGDBRL	Singapore Dollar / Brazilian Real
+SGDCAD	Singapore Dollar / Canadian Dollar
+SGDCHF	Singapore Dollar / Swiss Franc
+SGDCNH	Singapore Dollar / Renminbi (Offshore)
+SGDCNY	Singapore Dollar / Yuan Renminbi
+SGDDKK	Singapore Dollar / Danish Krone
+SGDEUR	Singapore Dollar / Euro Dollar
+SGDGBP	Singapore Dollar / Pound Sterling
+SGDHKD	Singapore Dollar / Hong Kong Dollar
+SGDIDR	Singapore Dollar / Indian Rupiah
+SGDINR	Singapore Dollar / Indian Rupee
+SGDJPY	Singapore Dollar / Japanese Yen
+SGDKRW	Singapore Dollar / Korean Won
+SGDMXN	Singapore Dollar / Mexican Peso
+SGDMYR	Singapore Dollar / Malaysian Ringgit
+SGDNZD	Singapore Dollar / New Zealand Dollar
+SGDPKR	Singapore Dollar / Pakistan Rupee
+SGDPLN	Singapore Dollar / Polish Zloty
+SGDSEK	Singapore Dollar / Swedish Krona
+SGDTHB	Singapore Dollar / Thai Baht
+SGDTWD	Singapore Dollar / New Taiwan Dollar
+SGDUSD	Singapore Dollar / US Dollar
+SGDZAR	Singapore Dollar / South African Rand
+SHPUSD	Saint Helena Pound / US Dollar
+SLLUSD	Leone / US Dollar
+SZLCHF	Lilangeni / Swiss Franc
+SZLEUR	Lilangeni / Euro Dollar
+SZLGBP	Lilangeni / Pound Sterling
+SZLUSD	Lilangeni / US Dollar
+THBAUD	Thai Baht / Australian Dollar
+THBCAD	Thai Baht / Canadian Dollar
+THBCHF	Thai Baht / Swiss Franc
+THBCNY	Thai Baht / Yuan Renminbi
+THBEUR	Thai Baht / Euro Dollar
+THBHKD	Thai Baht / Hong Kong Dollar
+THBIDR	Thai Baht / Indian Rupiah
+THBINR	Thai Baht / Indian Rupee
+THBJPY	Thai Baht / Japanese Yen
+THBKRW	Thai Baht / Korean Won
+THBMYR	Thai Baht / Malaysian Ringgit
+THBNZD	Thai Baht / New Zealand Dollar
+THBPKR	Thai Baht / Pakistan Rupee
+THBSGD	Thai Baht / Singapore Dollar
+THBTWD	Thai Baht / New Taiwan Dollar
+THBUSD	Thai Baht / US Dollar
+THBZAR	Thai Baht / South African Rand
+TNDGBP	Tunisian Dinar / Pound Sterling
+TNDUSD	Tunisian Dinar / US Dollar
+TRYCHF	Turkish Lira / Swiss Franc
+TRYDKK	Turkish Lira / Danish Krone
+TRYJPY	Turkish Lira / Japanese Yen
+TRYPLN	Turkish Lira / Polish Zloty
+TRYUSD	Turkish Lira / US Dollar
+TRYZAR	Turkish Lira / South African Rand
+TTDGBP	Trinidad and Tobago Dollar / Pound Sterling
+TWDAUD	New Taiwan Dollar / Australian Dollar
+TWDCAD	New Taiwan Dollar / Canadian Dollar
+TWDCHF	New Taiwan Dollar / Swiss Franc
+TWDCNY	New Taiwan Dollar / Yuan Renminbi
+TWDDKK	New Taiwan Dollar / Danish Krone
+TWDHKD	New Taiwan Dollar / Hong Kong Dollar
+TWDIDR	New Taiwan Dollar / Indian Rupiah
+TWDINR	New Taiwan Dollar / Indian Rupee
+TWDJPY	New Taiwan Dollar / Japanese Yen
+TWDKRW	New Taiwan Dollar / Korean Won
+TWDMYR	New Taiwan Dollar / Malaysian Ringgit
+TWDNZD	New Taiwan Dollar / New Zealand Dollar
+TWDPKR	New Taiwan Dollar / Pakistan Rupee
+TWDSEK	New Taiwan Dollar / Swedish Krona
+TWDSGD	New Taiwan Dollar / Singapore Dollar
+TWDTHB	New Taiwan Dollar / Thai Baht
+TWDUSD	New Taiwan Dollar / US Dollar
+TWDZAR	New Taiwan Dollar / South African Rand
+TZSZAR	Tanzanian Shilling / South African Rand
+UAHDKK	Hryvnia / Danish Krone
+UAHEUR	Hryvnia / Euro Dollar
+UAHUSD	Hryvnia / US Dollar
+USDAED	US Dollar / UAE Dirham
+USDAFN	US Dollar / Afghani
+USDALL	US Dollar / Lek
+USDAMD	US Dollar / Armenian Dram
+USDARS	US Dollar / Argentine Peso
+USDAUD	US Dollar / Australian Dollar
+USDAWG	US Dollar / Aruban Guilder
+USDBDT	US Dollar / Taka
+USDBGN	US Dollar / Bulgarian Lev
+USDBHD	US Dollar / Bahraini Dinar
+USDBIF	US Dollar / Burundi Franc
+USDBND	US Dollar / Brunei Dollar
+USDBOB	US Dollar / Boliviano
+USDBRL	US Dollar / Brazilian Real
+USDBWP	US Dollar / Pula
+USDBZD	US Dollar / Belize Dollar
+USDCAD	US Dollar / Canadian Dollar
+USDCDF	US Dollar / Franc Congolais
+USDCHF	US Dollar / Swiss Franc
+USDCLP	US Dollar / Chilean Peso
+USDCNH	US Dollar / Renminbi (Offshore)
+USDCNY	US Dollar / Yuan Renminbi
+USDCOP	US Dollar / Colombian Peso
+USDCRC	US Dollar / Costa Rican Colon
+USDCVE	US Dollar / Cape Verde Escudo
+USDCZK	US Dollar / Czech Koruna
+USDDJF	US Dollar / Djibouti Franc
+USDDKK	US Dollar / Danish Krone
+USDDOP	US Dollar / Dominican Peso
+USDDZD	US Dollar / Algerian Dinar
+USDEGP	US Dollar / Egyptian Pound
+USDETB	US Dollar / Ethiopian Birr
+USDEUR	US Dollar / Euro Dollar
+USDFJD	US Dollar / Fiji Dollar
+USDGBP	US Dollar / Pound Sterling
+USDGEL	US Dollar / Lari
+USDGHS	US Dollar / Cedi
+USDGMD	US Dollar / Dalasi
+USDGNF	US Dollar / Guinea Franc
+USDGTQ	US Dollar / Guatemalan Quetzal
+USDHKD	US Dollar / Hong Kong Dollar
+USDHNL	US Dollar / Honduran Lempira
+USDHRK	US Dollar / Croatian kuna
+USDHTG	US Dollar / Gourde
+USDHUF	US Dollar / Hungarian Forint
+USDIDR	US Dollar / Indian Rupiah
+USDILS	US Dollar / New Israeli Sheqel
+USDINR	US Dollar / Indian Rupee
+USDIQD	US Dollar / Iraqi Dinar
+USDIRR	US Dollar / Iranian Rial
+USDISK	US Dollar / Iceland Krona
+USDJOD	US Dollar / Jordanian Dinar
+USDJPY	US Dollar / Japanese Yen
+USDKES	US Dollar / Kenyan Shilling
+USDKHR	US Dollar / Riel
+USDKMF	US Dollar / Comoro Franc
+USDKRW	US Dollar / Korean Won
+USDKWD	US Dollar / Kuwaiti Dinar
+USDKZT	US Dollar / Tenge
+USDLAK	US Dollar / Kip
+USDLBP	US Dollar / Lebanese Pound
+USDLKR	US Dollar / Sri Lanka Rupee
+USDLRD	US Dollar / Liberian Dollar
+USDLSL	US Dollar / Loti
+USDLYD	US Dollar / Lybian Dinar
+USDMAD	US Dollar / Moroccan Dirham
+USDMDL	US Dollar / Moldovan Leu
+USDMKD	US Dollar / Denar
+USDMMK	US Dollar / Kyat
+USDMOP	US Dollar / Pataca
+USDMUR	US Dollar / Mauritius Rupee
+USDMVR	US Dollar / Rufiyaa
+USDMWK	US Dollar / Kwacha
+USDMXN	US Dollar / Mexican Peso
+USDMYR	US Dollar / Malaysian Ringgit
+USDNAD	US Dollar / Namibia Dollar
+USDNGN	US Dollar / Naira
+USDNIO	US Dollar / Cordoba Oro
+USDNOK	US Dollar / Norwegian Krone
+USDNPR	US Dollar / Nepalese Rupee
+USDNZD	US Dollar / New Zealand Dollar
+USDOMR	US Dollar / Rial Omani
+USDPAB	US Dollar / Balboa
+USDPEN	US Dollar / Nuevo Sol
+USDPGK	US Dollar / Papua New Guinea Kina
+USDPHP	US Dollar / Philippine Peso
+USDPKR	US Dollar / Pakistan Rupee
+USDPLN	US Dollar / Polish Zloty
+USDPYG	US Dollar / Guarani
+USDQAR	US Dollar / Qatari Rial
+USDRON	US Dollar / Romanian Leu
+USDRSD	US Dollar / Serbian Dinar
+USDRUB	US Dollar / Russian Ruble
+USDRWF	US Dollar / Rwanda Franc
+USDSAR	US Dollar / Saudi Riyal
+USDSCR	US Dollar / Seychelles Rupee
+USDSEK	US Dollar / Swedish Krona
+USDSGD	US Dollar / Singapore Dollar
+USDSLL	US Dollar / Leone
+USDSOS	US Dollar / Somali Shilling
+USDSVC	US Dollar / El Salvador Colon
+USDSZL	US Dollar / Lilangeni
+USDTHB	US Dollar / Thai Baht
+USDTND	US Dollar / Tunisian Dinar
+USDTRY	US Dollar / Turkish Lira
+USDTWD	US Dollar / New Taiwan Dollar
+USDTZS	US Dollar / Tanzanian Shilling
+USDUAH	US Dollar / Hryvnia
+USDUYU	US Dollar / Peso Uruguayo
+USDUZS	US Dollar / Uzbekistan Sum
+USDVND	US Dollar / Dong
+USDXAF	US Dollar / CFA Franc BEAC
+USDXOF	US Dollar / CFA Franc BCEAO
+USDXPF	US Dollar / CFP Franc
+USDYER	US Dollar / Yemeni Rial
+USDZAR	US Dollar / South African Rand
+UYUEUR	Peso Uruguayo / Euro Dollar
+UYUUSD	Peso Uruguayo / US Dollar
+VNDJPY	Dong / Japanese Yen
+VNDXAF	Dong / CFA Franc BEAC
+XAGARS	Silver / Argentine Peso
+XAGAUD	Silver / Australian Dollar
+XAGBRL	Silver / Brazilian Real
+XAGCAD	Silver / Canadian Dollar
+XAGCHF	Silver / Swiss Franc
+XAGCNY	Silver / Yuan Renminbi
+XAGEUR	Silver / Euro Dollar
+XAGGBP	Silver / Pound Sterling
+XAGHKD	Silver / Hong Kong Dollar
+XAGIDR	Silver / Indonesian Rupiah
+XAGINR	Silver / Indian Rupee
+XAGJPY	Silver / Japanese Yen
+XAGKRW	Silver / Korean Won
+XAGMXN	Silver / Mexican Peso
+XAGRUB	Silver / Russian Ruble
+XAGSAR	Silver / Saudi Riyal
+XAGTRY	Silver / Turkish Lira
+XAGUSD	Silver / US Dollar
+XAGZAR	Silver / South African Rand
+XAUARS	Gold / Argentine Peso
+XAUAUD	Gold / Australian Dollar
+XAUBRL	Gold / Brazilian Real
+XAUCAD	Gold / Canadian Dollar
+XAUCHF	Gold / Swiss Franc
+XAUCNY	Gold / Yuan Renminbi
+XAUEUR	Gold / Euro Dollar
+XAUGBP	Gold / Pound Sterling
+XAUHKD	Gold / Hong Kong Dollar
+XAUINR	Gold / Indian Rupee
+XAUJPY	Gold / Japanese Yen
+XAUMXN	Gold / Mexican Peso
+XAURUB	Gold / Russian Ruble
+XAUSAR	Gold / Saudi Riyal
+XAUTHB	Gold / Thai Baht
+XAUTRY	Gold / Turkish Lira
+XAUUSD	Gold / US Dollar
+XAUZAR	Gold / South African Rand
+XCDGBP	East Caribbean Dollar / Pound Sterling
+XPDEUR	Palladium / Euro Dollar
+XPDGBP	Palladium / Pound Sterling
+XPDUSD	Palladium / US Dollar
+XPFGBP	CFP Franc / Pound Sterling
+XPTEUR	Platinum / Euro Dollar
+XPTGBP	Platinum / Pound Sterling
+XPTUSD	Platinum / US Dollar
+YERUSD	Yemeni Rial / US Dollar
+ZARAED	South African Rand / UAE Dirham
+ZARARS	South African Rand / Argentine Peso
+ZARAUD	South African Rand / Australian Dollar
+ZARBRL	South African Rand / Brazilian Real
+ZARBWP	South African Rand / Pula
+ZARCAD	South African Rand / Canadian Dollar
+ZARCHF	South African Rand / Swiss Franc
+ZARCNY	South African Rand / Yuan Renminbi
+ZARCYP	South African Rand / Cyprus Pound
+ZARDKK	South African Rand / Danish Krone
+ZAREUR	South African Rand / Euro Dollar
+ZARGBP	South African Rand / Pound Sterling
+ZARHKD	South African Rand / Hong Kong Dollar
+ZARIDR	South African Rand / Indian Rupiah
+ZARINR	South African Rand / Indian Rupee
+ZARJPY	South African Rand / Japanese Yen
+ZARKES	South African Rand / Kenyan Shilling
+ZARKRW	South African Rand / Korean Won
+ZARMUR	South African Rand / Mauritius Rupee
+ZARMXN	South African Rand / Mexican Peso
+ZARMYR	South African Rand / Malaysian Ringgit
+ZARNOK	South African Rand / Norwegian Krone
+ZARNZD	South African Rand / New Zealand Dollar
+ZAROMR	South African Rand / Rial Omani
+ZARPHP	South African Rand / Philippine Peso
+ZARPKR	South African Rand / Pakistan Rupee
+ZARPLN	South African Rand / Polish Zloty
+ZARSEK	South African Rand / Swedish Krona
+ZARSGD	South African Rand / Singapore Dollar
+ZARTHB	South African Rand / Thai Baht
+ZARTRY	South African Rand / Turkish Lira
+ZARTWD	South African Rand / New Taiwan Dollar
+ZARUSD	South African Rand / US Dollar
