@@ -8,6 +8,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.utils.UpdateFromAlphaVantage;
 import data.source.external.web.connector.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.functions.Function;
 import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Interval;
@@ -152,6 +154,27 @@ class TestInfluxdb {
 		List<StockTimeSeriesPointInfluxdb> results = resultMapper.toPOJO(queryResult, StockTimeSeriesPointInfluxdb.class, measurement );
 		    
 		idb.close();
+	}
+	
+	@Test
+	void testUpdateAlphaVantage() {
+        List<String> stocksList = new ArrayList<>();
+		
+		stocksList.add("ACER");
+		stocksList.add("ACET");
+		stocksList.add("ACEV");
+		stocksList.add("ACEVU");
+		stocksList.add("ACEVW");
+		stocksList.add("ACGL");
+		stocksList.add("ACGLO");
+		stocksList.add("ACGLP");
+		stocksList.add("ACHC");
+		stocksList.add("ACHV");
+		stocksList.add("ACIA");
+		stocksList.add("ACIU");
+		
+		UpdateFromAlphaVantage upf = new UpdateFromAlphaVantage(5, 500, 5);
+		upf.run(stocksList, "NASDAQ_EOD");
 	}
 
 }
