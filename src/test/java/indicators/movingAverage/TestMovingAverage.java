@@ -13,7 +13,7 @@ import com.google.inject.Key;
 import controller.Controller;
 import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
 import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.core.DatasetImpl;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
 
@@ -37,8 +37,8 @@ class TestMovingAverage {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockTimeSeriesPointInfluxdb>(new StockTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
@@ -68,8 +68,8 @@ class TestMovingAverage {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockTimeSeriesPointInfluxdb>(new StockTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 

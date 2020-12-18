@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 import data.source.external.database.influxdb.Influxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
-import data.source.external.database.influxdb.utils.UpdateFromAlphaVantage;
+import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageAbstract;
 import data.source.external.web.connector.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.functions.Function;
 import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Interval;
@@ -48,7 +48,7 @@ class TestInfluxdb {
 		idb.connect(dbCon);
 		String csvFile = "/home/stefanopenazzi/git/chameleonQuant/output/IBM_TIME_SERIES_INTRADAY_EXTENDED_ONE_MIN_YEAR1MONTH1_FULL_JSON.csv";
 		Object[] options = {true,',','"'};
-		idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", "IBM", csvFile ,StockTimeSeriesPointInfluxdb.class ,options);
+		idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", "IBM", csvFile ,StockEODTimeSeriesPointInfluxdb.class ,options);
 		idb.close();
 	}
 	
@@ -61,7 +61,7 @@ class TestInfluxdb {
 		idb.connect(dbCon);
 		String csvFile = "/home/stefanopenazzi/git/chameleonQuant/output/EUR-USD_FX_DAILY_FULL_CSV.csv";
 		Object[] options = {true,',','"'};
-		idb.writingBatchFromCsvFile("FX_DAILY", "EUR_USD", csvFile , StockTimeSeriesPointInfluxdb.class ,options);
+		idb.writingBatchFromCsvFile("FX_DAILY", "EUR_USD", csvFile , StockEODTimeSeriesPointInfluxdb.class ,options);
 		idb.close();
 	}
 	
@@ -87,7 +87,7 @@ class TestInfluxdb {
 		//the server must be on(service influxdb start) otherwise the connection will not be successful
 		idb.connect(dbCon);
 		Object[] options = {true,',','"'};
-		idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockTimeSeriesPointInfluxdb.class ,options);
+		idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockEODTimeSeriesPointInfluxdb.class ,options);
 		idb.close();
 	}
 	
@@ -115,7 +115,7 @@ class TestInfluxdb {
 			//the server must be on(service influxdb start) otherwise the connection will not be successful
 			idb.connect(dbCon);
 			Object[] options = {true,',','"'};
-			idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockTimeSeriesPointInfluxdb.class ,options);
+			idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockEODTimeSeriesPointInfluxdb.class ,options);
 			idb.close();
 		}
 
@@ -128,7 +128,7 @@ class TestInfluxdb {
 		String[] dbCon = {serverURL,username,password};
 		//the server must be on(service influxdb start) otherwise the connection will not be successful
 		idb.connect(dbCon);
-		List<StockTimeSeriesPointInfluxdb> sts = (List<StockTimeSeriesPointInfluxdb>) idb.performQuery("SELECT * FROM IBM", "US_STOCKS_TIME_SERIES_DAILY", StockTimeSeriesPointInfluxdb.class );
+		List<StockEODTimeSeriesPointInfluxdb> sts = (List<StockEODTimeSeriesPointInfluxdb>) idb.performQuery("SELECT * FROM IBM", "US_STOCKS_TIME_SERIES_DAILY", StockEODTimeSeriesPointInfluxdb.class );
 		idb.close();
 	}
 	
@@ -151,7 +151,7 @@ class TestInfluxdb {
 		//Convert QueryResult to POJO
 		String measurement = stock;
 		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-		List<StockTimeSeriesPointInfluxdb> results = resultMapper.toPOJO(queryResult, StockTimeSeriesPointInfluxdb.class, measurement );
+		List<StockEODTimeSeriesPointInfluxdb> results = resultMapper.toPOJO(queryResult, StockEODTimeSeriesPointInfluxdb.class, measurement );
 		    
 		idb.close();
 	}
@@ -173,8 +173,8 @@ class TestInfluxdb {
 		stocksList.add("ACIA");
 		stocksList.add("ACIU");
 		
-		UpdateFromAlphaVantage upf = new UpdateFromAlphaVantage(5, 500, 5);
-		upf.run(stocksList, "NASDAQ_EOD");
+		//UpdateFromAlphaVantage upf = new UpdateFromAlphaVantage(5, 500, 5);
+		//upf.run(stocksList, "NASDAQ_EOD");
 	}
 
 }

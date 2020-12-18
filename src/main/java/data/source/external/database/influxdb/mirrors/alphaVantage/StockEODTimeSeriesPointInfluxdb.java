@@ -17,7 +17,7 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointAbst
  */
 
 @Measurement(name = "")
-public class StockTimeSeriesPointInfluxdb extends InternalTimeSeriesPointAbstract  implements Mirror  {
+public class StockEODTimeSeriesPointInfluxdb extends InternalTimeSeriesPointAbstract  implements Mirror  {
 
 	    /**
 	 * @param time

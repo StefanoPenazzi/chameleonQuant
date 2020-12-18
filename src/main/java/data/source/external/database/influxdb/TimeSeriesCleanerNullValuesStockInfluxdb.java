@@ -6,7 +6,7 @@ package data.source.external.database.influxdb;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStructureI;
 
@@ -15,7 +15,7 @@ import data.source.internal.dataset.timeseries.datastructure.TimeSeriesDataStruc
  * @author stefanopenazzi
  *
  */
-public class TimeSeriesCleanerNullValuesStockInfluxdb <T extends StockTimeSeriesPointInfluxdb> implements TimeSeriesCleanerI<T> {
+public class TimeSeriesCleanerNullValuesStockInfluxdb <T extends StockEODTimeSeriesPointInfluxdb> implements TimeSeriesCleanerI<T> {
 
 	@Override
 	public TimeSeriesDataStructureI<T> clean(TimeSeriesDataStructureI<T> tsd) {
