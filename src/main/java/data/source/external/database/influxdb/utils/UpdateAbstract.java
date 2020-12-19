@@ -9,13 +9,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
-
 import data.source.external.database.influxdb.Influxdb;
-import data.source.external.database.tickers.Ticker;
-import data.source.external.database.tickers.TickersSet;
+
 
 
 /**
