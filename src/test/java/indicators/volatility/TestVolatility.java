@@ -60,5 +60,37 @@ class TestVolatility {
 		
 		System.out.println();
 	}
+	
+	@Test
+	void testAverageTrueRange() throws Exception {
+		 List<String> stocks = Arrays.asList("ACER");
+			
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		
+	     Date startDate = sdf.parse("2019/10/19");
+		 Date endDate = null;
+		 String market = "NASDAQ_EOD";
+		 String inter = "1d";
+		
+		 Controller controller = new Controller();
+		 controller.run();
+		 
+		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 
+		 DatasetImpl dts = new DatasetImpl();
+		 
+		 for(String stock: stocks) {
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+		 }
+		 
+		 AverageTrueRange atr = new AverageTrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"ACER",inter),14);
+         DatasetImpl ds = atr.create();
+		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
+		
+		System.out.println();
+	}
+
 
 }

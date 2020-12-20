@@ -35,6 +35,11 @@ public class TrueRange <T extends InternalTimeSeriesPointI> extends IndicatorAbs
 		this.itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
 		
 	}
+	
+	public TrueRange(DatasetI dataSet) {
+		super(dataSet);
+		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.iterator().next();
+	}
 
 	@Override
 	public boolean dataSetCheck() {

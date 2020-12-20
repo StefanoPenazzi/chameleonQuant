@@ -4,10 +4,13 @@
 package indicators.volatility;
 
 import data.source.internal.dataset.core.DatasetI;
+import data.source.internal.dataset.core.DatasetImpl;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
 import data.source.internal.dataset.timeseries.point.InternalSingleTagTimeSeriesPoint;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
 import indicators.IndicatorAbstract;
+import indicators.movingAverage.SimpleMovingAverage;
 
 /**
  * @author stefanopenazzi
@@ -15,20 +18,41 @@ import indicators.IndicatorAbstract;
  */
 public class AverageTrueRange<T extends InternalTimeSeriesPointI> extends IndicatorAbstract {
 
-	private final InternalTimeSeriesImpl<T> itsRef;
 	private InternalTimeSeriesImpl <InternalSingleTagTimeSeriesPoint<Double>> itsRes;
 	private final int periods;
-	private final String tagName;
+	private final DatasetI dataSet;
+	private final InternalTimeSeriesIdAbstract id;
 	
 	/**
 	 * @param dataSet
 	 */
-	public AverageTrueRange(DatasetI dataSet) {
+	public AverageTrueRange(DatasetI dataSet,int periods) {
 		super(dataSet);
-		this.tagName = "";
-		this.periods = 0;
-		this.itsRef = null;
-		
+		this.periods = periods;
+		this.dataSet = dataSet;
+		this.id = null;
+	}
+	
+	public AverageTrueRange(DatasetI dataSet,InternalTimeSeriesIdAbstract id,int periods) {
+		super(dataSet);
+		this.periods = periods;
+		this.dataSet = dataSet;
+		this.id = id;
+	}
+	
+	public DatasetImpl create() throws Exception {
+		DatasetImpl trRes;
+		if(this.id != null) {
+			TrueRange tr = new TrueRange(this.dataSet,this.id);
+			trRes = tr.create();
+		}
+		else {
+			TrueRange tr = new TrueRange(this.dataSet,this.id);
+			trRes = tr.create();
+		}
+		SimpleMovingAverage sma = new SimpleMovingAverage(trRes,"value",this.periods);
+		DatasetImpl atrRes = sma.create();
+		return atrRes;
 	}
 
 	@Override
