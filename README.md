@@ -42,21 +42,19 @@ A financial market map records the history of the securities and make them easil
  </p>
  <table style="width:100%">
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Age</th>
+    <th>Exchange</th>
+    <th>Short name</th>
   </tr>
   <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
+    <td>American Stock Exchange</td>
+    <td>AMEX</td>
   </tr>
   <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
+    <td>NASDAQ Stock Exchange</td>
+    <td>NASDAQ</td>
   </tr>
-</table>
+ </table>
+ 
   <li>Swiss Army knife</li>
   <li>Training camp</li>
 </ul>
