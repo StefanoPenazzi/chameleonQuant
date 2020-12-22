@@ -18,6 +18,8 @@
 <p> The framework is meant to help quants developing and testing innovative algorithmic trading strategies in the financial trading sector in a completely open-source environment. </p>
 
 <h1>It's a jungle out there!</h1>
+The financial market is a jungle. There are hidden gems waiting to be discovered but also ravenous beasts in the shadow waiting for your misstep. Experience, the spirit of adaptation, and rock-solid hunting strategies are your true weapons to survive and thrive in the jungle. 
+The chameleon is a master in this! It is a patient predator adapting to the surrounding environment, and when it's time to act, it is swift and deadly. Like a chameleon, you will need these skills to protect and grow your wealth in the financial market. 
 
 <h1>First step into the jungle</h1>
 <h3>Your basic survival kit</h3>
