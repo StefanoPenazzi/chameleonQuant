@@ -60,6 +60,13 @@ A financial market map records the history of the securities and make them easil
 </ul>
 
 <h3>Expand the survival kit</h3>
+
+<ul>
+  <li>Expand the map</li>
+  <li>Expand Swiss Army knife tools</li>
+  <li>Training camp</li>
+</ul>
+
 <h3>Make some practice</h3>
 <h3>Share with friends</h3>
 
