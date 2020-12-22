@@ -15,7 +15,7 @@
 </p>
 
 <h1>Mission</h1>
-<p> The framework is meant to help quants developing and testing innovative strategies in the financial trading sector in a completely open-source environment. </p>
+<p> The framework is meant to help quants developing and testing innovative algorithmic trading strategies in the financial trading sector in a completely open-source environment. </p>
 
 <h1>It's a jungle out there!</h1>
 
