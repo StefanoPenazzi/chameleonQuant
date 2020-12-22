@@ -25,14 +25,21 @@ The first steps are always the hardest. Do not give way to discouragement! There
 <h1>First step into the jungle</h1>
 <p> No one would step into the jungle without a survival kit!  chameleonQuant helps you in this, providing you  a basic survival tool kit and a framework to support you in developing your own tools. A good understanding of the basic tools will help you to familiarize with the framework and its components, test a few preimplemented indicators and strategies, and unleash your creativity in developing amazing new strategies. </p>
 <h3>Your basic survival kit</h3>
+
 <p align="center">
  <figure>
      <img width="600" height="650" src="src/main/resources/images/generalScm.PNG" style="margin-right: 10px;" class="center" />
      <figcaption>
-     <p>Questa è una didascalia dell'immagine.</p>
+     <p>Basic survival kit</p>
      </figcaption>
   </figure>
 </p>
+<ul>
+  <li>Map</li>
+  <li>Swiss Army knife</li>
+  <li>Training camp</li>
+</ul>
+
 <h3>Expand the survival kit</h3>
 <h3>Make some practice</h3>
 <h3>Share with friends</h3>
