@@ -23,6 +23,7 @@ The chameleon is a master in this! It is a patient predator adapting to the surr
 The first steps are always the hardest. Do not give way to discouragement! There are probably zillions of things that are going through your mind right now, but keep reading, we will show you how chameleonQuant can help you to develop your own tool kit to live in the financial market jungle. </p>
 
 <h1>First step into the jungle</h1>
+<p> No one would step into the jungle without a survival kit!  chameleonQuant helps you in this, providing you  a basic survival tool kit and a framework to support you in developing your own tools. A good understanding of the basic tools will help you to familiarize with the framework and its components, test a few preimplemented indicators and strategies, and unleash your creativity in developing amazing new strategies. </p>
 <h3>Your basic survival kit</h3>
 <p align="center">
      <img width="600" height="650" src="src/main/resources/images/generalScm.PNG" style="margin-right: 10px;" class="center" />
