@@ -27,10 +27,10 @@ The first steps are always the hardest. Do not give way to discouragement! There
 <h3>Your basic survival kit</h3>
 
 <p align="center">
- <figure>
+ <figure align="center">
      <img width="600" height="650" src="src/main/resources/images/generalScm.PNG" style="margin-right: 10px;" class="center" />
      <figcaption>
-     <p>Basic survival kit</p>
+     <p>Basic survival kit scheme</p>
      </figcaption>
   </figure>
 </p>
