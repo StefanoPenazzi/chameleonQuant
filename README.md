@@ -36,6 +36,7 @@ The first steps are always the hardest. Do not give way to discouragement! There
 </p>
 <ul>
   <li>Map</li>
+ <p> An object that can not miss in a survival kit is a map. This is fundamental to navigate in the financial market. This map is not a classic map. If you use an old-school paper road map, this relies on a static environment. Even if unexpected events can always happen to delay your arrival, sooner or later you will reach your destination, which didn't change its position in the meanwhile. The financial market is poles apart. It is a very dynamic environment in which time plays a fundamental role. A static map would be useless because the map is into constant evolution. </p>
   <li>Swiss Army knife</li>
   <li>Training camp</li>
 </ul>
