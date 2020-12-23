@@ -144,6 +144,9 @@ A financial market map records the history of the securities and make them easil
  
   <li>Swiss Army knife</li>
   <li>Training camp</li>
+  <div align="justify"> Do you want to be sure your skills and tools are ready to face the jungle? Let's put them to the test in the training camp! 
+The training camp is a safe environment in which you are able to...
+ </div>
 </ul>
 
 <h3>Expand the survival kit</h3>
