@@ -3,15 +3,13 @@
 
  
 <html>
+<head>
 <style>
 div {
   text-align: justify;
   text-justify: inter-word;
 }
 </style>
- 
-<head>
- 
 <link rel="stylesheet" href="mystyle.css">
   
 </head>
