@@ -71,6 +71,33 @@ A financial market map records the history of the securities and make them easil
   </tr>
  </table>
  
+ <table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Ticker</th>
+  </tr>
+  <tr>
+    <td>Apple Inc.</td>
+    <td>AAPL</td>
+  </tr>
+  <tr>
+    <td>Amazon.com Inc.</td>
+    <td>AMZN</td>
+  </tr>
+  <tr>
+    <td>Facebook Inc.</td>
+    <td>FB</td>
+  </tr>
+   <tr>
+    <td>Alphabet Inc Class A</td>
+    <td>GOOGL</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>...</td>
+  </tr>
+ </table>
+ 
  </div>
  
   <li>Swiss Army knife</li>
