@@ -45,6 +45,7 @@ Just like the water and the sun are the main resources a plant needs to growth, 
 A financial market map records the history of the securities and make them easily available to the user. Forecast the future evolution of the map is the ultimate goal of the user that can use its history as an input for predictive models.  
 
  <table style="width:100%">
+  <caption style="font-weight: bold">Exchanges</caption>
   <tr>
     <th>Exchange</th>
     <th>Short name</th>
