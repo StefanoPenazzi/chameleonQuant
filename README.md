@@ -53,6 +53,18 @@ A financial market map records the history of the securities and make them easil
     <td>NASDAQ Stock Exchange</td>
     <td>NASDAQ</td>
   </tr>
+  <tr>
+    <td>New York Mercantile Exchange</td>
+    <td>NYMEX</td>
+  </tr>
+   <tr>
+    <td>Foreign exchange market</td>
+    <td>FOREX</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>...</td>
+  </tr>
  </table>
  
   <li>Swiss Army knife</li>
