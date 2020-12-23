@@ -109,15 +109,14 @@ A financial market map records the history of the securities and make them easil
     <th>Close</th>
     <th>Volume</th>
   </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
- </tr>
+ <tr><td>2020-12-09T08:00:00Z</td> <td>17.16</td>   <td>18.63</td>   <td>16.63</td>   <td>18.37</td>   <td>138508325</td></tr>
+<tr><td>2020-12-10T08:00:00Z</td> <td>17.99</td>   <td>18.04</td>   <td>16.67</td>   <td>16.75</td>   <td>86395155</td></tr>
+<tr><td>2020-12-11T08:00:00Z</td> <td>17.05</td>   <td>17.91</td>   <td>16.81</td>   <td>17.82</td>   <td>106957296</td></tr>
+<tr><td>2020-12-14T08:00:00Z</td> <td>16.7</td>    <td>17.81</td>   <td>16.68</td>   <td>17.52</td>   <td>88139884</td></tr>
+<tr><td>2020-12-15T08:00:00Z</td> <td>17.01</td>   <td>17.06</td>   <td>16.16</td>   <td>16.99</td>   <td>89217037</td></tr>
  </table>
+ 
+
  
  </div>
  
