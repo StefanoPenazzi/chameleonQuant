@@ -72,6 +72,7 @@ A financial market map records the history of the securities and make them easil
  </table>
  
  <table style="width:100%">
+ <caption style="font-weight: bold">Discographie</caption>
   <tr>
     <th>Name</th>
     <th>Ticker</th>
