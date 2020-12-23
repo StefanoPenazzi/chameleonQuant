@@ -72,7 +72,7 @@ A financial market map records the history of the securities and make them easil
  </table>
  
  <table style="width:100%">
- <caption style="font-weight: bold">Discographie</caption>
+ <caption style="font-weight: bold">NASDAQ Stock Exchange</caption>
   <tr>
     <th>Name</th>
     <th>Ticker</th>
@@ -97,6 +97,26 @@ A financial market map records the history of the securities and make them easil
     <td>...</td>
     <td>...</td>
   </tr>
+ </table>
+ 
+ <table style="width:100%">
+ <caption style="font-weight: bold">AMZN_EOD</caption>
+  <tr>
+    <th>Time</th>
+    <th>High</th>
+    <th>Low</th>
+    <th>Open</th>
+    <th>Close</th>
+    <th>Volume</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+ </tr>
  </table>
  
  </div>
