@@ -74,15 +74,11 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
 	        res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(i).getTime(),count/periods));
 	        firstRemoveIndex++;
 	   }
-	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"MA","");
+	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"MA","");
 	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);
 	   return ds;
-//	   System.out.println(itsRef.getString());
-//	   System.out.println();
-//	   System.out.println(itsRes.getString());
-	   
 	}
 
 	@Override

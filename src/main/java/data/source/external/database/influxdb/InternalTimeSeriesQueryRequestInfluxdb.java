@@ -53,8 +53,8 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 		String res ="SELECT ";
 		
 		//TODO what happens if one or both the dates are null?
-		String st = iq.getStartDate() == null? "1990-01-01 00:00:00":sdf.format(iq.getStartDate()).toString(); 
-		String et = iq.getEndDate() == null?  LocalDateTime.now().format(formatter) : sdf.format(iq.getEndDate()).toString();
+		String st = iq.getStartInstant() == null? "1990-01-01 00:00:00":sdf.format(iq.getStartInstant()).toString(); 
+		String et = iq.getEndInstant() == null?  LocalDateTime.now().format(formatter) : sdf.format(iq.getEndInstant()).toString();
 		
 		//TODO check that the dates range is not too big compare to the interval???
 		

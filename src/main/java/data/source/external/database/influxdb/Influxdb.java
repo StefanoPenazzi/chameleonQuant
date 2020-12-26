@@ -10,6 +10,10 @@ import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -91,24 +95,31 @@ public class Influxdb implements Database {
 		
 		Map<String,Class<?>> mirrorMapType =  getMapTypes(mirror);
 		
-		DateFormat formatIntraday = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
-		DateFormat formatDaily = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-		String timeIntraday = "time";
-		String timeDaily = "timestamp";
+		DateTimeFormatter formatter = null;
+		try {
+			formatter = mirror.newInstance().getTimeFormat();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String timeDaily = "time";
 		
 		BatchPoints batchPoints = BatchPoints
 				  .database(dbName)
 				  .build();
-		
+		//TODO all wrong
 		for(Map<String, String> m: csvMap) {
 			
 			Number date = null;
-			try {
-				date = formatDaily.parse(m.get(timeDaily)).getTime();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-				
+			
+		    LocalDateTime dateTime = LocalDateTime.parse(m.get(timeDaily), formatter);
+			OffsetDateTime utcDateTime = dateTime.atOffset(ZoneOffset.UTC);
+			date = utcDateTime.toInstant().toEpochMilli();
+					
 			Builder bui = Point.measurement(table)
 					  .time(date, TimeUnit.MILLISECONDS);
 			for(String key: m.keySet()) {

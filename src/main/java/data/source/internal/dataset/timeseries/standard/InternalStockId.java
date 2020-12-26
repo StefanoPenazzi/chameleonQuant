@@ -3,6 +3,7 @@
  */
 package data.source.internal.dataset.timeseries.standard;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,28 +18,28 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
 //better to have an abstract class
 public class InternalStockId extends InternalTimeSeriesIdAbstract {
 
-	private final Date startDate;
-	private final Date endDate;
+	private final Instant startInstant;
+	private final Instant endInstant;
 	private final String market;
 	private final String code;
 	private final String inter;
 	
-	public InternalStockId(Date startDate, Date endDate, String market, String code, String inter) {
-		this.startDate = startDate;
-		this.endDate = endDate;
+	public InternalStockId(Instant startInstant, Instant endInstant, String market, String code, String inter) {
+		this.startInstant = startInstant;
+		this.endInstant = endInstant;
 		this.market = market;
 		this.code = code;
 		this.inter = inter;
 	}
 	
 	@Override
-	public Date getStartDate() {
-		return this.startDate;
+	public Instant getStartInstant() {
+		return this.startInstant;
 	}
 	
 	@Override
-	public Date getEndDate() {
-		return this.endDate;
+	public Instant getEndInstant() {
+		return this.endInstant;
 	}
 	
 	

@@ -73,7 +73,7 @@ public class TrueRange <T extends InternalTimeSeriesPointI> extends IndicatorAbs
 	    	   res.add(new InternalSingleTagTimeSeriesPoint<Double>(point.getTime(),Math.max(Math.abs(resultLow-resultClose),Math.max((resultHigh-resultLow), Math.abs(resultHigh-resultClose)))));
 	       }
 	       
-		   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"TR","");
+		   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"TR","");
 		   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
 		   DatasetImpl ds = new DatasetImpl();
 		   ds.addTimeSeries(itsRes);

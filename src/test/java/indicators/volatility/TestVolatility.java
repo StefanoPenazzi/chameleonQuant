@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -23,6 +24,7 @@ import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeS
 import data.source.internal.dataset.core.DatasetImpl;
 import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
 import indicators.movingAverage.ExponentialMovingAverage;
+import indicators.movingAverage.MACD;
 
 /**
  * @author stefanopenazzi
@@ -36,8 +38,8 @@ class TestVolatility {
 			
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		
-	     Date startDate = sdf.parse("2019/10/19");
-		 Date endDate = null;
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "NASDAQ_EOD";
 		 String inter = "1d";
 		
@@ -50,11 +52,11 @@ class TestVolatility {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 TrueRange tr = new TrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"ACER",inter));
+		 TrueRange tr = new TrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"ACER",inter));
          DatasetImpl ds = tr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -67,8 +69,8 @@ class TestVolatility {
 			
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		
-	     Date startDate = sdf.parse("2019/10/19");
-		 Date endDate = null;
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "NASDAQ_EOD";
 		 String inter = "1d";
 		
@@ -81,12 +83,43 @@ class TestVolatility {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 AverageTrueRange atr = new AverageTrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"ACER",inter),14);
+		 AverageTrueRange atr = new AverageTrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"ACER",inter),14);
          DatasetImpl ds = atr.create();
+		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
+		
+		System.out.println();
+	}
+	
+	@Test
+	void testMACD() throws Exception {
+		 List<String> stocks = Arrays.asList("ACER");
+			
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
+		 String market = "NASDAQ_EOD";
+		 String inter = "1d";
+		
+		 Controller controller = new Controller();
+		 controller.run();
+		 
+		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 
+		 DatasetImpl dts = new DatasetImpl();
+		 
+		 for(String stock: stocks) {
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
+			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+		 }
+		 
+		 MACD macd = new MACD(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"ACER",inter),"close", 12,26,9);
+         DatasetImpl ds = macd.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
 		System.out.println();

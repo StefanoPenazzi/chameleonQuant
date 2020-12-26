@@ -57,4 +57,13 @@ public class DatasetImpl implements DatasetI {
 	public Iterator<InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>> iterator() {
 		return datasetMap.values().iterator();
 	}
+
+	@Override
+	public void merge(DatasetI tail) {
+		Iterator<InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>> tailIterator = (Iterator<InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>>) tail.iterator();
+		while(tailIterator.hasNext()) {
+			//TODO what happens if the id of a new internal time series is the same of one already in the map???
+			this.addTimeSeries(tailIterator.next());
+		}
+	}
 }

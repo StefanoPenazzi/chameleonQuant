@@ -18,7 +18,6 @@ import indicators.movingAverage.SimpleMovingAverage;
  */
 public class AverageTrueRange<T extends InternalTimeSeriesPointI> extends IndicatorAbstract {
 
-	private InternalTimeSeriesImpl <InternalSingleTagTimeSeriesPoint<Double>> itsRes;
 	private final int periods;
 	private final DatasetI dataSet;
 	private final InternalTimeSeriesIdAbstract id;

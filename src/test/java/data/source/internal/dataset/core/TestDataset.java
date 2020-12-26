@@ -5,6 +5,7 @@ package data.source.internal.dataset.core;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -37,8 +38,8 @@ class TestDataset {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		
-	     Date startDate = sdf.parse("2020/10/19 00:00:00");
-		 Date endDate = null;
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
 		 String inter = "8h";
 		
@@ -50,7 +51,7 @@ class TestDataset {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		
@@ -65,8 +66,8 @@ class TestDataset {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		
-	     Date startDate = sdf.parse("2020/10/19 00:00:00");
-		 Date endDate = null;
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
 		 String inter = "8h";
 		
@@ -79,11 +80,11 @@ class TestDataset {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 InternalTimeSeriesI<? extends InternalTimeSeriesPointI> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
+		 InternalTimeSeriesI<? extends InternalTimeSeriesPointI> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"AAPL",inter));
 		
 		System.out.println();
 	}

@@ -79,7 +79,7 @@ public class ExponentialMovingAverage<T extends InternalTimeSeriesPointI> extend
 		   count = (Double)method.invoke(itsRefList.get(i))*k + count*(1-k);
 	       res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(i).getTime(),count));
 	   }
-	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstDate(),itsRef.getLastDate(),"EMA","");
+	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"EMA","");
 	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);

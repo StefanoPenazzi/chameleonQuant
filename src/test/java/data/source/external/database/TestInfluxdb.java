@@ -8,10 +8,20 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageAbstract;
+import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageStocksEOD;
 import data.source.external.web.connector.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.functions.Function;
 import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Interval;
@@ -68,7 +79,7 @@ class TestInfluxdb {
 	@Test
 	void testPipeLineAlphaVantBatchStocks() {
 		
-		String stock = "AAPL";
+		String stock = "AMZN";
 		
 		String csvPath = System.getProperty("user.dir")+"/output/"+stock+"_"+Function.TIME_SERIES_INTRADAY_EXTENDED+"_"+Interval.ONE_MIN+"_"+Slice.YEAR1MONTH1+"_"+OutputSize.FULL+"_"+OutputType.CSV+".csv";
 		
@@ -87,8 +98,20 @@ class TestInfluxdb {
 		//the server must be on(service influxdb start) otherwise the connection will not be successful
 		idb.connect(dbCon);
 		Object[] options = {true,',','"'};
-		idb.writingBatchFromCsvFile("US_STOCKS_TIME_SERIES_INTRADAY_1MIN", stock, csvPath ,StockEODTimeSeriesPointInfluxdb.class ,options);
+		idb.writingBatchFromCsvFile("NASDAQ_ID", stock, csvPath ,StockEODTimeSeriesPointInfluxdb.class ,options);
 		idb.close();
+	}
+	
+	@Test
+	void testFormatdate() {
+		//SimpleDateFormat formatIntraday = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+		//formatIntraday.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	    LocalDateTime dateTime = LocalDateTime.parse("2020-12-24 17:00:00", formatter);
+	    OffsetDateTime utcDateTime = dateTime.atOffset(ZoneOffset.UTC);
+		Long date = date = utcDateTime.toInstant().toEpochMilli();
+		System.out.println();
 	}
 	
 	@Test
@@ -160,21 +183,21 @@ class TestInfluxdb {
 	void testUpdateAlphaVantage() {
         List<String> stocksList = new ArrayList<>();
 		
-		stocksList.add("ACER");
-		stocksList.add("ACET");
-		stocksList.add("ACEV");
-		stocksList.add("ACEVU");
-		stocksList.add("ACEVW");
-		stocksList.add("ACGL");
-		stocksList.add("ACGLO");
-		stocksList.add("ACGLP");
-		stocksList.add("ACHC");
-		stocksList.add("ACHV");
-		stocksList.add("ACIA");
-		stocksList.add("ACIU");
+		//stocksList.add("ACER");
+		//stocksList.add("ACET");
+		//stocksList.add("ACEV");
+		//stocksList.add("ACEVU");
+		//stocksList.add("ACEVW");
+		//stocksList.add("ACGL");
+		//stocksList.add("ACGLO");
+		//stocksList.add("ACGLP");
+		//stocksList.add("ACHC");
+		//stocksList.add("ACHV");
+		//stocksList.add("ACIA");
+		stocksList.add("AAL");
 		
-		//UpdateFromAlphaVantage upf = new UpdateFromAlphaVantage(5, 500, 5);
-		//upf.run(stocksList, "NASDAQ_EOD");
+		UpdateFromAlphaVantageStocksEOD upf = new UpdateFromAlphaVantageStocksEOD(5, 500, 5);
+		upf.run(stocksList, "NASDAQ_EOD");
 	}
 
 }

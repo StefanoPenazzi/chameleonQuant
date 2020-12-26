@@ -15,8 +15,8 @@ public abstract class InternalTimeSeriesIdAbstract implements InternalTimeSeries
 		@Override
 		public int hashCode() {
 			//TODO get the has code of the query
-			String sd = getStartDate() == null ? "0" : getStartDate().toString();
-			String ed = getEndDate() == null ? "0" : getEndDate().toString();
+			String sd = getStartInstant() == null ? "0" : getStartInstant().toString();
+			String ed = getEndInstant() == null ? "0" : getEndInstant().toString();
 			return Objects.hash(getId(),getInterval(),sd,ed);
 		}
 		
@@ -30,10 +30,10 @@ public abstract class InternalTimeSeriesIdAbstract implements InternalTimeSeries
 			}
 			InternalTimeSeriesIdAbstract ob = (InternalTimeSeriesIdAbstract)o;
 			
-			String sd = getStartDate() == null ? "0" : getStartDate().toString();
-			String ed = getEndDate() == null ? "0" : getEndDate().toString();
-			String osd = ob.getStartDate() == null ? "0" : ob.getStartDate().toString();
-			String oed = ob.getEndDate() == null ? "0" : ob.getEndDate().toString();
+			String sd = getStartInstant() == null ? "0" : getStartInstant().toString();
+			String ed = getEndInstant() == null ? "0" : getEndInstant().toString();
+			String osd = ob.getStartInstant() == null ? "0" : ob.getStartInstant().toString();
+			String oed = ob.getEndInstant() == null ? "0" : ob.getEndInstant().toString();
 			
 			if(getId().equals(ob.getId()) && sd.equals(osd) && ed.equals(oed) && getInterval().equals(ob.getInterval())) {
 				return true;

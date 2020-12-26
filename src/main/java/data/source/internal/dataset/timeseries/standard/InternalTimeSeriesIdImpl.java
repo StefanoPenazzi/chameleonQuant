@@ -3,6 +3,7 @@
  */
 package data.source.internal.dataset.timeseries.standard;
 
+import java.time.Instant;
 import java.util.Date;
 
 import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
@@ -14,14 +15,14 @@ import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
 public class InternalTimeSeriesIdImpl extends InternalTimeSeriesIdAbstract {
 
 	
-	private final Date startDate;
-	private final Date endDate;
+	private final Instant startInstant;
+	private final Instant endInstant;
 	private final String id;
 	private final String inter;
 	
-	public InternalTimeSeriesIdImpl(Date startDate, Date endDate, String id,String inter) {
-		this.startDate = startDate;
-		this.endDate = endDate;
+	public InternalTimeSeriesIdImpl(Instant startInstant, Instant endInstant, String id,String inter) {
+		this.startInstant = startInstant;
+		this.endInstant = endInstant;
 		this.id = id;
 		this.inter = inter;
 	}
@@ -32,13 +33,13 @@ public class InternalTimeSeriesIdImpl extends InternalTimeSeriesIdAbstract {
 	}
 
 	@Override
-	public Date getStartDate() {
-		return this.startDate;
+	public Instant getStartInstant() {
+		return this.startInstant;
 	}
 
 	@Override
-	public Date getEndDate() {
-		return this.endDate;
+	public Instant getEndInstant() {
+		return this.endInstant;
 	}
 
 	@Override

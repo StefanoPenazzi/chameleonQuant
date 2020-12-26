@@ -21,6 +21,8 @@ public interface DatasetI {
 	public boolean removeTimeSeries(InternalTimeSeriesIdAbstract itq);
 	public InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI> getTimeSeries(InternalTimeSeriesIdAbstract itq);
 	public Iterator<? extends InternalTimeSeriesAbstract<? extends InternalTimeSeriesPointI>> iterator();
+	public void merge(DatasetI tail);
+	
 	
 
 }

@@ -4,6 +4,7 @@
 package indicators.movingAverage;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -29,8 +30,8 @@ class TestMovingAverage {
 		
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		
-	     Date startDate = sdf.parse("2020/10/19 00:00:00");
-		 Date endDate = null;
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
 		 String inter = "8h";
 		
@@ -43,11 +44,11 @@ class TestMovingAverage {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"TSLA",inter),"low",7);
+		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"TSLA",inter),"low",7);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -60,8 +61,8 @@ class TestMovingAverage {
 		
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		
-	     Date startDate = sdf.parse("2020/10/19 00:00:00");
-		 Date endDate = null;
+		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
 		 String inter = "8h";
 		
@@ -74,11 +75,11 @@ class TestMovingAverage {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,stock,inter);
+			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts,new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"TSLA",inter),"low",3);
+		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"TSLA",inter),"low",3);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

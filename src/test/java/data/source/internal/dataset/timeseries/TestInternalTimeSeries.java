@@ -5,6 +5,7 @@ package data.source.internal.dataset.timeseries;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,15 +39,15 @@ class TestInternalTimeSeries {
 	    
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		
-	     Date startDate = sdf.parse("2020/10/19 00:00:00");
-		 Date endDate = null;
+		Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
+		 Instant endInstant = null;
 		 String market = "US_STOCKS_TIME_SERIES_INTRADAY_1MIN";
 		 String code = "FB";
 		 String inter = "8h";
 		
 		 Injector injector = Guice.createInjector(new BasicModule());
 		 
-		InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,code,inter);
+		InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,code,inter);
 		InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = injector.getInstance(Key.get(new TypeLiteral<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>(){}));
 		InternalTimeSeriesQueryRequestInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryRequestInfluxdb.class);
 		InternalTimeSeriesImpl<StockEODTimeSeriesPointInfluxdb> its =  (InternalTimeSeriesImpl<StockEODTimeSeriesPointInfluxdb>) itsf.createTimeSeriesQueryRequest(new ArrayList<String>() {{add("NULL_INFLUXDB");}},itsq,query);

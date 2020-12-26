@@ -63,17 +63,18 @@ class WorkerAlphaVantageStocksEOD implements Callable<Boolean>{
 	public Boolean call() throws Exception {
 		
 		String csvPath = System.getProperty("user.dir")+"/output/"+stock+"_"+Function.TIME_SERIES_DAILY+"_"+OutputSize.FULL+".csv";
-		String test = avc.call(Function.TIME_SERIES_DAILY,new Symbol(stock),OutputSize.FULL,OutputType.CSV);
-		try {
-			TxtUtils.stringToFile(test,csvPath);
-		} catch (IOException e) {
+		//String test = avc.call(Function.TIME_SERIES_DAILY,new Symbol(stock),OutputSize.FULL,OutputType.CSV);
+		//test = test.replaceFirst("timestamp", "time");
+		//try {
+		//	TxtUtils.stringToFile(test,csvPath);
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		Object[] options = {true,',','"'};
 		idb.writingBatchFromCsvFile(database, stock, csvPath ,StockEODTimeSeriesPointInfluxdb.class ,options);
 		
-		Files.deleteIfExists(Paths.get(csvPath)); 
+		//Files.deleteIfExists(Paths.get(csvPath)); 
 		
 		return true;
 	}
