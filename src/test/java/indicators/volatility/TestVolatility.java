@@ -47,7 +47,7 @@ class TestVolatility {
 		 controller.run();
 		 
 		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
@@ -78,7 +78,7 @@ class TestVolatility {
 		 controller.run();
 		 
 		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
@@ -98,7 +98,7 @@ class TestVolatility {
 	void testMACD() throws Exception {
 		 List<String> stocks = Arrays.asList("ACER");
 			
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		
 		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
 		 Instant endInstant = null;
@@ -109,7 +109,7 @@ class TestVolatility {
 		 controller.run();
 		 
 		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 

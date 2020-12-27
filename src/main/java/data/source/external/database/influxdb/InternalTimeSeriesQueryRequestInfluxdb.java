@@ -9,7 +9,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +27,9 @@ import org.influxdb.impl.InfluxDBResultMapper;
 import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.Function;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesIdI;
+import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestAbstract;
 import data.source.internal.dataset.timeseries.InternalTimeSeriesQueryRequestI;
+import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointAbstract;
 import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
 import data.source.internal.dataset.timeseries.standard.InternalStockId;
 import data.source.utils.IO.ReflectionsUtils;
@@ -32,17 +38,21 @@ import data.source.utils.IO.ReflectionsUtils;
  * @author stefanopenazzi
  *
  */
-public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeriesPointI> implements InternalTimeSeriesQueryRequestI<T> {
+public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeriesPointAbstract> implements InternalTimeSeriesQueryRequestI<T> {
 	
 	private static final Logger logger = LogManager.getLogger(InternalTimeSeriesQueryRequestInfluxdb.class);
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss]")
+            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+            .toFormatter().withZone(ZoneId.of("America/New_York"));
 	
-	private final T itmp;
+	private final Class<T> itmp;
 	
 	
-	public InternalTimeSeriesQueryRequestInfluxdb(T itmp) {
+	public InternalTimeSeriesQueryRequestInfluxdb(Class<T> itmp) {
 		this.itmp = itmp;
 	}
 	
@@ -53,14 +63,14 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 		String res ="SELECT ";
 		
 		//TODO what happens if one or both the dates are null?
-		String st = iq.getStartInstant() == null? "1990-01-01 00:00:00":sdf.format(iq.getStartInstant()).toString(); 
-		String et = iq.getEndInstant() == null?  LocalDateTime.now().format(formatter) : sdf.format(iq.getEndInstant()).toString();
+		String st = iq.getStartInstant() == null? "1990-01-01 00:00:00":formatter.format(iq.getStartInstant()).toString(); 
+		String et = iq.getEndInstant() == null?  LocalDateTime.now().format(formatter) : formatter.format(iq.getEndInstant()).toString();
 		
 		//TODO check that the dates range is not too big compare to the interval???
 		
 		
 		//build the fields
-		Field[] fields = itmp.getClass().getDeclaredFields();
+		Field[] fields = itmp.getDeclaredFields();
 		for(Field field: fields) {
 			Annotation[] annotations = field.getDeclaredAnnotations();
 			String function = "";
@@ -122,7 +132,7 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 				//Convert QueryResult to POJO
 				String measurement = iq.getCode();
 				InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-				List<T> results = (List<T>) resultMapper.toPOJO(queryResult, itmp.getClass(), measurement );   
+				List<T> results = (List<T>) resultMapper.toPOJO(queryResult, itmp, measurement );   
 				idb.close();
 				return results;
 	}

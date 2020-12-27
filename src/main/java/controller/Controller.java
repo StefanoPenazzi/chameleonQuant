@@ -22,16 +22,15 @@ import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
  */
 public final class Controller implements ControllerI {
 
-	private com.google.inject.Injector injector;
+	private static com.google.inject.Injector injector;
 	//private boolean injectorCreated = false;
 	
-	private List<AbstractModule> modules = Collections.singletonList(new ControllerDefaultsModule());
+	private static List<AbstractModule> modules = Collections.singletonList(new ControllerDefaultsModule());
 	
-	private AbstractModule overrides = AbstractModule.emptyModule();
+	private  static AbstractModule overrides = AbstractModule.emptyModule();
 
 	
-	@Override
-	public void run() {
+	public static void run() {
 		injector = Injector.createInjector(AbstractModule.override(Collections.singleton(new AbstractModule() {
 			@Override
 			public void install() {
@@ -42,8 +41,8 @@ public final class Controller implements ControllerI {
 		}), overrides));
 	}
 	
-	public com.google.inject.Injector getInjector(){
-		return this.injector;
+	public static com.google.inject.Injector getInjector(){
+		return injector;
 	}
 	
 	public class BasicModule extends com.google.inject.AbstractModule {

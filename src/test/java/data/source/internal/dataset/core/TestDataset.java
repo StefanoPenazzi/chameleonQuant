@@ -46,7 +46,7 @@ class TestDataset {
 		 Injector injector = Guice.createInjector();
 		 
 		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = injector.getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
@@ -75,7 +75,7 @@ class TestDataset {
 		 controller.run();
 		 
 		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(new StockEODTimeSeriesPointInfluxdb());
+		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
@@ -87,6 +87,34 @@ class TestDataset {
 		 InternalTimeSeriesI<? extends InternalTimeSeriesPointI> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"AAPL",inter));
 		
 		System.out.println();
+	}
+	
+	@Test
+	void testDatasetInfluxFactory() throws ParseException {
+		
+         List<String> stocks = Arrays.asList("AACG","AACQ","AACQU","AACQW","AAL");
+		
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+		 Instant endInstant = null;
+		 String market = "NASDAQ_EOD";
+		 String inter = "1d";
+		 
+		  List<InternalStockTimeSeriesQueryInfluxdb> listQueries = new ArrayList<>();
+		 
+		 for(String stock: stocks) {
+			 listQueries.add(new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter));
+		 }
+		
+		 Controller.run();
+		
+		 DatasetInfluxFactory dif = new DatasetInfluxFactory(listQueries);
+		 DatasetImpl dts = (DatasetImpl) dif.create();
+		 
+		 InternalTimeSeriesI<? extends InternalTimeSeriesPointI> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"AACG",inter));
+			
+		 System.out.println();
+		
 	}
 
 }
