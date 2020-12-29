@@ -92,6 +92,7 @@ public class Influxdb implements Database {
 	public boolean writingBatchFromMap( String dbName,  String table , Class<? extends Mirror> mirror ,List<Map<String,String>> csvMap) {
 		boolean pingCheck = pingServer();
 		if (!pingCheck) {return false;}
+		String timeDaily = "time";
 		
 		Map<String,Class<?>> mirrorMapType =  getMapTypes(mirror);
 		
@@ -99,23 +100,17 @@ public class Influxdb implements Database {
 		try {
 			formatter = mirror.newInstance().getTimeFormat();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		String timeDaily = "time";
 		
 		BatchPoints batchPoints = BatchPoints
 				  .database(dbName)
 				  .build();
-		//TODO all wrong
+		
 		for(Map<String, String> m: csvMap) {
-			
 			Number date = null;
-			
 		    LocalDateTime dateTime = LocalDateTime.parse(m.get(timeDaily), formatter);
 			OffsetDateTime utcDateTime = dateTime.atOffset(ZoneOffset.UTC);
 			date = utcDateTime.toInstant().toEpochMilli();
@@ -161,12 +156,8 @@ public class Influxdb implements Database {
 	@Override
 	public List<? extends Mirror> performQuery(String query,String database,Class<? extends Mirror> cl) {
 		QueryResult queryResult = influxDB.query(new Query(query,database));
-				 
-				InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-				List<? extends Mirror> pointList = resultMapper.toPOJO(queryResult, cl);
-				 
-				//assertEquals(2, memoryPointList.size());
-				//assertTrue(4743696L == memoryPointList.get(0).getFree());
+		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
+		List<? extends Mirror> pointList = resultMapper.toPOJO(queryResult, cl);
 		return pointList;
 	}
 	

@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageAbstract;
+import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageStocksEOD;
 import data.source.external.web.connector.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.functions.Function;
@@ -198,6 +199,14 @@ class TestInfluxdb {
 		
 		UpdateFromAlphaVantageStocksEOD upf = new UpdateFromAlphaVantageStocksEOD(5, 500, 5);
 		upf.run(stocksList, "NASDAQ_EOD");
+	}
+	
+	@Test
+	void testFOREXUpdateAlphaVantage() {
+        List<String> forexList = new ArrayList<>();
+		forexList.add("EUR-USD");
+		UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
+		upf.run(forexList, "FOREX_EOD");
 	}
 
 }
