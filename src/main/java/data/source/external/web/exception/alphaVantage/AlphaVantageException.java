@@ -1,7 +1,7 @@
 /**
  * 
  */
-package data.source.external.web.exception;
+package data.source.external.web.exception.alphaVantage;
 
 import java.io.IOException;
 

@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import data.source.external.web.exception.AlphaVantageException;
+import data.source.external.web.exception.alphaVantage.AlphaVantageException;
 import data.source.external.web.parameter.APIParameter;
 import data.source.external.web.parameter.APIParameterBuilderI;
 
