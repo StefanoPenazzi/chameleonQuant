@@ -6,7 +6,8 @@ package data.source.external.database.influxdb.utils;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import data.source.external.web.connector.AlphaVantageConnector;
+
+import data.source.external.web.connector.alphaVantage.AlphaVantageConnector;
 
 
 /**

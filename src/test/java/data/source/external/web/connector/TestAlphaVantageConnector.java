@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import data.source.external.web.connector.alphaVantage.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.currencies.FromCurrency;
 import data.source.external.web.parameter.alphaVantage.currencies.ToCurrency;
 import data.source.external.web.parameter.alphaVantage.functions.Function;

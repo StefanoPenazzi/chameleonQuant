@@ -31,7 +31,7 @@ import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeS
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageAbstract;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageStocksEOD;
-import data.source.external.web.connector.AlphaVantageConnector;
+import data.source.external.web.connector.alphaVantage.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.functions.Function;
 import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Interval;
 import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Slice;

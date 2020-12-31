@@ -1,9 +1,10 @@
 /**
  * 
  */
-package data.source.external.web.connector;
+package data.source.external.web.connector.alphaVantage;
 
 import data.source.external.web.parameter.alphaVantage.APIParameterBuilderAlphaVantage;
+import data.source.external.web.connector.APIConnectorAbstract;
 import data.source.external.web.parameter.APIParameterBuilderI;
 
 /**

@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.FOREXEODTimeSeriesPointInfluxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
-import data.source.external.web.connector.AlphaVantageConnector;
+import data.source.external.web.connector.alphaVantage.AlphaVantageConnector;
 import data.source.external.web.parameter.alphaVantage.currencies.FromCurrency;
 import data.source.external.web.parameter.alphaVantage.currencies.ToCurrency;
 import data.source.external.web.parameter.alphaVantage.functions.Function;
