@@ -7,11 +7,11 @@ package data.source.external.web.parameter;
  * @author stefanopenazzi
  *
  */
-public class APIParameterBuilder {
+public abstract class APIParameterBuilderAbstract implements APIParameterBuilderI {
 	
 	private StringBuilder urlBuilder;
 
-	  public APIParameterBuilder() {
+	  public APIParameterBuilderAbstract() {
 	    this.urlBuilder = new StringBuilder();
 	  }
 
@@ -35,9 +35,11 @@ public class APIParameterBuilder {
 	   * @return an instance of this builder.
 	   */
 	  public void append(String key, String value) {
-	    String parameter = "&" + key + "=" + value;
+	    String parameter = buildPair(key,value);
 	    this.urlBuilder.append(parameter);
 	  }
+	  
+	  public abstract String buildPair(String key, String value);
 
 	  /**
 	   * Build the url string for the query in the api call.
@@ -47,5 +49,6 @@ public class APIParameterBuilder {
 	  public String getUrl() {
 	    return this.urlBuilder.toString();
 	  }
+
 
 }
