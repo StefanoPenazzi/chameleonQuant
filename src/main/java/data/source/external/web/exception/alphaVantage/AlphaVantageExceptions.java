@@ -9,9 +9,9 @@ import java.io.IOException;
  * @author stefanopenazzi
  *
  */
-public class AlphaVantageException extends RuntimeException {
+public class AlphaVantageExceptions extends RuntimeException {
 	
-	public AlphaVantageException(String message, Throwable e) {
+	public AlphaVantageExceptions(String message, Throwable e) {
 		super(message,e);
 		
 	}

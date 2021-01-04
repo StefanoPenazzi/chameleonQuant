@@ -4,12 +4,15 @@
 package data.source.external.web.connector;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Properties;
 
-import data.source.external.web.exception.alphaVantage.AlphaVantageException;
+import data.source.external.web.exception.alphaVantage.AlphaVantageExceptions;
 import data.source.external.web.parameter.APIParameter;
 import data.source.external.web.parameter.APIParameterBuilderI;
 
@@ -18,40 +21,37 @@ import data.source.external.web.parameter.APIParameterBuilderI;
  *
  */
 public abstract class APIConnectorAbstract implements APIConnector {
-	  private final String apiKey;
+	 
 	  private final int timeOut;
+	  protected final String apiKey;
 
 	  /**
 	   * Creates an AlphaVantageConnector.
 	   *
 	   * @param apiKey the secret key to access the api.
 	   * @param timeOut the timeout for when reading the connection should give up.
+	 * @throws FileNotFoundException 
 	   */
-	  public APIConnectorAbstract(String apiKey, int timeOut) {
-	    this.apiKey = apiKey;
-	    this.timeOut = timeOut;
+	  public APIConnectorAbstract(String apiKey,int timeOut) {
+		  
+		  Properties properties = new Properties();
+		  InputStream inputStream = getClass().getClassLoader().getResourceAsStream("apiKeys.properties");
+			
+			try {
+				properties.load(inputStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		  
+		  this.timeOut = timeOut;
+		  this.apiKey = properties.getProperty("EODHistoricalData");;
 	  }
 	  
 	  public abstract String getBaseUrl();
 	  public abstract APIParameterBuilderI getAPIParameterBuilder();
-
-	 
-
-	  /**
-	   * Builds up the url query from the api parameters used to append to the base url.
-	   *
-	   * @param apiParameters the api parameters used in the query
-	   * @return the query string to use in the url
-	   */
-	  private String getParameters(APIParameter... apiParameters) {
-	    APIParameterBuilderI urlBuilder = getAPIParameterBuilder();
-	    for (APIParameter parameter : apiParameters) {
-	      urlBuilder.append(parameter);
-	    }
-	    urlBuilder.append("apikey", apiKey);
-	    return urlBuilder.getUrl();
-	  }
-
+	  public abstract String getParameters(APIParameter... apiParameters);
 
 
 	public String call(APIParameter... apiParameters) {
@@ -75,7 +75,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 	      bufferedReader.close();
 	      return responseBuilder.toString();
 	    } catch (IOException e) {
-	         throw new AlphaVantageException("failure sending request",e);
+	         throw new AlphaVantageExceptions("failure sending request",e);
 	    }
 	}
 	}

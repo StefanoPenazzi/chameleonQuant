@@ -4,31 +4,16 @@
 package data.source.external.database;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.Test;
-
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
-import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageAbstract;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.UpdateFromAlphaVantageStocksEOD;
 import data.source.external.web.connector.alphaVantage.AlphaVantageConnector;
@@ -39,8 +24,6 @@ import data.source.external.web.parameter.alphaVantage.output.OutputSize;
 import data.source.external.web.parameter.alphaVantage.output.OutputType;
 import data.source.external.web.parameter.alphaVantage.symbols.Symbol;
 import data.source.utils.IO.TxtUtils;
-
-import org.influxdb.annotation.Measurement;
 import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
 import org.influxdb.impl.InfluxDBResultMapper;

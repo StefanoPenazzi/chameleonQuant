@@ -1,3 +1,4 @@
 **/output
 **/logs
+**/src/main/resources/apiKeys.properties
 /target/
