@@ -46,7 +46,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 			
 		  
 		  this.timeOut = timeOut;
-		  this.apiKey = properties.getProperty("EODHistoricalData");;
+		  this.apiKey = properties.getProperty(apiKey);;
 	  }
 	  
 	  public abstract String getBaseUrl();

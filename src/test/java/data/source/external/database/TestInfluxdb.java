@@ -67,7 +67,7 @@ class TestInfluxdb {
 		
 		String csvPath = System.getProperty("user.dir")+"/output/"+stock+"_"+Function.TIME_SERIES_INTRADAY_EXTENDED+"_"+Interval.ONE_MIN+"_"+Slice.YEAR1MONTH1+"_"+OutputSize.FULL+"_"+OutputType.CSV+".csv";
 		
-		AlphaVantageConnector avc = new AlphaVantageConnector("84AHX76LXVJ25F65",10000);
+		AlphaVantageConnector avc = new AlphaVantageConnector(10000);
 		String test = avc.call(Function.TIME_SERIES_INTRADAY_EXTENDED,new Symbol(stock),Interval.ONE_MIN,Slice.YEAR1MONTH1,OutputSize.FULL,OutputType.CSV);
 		try {
 			TxtUtils.stringToFile(test,csvPath);
@@ -107,7 +107,7 @@ class TestInfluxdb {
 			
 			String csvPath = System.getProperty("user.dir")+"/output/"+stock+"_"+Function.TIME_SERIES_INTRADAY_EXTENDED+"_"+Interval.ONE_MIN+"_"+Slice.YEAR1MONTH1+"_"+OutputSize.FULL+"_"+OutputType.CSV+".csv";
 			
-			AlphaVantageConnector avc = new AlphaVantageConnector("84AHX76LXVJ25F65",60000);
+			AlphaVantageConnector avc = new AlphaVantageConnector(60000);
 			String test = avc.call(Function.TIME_SERIES_INTRADAY_EXTENDED,new Symbol(stock),Interval.ONE_MIN,Slice.YEAR1MONTH1,OutputSize.FULL,OutputType.CSV);
 			try {
 				TxtUtils.stringToFile(test,csvPath);

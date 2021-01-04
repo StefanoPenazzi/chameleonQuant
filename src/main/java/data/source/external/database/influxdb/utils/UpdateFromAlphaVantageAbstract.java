@@ -26,7 +26,7 @@ public abstract class UpdateFromAlphaVantageAbstract extends UpdateAbstract {
 		this.maxReqPerMin = maxReqPerMin;
 		this.maxReqPerDay = maxReqPerDay;
 		this.nThreads = nThreads;
-		this.avc = new AlphaVantageConnector("84AHX76LXVJ25F65",60000);
+		this.avc = new AlphaVantageConnector(60000);
 	}
 	
 	public AlphaVantageConnector getAlphaVantageConnector() {

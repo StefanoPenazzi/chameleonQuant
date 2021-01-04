@@ -25,8 +25,8 @@ public class AlphaVantageConnector extends APIConnectorAbstract {
 	private String BASE_URL = "https://www.alphavantage.co/query?";
 	private String apiKeyId = "apikey";
 	
-	public AlphaVantageConnector(String apiKey,int timeOut) {
-		super(apiKey,timeOut);
+	public AlphaVantageConnector(int timeOut) {
+		super("AlphaVantage",timeOut);
 	}
 
 	@Override

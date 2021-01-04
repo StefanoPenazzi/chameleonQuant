@@ -25,8 +25,8 @@ public class EODHistoricalDataConnector extends APIConnectorAbstract {
 	 * @param timeOut
 	 * @throws FileNotFoundException 
 	 */
-	public EODHistoricalDataConnector(String apiKey, int timeOut) {
-		super(apiKey,timeOut);
+	public EODHistoricalDataConnector(int timeOut) {
+		super("EODHistoricalData",timeOut);
 		// TODO Auto-generated constructor stub
 	}
 

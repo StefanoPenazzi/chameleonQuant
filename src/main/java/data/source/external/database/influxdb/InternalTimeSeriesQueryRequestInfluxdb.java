@@ -3,6 +3,8 @@
  */
 package data.source.external.database.influxdb;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -16,6 +18,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,6 +45,9 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 	
 	private static final Logger logger = LogManager.getLogger(InternalTimeSeriesQueryRequestInfluxdb.class);
 	
+	final String serverURL;
+	final String username;
+	final String password;
 	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss]")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
@@ -54,6 +60,17 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 	
 	public InternalTimeSeriesQueryRequestInfluxdb(Class<T> itmp) {
 		this.itmp = itmp;
+		Properties properties = new Properties();
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("database.properties");	
+		try {
+			properties.load(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    this.serverURL = properties.getProperty("influx_serverURL");
+	    this.username = properties.getProperty("influx_username");
+	    this.password = properties.getProperty("influx_password");
 	}
 	
 	private String getStringQuery(InternalStockId iq) {
@@ -105,8 +122,7 @@ public class InternalTimeSeriesQueryRequestInfluxdb<T extends InternalTimeSeries
 		//TODO what if this is not an InternalStockQuery 
 				InternalStockTimeSeriesQueryInfluxdb iq = (InternalStockTimeSeriesQueryInfluxdb)iqI;
 				Influxdb idb = new Influxdb();
-				final String serverURL = "http://127.0.0.1:7086", username = "stefanopenazzi", password = "korky1987";
-				String[] dbCon = {serverURL,username,password};
+				String[] dbCon = {this.serverURL,this.username,this.password};
 				//the server must be on(service influxdb start) otherwise the connection will not be successful
 				idb.connect(dbCon);
 				
