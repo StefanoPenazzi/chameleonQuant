@@ -4,18 +4,18 @@
  
 <html>
 <head>
-  <meta charset="utf-8"/>
- <style>
- table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    table, th, td {
+     border: 1px solid black;
+     border-collapse: collapse;
+   }
 
-table.center {
-  margin-left: auto; 
-  margin-right: auto;
-}
-</style>
+   table.center {
+     margin-left: auto; 
+     margin-right: auto;
+   }
+ </style>
 </head>
 <body>
 
@@ -32,6 +32,10 @@ The financial market is a jungle. There are hidden gems waiting to be discovered
 The chameleon is a master in this! It is a patient predator adapting to the surrounding environment and, when it's time to act, it is swift and deadly. Like a chameleon, you will need these skills to protect and grow your wealth in the financial market. Just like any young chameleon, you need to develop the best strategies that fit your expectations, learn from your mistakes, and keep evolving. 
 The first steps are always the hardest. Do not give way to discouragement! There are probably zillions of things that are going through your mind right now, but keep reading, we will show you how chameleonQuant can help you to develop your own tool kit to live in the financial market jungle.
 </div>
+
+<h1> Prerequisites</h1>
+
+<h1> Installing</h1>
 
 <h1>First step into the jungle</h1>
 <div align="justify">
