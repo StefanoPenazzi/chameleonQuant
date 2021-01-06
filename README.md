@@ -4,18 +4,7 @@
  
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    table, th, td {
-     border: 1px solid black;
-     border-collapse: collapse;
-   }
-
-   table.center {
-     margin-left: auto; 
-     margin-right: auto;
-   }
- </style>
+  
 </head>
 <body>
 
