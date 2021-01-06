@@ -30,7 +30,7 @@ No one would step into the jungle without a survival kit!  chameleonQuant helps 
 
 <p align="center">
  <figure align="center">
-     <img width="820" height="2301" src="src/main/resources/images/schema_overview.png" style="margin-right: 10px;" class="center" />
+     <img width="800" height="2301" src="src/main/resources/images/schema_overview.png" style="margin-right: 10px;" class="center" />
      <figcaption>
      <p>Basic survival kit scheme</p>
      </figcaption>
