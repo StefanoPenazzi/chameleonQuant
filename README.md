@@ -24,7 +24,7 @@ The first steps are always the hardest. Do not give way to discouragement! There
 
 <h1>First step into the jungle</h1>
 <div align="justify">
-No one would step into the jungle without a survival kit!  chameleonQuant helps you in this, providing you  a basic survival tool kit and a framework to support you in developing your own tools. A good understanding of the basic tools will help you to familiarize with the framework and its components, test a few preimplemented indicators and strategies, and unleash your creativity in developing amazing new strategies. 
+No one would step into the jungle without a survival kit!  chameleonQuant helps you in this, providing you  a basic survival tool kit and a framework to support you in developing your own tools. A good understanding of the basic tools will help you to familiarize with the framework and its components, test a few preimplemented indicators,  strategies, etc, and unleash your creativity developing new ones. 
 </div>
 <h3>Your basic survival kit</h3>
 
