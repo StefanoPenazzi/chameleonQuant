@@ -5,6 +5,17 @@
 <html>
 <head>
   <meta charset="utf-8"/>
+ <style>
+ table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+</style>
 </head>
 <body>
 
@@ -43,7 +54,7 @@ An object that can not miss in a survival kit is a map. This is fundamental to n
 Just like the water and the sun are the main resources a plant needs to growth, in the classic model of an efficient security market, prices move in response to new public information that causes traders to simultaneously revise their belief ( <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1298299">Why Do Security Prices Change? A Transaction-Level Analysis of Nyse Stocks</a> ). I know...I know... prices follow much more complicated models, but let me keep it simple, for now.   
 A financial market map records the history of the securities and make them easily available to the user. Forecast the future evolution of the map is the ultimate goal of the user that can use its history as an input for predictive models.  
 
- <table style="width:100%">
+ <table class="center">
   <caption style="font-weight: bold">Exchanges</caption>
   <tr>
     <th>Exchange</th>
