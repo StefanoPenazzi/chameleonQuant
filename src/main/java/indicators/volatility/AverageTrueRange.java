@@ -3,12 +3,12 @@
  */
 package indicators.volatility;
 
-import data.source.internal.dataset.core.DatasetI;
-import data.source.internal.dataset.core.DatasetImpl;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
-import data.source.internal.dataset.timeseries.point.InternalSingleTagTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
+import data.source.internal.dataset.DatasetI;
+import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.timeseries.TimeSeriesIdAbstract;
+import data.source.internal.timeseries.point.SingleTagPoint;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
+import data.source.internal.timeseries.standard.TimeSeriesImpl;
 import indicators.IndicatorAbstract;
 import indicators.movingAverage.SimpleMovingAverage;
 
@@ -16,11 +16,11 @@ import indicators.movingAverage.SimpleMovingAverage;
  * @author stefanopenazzi
  *
  */
-public class AverageTrueRange<T extends InternalTimeSeriesPointI> extends IndicatorAbstract {
+public class AverageTrueRange<T extends TimeSeriesPointI> extends IndicatorAbstract {
 
 	private final int periods;
 	private final DatasetI dataSet;
-	private final InternalTimeSeriesIdAbstract id;
+	private final TimeSeriesIdAbstract id;
 	
 	/**
 	 * @param dataSet
@@ -32,7 +32,7 @@ public class AverageTrueRange<T extends InternalTimeSeriesPointI> extends Indica
 		this.id = null;
 	}
 	
-	public AverageTrueRange(DatasetI dataSet,InternalTimeSeriesIdAbstract id,int periods) {
+	public AverageTrueRange(DatasetI dataSet,TimeSeriesIdAbstract id,int periods) {
 		super(dataSet);
 		this.periods = periods;
 		this.dataSet = dataSet;

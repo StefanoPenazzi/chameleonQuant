@@ -3,7 +3,7 @@
  */
 package indicators;
 
-import data.source.internal.dataset.core.DatasetI;
+import data.source.internal.dataset.DatasetI;
 
 /**
  * @author stefanopenazzi

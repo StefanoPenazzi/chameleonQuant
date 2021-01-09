@@ -6,6 +6,8 @@ package data.source.external.database.influxdb;
 import org.apache.logging.log4j.Logger;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
@@ -33,8 +36,9 @@ import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
 import org.influxdb.impl.InfluxDBResultMapper;
 
-import data.source.external.database.Database;
-import data.source.external.database.Mirror;
+import data.source.external.database.DatabaseAbstract;
+import data.source.external.database.DatabaseI;
+import data.source.external.database.MirrorI;
 import data.source.utils.IO.CSVUtils;
 
 
@@ -42,19 +46,34 @@ import data.source.utils.IO.CSVUtils;
  * @author stefanopenazzi
  *
  */
-public class Influxdb implements Database {
+public class Influxdb extends DatabaseAbstract {
 
 	private final static Logger log = LogManager.getLogger(Influxdb.class);
-	
 	private InfluxDB influxDB = null; 
+	final String serverURL;
+	final String username;
+	final String password;
+	
+	public Influxdb() {
+		Properties properties = new Properties();
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("database.properties");
+		try {
+			properties.load(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.serverURL = properties.getProperty("influx_serverURL");
+	    this.username = properties.getProperty("influx_username");
+	    this.password = properties.getProperty("influx_password");
+	}
 	
 	@Override
-	public void connect(String... con) {
-		influxDB = InfluxDBFactory.connect(con[0], con[1], con[2]);
+	public void connect() {
+		influxDB = InfluxDBFactory.connect(serverURL, username, password);
 	}
 
 	@Override
-	public boolean pingServer() {
+	public boolean ping() {
 		//verify the connection
 		Pong response = this.influxDB.ping();
 		if (response.getVersion().equalsIgnoreCase("unknown")) {
@@ -64,38 +83,15 @@ public class Influxdb implements Database {
 		return true;
 	}
 
-	 /**
-     * Write a csv file into the database
-     *
-     * @param dbName
-     *            database name
-     * @param csvFile
-     *            path to the csv file
-     * @param mirror
-     *            this is a class from which reflection allows to assign the types to the fields
-     * @param options
-     *            firstRowAsHeader, separators, customQuote 
-     * @return true if it was successful.
-     */
+	
 	@Override
-	public boolean writingBatchFromCsvFile(String dbName, String table ,String csvFile, Class<? extends Mirror> mirror ,Object... options) {
-		List<Map<String, String>> csvMap = null;
-		try {
-			csvMap = CSVUtils.readCSV(csvFile, (boolean)options[0], (char)options[1], (char)options[2]);
-		} catch (FileNotFoundException e) {
-			log.error("File "+ csvFile + "not found.");
-			e.printStackTrace();
+	public void update( String database,  String measurement , Class<? extends MirrorI> mirror ,List<Map<String,String>> csvMap) {
+		boolean pingCheck = ping();
+		if (!pingCheck) {
+			//run exception
 		}
-		return writingBatchFromMap(dbName,table,mirror,csvMap);
-	}
-
-	public boolean writingBatchFromMap( String dbName,  String table , Class<? extends Mirror> mirror ,List<Map<String,String>> csvMap) {
-		boolean pingCheck = pingServer();
-		if (!pingCheck) {return false;}
 		String timeDaily = "time";
-		
 		Map<String,Class<?>> mirrorMapType =  getMapTypes(mirror);
-		
 		DateTimeFormatter formatter = null;
 		try {
 			formatter = mirror.newInstance().getTimeFormat();
@@ -104,18 +100,15 @@ public class Influxdb implements Database {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
 		BatchPoints batchPoints = BatchPoints
-				  .database(dbName)
+				  .database(database)
 				  .build();
-		
 		for(Map<String, String> m: csvMap) {
 			Number date = null;
 		    LocalDateTime dateTime = LocalDateTime.parse(m.get(timeDaily), formatter);
 			OffsetDateTime utcDateTime = dateTime.atOffset(ZoneOffset.UTC);
-			date = utcDateTime.toInstant().toEpochMilli();
-					
-			Builder bui = Point.measurement(table)
+			date = utcDateTime.toInstant().toEpochMilli();	
+			Builder bui = Point.measurement(measurement)
 					  .time(date, TimeUnit.MILLISECONDS);
 			for(String key: m.keySet()) {
 				if(!key.equals(timeDaily) && mirrorMapType.containsKey(key)) {
@@ -131,53 +124,30 @@ public class Influxdb implements Database {
 					}
 				}
 			}
-			Point point = bui.build();
-			
+			Point point = bui.build();	
 			batchPoints.point(point);
 		}
-		
 		influxDB.write(batchPoints);
-		
-		return true;
-	}
-
-	@Override
-	public boolean writingBatchFromCsvString( String dbName, String csv, Class<? extends Mirror> mirror ,Object... options) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
 	public void close() {
-		pingServer();
+		ping();
 		influxDB.close();
 	}
 
 	@Override
-	public List<? extends Mirror> performQuery(String query,String database,Class<? extends Mirror> cl) {
+	public List<? extends MirrorI> select(String query,String database,Class<? extends MirrorI> cl) {
 		QueryResult queryResult = influxDB.query(new Query(query,database));
 		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-		List<? extends Mirror> pointList = resultMapper.toPOJO(queryResult, cl);
+		List<? extends MirrorI> pointList = resultMapper.toPOJO(queryResult, cl);
 		return pointList;
 	}
 	
-	private Map<String,Class<?>> getMapTypes( Class<? extends Mirror> mirror){
-		
-		 Map<String,Class<?>> res = new HashMap<>();
-		 Field[] declaredFields = mirror.getDeclaredFields();
-		 
-		 for (Field field : declaredFields) {
-	            if(field.isAnnotationPresent(Column.class)) {
-	            	Column column = field.getAnnotation(Column.class);
-	                res.put(column.name(), field.getType());
-	            }
-	        }
-		
-		return res;
-	}
-
 	public InfluxDB getInfluxDB() {
 		return this.influxDB;
 	}
+
+	
 	
 }

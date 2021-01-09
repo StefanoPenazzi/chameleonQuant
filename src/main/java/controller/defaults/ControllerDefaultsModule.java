@@ -16,6 +16,8 @@ public class ControllerDefaultsModule extends AbstractModule {
 	@Override
 	public void install() {
 		install(new InternalTimeSeriesCleaningModule());
+		install(new TimeSeriesRequestModule());
+		install(new DatasetModule());
 		
 	}
 

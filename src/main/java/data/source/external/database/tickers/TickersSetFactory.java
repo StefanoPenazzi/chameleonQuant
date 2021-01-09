@@ -26,7 +26,7 @@ public class TickersSetFactory {
 		//TODO check if the header is present
 		try {
 			//res = CSVUtils.readCSV(System.getProperty("user.dir")+ "/src/main/resources/symbol_list/NASDAQ.txt",true,'\t','"');
-			res = CSVUtils.readCSV(dir,firstRowAsHeader,separators, customQuote);
+			res = CSVUtils.parseCsv2Map(dir,firstRowAsHeader,separators, customQuote);
 			//conert this in a list of string 
 		    for(Map<String,String> m: res) {
 		    	tickers.add(m.get(header))

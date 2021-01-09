@@ -12,16 +12,16 @@ import java.util.stream.DoubleStream;
 
 import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotation.InternalTimeSeries.TagName;
-import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
-import data.source.internal.dataset.core.DatasetI;
-import data.source.internal.dataset.core.DatasetImpl;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesAbstract;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
-import data.source.internal.dataset.timeseries.datastructure.RBTree;
-import data.source.internal.dataset.timeseries.point.InternalSingleTagTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesIdImpl;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
+import data.source.external.database.influxdb.TimeSeriesId;
+import data.source.internal.dataset.DatasetI;
+import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.timeseries.TimeSeriesAbstract;
+import data.source.internal.timeseries.TimeSeriesIdAbstract;
+import data.source.internal.timeseries.point.SingleTagPoint;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
+import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
+import data.source.internal.timeseries.standard.TimeSeriesImpl;
+import data.source.internal.timeseries.structure.RBTree;
 import data.source.utils.IO.ReflectionsUtils;
 import indicators.IndicatorAbstract;
 
@@ -29,10 +29,10 @@ import indicators.IndicatorAbstract;
  * @author stefanopenazzi
  *
  */
-public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends IndicatorAbstract {
+public class SimpleMovingAverage<T extends TimeSeriesPointI> extends IndicatorAbstract {
 
-	private final InternalTimeSeriesImpl<T> itsRef;
-	private InternalTimeSeriesImpl <InternalSingleTagTimeSeriesPoint<Double>> itsRes;
+	private final TimeSeriesImpl<T> itsRef;
+	private TimeSeriesImpl <SingleTagPoint<Double>> itsRes;
 	private final int periods;
 	private final String tagName;
 	
@@ -41,21 +41,21 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
 	 */
 	public SimpleMovingAverage(DatasetI dataSet,String tagName,int periods) {
 		super(dataSet);
-		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.iterator().next();
+		itsRef = (TimeSeriesImpl<T>) this.dataSet.iterator().next();
 		this.periods= periods;
 		this.tagName = tagName;
 	}
 	
-	public SimpleMovingAverage(DatasetI dataSet,InternalTimeSeriesIdAbstract id,String tagName,int periods) {
+	public SimpleMovingAverage(DatasetI dataSet,TimeSeriesIdAbstract id,String tagName,int periods) {
 		super(dataSet);
-		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
 		this.periods= periods;
 		this.tagName = tagName;
 	}
 	
 	public DatasetImpl create() throws Exception {
-	   List<InternalTimeSeriesPointI> itsRefList = (List<InternalTimeSeriesPointI>) itsRef.getList();
-	   List<InternalSingleTagTimeSeriesPoint<Double>> res = new ArrayList<>(); 
+	   List<TimeSeriesPointI> itsRefList = (List<TimeSeriesPointI>) itsRef.getList();
+	   List<SingleTagPoint<Double>> res = new ArrayList<>(); 
 	   if(itsRefList.size() < periods) {}  // run exception
 	   int firstRemoveIndex = 0;
 //	   // reflection invoked just once
@@ -68,14 +68,14 @@ public class SimpleMovingAverage<T extends InternalTimeSeriesPointI> extends Ind
         	   return 0;
            }
        }).sum();
-	   res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(periods-1).getTime(),count/periods));
+	   res.add(new SingleTagPoint<Double>(itsRefList.get(periods-1).getTime(),count/periods));
 	   for(int i = periods;i<itsRefList.size();i++) {
 	        count = count -  (Double)method.invoke(itsRefList.get(firstRemoveIndex)) + (Double)method.invoke(itsRefList.get(i));
-	        res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(i).getTime(),count/periods));
+	        res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count/periods));
 	        firstRemoveIndex++;
 	   }
-	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"MA","");
-	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
+	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"MA","",SingleTagPoint.class);
+	   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);
 	   return ds;

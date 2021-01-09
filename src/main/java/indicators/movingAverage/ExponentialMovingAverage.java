@@ -8,24 +8,24 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.source.internal.dataset.core.DatasetI;
-import data.source.internal.dataset.core.DatasetImpl;
-import data.source.internal.dataset.timeseries.InternalTimeSeriesIdAbstract;
-import data.source.internal.dataset.timeseries.datastructure.RBTree;
-import data.source.internal.dataset.timeseries.point.InternalSingleTagTimeSeriesPoint;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesIdImpl;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
+import data.source.internal.dataset.DatasetI;
+import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.timeseries.TimeSeriesIdAbstract;
+import data.source.internal.timeseries.point.SingleTagPoint;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
+import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
+import data.source.internal.timeseries.standard.TimeSeriesImpl;
+import data.source.internal.timeseries.structure.RBTree;
 import indicators.IndicatorAbstract;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class ExponentialMovingAverage<T extends InternalTimeSeriesPointI> extends IndicatorAbstract  {
+public class ExponentialMovingAverage<T extends TimeSeriesPointI> extends IndicatorAbstract  {
 
-	private final InternalTimeSeriesImpl<T> itsRef;
-	private InternalTimeSeriesImpl <InternalSingleTagTimeSeriesPoint<Double>> itsRes;
+	private final TimeSeriesImpl<T> itsRef;
+	private TimeSeriesImpl <SingleTagPoint<Double>> itsRes;
 	private final int periods;
 	private final String tagName;
 	private final double smoothing;
@@ -35,31 +35,31 @@ public class ExponentialMovingAverage<T extends InternalTimeSeriesPointI> extend
 	 */
 	public ExponentialMovingAverage(DatasetI dataSet,String tagName,int periods,double smoothing) {
 		super(dataSet);
-		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.iterator().next();
+		itsRef = (TimeSeriesImpl<T>) this.dataSet.iterator().next();
 		this.periods= periods;
 		this.tagName = tagName;
 		this.smoothing = smoothing;
 	}
 	
-	public ExponentialMovingAverage(DatasetI dataSet,InternalTimeSeriesIdAbstract id,String tagName,int periods,double smoothing) {
+	public ExponentialMovingAverage(DatasetI dataSet,TimeSeriesIdAbstract id,String tagName,int periods,double smoothing) {
 		super(dataSet);
-		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
 		this.periods= periods;
 		this.tagName = tagName;
 		this.smoothing = smoothing;
 	}
 	
-	public ExponentialMovingAverage(DatasetI dataSet,InternalTimeSeriesIdAbstract id,String tagName,int periods) {
+	public ExponentialMovingAverage(DatasetI dataSet,TimeSeriesIdAbstract id,String tagName,int periods) {
 		super(dataSet);
-		itsRef = (InternalTimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
 		this.periods= periods;
 		this.tagName = tagName;
 		this.smoothing = 2;
 	}
 	
 	public DatasetImpl create() throws Exception {
-	   List<InternalTimeSeriesPointI> itsRefList = (List<InternalTimeSeriesPointI>) itsRef.getList();
-	   List<InternalSingleTagTimeSeriesPoint<Double>> res = new ArrayList<>(); 
+	   List<TimeSeriesPointI> itsRefList = (List<TimeSeriesPointI>) itsRef.getList();
+	   List<SingleTagPoint<Double>> res = new ArrayList<>(); 
 	   if(itsRefList.size() < periods) {}  // run exception
 	   double k = smoothing/(periods+1);
 //	   // reflection invoked just once
@@ -77,10 +77,10 @@ public class ExponentialMovingAverage<T extends InternalTimeSeriesPointI> extend
 	   for(int i = periods;i<itsRefList.size()-periods;i++) {
 		   
 		   count = (Double)method.invoke(itsRefList.get(i))*k + count*(1-k);
-	       res.add(new InternalSingleTagTimeSeriesPoint<Double>(itsRefList.get(i).getTime(),count));
+	       res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count));
 	   }
-	   InternalTimeSeriesIdImpl id = new InternalTimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"EMA","");
-	   itsRes = new InternalTimeSeriesImpl(new RBTree(res),id);
+	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"EMA","",SingleTagPoint.class);
+	   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);
 	   

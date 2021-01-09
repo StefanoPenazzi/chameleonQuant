@@ -6,9 +6,10 @@ package data.source.external.web.connector;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-import data.source.external.web.connector.eodhistoricaldatacom.EODHistoricalDataConnector;
-import data.source.external.web.parameter.eodhistoricaldatacom.securities.Security;
-import data.source.external.web.parameter.eodhistoricaldatacom.symbols.Symbol;
+
+import data.source.external.financialdatavendors.eodhistoricaldatacom.EODHistoricalDataConnector;
+import data.source.external.financialdatavendors.eodhistoricaldatacom.parameters.securities.Security;
+import data.source.external.financialdatavendors.eodhistoricaldatacom.parameters.symbols.Symbol;
 import data.source.utils.IO.TxtUtils;
 
 /**

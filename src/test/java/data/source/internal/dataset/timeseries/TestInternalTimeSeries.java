@@ -18,14 +18,14 @@ import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
 import com.google.inject.multibindings.MapBinder;
 
-import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
-import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
-import data.source.external.database.influxdb.TimeSeriesCleanerNullValuesStockInfluxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
-import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesImpl;
+import data.source.external.database.influxdb.TimeSeriesId;
+import data.source.external.database.influxdb.TimeSeriesRequestInfluxdb;
+import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.utils.adjustments.TimeSeriesCleanerNullValuesStockInfluxdb;
+import data.source.internal.timeseries.cleaning.TimeSeriesCleanerI;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
+import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
+import data.source.internal.timeseries.standard.TimeSeriesImpl;
 
 /**
  * @author stefanopenazzi
@@ -47,10 +47,10 @@ class TestInternalTimeSeries {
 		
 		 Injector injector = Guice.createInjector(new BasicModule());
 		 
-		InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,code,inter);
-		InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = injector.getInstance(Key.get(new TypeLiteral<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>(){}));
-		InternalTimeSeriesQueryRequestInfluxdb itsq = injector.getInstance(InternalTimeSeriesQueryRequestInfluxdb.class);
-		InternalTimeSeriesImpl<StockEODTimeSeriesPointInfluxdb> its =  (InternalTimeSeriesImpl<StockEODTimeSeriesPointInfluxdb>) itsf.createTimeSeriesQueryRequest(new ArrayList<String>() {{add("NULL_INFLUXDB");}},itsq,query);
+		TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,code,inter,StockEODTimeSeriesPointInfluxdb.class);
+		TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = injector.getInstance(Key.get(new TypeLiteral<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>(){}));
+		TimeSeriesRequestInfluxdb itsq = injector.getInstance(TimeSeriesRequestInfluxdb.class);
+		TimeSeriesImpl<StockEODTimeSeriesPointInfluxdb> its =  (TimeSeriesImpl<StockEODTimeSeriesPointInfluxdb>) itsf.createTimeSeriesQueryRequest(new ArrayList<String>() {{add("NULL_INFLUXDB");}},itsq,query);
 		
 		System.out.println();
 	}
@@ -59,15 +59,15 @@ class TestInternalTimeSeries {
 		 
 	    @Override
 	    protected void configure() {
-	        MapBinder<String, InternalTimeSeriesPointI> mapbinderInternalTimeSeriesPoint
-	            = MapBinder.newMapBinder(binder(), String.class, InternalTimeSeriesPointI.class);
+	        MapBinder<String, TimeSeriesPointI> mapbinderInternalTimeSeriesPoint
+	            = MapBinder.newMapBinder(binder(), String.class, TimeSeriesPointI.class);
 	        mapbinderInternalTimeSeriesPoint.addBinding("US_STOCKS_TIME_SERIES_INTRADAY_1MIN").to(StockEODTimeSeriesPointInfluxdb.class);
 	       
 	      
-	    MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> mapbinderTimeSeriesCleaner
-	        = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>(){});
+	    MapBinder<String,TimeSeriesCleanerI<? extends TimeSeriesPointI>> mapbinderTimeSeriesCleaner
+	        = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends TimeSeriesPointI>>(){});
 	    
-	    mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
+	    mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends TimeSeriesPointI>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
    
 	    }
 	}

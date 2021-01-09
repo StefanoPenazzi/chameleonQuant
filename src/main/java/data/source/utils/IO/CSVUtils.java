@@ -10,23 +10,44 @@ package data.source.utils.IO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import data.source.external.database.MirrorI;
+import data.source.external.database.influxdb.Influxdb;
+
 public class CSVUtils {
 
+	private final static Logger log = LogManager.getLogger(CSVUtils.class);
+	
 	private static final char DEFAULT_SEPARATOR = ',';
     private static final char DEFAULT_QUOTE = '"';
 
-    public static List<Map<String,String>> readCSV(String csvFile,boolean firstRowAsHeader,char separators, char customQuote) throws FileNotFoundException {
-
+    public static List<Map<String,String>> parseCsv2Map(File file,boolean firstRowAsHeader,char separators, char customQuote) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
+        return parseScanner2Map(scanner,firstRowAsHeader,separators,customQuote);
+    }
+    
+    public static List<Map<String,String>> parseCsv2Map(String ss,boolean firstRowAsHeader,char separators, char customQuote) throws FileNotFoundException {
+        Scanner scanner = new Scanner(ss);
+        return parseScanner2Map(scanner,firstRowAsHeader,separators,customQuote);
+    }
+    
+    public static List<Map<String,String>> parseCsv2Map(InputStream is,boolean firstRowAsHeader,char separators, char customQuote) throws FileNotFoundException {
+        Scanner scanner = new Scanner(is);
+        return parseScanner2Map(scanner,firstRowAsHeader,separators,customQuote);
+    }
+    
+    private static List<Map<String,String>> parseScanner2Map(Scanner scanner,boolean firstRowAsHeader,char separators, char customQuote) {
     	List<Map<String,String>> res = new ArrayList<>();
-        Scanner scanner = new Scanner(new File(csvFile));
-        
-        if(firstRowAsHeader) {
+    	if(firstRowAsHeader) {
         	List<String> header = null;
         	if(scanner.hasNext()) {
         		header = parseLine(scanner.nextLine(),separators,customQuote);
@@ -152,5 +173,4 @@ public class CSVUtils {
 
         return result;
     }
-
 }

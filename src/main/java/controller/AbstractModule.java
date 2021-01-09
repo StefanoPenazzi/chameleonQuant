@@ -5,16 +5,20 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
+import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
 import com.google.inject.multibindings.MapBinder;
 import com.google.inject.util.Modules;
 
-import data.source.internal.dataset.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.dataset.timeseries.point.InternalTimeSeriesPointI;
+import data.source.internal.dataset.DatasetFactoryI;
+import data.source.internal.timeseries.TimeSeriesRequestI;
+import data.source.internal.timeseries.cleaning.TimeSeriesCleanerI;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -24,7 +28,8 @@ public abstract class AbstractModule implements Module {
 
 	private Binder binder;
 	
-	private MapBinder<String,TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> mapbinderTimeSeriesCleaner;
+	private MapBinder<String,TimeSeriesCleanerI<? extends TimeSeriesPointI>> mapbinderTimeSeriesCleaner;
+	private MapBinder<String,TimeSeriesRequestI> mapbinderTimeSeriesRequest;
 	
 	//@Inject
 	//com.google.inject.Injector injector;
@@ -39,7 +44,10 @@ public abstract class AbstractModule implements Module {
 		this.binder = binder.skipSources(AbstractModule.class);
 		
 		mapbinderTimeSeriesCleaner
-	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>>(){});
+	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends TimeSeriesPointI>>(){});
+		
+		mapbinderTimeSeriesRequest
+	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){},new TypeLiteral<TimeSeriesRequestI>(){} );
 		
 		this.install();
 		System.out.println();
@@ -52,8 +60,19 @@ public abstract class AbstractModule implements Module {
 		binder.install(module);
 	}
 	
-	protected final LinkedBindingBuilder<TimeSeriesCleanerI<? extends InternalTimeSeriesPointI>> addInternalTimeSeriesCleaner(final String name ) {
+	protected final LinkedBindingBuilder<TimeSeriesCleanerI<? extends TimeSeriesPointI>> addInternalTimeSeriesCleaner(final String name ) {
 		return mapbinderTimeSeriesCleaner.addBinding(name);
+	}
+	protected final LinkedBindingBuilder<TimeSeriesRequestI> addTimeSeriesRequest(final String name ) {
+		return mapbinderTimeSeriesRequest.addBinding(name);
+	}
+	
+	protected final LinkedBindingBuilder<DatasetFactoryI> bindDatasetFactory() {
+		return bind(DatasetFactoryI.class);
+	}
+	
+	protected <T> AnnotatedBindingBuilder<T> bind(Class<T> aClass) {
+		return binder.bind(aClass);
 	}
 	
 	protected final Binder binder() {

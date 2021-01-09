@@ -8,15 +8,15 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import data.source.external.web.connector.alphaVantage.AlphaVantageConnector;
-import data.source.external.web.parameter.alphaVantage.currencies.FromCurrency;
-import data.source.external.web.parameter.alphaVantage.currencies.ToCurrency;
-import data.source.external.web.parameter.alphaVantage.functions.Function;
-import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Interval;
-import data.source.external.web.parameter.alphaVantage.intradaytimeseries.Slice;
-import data.source.external.web.parameter.alphaVantage.output.OutputSize;
-import data.source.external.web.parameter.alphaVantage.output.OutputType;
-import data.source.external.web.parameter.alphaVantage.symbols.Symbol;
+import data.source.external.financialdatavendors.alphavantage.AlphaVantageConnector;
+import data.source.external.financialdatavendors.alphavantage.parameters.currencies.FromCurrency;
+import data.source.external.financialdatavendors.alphavantage.parameters.currencies.ToCurrency;
+import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
+import data.source.external.financialdatavendors.alphavantage.parameters.intradaytimeseries.Interval;
+import data.source.external.financialdatavendors.alphavantage.parameters.intradaytimeseries.Slice;
+import data.source.external.financialdatavendors.alphavantage.parameters.output.OutputSize;
+import data.source.external.financialdatavendors.alphavantage.parameters.output.OutputType;
+import data.source.external.financialdatavendors.alphavantage.parameters.symbols.Symbol;
 import data.source.utils.IO.TxtUtils;
 
 /**

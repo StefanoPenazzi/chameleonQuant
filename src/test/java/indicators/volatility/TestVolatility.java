@@ -18,11 +18,11 @@ import org.junit.jupiter.api.Test;
 import com.google.inject.Key;
 
 import controller.Controller;
-import data.source.external.database.influxdb.InternalStockTimeSeriesQueryInfluxdb;
-import data.source.external.database.influxdb.InternalTimeSeriesQueryRequestInfluxdb;
-import data.source.external.database.influxdb.mirrors.alphaVantage.StockEODTimeSeriesPointInfluxdb;
-import data.source.internal.dataset.core.DatasetImpl;
-import data.source.internal.dataset.timeseries.standard.InternalTimeSeriesFactoryImpl;
+import data.source.external.database.influxdb.TimeSeriesId;
+import data.source.external.database.influxdb.TimeSeriesRequestInfluxdb;
+import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
+import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
 import indicators.movingAverage.ExponentialMovingAverage;
 import indicators.movingAverage.MACD;
 
@@ -46,17 +46,17 @@ class TestVolatility {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
+		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
+			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 TrueRange tr = new TrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"ACER",inter));
+		 TrueRange tr = new TrueRange(dts,new TimeSeriesId (startInstant,endInstant,market,"ACER",inter,StockEODTimeSeriesPointInfluxdb.class));
          DatasetImpl ds = tr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -77,17 +77,17 @@ class TestVolatility {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
+		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
+			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 AverageTrueRange atr = new AverageTrueRange(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"ACER",inter),14);
+		 AverageTrueRange atr = new AverageTrueRange(dts,new TimeSeriesId (startInstant,endInstant,market,"ACER",inter,StockEODTimeSeriesPointInfluxdb.class),14);
          DatasetImpl ds = atr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -108,17 +108,17 @@ class TestVolatility {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<InternalTimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-		 InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new InternalTimeSeriesQueryRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
+		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 InternalStockTimeSeriesQueryInfluxdb  query = new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,stock,inter);
+			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
 			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 MACD macd = new MACD(dts,new InternalStockTimeSeriesQueryInfluxdb (startInstant,endInstant,market,"ACER",inter),"close", 12,26,9);
+		 MACD macd = new MACD(dts,new TimeSeriesId (startInstant,endInstant,market,"ACER",inter,StockEODTimeSeriesPointInfluxdb.class),"close", 12,26,9);
          DatasetImpl ds = macd.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
