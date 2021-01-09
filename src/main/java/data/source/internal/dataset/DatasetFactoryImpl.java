@@ -39,7 +39,7 @@ public class DatasetFactoryImpl implements DatasetFactoryI {
 		DatasetImpl dts = new DatasetImpl();
 		for(TimeSeriesId id : listOfId) {
 			TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = Controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-			TimeSeriesRequestI itsq = mapTimeSeriesRequest.get("influxdb");
+			TimeSeriesRequestI itsq = mapTimeSeriesRequest.get("alphavantage");
 			//TimeSeriesRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new TimeSeriesRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
 			dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,id));
 		}

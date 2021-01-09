@@ -22,6 +22,7 @@ import org.influxdb.dto.Point;
 import org.influxdb.dto.Point.Builder;
 
 import data.source.external.database.influxdb.Influxdb;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
 import data.source.utils.IO.CSVUtils;
 
 /**
@@ -33,7 +34,7 @@ public abstract class DatabaseAbstract implements DatabaseI {
 	private final static Logger log = LogManager.getLogger(Influxdb.class);
 	
 	
-	protected Map<String,Class<?>> getMapTypes( Class<? extends MirrorI> mirror){
+	protected Map<String,Class<?>> getMapTypes( Class<? extends TimeSeriesPointI> mirror){
 		
 		 Map<String,Class<?>> res = new HashMap<>();
 		 Field[] declaredFields = mirror.getDeclaredFields();

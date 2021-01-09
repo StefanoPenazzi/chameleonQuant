@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
-import data.source.annotation.InternalTimeSeries.TagName;
+import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
+import data.source.annotations.TimeSeriesAnnotations.TagName;
 
 /**
  * @author stefanopenazzi

@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import data.source.annotation.InternalTimeSeries.TagName;
+import data.source.annotations.TimeSeriesAnnotations.TagName;
 import data.source.utils.IO.ReflectionsUtils;
 
 /**

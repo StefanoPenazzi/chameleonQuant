@@ -7,12 +7,10 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
-
 import org.influxdb.annotation.Column;
 import org.influxdb.annotation.Measurement;
-import data.source.annotation.InternalTimeSeries.Function;
-import data.source.annotation.InternalTimeSeries.TagName;
-import data.source.external.database.MirrorI;
+import data.source.annotations.TimeSeriesAnnotations.Function;
+import data.source.annotations.TimeSeriesAnnotations.TagName;
 import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
 
 /**
@@ -21,7 +19,7 @@ import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
  */
 
 @Measurement(name = "")
-public class StockEODTimeSeriesPointInfluxdb extends TimeSeriesPointAbstract  implements MirrorI  {
+public class StockEODTimeSeriesPointInfluxdb extends TimeSeriesPointAbstract {
 
 	    /**
 	 * @param time

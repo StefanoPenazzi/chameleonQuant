@@ -4,10 +4,9 @@
 package data.source.internal.timeseries.point;
 
 import java.time.Instant;
-import java.util.Date;
-import java.util.Map;
+import java.time.format.DateTimeFormatter;
 
-import data.source.annotation.InternalTimeSeries.TagName;
+import data.source.annotations.TimeSeriesAnnotations.TagName;
 
 /**
  * @author stefanopenazzi
@@ -33,6 +32,12 @@ public class SingleTagPoint<T> extends TimeSeriesPointAbstract {
 	@TagName(name = "value")
 	public T getValue() {
 		return this.value;
+	}
+
+	@Override
+	public DateTimeFormatter getTimeFormat() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.DoubleStream;
 
-import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
-import data.source.annotation.InternalTimeSeries.TagName;
+import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
+import data.source.annotations.TimeSeriesAnnotations.TagName;
 import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.dataset.DatasetImpl;

@@ -1,16 +1,14 @@
 /**
  * 
  */
-package data.source.external.database.influxdb.mirrors;
+package data.source.external.financialdatavendors.alphavantage.mirrors;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
-import org.influxdb.annotation.Column;
-
-import data.source.annotations.TimeSeriesAnnotations.Function;
+import data.source.annotations.TimeSeriesAnnotations.Column;
 import data.source.annotations.TimeSeriesAnnotations.TagName;
 import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
 
@@ -18,38 +16,24 @@ import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
  * @author stefanopenazzi
  *
  */
-public class FOREXEODTimeSeriesPointInfluxdb extends TimeSeriesPointAbstract  {
-
-    /**
- * @param time
- * @param open
- * @param close
- * @param high
- * @param low
- * @param volume
- */
+public class StockEODTimeSeriesPointAlphaVantage extends TimeSeriesPointAbstract  {
 
 	@Column(name = "time")
     private Instant time;
- 
-    @Column(name = "open")
-    @Function(name = "first")
+	
+	@Column(name = "open")
     private Double open;
-    
-    @Column(name = "close")
-    @Function(name = "last")
+	
+	@Column(name = "close")
     private Double close;
- 
-    @Column(name = "high")
-    @Function(name = "max")
+	
+	@Column(name = "high")
     private Double high;
- 
-    @Column(name = "low")
-    @Function(name = "min")
+	
+	@Column(name = "low")
     private Double low;
- 
-    @Column(name = "volume")
-    @Function(name = "sum")
+	
+	@Column(name = "volume")
     private Double volume;
 
 	@Override
@@ -91,6 +75,6 @@ public class FOREXEODTimeSeriesPointInfluxdb extends TimeSeriesPointAbstract  {
          .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
          .toFormatter();
 		return formatter;
-		//return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	}
+
 }

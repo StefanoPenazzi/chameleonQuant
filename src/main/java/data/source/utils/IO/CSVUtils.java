@@ -20,7 +20,6 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import data.source.external.database.MirrorI;
 import data.source.external.database.influxdb.Influxdb;
 
 public class CSVUtils {

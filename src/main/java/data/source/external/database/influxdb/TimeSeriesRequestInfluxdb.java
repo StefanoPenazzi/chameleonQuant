@@ -21,8 +21,9 @@ import org.influxdb.annotation.Column;
 import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
 import org.influxdb.impl.InfluxDBResultMapper;
-import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
-import data.source.annotation.InternalTimeSeries.Function;
+
+import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
+import data.source.annotations.TimeSeriesAnnotations.Function;
 import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.TimeSeriesRequestI;
 import data.source.internal.timeseries.point.TimeSeriesPointAbstract;

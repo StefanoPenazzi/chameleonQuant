@@ -6,7 +6,7 @@ package data.source.external.database.influxdb;
 import java.time.Instant;
 import java.util.Date;
 
-import data.source.annotation.InternalQueryAnnotation.InternalQueryInfo;
+import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;

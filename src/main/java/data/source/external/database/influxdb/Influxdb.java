@@ -38,7 +38,7 @@ import org.influxdb.impl.InfluxDBResultMapper;
 
 import data.source.external.database.DatabaseAbstract;
 import data.source.external.database.DatabaseI;
-import data.source.external.database.MirrorI;
+import data.source.internal.timeseries.point.TimeSeriesPointI;
 import data.source.utils.IO.CSVUtils;
 
 
@@ -85,7 +85,7 @@ public class Influxdb extends DatabaseAbstract {
 
 	
 	@Override
-	public void update( String database,  String measurement , Class<? extends MirrorI> mirror ,List<Map<String,String>> csvMap) {
+	public void update( String database,  String measurement , Class<? extends TimeSeriesPointI> mirror ,List<Map<String,String>> csvMap) {
 		boolean pingCheck = ping();
 		if (!pingCheck) {
 			//run exception
@@ -137,10 +137,10 @@ public class Influxdb extends DatabaseAbstract {
 	}
 
 	@Override
-	public List<? extends MirrorI> select(String query,String database,Class<? extends MirrorI> cl) {
+	public List<? extends TimeSeriesPointI> select(String query,String database,Class<? extends TimeSeriesPointI> cl) {
 		QueryResult queryResult = influxDB.query(new Query(query,database));
 		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-		List<? extends MirrorI> pointList = resultMapper.toPOJO(queryResult, cl);
+		List<? extends TimeSeriesPointI> pointList = resultMapper.toPOJO(queryResult, cl);
 		return pointList;
 	}
 	

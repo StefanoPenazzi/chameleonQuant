@@ -1,7 +1,7 @@
 /**
  * 
  */
-package data.source.annotation;
+package data.source.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * @author stefanopenazzi
  *
  */
-public interface InternalTimeSeries {
+public interface TimeSeriesAnnotations {
 
 	@Inherited
 	@Retention(RetentionPolicy.RUNTIME)
@@ -46,6 +46,12 @@ public interface InternalTimeSeries {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
 	public @interface TagName {
+	  String name() default "";
+	}
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface Column {
 	  String name() default "";
 	}
 
