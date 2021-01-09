@@ -4,7 +4,6 @@
  
 <html>
 <head>
-
   
 </head>
 <body>
@@ -23,22 +22,26 @@ The chameleon is a master in this! It is a patient predator adapting to the surr
 The first steps are always the hardest. Do not give way to discouragement! There are probably zillions of things that are going through your mind right now, but keep reading, we will show you how chameleonQuant can help you to develop your own tool kit to live in the financial market jungle.
 </div>
 
+<h1> Prerequisites</h1>
+
+<h1> Installing</h1>
+
 <h1>First step into the jungle</h1>
 <div align="justify">
-No one would step into the jungle without a survival kit!  chameleonQuant helps you in this, providing you  a basic survival tool kit and a framework to support you in developing your own tools. A good understanding of the basic tools will help you to familiarize with the framework and its components, test a few preimplemented indicators and strategies, and unleash your creativity in developing amazing new strategies. 
+No one would step into the jungle without a survival kit!  chameleonQuant helps you in this, providing you  a basic survival tool kit and a framework to support you in developing your own tools. A good understanding of the basic tools will help you to familiarize with the framework and its components, test a few preimplemented indicators,  strategies, etc, and unleash your creativity developing new ones. 
 </div>
 <h3>Your basic survival kit</h3>
 
 <p align="center">
  <figure align="center">
-     <img width="600" height="650" src="src/main/resources/images/generalScm.PNG" style="margin-right: 10px;" class="center" />
+     <img width="800" height="2301" src="src/main/resources/images/schema_overview.png" style="margin-right: 10px;" class="center" />
      <figcaption>
      <p>Basic survival kit scheme</p>
      </figcaption>
   </figure>
 </p>
 <ul>
-<li>Map</li>
+<li>Map - Data block</li>
 <div align="justify">
 An object that can not miss in a survival kit is a map. This is fundamental to navigate in the financial market. This map is not a classic map. If you use an old-school paper road map, this relies on a static environment. Even if unexpected events can always happen to delay your arrival, sooner or later you will reach your destination, which didn't change its position in the meanwhile. The financial market is poles apart. It is a very dynamic environment in which time plays a fundamental role. A static map would be useless because the financial market is in constant evolution. The financial market is composed by securities like a jungle is composed by plants. 
 Just like the water and the sun are the main resources a plant needs to growth, in the classic model of an efficient security market, prices move in response to new public information that causes traders to simultaneously revise their belief ( <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1298299">Why Do Security Prices Change? A Transaction-Level Analysis of Nyse Stocks</a> ). I know...I know... prices follow much more complicated models, but let me keep it simple, for now.   
@@ -163,6 +166,5 @@ The training camp is a safe environment in which you are able to...
 <h1>Versioning and Packaging</h1>
 
 <h1>References</h1>
-
 </body>
 </html>
