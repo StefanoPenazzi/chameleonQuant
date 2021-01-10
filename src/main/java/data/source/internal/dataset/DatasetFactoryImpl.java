@@ -12,10 +12,10 @@ import com.google.inject.Key;
 import com.google.inject.multibindings.MapBinder;
 
 import controller.Controller;
-import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.external.database.influxdb.TimeSeriesRequestInfluxdb;
 import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
 import data.source.internal.timeseries.TimeSeriesRequestI;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
@@ -35,16 +35,13 @@ public class DatasetFactoryImpl implements DatasetFactoryI {
 	}
 
 	@Override
-	public DatasetI create(List<TimeSeriesId> listOfId) {
+	public DatasetI create(List<TimeSeriesRequestIdI> listOfId) {
 		DatasetImpl dts = new DatasetImpl();
-		for(TimeSeriesId id : listOfId) {
-			TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = Controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
-			TimeSeriesRequestI itsq = mapTimeSeriesRequest.get("alphavantage");
-			//TimeSeriesRequestInfluxdb<StockEODTimeSeriesPointInfluxdb> itsq = new TimeSeriesRequestInfluxdb<StockEODTimeSeriesPointInfluxdb>(StockEODTimeSeriesPointInfluxdb.class);
+		for(TimeSeriesRequestIdI id : listOfId) {
+			TimeSeriesFactoryImpl itsf  = Controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
+			TimeSeriesRequestI itsq = mapTimeSeriesRequest.get(id.getSource());
 			dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,id));
 		}
 	    return dts;
-		//return null;
 	}
-
 }

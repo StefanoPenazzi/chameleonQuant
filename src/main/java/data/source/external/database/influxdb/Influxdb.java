@@ -105,6 +105,7 @@ public class Influxdb extends DatabaseAbstract {
 				  .build();
 		for(Map<String, String> m: csvMap) {
 			Number date = null;
+			//TODO this is not correct!! UTC is not correct for US data etc
 		    LocalDateTime dateTime = LocalDateTime.parse(m.get(timeDaily), formatter);
 			OffsetDateTime utcDateTime = dateTime.atOffset(ZoneOffset.UTC);
 			date = utcDateTime.toInstant().toEpochMilli();	

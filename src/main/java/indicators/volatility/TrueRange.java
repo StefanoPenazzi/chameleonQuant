@@ -22,23 +22,23 @@ import indicators.IndicatorAbstract;
  * @author stefanopenazzi
  *
  */
-public class TrueRange <T extends TimeSeriesPointI> extends IndicatorAbstract {
+public class TrueRange extends IndicatorAbstract {
 
-	private final TimeSeriesImpl<T> itsRef;
-	private TimeSeriesImpl <SingleTagPoint<Double>> itsRes;
+	private final TimeSeriesImpl itsRef;
+	private TimeSeriesImpl itsRes;
 	
 	/**
 	 * @param dataSet
 	 */
 	public TrueRange(DatasetI dataSet,TimeSeriesIdAbstract id) {
 		super(dataSet);
-		this.itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		this.itsRef = (TimeSeriesImpl) this.dataSet.getTimeSeries(id);
 		
 	}
 	
 	public TrueRange(DatasetI dataSet) {
 		super(dataSet);
-		itsRef = (TimeSeriesImpl<T>) this.dataSet.iterator().next();
+		itsRef = (TimeSeriesImpl) this.dataSet.iterator().next();
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class TrueRange <T extends TimeSeriesPointI> extends IndicatorAbstract {
 	    	   res.add(new SingleTagPoint<Double>(point.getTime(),Math.max(Math.abs(resultLow-resultClose),Math.max((resultHigh-resultLow), Math.abs(resultHigh-resultClose)))));
 	       }
 	       
-		   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"TR","",SingleTagPoint.class);
+		   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"TR","");
 		   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 		   DatasetImpl ds = new DatasetImpl();
 		   ds.addTimeSeries(itsRes);

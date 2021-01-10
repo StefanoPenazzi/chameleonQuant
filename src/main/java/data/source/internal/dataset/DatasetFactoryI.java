@@ -5,7 +5,7 @@ package data.source.internal.dataset;
 
 import java.util.List;
 
-import data.source.external.database.influxdb.TimeSeriesId;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
 
 /**
  * @author stefanopenazzi
@@ -13,6 +13,6 @@ import data.source.external.database.influxdb.TimeSeriesId;
  */
 public interface DatasetFactoryI {
 	
-	public DatasetI create(List<TimeSeriesId> listOfId);
+	public DatasetI create(List<TimeSeriesRequestIdI> listOfId);
 
 }

@@ -54,9 +54,9 @@ public final class Controller implements ControllerI {
 		 
 		@Override
 	    protected void configure() {	  
-			  MapBinder<String,TimeSeriesCleanerI<? extends TimeSeriesPointI>> mapbinderTimeSeriesCleaner = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends TimeSeriesPointI>>(){});
+			  MapBinder<String,TimeSeriesCleanerI> mapbinderTimeSeriesCleaner = MapBinder.newMapBinder(binder(), new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI>(){});
 			  
-			  mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends TimeSeriesPointI>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
+			  mapbinderTimeSeriesCleaner.addBinding("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
 			 
 	    }
 	}

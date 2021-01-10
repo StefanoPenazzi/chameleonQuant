@@ -4,6 +4,7 @@
 package data.source.external.database.influxdb.mirrors;
 
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -89,7 +90,7 @@ public class FOREXEODTimeSeriesPointInfluxdb extends TimeSeriesPointAbstract  {
          .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
          .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
          .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
-         .toFormatter();
+         .toFormatter().withZone(ZoneOffset.UTC);
 		return formatter;
 		//return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	}

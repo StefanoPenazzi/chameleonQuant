@@ -15,18 +15,18 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  * @author stefanopenazzi
  *
  */
-public interface TimeSeriesDataStructureI<T extends TimeSeriesPointI> extends Iterable<T> {
+public interface TimeSeriesDataStructureI extends Iterable<TimeSeriesPointI> {
 	
 	public TimeSeriesDataStructureI getRange(Instant startTime, Instant endTime);
-	public T getPoint(Instant time);
-	public T getFirst();
-	public T getLast();
-	public T getCeilingPoint(Instant time);
-	public T getFloorPoint(Instant time);
-	public void addPoint(T tsp);
-	public void removePoint(T tsp);
-	public T getPointByIndex(int i);
-	public Iterator<T> iterator();
-	public List<T> getList();
+	public TimeSeriesPointI getPoint(Instant time);
+	public TimeSeriesPointI getFirst();
+	public TimeSeriesPointI getLast();
+	public TimeSeriesPointI getCeilingPoint(Instant time);
+	public TimeSeriesPointI getFloorPoint(Instant time);
+	public void addPoint(TimeSeriesPointI tsp);
+	public void removePoint(TimeSeriesPointI tsp);
+	public TimeSeriesPointI getPointByIndex(int i);
+	public Iterator<TimeSeriesPointI> iterator();
+	public List<TimeSeriesPointI> getList();
 
 }

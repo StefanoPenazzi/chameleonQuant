@@ -19,18 +19,18 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  * @author stefanopenazzi
  *
  */
-public interface TimeSeriesI<T extends TimeSeriesPointI> {
+public interface TimeSeriesI {
 	
-	public TimeSeriesDataStructureI<T> getRange(Instant timeStart, Instant timeEnd);
-	
-	
-	public T getPoint(Instant time);
+	public TimeSeriesDataStructureI getRange(Instant timeStart, Instant timeEnd);
 	
 	
-	public T getCeilingPoint(Instant time);
+	public TimeSeriesPointI getPoint(Instant time);
 	
 	
-	public T getFloorPoint(Instant time);
+	public TimeSeriesPointI getCeilingPoint(Instant time);
+	
+	
+	public TimeSeriesPointI getFloorPoint(Instant time);
 	
 	
 	public boolean getSingleInterval();
@@ -40,11 +40,11 @@ public interface TimeSeriesI<T extends TimeSeriesPointI> {
 	public Instant getLastInstant();
 	public int hashCode();
 	
-	public TimeSeriesIdAbstract getQuery();
+	public TimeSeriesIdI getQuery();
 	
-	public Iterator<T> iterator();
+	public Iterator<TimeSeriesPointI> iterator();
 	
-	public List<T> getList();
+	public List<TimeSeriesPointI> getList();
 	public String getString();
 	
 	public Method getTagMethod(String tagName);

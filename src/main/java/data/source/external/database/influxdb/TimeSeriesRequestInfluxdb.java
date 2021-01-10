@@ -26,6 +26,7 @@ import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotations.TimeSeriesAnnotations.Function;
 import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.TimeSeriesRequestI;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import data.source.utils.IO.ReflectionsUtils;
@@ -41,13 +42,6 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 	final String serverURL;
 	final String username;
 	final String password;
-	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss]")
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
-            .toFormatter().withZone(ZoneId.of("America/New_York"));
-	
 	
 	public TimeSeriesRequestInfluxdb() {
 		Properties properties = new Properties();
@@ -62,19 +56,14 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 	    this.password = properties.getProperty("influx_password");
 	}
 	
-	private String getStringQuery(TimeSeriesId iq) {
-		
-		//"SELECT first(open) AS open, last(close) AS close, max(high) AS high, min(low) AS low, sum(volume) AS volume FROM "+stock+" WHERE time>'2020-10-19 09:30:00'  GROUP BY time(8h)
+	private String getStringQuery(TimeSeriesRequestIdInfluxdb iq) {
 		
 		String res ="SELECT ";
 		
-		//TODO what happens if one or both the dates are null?
-		String st = iq.getStartInstant() == null? "1990-01-01 00:00:00":formatter.format(iq.getStartInstant()).toString(); 
-		String et = iq.getEndInstant() == null?  LocalDateTime.now().format(formatter) : formatter.format(iq.getEndInstant()).toString();
+		String st = iq.getStartTime();
+		String et = iq.getEndTime();
 		
 		//TODO check that the dates range is not too big compare to the interval???
-		
-		
 		//build the fields
 		Field[] fields = iq.getTimeSeriesPoint().getDeclaredFields();
 		for(Field field: fields) {
@@ -101,35 +90,31 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		 if (res.charAt(res.length() - 1) == ' ' && res.charAt(res.length() - 2) ==',') {
 			 res = res.substring(0, res.length() - 2);
 		}
-		res = res + " FROM "+iq.getTicker()+" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval()+")" ;
-		
+		res = res + " FROM \""+iq.getTicker()+"\" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval()+")" ;
 		return res;
 	}
-	
+
 	@Override
-	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesId iq) { 
+	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iqp) {
+		
+		TimeSeriesRequestIdInfluxdb iq = (TimeSeriesRequestIdInfluxdb)iqp;
 		Influxdb idb = new Influxdb();
 		idb.connect();
 		//Query data from InfluxDB
 		String db = "";
 		try {
-			db = (String)(ReflectionsUtils.getMethodsAnnotatedWith(TimeSeriesId.class,InternalQueryInfo.class,"database").invoke(iq));
+			db = (String)(ReflectionsUtils.getMethodsAnnotatedWith(TimeSeriesRequestIdInfluxdb.class,InternalQueryInfo.class,"database").invoke(iq));   //TODO reflection not necessary anymore!!!!!!!!!
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Query query = new Query(getStringQuery(iq),db);
 		QueryResult queryResult = idb.getInfluxDB().query(query);
-		//Convert QueryResult to POJO
 		String measurement = iq.getTicker();
 		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
 		List<? extends TimeSeriesPointI> results = resultMapper.toPOJO(queryResult, iq.getTimeSeriesPoint(), measurement );   

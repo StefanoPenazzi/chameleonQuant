@@ -16,10 +16,10 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  * @author stefanopenazzi
  *
  */
-public class TimeSeriesCleanerNullValuesStockInfluxdb <T extends TimeSeriesPointI> implements TimeSeriesCleanerI<T> {
+public class TimeSeriesCleanerNullValuesStockInfluxdb <T extends TimeSeriesPointI> implements TimeSeriesCleanerI {
 
 	@Override
-	public TimeSeriesDataStructureI<T> clean(TimeSeriesDataStructureI<T> tsd) {
+	public TimeSeriesDataStructureI clean(TimeSeriesDataStructureI tsd) {
 		//List<T> rem = new ArrayList<>();
 		//for(T itp: tsd) {
 		//	  if(itp.getClose() == null || itp.getHigh() == null || itp.getLow() == null || itp.getOpen() == null || itp.getVolume() == null) {

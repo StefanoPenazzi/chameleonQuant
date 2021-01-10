@@ -21,7 +21,7 @@ import indicators.IndicatorAbstract;
  * @author stefanopenazzi
  *
  */
-public class MACD <T extends TimeSeriesPointI> extends IndicatorAbstract {
+public class MACD extends IndicatorAbstract {
 
 	private final DatasetI dataSet;
 	private final TimeSeriesIdAbstract id;
@@ -45,14 +45,14 @@ public class MACD <T extends TimeSeriesPointI> extends IndicatorAbstract {
 	public DatasetImpl create() throws Exception { 
 		
 		//TODO bypassare il dataset come ?
-		ExponentialMovingAverage<T> fastEMA = new ExponentialMovingAverage<T>(dataSet,id,tagName,fastEMAperiods);
+		ExponentialMovingAverage fastEMA = new ExponentialMovingAverage(dataSet,id,tagName,fastEMAperiods);
 		DatasetImpl dsFastEMA = fastEMA.create();
 		
-		ExponentialMovingAverage<T> slowEMA = new ExponentialMovingAverage<T>(dataSet,id,tagName,slowEMAperiods);
+		ExponentialMovingAverage slowEMA = new ExponentialMovingAverage(dataSet,id,tagName,slowEMAperiods);
 		DatasetImpl dsSlowEMA = slowEMA.create();
 		
-		List<T> itsFastEMA = ((TimeSeriesImpl<T>) dsFastEMA.iterator().next()).getList();
-		List<T> itsSlowEMA = ((TimeSeriesImpl<T>) dsSlowEMA.iterator().next()).getList();
+		List<? extends TimeSeriesPointI> itsFastEMA = ((TimeSeriesImpl) dsFastEMA.iterator().next()).getList();
+		List<? extends TimeSeriesPointI> itsSlowEMA = ((TimeSeriesImpl) dsSlowEMA.iterator().next()).getList();
 		
 		//MACD
 		List<SingleTagPoint<Double>> macdRes = new ArrayList<>();
@@ -61,13 +61,13 @@ public class MACD <T extends TimeSeriesPointI> extends IndicatorAbstract {
 			macdRes.add(new SingleTagPoint<Double>(itsFastEMA.get(j).getTime(),diff));
 		}
 		 DatasetImpl macdDs = new DatasetImpl();
-		 RBTree<SingleTagPoint<Double>> macdRBT = new RBTree<SingleTagPoint<Double>>(macdRes);
-		 macdDs.addTimeSeries(new TimeSeriesImpl(macdRBT,new TimeSeriesIdImpl(macdRBT.getFirst().getTime(),macdRBT.getLast().getTime(),"macd","",SingleTagPoint.class)));
+		 RBTree macdRBT = new RBTree(macdRes);
+		 macdDs.addTimeSeries(new TimeSeriesImpl(macdRBT,new TimeSeriesIdImpl(macdRBT.getFirst().getTime(),macdRBT.getLast().getTime(),"macd","")));
 		 
 		 //signal line
 		 SimpleMovingAverage sma = new SimpleMovingAverage(macdDs,"value",this.maPeriods);
 		 DatasetImpl signalLineDs = sma.create();
-		 List<SingleTagPoint<Double>> slRes = ((TimeSeriesAbstract<SingleTagPoint<Double>>)signalLineDs.iterator().next()).getList();
+		 List<TimeSeriesPointI> slRes = signalLineDs.iterator().next().getList();
 		 
 		 
 		 //histogram macd
@@ -77,7 +77,7 @@ public class MACD <T extends TimeSeriesPointI> extends IndicatorAbstract {
 				histRes.add(new SingleTagPoint<Double>(slRes.get(slRes.size()-j).getTime(),diff));
 		 }
 		 DatasetImpl histDs = new DatasetImpl();
-		 histDs.addTimeSeries(new TimeSeriesImpl(new RBTree(histRes),new TimeSeriesIdImpl(null,null,"histogramMacd","",SingleTagPoint.class)));
+		 histDs.addTimeSeries(new TimeSeriesImpl(new RBTree(histRes),new TimeSeriesIdImpl(null,null,"histogramMacd","")));
 		 
 		 DatasetImpl resDs = new DatasetImpl();
 		 resDs.merge(macdDs);

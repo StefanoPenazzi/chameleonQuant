@@ -12,11 +12,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import com.google.inject.Key;
 import controller.Controller;
-import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.external.database.influxdb.TimeSeriesRequestInfluxdb;
 import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.DatasetImpl;
 import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
+import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
 
 /**
  * @author stefanopenazzi
@@ -38,18 +38,18 @@ class TestMovingAverage {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
-		 for(String stock: stocks) {
-			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
-			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
-		 }
+		 //for(String stock: stocks) {
+		//	 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
+		//	 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+		 //}
 		 
-		 SimpleMovingAverage sma = new SimpleMovingAverage(dts,new TimeSeriesId (startInstant,endInstant,market,"TSLA",inter,StockEODTimeSeriesPointInfluxdb.class),"low",7);
-		 sma.create();
+		 //SimpleMovingAverage sma = new SimpleMovingAverage(dts,new TimeSeriesId (startInstant,endInstant,market,"TSLA",inter,StockEODTimeSeriesPointInfluxdb.class),"low",7);
+		 //sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
 		System.out.println();
@@ -69,17 +69,17 @@ class TestMovingAverage {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
-			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts,new TimeSeriesId (startInstant,endInstant,market,"TSLA",inter,StockEODTimeSeriesPointInfluxdb.class),"low",3);
+		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts,new TimeSeriesIdImpl (startInstant,endInstant,"TSLA",inter),"low",3);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

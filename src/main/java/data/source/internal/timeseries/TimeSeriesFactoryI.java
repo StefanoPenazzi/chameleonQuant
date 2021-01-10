@@ -5,7 +5,6 @@ package data.source.internal.timeseries;
 
 import java.util.List;
 
-import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
 
@@ -13,10 +12,10 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  * @author stefanopenazzi
  *
  */
-public interface TimeSeriesFactoryI<T extends TimeSeriesPointI> {
+public interface TimeSeriesFactoryI {
 	
-	public TimeSeriesAbstract<T> createTimeSeriesQueryRequest(List<String> cleanersId, TimeSeriesRequestI itsReq ,TimeSeriesId iq);
-	public TimeSeriesAbstract<T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,TimeSeriesId iq);
-	public TimeSeriesAbstract<T> createTimeSeries(TimeSeriesDataStructureI<T> tsd,TimeSeriesId iq,List<String> cleanersId);
+	public TimeSeriesI createTimeSeriesQueryRequest(List<String> cleanersId, TimeSeriesRequestI itsReq ,TimeSeriesRequestIdI iq);
+	public TimeSeriesI createTimeSeries(TimeSeriesDataStructureI tsd,TimeSeriesIdI iq);
+	public TimeSeriesI createTimeSeries(TimeSeriesDataStructureI tsd,TimeSeriesIdI iq,List<String> cleanersId);
 
 }

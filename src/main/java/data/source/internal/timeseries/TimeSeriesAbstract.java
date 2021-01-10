@@ -23,22 +23,22 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  * @author stefanopenazzi
  *
  */
-public abstract class TimeSeriesAbstract <T extends TimeSeriesPointI> implements TimeSeriesI<T> {
+public abstract class TimeSeriesAbstract implements TimeSeriesI {
 	
-	private final TimeSeriesDataStructureI<T> tsd;
-	private final TimeSeriesIdAbstract itsq;
+	private final TimeSeriesDataStructureI tsd;
+	private final TimeSeriesIdI itsq;
 	private boolean singleInterval;
 	
-	public TimeSeriesAbstract(TimeSeriesDataStructureI<T> tsd,TimeSeriesIdAbstract itsq, List<? extends TimeSeriesCleanerI<T>> cleaners) {
+	public TimeSeriesAbstract(TimeSeriesDataStructureI tsd,TimeSeriesIdI itsq, List<? extends TimeSeriesCleanerI> cleaners) {
 		
 		this.itsq = itsq;
 		this.tsd = initialize(tsd,cleaners);
 	}
 	
 	//data cleaning and general rules should be provided externally (how to manage null values, gaps, etc)
-	public TimeSeriesDataStructureI<T> initialize(TimeSeriesDataStructureI<T> tsd,List<? extends TimeSeriesCleanerI<T>> cleaners) {
+	public TimeSeriesDataStructureI initialize(TimeSeriesDataStructureI tsd,List<? extends TimeSeriesCleanerI> cleaners) {
 		
-		TimeSeriesDataStructureI<T> tsdInter = tsd;
+		TimeSeriesDataStructureI tsdInter = tsd;
 		tsdInter = firstTimeSeriesAdjustment(tsdInter);
 		
 		for(TimeSeriesCleanerI c: cleaners) {
@@ -48,32 +48,32 @@ public abstract class TimeSeriesAbstract <T extends TimeSeriesPointI> implements
 		return tsdInter;
 	}
 	
-	public abstract TimeSeriesDataStructureI<T> firstTimeSeriesAdjustment(TimeSeriesDataStructureI<T> tsd);
+	public abstract TimeSeriesDataStructureI firstTimeSeriesAdjustment(TimeSeriesDataStructureI tsd);
 	
-	public abstract TimeSeriesDataStructureI<T> lastTimeSeriesAdjustment(TimeSeriesDataStructureI<T> tsd);
+	public abstract TimeSeriesDataStructureI lastTimeSeriesAdjustment(TimeSeriesDataStructureI tsd);
 	
 	@Override
-	public TimeSeriesDataStructureI<T> getRange(Instant startTime, Instant endTime) {
+	public TimeSeriesDataStructureI getRange(Instant startTime, Instant endTime) {
 		return this.tsd.getRange(startTime, endTime);
 	}
 	
 	@Override
-	public T getPoint(Instant time) {
-		return (T) this.tsd.getPoint(time);
+	public TimeSeriesPointI getPoint(Instant time) {
+		return this.tsd.getPoint(time);
 	}
 
 	@Override
-	public T getCeilingPoint(Instant time) {
-		return (T) this.tsd.getCeilingPoint(time);
+	public TimeSeriesPointI getCeilingPoint(Instant time) {
+		return this.tsd.getCeilingPoint(time);
 	}
 
 	@Override
-	public T getFloorPoint(Instant time) {
-		return (T) this.tsd.getFloorPoint(time);
+	public TimeSeriesPointI getFloorPoint(Instant time) {
+		return this.tsd.getFloorPoint(time);
 	}
 	
-	public T getRange(Date startDate, Date endDate) {
-		return (T) this.tsd.getRange(startDate.toInstant(), endDate.toInstant());
+	public TimeSeriesDataStructureI getRange(Date startDate, Date endDate) {
+		return this.tsd.getRange(startDate.toInstant(), endDate.toInstant());
 	}
 	
 	
@@ -92,7 +92,7 @@ public abstract class TimeSeriesAbstract <T extends TimeSeriesPointI> implements
 	}
 
 	@Override
-	public TimeSeriesIdAbstract getQuery() {
+	public TimeSeriesIdI getQuery() {
 		return this.itsq;
 	}
 
@@ -131,7 +131,7 @@ public abstract class TimeSeriesAbstract <T extends TimeSeriesPointI> implements
 	}
 	
 	@Override
-	public Iterator<T> iterator() {
+	public Iterator<TimeSeriesPointI> iterator() {
 		return tsd.iterator();
 	}
 	
@@ -142,14 +142,14 @@ public abstract class TimeSeriesAbstract <T extends TimeSeriesPointI> implements
 	}
 	
 	@Override
-	public List<T> getList() {
+	public List<TimeSeriesPointI> getList() {
 		return tsd.getList();
 	}
 	
 	@Override
 	public String getString() {
 		String s = itsq.getString() + "\n";
-		for(T point: getList()) {
+		for(TimeSeriesPointI point: getList()) {
 			s = s + point.getString() + "\n";
 		}
 		return s;

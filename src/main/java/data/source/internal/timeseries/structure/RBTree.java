@@ -20,76 +20,76 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  * @author stefanopenazzi
  *
  */
-public class RBTree<T extends TimeSeriesPointI> implements TimeSeriesDataStructureI<T> {
+public class RBTree implements TimeSeriesDataStructureI {
 
-	private TreeMap<Instant,T> map;
+	private TreeMap<Instant,TimeSeriesPointI> map;
 	
-	public RBTree(List<T> input) {
+	public RBTree(List<? extends TimeSeriesPointI> input) {
 		initialize(input);
 	}
 	
-	private void initialize(List<T> input) {
-		map = new TreeMap<Instant,T>();
-		for(T tsp: input) {
+	private void initialize(List<? extends TimeSeriesPointI> input) {
+		map = new TreeMap<Instant,TimeSeriesPointI>();
+		for(TimeSeriesPointI tsp: input) {
 			map.put(tsp.getTime(), tsp);
 		}
 	}
 	
 	@Override
-	public TimeSeriesDataStructureI<T> getRange(Instant startTime, Instant endTime) {
+	public TimeSeriesDataStructureI getRange(Instant startTime, Instant endTime) {
 		Instant aStart = map.floorEntry(startTime).getKey();
 		Instant aEnd = map.ceilingEntry(endTime).getKey();
-		NavigableMap<Instant, T> subMap = map.subMap(aStart, true,aEnd,true);
-		return new RBTree<T>((List<T>) subMap.values());
+		NavigableMap<Instant, TimeSeriesPointI> subMap = map.subMap(aStart, true,aEnd,true);
+		return new RBTree((List<? extends TimeSeriesPointI>) subMap.values());
 	}
 
 	@Override
-	public T getPoint(Instant time) {
+	public TimeSeriesPointI getPoint(Instant time) {
 		return map.get(time);
 	}
 
 	@Override
-	public T getCeilingPoint(Instant time) {
+	public TimeSeriesPointI getCeilingPoint(Instant time) {
 		return map.ceilingEntry(time).getValue();
 	}
 
 	@Override
-	public T getFloorPoint(Instant time) {
+	public TimeSeriesPointI getFloorPoint(Instant time) {
 		return map.floorEntry(time).getValue();
 	}
 
 	@Override
-	public synchronized void addPoint(T tsp) {
+	public synchronized void addPoint(TimeSeriesPointI tsp) {
 		map.put(tsp.getTime(), tsp);
 	}
 
 	@Override
-	public synchronized void removePoint(T tsp) {
+	public synchronized void removePoint(TimeSeriesPointI tsp) {
 		map.remove(tsp.getTime());
 		
 	}
 
 	@Override
-	public T getFirst() {
+	public TimeSeriesPointI getFirst() {
 		return map.firstEntry().getValue();
 	}
 
 	@Override
-	public T getLast() {
+	public TimeSeriesPointI getLast() {
 		return map.lastEntry().getValue();
 	}
 
 	@Override
-	public Iterator<T> iterator() {
-		return (Iterator<T>) map.values().iterator();
+	public Iterator<TimeSeriesPointI> iterator() {
+		return (Iterator<TimeSeriesPointI>) map.values().iterator();
 	}
 
 	@Override
-	public List<T> getList() {
-		List<T> l = new ArrayList<T>(this.map.values());
-		Collections.sort(l, new Comparator<T>() {
+	public List<TimeSeriesPointI> getList() {
+		List<TimeSeriesPointI> l = new ArrayList<TimeSeriesPointI>(this.map.values());
+		Collections.sort(l, new Comparator<TimeSeriesPointI>() {
 			@Override
-			public int compare(T arg0, T arg1) {
+			public int compare(TimeSeriesPointI arg0, TimeSeriesPointI arg1) {
 				 return arg0.getTime().compareTo(arg1.getTime());
 			}
 	    });
@@ -97,7 +97,7 @@ public class RBTree<T extends TimeSeriesPointI> implements TimeSeriesDataStructu
 	}
 
 	@Override
-	public T getPointByIndex(int i) {
+	public TimeSeriesPointI getPointByIndex(int i) {
 		return null;
 	}
 

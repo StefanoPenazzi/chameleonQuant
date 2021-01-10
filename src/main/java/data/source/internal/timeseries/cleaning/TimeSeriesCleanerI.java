@@ -10,8 +10,8 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  * @author stefanopenazzi
  *
  */
-public interface TimeSeriesCleanerI<T extends TimeSeriesPointI> {
+public interface TimeSeriesCleanerI {
 
-	public TimeSeriesDataStructureI<T> clean(TimeSeriesDataStructureI<T> tsd);
+	public TimeSeriesDataStructureI clean(TimeSeriesDataStructureI tsd);
 	
 }

@@ -17,10 +17,7 @@ public interface TimeSeriesIdI {
 	
 	public String getId();
 	public Instant getStartInstant();
-	public Instant getEndInstant(); 
-	//TODO this doesn t work for indicators gdp etc. Reflections are prob better 
+	public Instant getEndInstant();  
 	public String getInterval(); 
 	public String getString();
-	public Class<? extends TimeSeriesPointI> getTimeSeriesPoint();
-
 }

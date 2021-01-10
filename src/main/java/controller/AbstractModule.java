@@ -28,7 +28,7 @@ public abstract class AbstractModule implements Module {
 
 	private Binder binder;
 	
-	private MapBinder<String,TimeSeriesCleanerI<? extends TimeSeriesPointI>> mapbinderTimeSeriesCleaner;
+	private MapBinder<String,TimeSeriesCleanerI> mapbinderTimeSeriesCleaner;
 	private MapBinder<String,TimeSeriesRequestI> mapbinderTimeSeriesRequest;
 	
 	//@Inject
@@ -44,7 +44,7 @@ public abstract class AbstractModule implements Module {
 		this.binder = binder.skipSources(AbstractModule.class);
 		
 		mapbinderTimeSeriesCleaner
-	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI<? extends TimeSeriesPointI>>(){});
+	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){}, new TypeLiteral<TimeSeriesCleanerI>(){});
 		
 		mapbinderTimeSeriesRequest
 	    = MapBinder.newMapBinder(this.binder, new TypeLiteral<String>(){},new TypeLiteral<TimeSeriesRequestI>(){} );
@@ -60,7 +60,7 @@ public abstract class AbstractModule implements Module {
 		binder.install(module);
 	}
 	
-	protected final LinkedBindingBuilder<TimeSeriesCleanerI<? extends TimeSeriesPointI>> addInternalTimeSeriesCleaner(final String name ) {
+	protected final LinkedBindingBuilder<TimeSeriesCleanerI> addInternalTimeSeriesCleaner(final String name ) {
 		return mapbinderTimeSeriesCleaner.addBinding(name);
 	}
 	protected final LinkedBindingBuilder<TimeSeriesRequestI> addTimeSeriesRequest(final String name ) {

@@ -22,10 +22,10 @@ import indicators.IndicatorAbstract;
  * @author stefanopenazzi
  *
  */
-public class ExponentialMovingAverage<T extends TimeSeriesPointI> extends IndicatorAbstract  {
+public class ExponentialMovingAverage extends IndicatorAbstract  {
 
-	private final TimeSeriesImpl<T> itsRef;
-	private TimeSeriesImpl <SingleTagPoint<Double>> itsRes;
+	private final TimeSeriesImpl itsRef;
+	private TimeSeriesImpl itsRes; //<SingleTagPoint<Double>>
 	private final int periods;
 	private final String tagName;
 	private final double smoothing;
@@ -35,7 +35,7 @@ public class ExponentialMovingAverage<T extends TimeSeriesPointI> extends Indica
 	 */
 	public ExponentialMovingAverage(DatasetI dataSet,String tagName,int periods,double smoothing) {
 		super(dataSet);
-		itsRef = (TimeSeriesImpl<T>) this.dataSet.iterator().next();
+		itsRef = (TimeSeriesImpl) this.dataSet.iterator().next();
 		this.periods= periods;
 		this.tagName = tagName;
 		this.smoothing = smoothing;
@@ -43,7 +43,7 @@ public class ExponentialMovingAverage<T extends TimeSeriesPointI> extends Indica
 	
 	public ExponentialMovingAverage(DatasetI dataSet,TimeSeriesIdAbstract id,String tagName,int periods,double smoothing) {
 		super(dataSet);
-		itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		itsRef = (TimeSeriesImpl) this.dataSet.getTimeSeries(id);
 		this.periods= periods;
 		this.tagName = tagName;
 		this.smoothing = smoothing;
@@ -51,7 +51,7 @@ public class ExponentialMovingAverage<T extends TimeSeriesPointI> extends Indica
 	
 	public ExponentialMovingAverage(DatasetI dataSet,TimeSeriesIdAbstract id,String tagName,int periods) {
 		super(dataSet);
-		itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		itsRef = (TimeSeriesImpl) this.dataSet.getTimeSeries(id);
 		this.periods= periods;
 		this.tagName = tagName;
 		this.smoothing = 2;
@@ -79,7 +79,7 @@ public class ExponentialMovingAverage<T extends TimeSeriesPointI> extends Indica
 		   count = (Double)method.invoke(itsRefList.get(i))*k + count*(1-k);
 	       res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count));
 	   }
-	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"EMA","",SingleTagPoint.class);
+	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"EMA","");
 	   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);

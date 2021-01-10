@@ -16,7 +16,7 @@ public class InternalTimeSeriesCleaningModule extends AbstractModule {
 
 	@Override
 	public void install() {
-		addInternalTimeSeriesCleaner("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI<? extends TimeSeriesPointI>>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
+		addInternalTimeSeriesCleaner("NULL_INFLUXDB").to((Class<? extends TimeSeriesCleanerI>) TimeSeriesCleanerNullValuesStockInfluxdb.class);
 		
 	}
 

@@ -12,7 +12,6 @@ import java.util.stream.DoubleStream;
 
 import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.annotations.TimeSeriesAnnotations.TagName;
-import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.dataset.DatasetImpl;
 import data.source.internal.timeseries.TimeSeriesAbstract;
@@ -29,10 +28,10 @@ import indicators.IndicatorAbstract;
  * @author stefanopenazzi
  *
  */
-public class SimpleMovingAverage<T extends TimeSeriesPointI> extends IndicatorAbstract {
+public class SimpleMovingAverage extends IndicatorAbstract {
 
-	private final TimeSeriesImpl<T> itsRef;
-	private TimeSeriesImpl <SingleTagPoint<Double>> itsRes;
+	private final TimeSeriesImpl itsRef;
+	private TimeSeriesImpl itsRes;
 	private final int periods;
 	private final String tagName;
 	
@@ -41,14 +40,14 @@ public class SimpleMovingAverage<T extends TimeSeriesPointI> extends IndicatorAb
 	 */
 	public SimpleMovingAverage(DatasetI dataSet,String tagName,int periods) {
 		super(dataSet);
-		itsRef = (TimeSeriesImpl<T>) this.dataSet.iterator().next();
+		itsRef = (TimeSeriesImpl) this.dataSet.iterator().next();
 		this.periods= periods;
 		this.tagName = tagName;
 	}
 	
 	public SimpleMovingAverage(DatasetI dataSet,TimeSeriesIdAbstract id,String tagName,int periods) {
 		super(dataSet);
-		itsRef = (TimeSeriesImpl<T>) this.dataSet.getTimeSeries(id);
+		itsRef = (TimeSeriesImpl) this.dataSet.getTimeSeries(id);
 		this.periods= periods;
 		this.tagName = tagName;
 	}
@@ -74,7 +73,7 @@ public class SimpleMovingAverage<T extends TimeSeriesPointI> extends IndicatorAb
 	        res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count/periods));
 	        firstRemoveIndex++;
 	   }
-	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"MA","",SingleTagPoint.class);
+	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"MA","");
 	   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);

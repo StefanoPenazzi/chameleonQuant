@@ -12,17 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
 import com.google.inject.Key;
-
 import controller.Controller;
-import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.external.database.influxdb.TimeSeriesRequestInfluxdb;
 import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
 import data.source.internal.dataset.DatasetImpl;
 import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
+import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
 import indicators.movingAverage.ExponentialMovingAverage;
 import indicators.movingAverage.MACD;
 
@@ -46,17 +43,17 @@ class TestVolatility {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
-			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 TrueRange tr = new TrueRange(dts,new TimeSeriesId (startInstant,endInstant,market,"ACER",inter,StockEODTimeSeriesPointInfluxdb.class));
+		 TrueRange tr = new TrueRange(dts,new TimeSeriesIdImpl (startInstant,endInstant,"ACER",inter));
          DatasetImpl ds = tr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -77,17 +74,17 @@ class TestVolatility {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
-			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 AverageTrueRange atr = new AverageTrueRange(dts,new TimeSeriesId (startInstant,endInstant,market,"ACER",inter,StockEODTimeSeriesPointInfluxdb.class),14);
+		 AverageTrueRange atr = new AverageTrueRange(dts,new TimeSeriesIdImpl (startInstant,endInstant,"ACER",inter),14);
          DatasetImpl ds = atr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -108,17 +105,17 @@ class TestVolatility {
 		 Controller controller = new Controller();
 		 controller.run();
 		 
-		 TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb> itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl<StockEODTimeSeriesPointInfluxdb>>() {});
+		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
-			 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 MACD macd = new MACD(dts,new TimeSeriesId (startInstant,endInstant,market,"ACER",inter,StockEODTimeSeriesPointInfluxdb.class),"close", 12,26,9);
+		 MACD macd = new MACD(dts,new TimeSeriesIdImpl (startInstant,endInstant,"ACER",inter),"close", 12,26,9);
          DatasetImpl ds = macd.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

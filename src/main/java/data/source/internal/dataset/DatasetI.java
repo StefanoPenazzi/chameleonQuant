@@ -17,10 +17,10 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  */
 public interface DatasetI {
 	
-	public void addTimeSeries(TimeSeriesAbstract<? extends TimeSeriesPointI> its);
-	public boolean removeTimeSeries(TimeSeriesIdAbstract itq);
-	public TimeSeriesAbstract<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesIdAbstract itq);
-	public Iterator<? extends TimeSeriesAbstract<? extends TimeSeriesPointI>> iterator();
+	public void addTimeSeries(TimeSeriesI its);
+	public boolean removeTimeSeries(TimeSeriesI itq);
+	public TimeSeriesI getTimeSeries(TimeSeriesIdAbstract itq);
+	public Iterator<? extends TimeSeriesI> iterator();
 	public void merge(DatasetI tail);
 	
 	

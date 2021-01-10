@@ -7,15 +7,14 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
-import data.source.external.database.influxdb.TimeSeriesId;
 import data.source.external.financialdatavendors.alphavantage.mirrors.StockEODTimeSeriesPointAlphaVantage;
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.external.financialdatavendors.alphavantage.parameters.output.OutputSize;
 import data.source.external.financialdatavendors.alphavantage.parameters.output.OutputType;
 import data.source.external.financialdatavendors.alphavantage.parameters.symbols.Symbol;
 import data.source.internal.timeseries.TimeSeriesRequestI;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.Utils;
-import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import data.source.utils.IO.CSVUtils;
 
@@ -26,7 +25,7 @@ import data.source.utils.IO.CSVUtils;
 public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 
 	@Override
-	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesId iq) {
+	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
 		AlphaVantageConnector avc = new AlphaVantageConnector(60000);
 		String apiRes = avc.call(Function.TIME_SERIES_DAILY,new Symbol("AACG"),OutputSize.FULL,OutputType.CSV);
 		apiRes = apiRes.replaceFirst("timestamp", "time");

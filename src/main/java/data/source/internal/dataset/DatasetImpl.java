@@ -11,6 +11,7 @@ import java.util.Map;
 import data.source.internal.timeseries.TimeSeriesAbstract;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
+import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 
@@ -20,15 +21,15 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  */
 public class DatasetImpl implements DatasetI {
 
-	private Map<TimeSeriesIdAbstract,TimeSeriesAbstract<? extends TimeSeriesPointI>> datasetMap = new HashMap<TimeSeriesIdAbstract,TimeSeriesAbstract<? extends TimeSeriesPointI>>();
+	private Map<TimeSeriesIdI,TimeSeriesI> datasetMap = new HashMap<TimeSeriesIdI,TimeSeriesI>();
 	
 	@Override
-	public void addTimeSeries(TimeSeriesAbstract<? extends TimeSeriesPointI> its) {
+	public void addTimeSeries(TimeSeriesI its) {
 		datasetMap.put(its.getQuery(), its);
 	}
 
 	@Override
-	public boolean removeTimeSeries(TimeSeriesIdAbstract its) {
+	public boolean removeTimeSeries(TimeSeriesI its) {
 		if(datasetMap.remove(its) == null) {
 			return false;
 		}
@@ -38,29 +39,18 @@ public class DatasetImpl implements DatasetI {
 	}
 
 	@Override
-	public TimeSeriesAbstract<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesIdAbstract its) {
-		
-//		Iterator it = datasetMap.entrySet().iterator();
-//	    while (it.hasNext()) {
-//	        Map.Entry pair = (Map.Entry)it.next();
-//	        System.out.println(pair.getKey().hashCode());
-//	    }
-//	    
-//	    System.out.println("-----------------");
-//	    System.out.println(its.hashCode());
-	    
-		
+	public TimeSeriesI getTimeSeries(TimeSeriesIdAbstract its) {
 		return datasetMap.get(its);
 	}
 
 	@Override
-	public Iterator<TimeSeriesAbstract<? extends TimeSeriesPointI>> iterator() {
+	public Iterator<? extends TimeSeriesI> iterator() {
 		return datasetMap.values().iterator();
 	}
 
 	@Override
 	public void merge(DatasetI tail) {
-		Iterator<TimeSeriesAbstract<? extends TimeSeriesPointI>> tailIterator = (Iterator<TimeSeriesAbstract<? extends TimeSeriesPointI>>) tail.iterator();
+		Iterator<TimeSeriesI> tailIterator = (Iterator<TimeSeriesI>) tail.iterator();
 		while(tailIterator.hasNext()) {
 			//TODO what happens if the id of a new internal time series is the same of one already in the map???
 			this.addTimeSeries(tailIterator.next());

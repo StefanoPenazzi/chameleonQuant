@@ -20,31 +20,31 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  */
 
 
-public class TimeSeriesImpl <T extends TimeSeriesPointI> extends TimeSeriesAbstract<T> {
+public class TimeSeriesImpl extends TimeSeriesAbstract {
 	
 //	 @Inject private Map<String,TimeSeriesCleanerI> cleaners;
 	
 	/**
 	 * @param tsd
 	 */
-	public TimeSeriesImpl( TimeSeriesDataStructureI<T> tsd,TimeSeriesIdAbstract itsq,List<? extends TimeSeriesCleanerI<T>> newCleaners) {
+	public TimeSeriesImpl( TimeSeriesDataStructureI tsd,TimeSeriesIdI itsq,List<? extends TimeSeriesCleanerI> newCleaners) {
 		super(tsd,itsq,newCleaners);
 		
 	}
 	
-	public TimeSeriesImpl( TimeSeriesDataStructureI<T> tsd,TimeSeriesIdAbstract itsq) {
+	public TimeSeriesImpl( TimeSeriesDataStructureI tsd,TimeSeriesIdI itsq) {
 		super(tsd,itsq,new ArrayList<>());
 		
 	}
 
 	@Override
-	public TimeSeriesDataStructureI<T> firstTimeSeriesAdjustment(TimeSeriesDataStructureI<T> tsd) {
+	public TimeSeriesDataStructureI firstTimeSeriesAdjustment(TimeSeriesDataStructureI tsd) {
 		// TODO Auto-generated method stub
 		return tsd;
 	}
 
 	@Override
-	public TimeSeriesDataStructureI<T> lastTimeSeriesAdjustment(TimeSeriesDataStructureI<T> tsd) {
+	public TimeSeriesDataStructureI lastTimeSeriesAdjustment(TimeSeriesDataStructureI tsd) {
 		// TODO Auto-generated method stub
 		return tsd;
 	}
