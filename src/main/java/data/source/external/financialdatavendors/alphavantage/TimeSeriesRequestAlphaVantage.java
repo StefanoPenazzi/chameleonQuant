@@ -27,7 +27,7 @@ public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 	@Override
 	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
 		AlphaVantageConnector avc = new AlphaVantageConnector(60000);
-		String apiRes = avc.call(Function.TIME_SERIES_DAILY,new Symbol("AACG"),OutputSize.FULL,OutputType.CSV);
+		String apiRes = avc.call(Function.TIME_SERIES_DAILY,new Symbol("C"),OutputSize.FULL,OutputType.CSV);
 		apiRes = apiRes.replaceFirst("timestamp", "time");
 		List<Map<String,String>> apiResMap = null;
 		try {

@@ -14,6 +14,8 @@ import controller.Controller;
 import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
 import data.source.external.database.influxdb.mirrors.FOREXEODTimeSeriesPointInfluxdb;
 import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
+import data.source.external.financialdatavendors.alphavantage.TimeSeriesRequestIdAlphaVantage;
+import data.source.external.financialdatavendors.alphavantage.mirrors.StockEODTimeSeriesPointAlphaVantage;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
@@ -43,12 +45,13 @@ class TestDataset {
 		 
 		 for(String stock: stocks) {
 			 listQueries.add(new TimeSeriesRequestIdInfluxdb("influxdb","NASDAQ_EOD",stock,new TimeSeriesIdImpl (startInstant,endInstant,stock,inter),StockEODTimeSeriesPointInfluxdb.class));
-			 listQueries.add(new TimeSeriesRequestIdInfluxdb("influxdb","FOREX_EOD","EUR-USD",new TimeSeriesIdImpl (startInstant,endInstant,"EUR-USD",inter),FOREXEODTimeSeriesPointInfluxdb.class));
 		 }
-		
+		 listQueries.add(new TimeSeriesRequestIdInfluxdb("influxdb","FOREX_EOD","EUR-USD",new TimeSeriesIdImpl (startInstant,endInstant,"EUR-USD",inter),FOREXEODTimeSeriesPointInfluxdb.class));
+		 listQueries.add(new TimeSeriesRequestIdAlphaVantage("alphavantage","","C",new TimeSeriesIdImpl (startInstant,endInstant,"C",inter),StockEODTimeSeriesPointAlphaVantage.class));
+		 
 		 Controller.run();
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
-		 TimeSeriesI its = dts.getTimeSeries(new TimeSeriesIdImpl (startInstant,endInstant,"AACG",inter));
+		 TimeSeriesI its = dts.getTimeSeries(new TimeSeriesIdImpl (startInstant,endInstant,"C",inter));
 		 System.out.println();
 		
 	}
