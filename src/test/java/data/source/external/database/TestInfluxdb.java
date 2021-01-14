@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.utils.queries.StructureQuery;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageStocksEOD;
 import data.source.external.financialdatavendors.alphavantage.AlphaVantageConnector;
@@ -82,5 +83,13 @@ class TestInfluxdb {
 		UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
 		upf.run(forexList, "FOREX_EOD");
 	}
+	
+	
+	@Test
+	void testStructureQuery() {
+		List<String> s = new ArrayList<String>(){{add("NASDAQ_EOD");add("FOREX_EOD");}} ;
+		StructureQuery.getDatabaseMap();
+	}
+	
 
 }

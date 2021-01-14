@@ -18,9 +18,9 @@ public class TimeSeriesRequestModule extends AbstractModule {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void install() {
-		addTimeSeriesRequest("influxdb").to(TimeSeriesRequestInfluxdb.class);
-		addTimeSeriesRequest("alphavantage").to(TimeSeriesRequestAlphaVantage.class);
-		addTimeSeriesRequest("eodhistoricaldatacom").to(TimeSeriesRequestEODHistoricalDataCom.class);
+		addTimeSeriesRequest("influxdb").to(TimeSeriesRequestInfluxdb.class).asEagerSingleton();
+		addTimeSeriesRequest("alphavantage").to(TimeSeriesRequestAlphaVantage.class).asEagerSingleton();
+		addTimeSeriesRequest("eodhistoricaldatacom").to(TimeSeriesRequestEODHistoricalDataCom.class).asEagerSingleton();
 		
 	}
 
