@@ -26,8 +26,9 @@ public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 
 	@Override
 	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
+		TimeSeriesRequestIdAlphaVantage tsrId = (TimeSeriesRequestIdAlphaVantage)iq;
 		AlphaVantageConnector avc = new AlphaVantageConnector(60000);
-		String apiRes = avc.call(Function.TIME_SERIES_DAILY,new Symbol("C"),OutputSize.FULL,OutputType.CSV);
+		String apiRes = avc.call(tsrId.getExchange(),new Symbol(tsrId.getId()),OutputSize.FULL,OutputType.CSV);
 		apiRes = apiRes.replaceFirst("timestamp", "time");
 		List<Map<String,String>> apiResMap = null;
 		try {
@@ -36,7 +37,7 @@ public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<TimeSeriesPointI> res = Utils.map2PointsList(apiResMap,StockEODTimeSeriesPointAlphaVantage.class);
+		List<TimeSeriesPointI> res = Utils.map2PointsList(apiResMap,iq.getTimeSeriesPoint());
 		return res;
 	}
 

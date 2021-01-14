@@ -15,7 +15,7 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  */
 public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	
-	private final String source;
+	private final String source = "influxdb";
 	private final TimeSeriesIdI timeSeriesId;
 	private final Class<? extends TimeSeriesPointI> tsp;
 	private final String exchange;
@@ -26,8 +26,7 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	private final String endTime;
 	private final String interval;
 
-	public TimeSeriesRequestIdInfluxdb(String source,String exchange,String ticker,TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
-		this.source = source;
+	public TimeSeriesRequestIdInfluxdb(String exchange,String ticker,TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
 		this.timeSeriesId = timeSeriesId;
 		this.tsp = tsp;
 		this.exchange = exchange;

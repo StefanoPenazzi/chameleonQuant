@@ -3,6 +3,7 @@
  */
 package data.source.external.financialdatavendors.alphavantage;
 
+import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.TimeSeriesRequestIdAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
@@ -14,10 +15,10 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
 public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract {
 
 	
-	private final String source;
+	private final String source = "alphavantage";
 	private final TimeSeriesIdI timeSeriesId;
 	private final Class<? extends TimeSeriesPointI> tsp;
-	private final String exchange;
+	private final Function exchange;
 	private final String ticker;
 	
 	private final String id;
@@ -25,8 +26,7 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	private final String endTime;
 	private final String interval;
 
-	public TimeSeriesRequestIdAlphaVantage(String source,String exchange,String ticker,TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
-		this.source = source;
+	public TimeSeriesRequestIdAlphaVantage(Function exchange,String ticker,TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
 		this.timeSeriesId = timeSeriesId;
 		this.tsp = tsp;
 		this.exchange = exchange;
@@ -41,6 +41,11 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	public String getSource() {
 		return this.source;
 	}
+	
+	
+	public Function getExchange() {
+		return this.exchange;
+	}
 
 	@Override
 	public TimeSeriesIdI getTimeSeriesId() {
@@ -53,7 +58,7 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	}
 
 	@Override
-	public Object getId() {
+	public String getId() {
 		return this.id;
 	}
 
@@ -73,9 +78,8 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	}
 
 	@Override
-	protected String convertId(Object Id) {
-		// TODO Auto-generated method stub
-		return null;
+	protected String convertId(Object id) {
+		return id.toString();
 	}
 
 	@Override
