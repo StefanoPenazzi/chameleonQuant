@@ -4,6 +4,9 @@
 package data.source.external.database.influxdb;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.TimeSeriesRequestIdAbstract;
@@ -22,6 +25,7 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	private final String startTime;
 	private final String endTime;
 	private final String interval;
+	private final ArrayList<String> influxIntervalChar = new ArrayList<String>() {{add("s");add("m");add("h");add("d");add("w");add("mo");add("y");}};
 
 	public TimeSeriesRequestIdInfluxdb(TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
 		this.timeSeriesId = timeSeriesId;
@@ -86,7 +90,13 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	}
 
 	@Override
-	protected String convertInterval(Object interval) {
+	protected String convertInterval(Object intervalInput) {
+		String interval = intervalInput.toString();
+		//check if the interval is compatible with influx
+		String[] intervalParts = interval.split("(?<=\\d)(?=\\D)");
+		if(!influxIntervalChar.contains(intervalParts[1].toString())) {
+			throw new IllegalArgumentException("The interval is not valid");
+		}
 		return interval.toString();
 	}
 
