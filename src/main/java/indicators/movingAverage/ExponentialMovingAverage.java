@@ -79,7 +79,10 @@ public class ExponentialMovingAverage extends IndicatorAbstract  {
 		   count = (Double)method.invoke(itsRefList.get(i))*k + count*(1-k);
 	       res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count));
 	   }
-	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"EMA","");
+	   TimeSeriesIdImpl id = new TimeSeriesIdImpl.Builder("EMA")
+				 .startInstant(itsRef.getFirstInstant())
+				 .endInstant(itsRef.getLastInstant())
+				 .build();
 	   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);

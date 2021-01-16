@@ -49,11 +49,19 @@ class TestVolatility {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 TimeSeriesIdImpl  query =new TimeSeriesIdImpl.Builder(stock)
+					 .startInstant(startInstant)
+					 .endInstant(endInstant)
+					 .interval(inter)
+					 .build();
 			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 TrueRange tr = new TrueRange(dts,new TimeSeriesIdImpl (startInstant,endInstant,"ACER",inter));
+		 TrueRange tr = new TrueRange(dts,new TimeSeriesIdImpl.Builder("ACER")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval(inter)
+				 .build());
          DatasetImpl ds = tr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -80,11 +88,19 @@ class TestVolatility {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl.Builder(stock)
+					 .startInstant(startInstant)
+					 .endInstant(endInstant)
+					 .interval(inter)
+					 .build();
 			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 AverageTrueRange atr = new AverageTrueRange(dts,new TimeSeriesIdImpl (startInstant,endInstant,"ACER",inter),14);
+		 AverageTrueRange atr = new AverageTrueRange(dts,new TimeSeriesIdImpl.Builder("ACER")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval(inter)
+				 .build(),14);
          DatasetImpl ds = atr.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
@@ -111,11 +127,18 @@ class TestVolatility {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
-			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl.Builder(stock)
+					 .startInstant(startInstant)
+					 .endInstant(endInstant)
+					 .interval(inter)
+					 .build();
 		 }
 		 
-		 MACD macd = new MACD(dts,new TimeSeriesIdImpl (startInstant,endInstant,"ACER",inter),"close", 12,26,9);
+		 MACD macd = new MACD(dts,new TimeSeriesIdImpl.Builder("ACER")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval(inter)
+				 .build(),"close", 12,26,9);
          DatasetImpl ds = macd.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

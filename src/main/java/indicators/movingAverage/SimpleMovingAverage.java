@@ -73,7 +73,10 @@ public class SimpleMovingAverage extends IndicatorAbstract {
 	        res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count/periods));
 	        firstRemoveIndex++;
 	   }
-	   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"MA","");
+	   TimeSeriesIdImpl id = new TimeSeriesIdImpl.Builder("MA")
+				 .startInstant(itsRef.getFirstInstant())
+				 .endInstant(itsRef.getLastInstant())
+				 .build();
 	   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   DatasetImpl ds = new DatasetImpl();
 	   ds.addTimeSeries(itsRes);

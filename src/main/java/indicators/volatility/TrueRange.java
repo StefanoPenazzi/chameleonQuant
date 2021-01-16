@@ -73,7 +73,10 @@ public class TrueRange extends IndicatorAbstract {
 	    	   res.add(new SingleTagPoint<Double>(point.getTime(),Math.max(Math.abs(resultLow-resultClose),Math.max((resultHigh-resultLow), Math.abs(resultHigh-resultClose)))));
 	       }
 	       
-		   TimeSeriesIdImpl id = new TimeSeriesIdImpl(itsRef.getFirstInstant(),itsRef.getLastInstant(),"TR","");
+		   TimeSeriesIdImpl id = new TimeSeriesIdImpl.Builder("TR")
+					 .startInstant(itsRef.getFirstInstant())
+					 .endInstant(itsRef.getLastInstant())
+					 .build();
 		   itsRes = new TimeSeriesImpl(new RBTree(res),id);
 		   DatasetImpl ds = new DatasetImpl();
 		   ds.addTimeSeries(itsRes);

@@ -37,13 +37,18 @@ import data.source.utils.IO.CSVUtils;
 public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 	
 	private static final Logger logger = LogManager.getLogger(TimeSeriesRequestInfluxdb.class);
+	private final Map<String,String> measureDatabaseMapEOD;
+	private final Map<String,String> measureDatabaseMapID;
 	private final Map<String,String> measureDatabaseMap;
-	private final Map<String,Class<? extends TimeSeriesPointI>> classDatabaseMap;
+	private final Map<String,Class<? extends TimeSeriesPointI>> classDatabaseMap = new HashMap<String,Class<? extends TimeSeriesPointI>>();
 	
 	@Inject
 	public TimeSeriesRequestInfluxdb() throws ClassNotFoundException {
+		
+		List<String> databasesListEOD = new ArrayList<String>();
+		List<String> databasesListID = new ArrayList<String>();
 		List<String> databasesList = new ArrayList<String>();
-		classDatabaseMap = new HashMap<String,Class<? extends TimeSeriesPointI>>();
+		
 		List<Map<String,String>> dbClassesLM = null;
 		URL res = getClass().getClassLoader().getResource("influx/databases.csv");
 		File file=null;
@@ -52,10 +57,21 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		} catch (FileNotFoundException | URISyntaxException e) {
 			e.printStackTrace();
 		}
+		
 		for(Map<String,String> m: dbClassesLM) {
-			databasesList.add(m.get("name"));
+			if(m.get("name").contains("_EOD")) {
+				databasesListEOD.add(m.get("name"));
+			}
+			else if(m.get("name").contains("_ID")) {
+				databasesListID.add(m.get("name"));
+			}
+			else {
+				databasesList.add(m.get("name"));
+			}
 			classDatabaseMap.put(m.get("name"),(Class<? extends TimeSeriesPointI>) Class.forName(m.get("class")));
 		}
+		measureDatabaseMapEOD = StructureQuery.getDatabaseMap(databasesListEOD);
+		measureDatabaseMapID = StructureQuery.getDatabaseMap(databasesListID);
 		measureDatabaseMap = StructureQuery.getDatabaseMap(databasesList);
 	}
 	
@@ -100,13 +116,12 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 	@Override
 	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iqp) {
 		TimeSeriesRequestIdInfluxdb iq = (TimeSeriesRequestIdInfluxdb)iqp;
+		String db = getDatabaseFromSymbol(iq.getId());
 		if(iq.getTimeSeriesPoint() == null) { 
-			iq = new TimeSeriesRequestIdInfluxdb(iq.getTimeSeriesId(),classDatabaseMap.get(measureDatabaseMap.get(iq.getTimeSeriesId().getId())));
+			iq = new TimeSeriesRequestIdInfluxdb(iq.getTimeSeriesId(),classDatabaseMap.get(db));
 		}
 		Influxdb idb = new Influxdb();
 		idb.connect();
-		String db = measureDatabaseMap.get(iq.getId());
-		//TODO run exception if the id is not present in the map
 		Query query = new Query(getStringQuery(iq),db);
 		QueryResult queryResult = idb.getInfluxDB().query(query);
 		String measurement = iq.getId();
@@ -116,12 +131,22 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		return results;
 	}
 	
-	public Class<? extends TimeSeriesPointI> getPointClassFromDatabase(String s){
-		return classDatabaseMap.get(s);
-	}
-	
-	public String getDatabaseFromMeasure(String s){
-		return measureDatabaseMap.get(s);
+	private String getDatabaseFromSymbol(String s){
+		String db = null;
+		if(s.equals("d") || s.equals("w") || s.equals("mo") || s.equals("y")) {
+			 db = this.measureDatabaseMapEOD.get(s);
+		}
+		else {
+			db = this.measureDatabaseMapID.get(s);
+		}
+		if (db == null) {
+			db = measureDatabaseMap.get(s);
+		}
+		if(db == null) {
+			throw new NullPointerException("Symbol not found");
+		}
+		return db;
+		
 	}
 }
 

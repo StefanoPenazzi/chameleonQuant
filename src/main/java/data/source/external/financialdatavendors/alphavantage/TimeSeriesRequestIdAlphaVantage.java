@@ -15,7 +15,7 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
 public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract {
 
 	
-	private final String source = "alphavantage";
+	private final String SOURCE = "alphavantage";
 	private final TimeSeriesIdI timeSeriesId;
 	private final Class<? extends TimeSeriesPointI> tsp;
 	private final Function exchange;
@@ -39,7 +39,7 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	
 	@Override
 	public String getSource() {
-		return this.source;
+		return this.SOURCE;
 	}
 	
 	

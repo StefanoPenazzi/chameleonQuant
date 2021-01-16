@@ -62,7 +62,10 @@ public class MACD extends IndicatorAbstract {
 		}
 		 DatasetImpl macdDs = new DatasetImpl();
 		 RBTree macdRBT = new RBTree(macdRes);
-		 macdDs.addTimeSeries(new TimeSeriesImpl(macdRBT,new TimeSeriesIdImpl(macdRBT.getFirst().getTime(),macdRBT.getLast().getTime(),"macd","")));
+		 macdDs.addTimeSeries(new TimeSeriesImpl(macdRBT,new TimeSeriesIdImpl.Builder("macd")
+				 .startInstant(macdRBT.getFirst().getTime())
+				 .endInstant(macdRBT.getLast().getTime())
+				 .build()));
 		 
 		 //signal line
 		 SimpleMovingAverage sma = new SimpleMovingAverage(macdDs,"value",this.maPeriods);
@@ -77,7 +80,7 @@ public class MACD extends IndicatorAbstract {
 				histRes.add(new SingleTagPoint<Double>(slRes.get(slRes.size()-j).getTime(),diff));
 		 }
 		 DatasetImpl histDs = new DatasetImpl();
-		 histDs.addTimeSeries(new TimeSeriesImpl(new RBTree(histRes),new TimeSeriesIdImpl(null,null,"histogramMacd","")));
+		 histDs.addTimeSeries(new TimeSeriesImpl(new RBTree(histRes),new TimeSeriesIdImpl.Builder("histogramMacd").build()));
 		 
 		 DatasetImpl resDs = new DatasetImpl();
 		 resDs.merge(macdDs);

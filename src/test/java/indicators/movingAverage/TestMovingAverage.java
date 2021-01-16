@@ -75,11 +75,19 @@ class TestMovingAverage {
 		 DatasetImpl dts = new DatasetImpl();
 		 
 		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl (startInstant,endInstant,stock,inter);
+			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl.Builder(stock)
+					 .startInstant(startInstant)
+					 .endInstant(endInstant)
+					 .interval(inter)
+					 .build();
 			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
 		 }
 		 
-		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts,new TimeSeriesIdImpl (startInstant,endInstant,"TSLA",inter),"low",3);
+		 ExponentialMovingAverage sma = new ExponentialMovingAverage(dts, new TimeSeriesIdImpl.Builder("TSLA")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval(inter)
+				 .build(),"low",3);
 		 sma.create();
 		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		

@@ -34,6 +34,8 @@ class TestDataset {
 	@Test
 	void testDatasetInfluxFactory() throws ParseException {
 		
+		Controller.run();
+		
          List<String> stocks = Arrays.asList("AACG","AACQ","AACQU","AACQW","AAL");
 		
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -44,15 +46,39 @@ class TestDataset {
 		 
 		  List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
 		 
-		 for(String stock: stocks) {
-			 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl (startInstant,endInstant,stock,inter)));
-		 }
-		 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl (startInstant,endInstant,"EUR-USD",inter)));
-		 //listQueries.add(new TimeSeriesRequestIdAlphaVantage(Function.TIME_SERIES_DAILY,"C",new TimeSeriesIdImpl (startInstant,endInstant,"C",inter),StockEODTimeSeriesPointAlphaVantage.class));
+//		 for(String stock: stocks) {
+//			 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder(stock)
+//					 .startInstant(startInstant)
+//					 .endInstant(endInstant)
+//					 .interval(inter)
+//					 .build()));
+//		 }
+//		 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("EUR-USD")
+//				 .startInstant(startInstant)
+//				 .endInstant(endInstant)
+//				 .interval(inter)
+//				 .build()));
 		 
-		 Controller.run();
+		 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval("1h")
+				 .build()));
+		 
+//		 listQueries.add(new TimeSeriesRequestIdAlphaVantage(Function.TIME_SERIES_DAILY,"C",new TimeSeriesIdImpl.Builder("C")
+//				 .startInstant(startInstant)
+//				 .endInstant(endInstant)
+//				 .interval(inter)
+//				 .build(),StockEODTimeSeriesPointAlphaVantage.class));
+		 
+		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
-		 TimeSeriesI its = dts.getTimeSeries(new TimeSeriesIdImpl (startInstant,endInstant,"C",inter));
+//		 TimeSeriesI its = dts.getTimeSeries(new TimeSeriesIdImpl.Builder("C")
+//				 .startInstant(startInstant)
+//				 .endInstant(endInstant)
+//				 .interval(inter)
+//				 .build());
+		 
 		 System.out.println();
 		
 	}

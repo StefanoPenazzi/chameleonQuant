@@ -4,11 +4,7 @@
 package data.source.internal.timeseries.standard;
 
 import java.time.Instant;
-import java.util.Date;
-
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
-import data.source.internal.timeseries.point.TimeSeriesPointAbstract;
-import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -17,16 +13,39 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
 public class TimeSeriesIdImpl extends TimeSeriesIdAbstract {
 
 	
-	private final Instant startInstant;
-	private final Instant endInstant;
-	private final String id;
-	private final String inter;
+	private Instant startInstant;
+	private Instant endInstant;
+	private String id;
+	private String inter;
 	
-	public TimeSeriesIdImpl(Instant startInstant, Instant endInstant, String id,String inter) {
-		this.startInstant = startInstant;
-		this.endInstant = endInstant;
-		this.id = id;
-		this.inter = inter;
+	public static class Builder {
+		private Instant startInstant = null;
+		private Instant endInstant = null;
+		private String id = null;
+		private String interval = null;
+		public Builder(String id) {
+	        this.id = id;
+	    }
+		public Builder interval(String interval){
+            this.interval = interval;
+            return this;
+        }
+		public Builder startInstant(Instant startInstant){
+            this.startInstant = startInstant;
+            return this;
+        }
+		public Builder endInstant(Instant endInstant){
+            this.endInstant = endInstant;
+            return this;
+        }
+		 public TimeSeriesIdImpl build(){
+			TimeSeriesIdImpl tsId = new TimeSeriesIdImpl(); 
+			tsId.id = this.id;
+			tsId.inter = this.interval;
+			tsId.startInstant = this.startInstant;
+			tsId.endInstant = this.endInstant;
+            return tsId;
+		}		
 	}
 	
 	@Override

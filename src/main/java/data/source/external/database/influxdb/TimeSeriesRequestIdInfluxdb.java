@@ -39,8 +39,8 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	public TimeSeriesRequestIdInfluxdb(TimeSeriesIdI timeSeriesId) {
 		this.timeSeriesId = timeSeriesId;
 		this.tsp = null;
-		this.id = null;
-		this.interval = null;
+		this.id = convertId(timeSeriesId.getId());
+		this.interval = convertInterval(timeSeriesId.getInterval());
 		this.startTime = null;
 		this.endTime =  null;
 	}
