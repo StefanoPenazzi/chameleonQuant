@@ -17,6 +17,7 @@ import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInf
 import data.source.external.database.influxdb.utils.queries.StructureQuery;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageStocksEOD;
+import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageStocksID;
 import data.source.external.financialdatavendors.alphavantage.AlphaVantageConnector;
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.external.financialdatavendors.alphavantage.parameters.intradaytimeseries.Interval;
@@ -36,7 +37,7 @@ import org.influxdb.impl.InfluxDBResultMapper;
 class TestInfluxdb {
 	
 	@Test
-	void testUpdateAlphaVantage() {
+	void testUpdateAlphaVantageEOD() {
         List<String> stocksList = new ArrayList<>();
 		
 		//stocksList.add("ACER");
@@ -77,11 +78,52 @@ class TestInfluxdb {
 	}
 	
 	@Test
-	void testFOREXUpdateAlphaVantage() {
+	void testFOREXUpdateAlphaVantageEOD() {
         List<String> forexList = new ArrayList<>();
 		forexList.add("EUR-USD");
 		UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
 		upf.run(forexList, "FOREX_EOD");
+	}
+	
+	@Test
+	void testUpdateAlphaVantageID() {
+        List<String> stocksList = new ArrayList<>();
+		
+		//stocksList.add("ACER");
+		//stocksList.add("ACET");
+		//stocksList.add("ACEV");
+		//stocksList.add("ACEVU");
+		//stocksList.add("ACEVW");
+		//stocksList.add("ACGL");
+		//stocksList.add("ACGLO");
+		//stocksList.add("ACGLP");
+		//stocksList.add("ACHC");
+		//stocksList.add("ACHV");
+		//stocksList.add("ACIA");
+		//stocksList.add("AAL");
+		
+		stocksList.add("BAND");
+		stocksList.add("BANF");	 
+		stocksList.add("BANFP");	 
+		stocksList.add("BAN");
+		stocksList.add("BANX"); 
+		stocksList.add("BASI"); 
+		stocksList.add("BATRA");	 
+		stocksList.add("BATRK"); 
+		stocksList.add("BBB");
+		stocksList.add("BBCP"); 
+		stocksList.add("BBGI");
+		stocksList.add("BBH");
+		stocksList.add("BBI");	 
+		stocksList.add("BBIG"); 
+		stocksList.add("BBIO");	 
+		stocksList.add("BBQ");
+		stocksList.add("BBSI");	 
+		stocksList.add("BCAB");
+		stocksList.add("BCBP");
+		
+		UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
+		upf.run(stocksList, "NASDAQ_ID");
 	}
 	
 	

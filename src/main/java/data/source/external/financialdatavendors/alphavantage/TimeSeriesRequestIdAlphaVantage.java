@@ -3,10 +3,14 @@
  */
 package data.source.external.financialdatavendors.alphavantage;
 
+import java.time.Instant;
+
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.TimeSeriesRequestIdAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
+import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
+import data.source.internal.timeseries.standard.TimeSeriesIdImpl.Builder;
 
 /**
  * @author stefanopenazzi
@@ -25,6 +29,31 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	private final String startTime;
 	private final String endTime;
 	private final String interval;
+	
+	
+	public static class Builder {
+		
+		private TimeSeriesIdI timeSeriesId;
+		private Function function;
+		private boolean adjusted = true;
+		
+		public Builder(TimeSeriesIdI timeSeriesId) {
+	        this.timeSeriesId = timeSeriesId;
+	    }
+		public Builder exchange(Function function){
+            this.function = function;
+            return this;
+        }
+		public Builder adjusted(boolean adjusted){
+            this.adjusted = adjusted;
+            return this;
+        }
+		
+		 public TimeSeriesRequestIdAlphaVantage build(){
+			 return null;
+		}		
+	}
+	
 
 	public TimeSeriesRequestIdAlphaVantage(Function exchange,String ticker,TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
 		this.timeSeriesId = timeSeriesId;

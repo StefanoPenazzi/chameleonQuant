@@ -46,18 +46,18 @@ class TestDataset {
 		 
 		  List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
 		 
-//		 for(String stock: stocks) {
-//			 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder(stock)
-//					 .startInstant(startInstant)
-//					 .endInstant(endInstant)
-//					 .interval(inter)
-//					 .build()));
-//		 }
-//		 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("EUR-USD")
-//				 .startInstant(startInstant)
-//				 .endInstant(endInstant)
-//				 .interval(inter)
-//				 .build()));
+		 for(String stock: stocks) {
+			 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder(stock)
+					 .startInstant(startInstant)
+					 .endInstant(endInstant)
+					 .interval(inter)
+					 .build()));
+		 }
+		 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("EUR-USD")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval(inter)
+				 .build()));
 		 
 		 listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
@@ -65,11 +65,11 @@ class TestDataset {
 				 .interval("1h")
 				 .build()));
 		 
-//		 listQueries.add(new TimeSeriesRequestIdAlphaVantage(Function.TIME_SERIES_DAILY,"C",new TimeSeriesIdImpl.Builder("C")
-//				 .startInstant(startInstant)
-//				 .endInstant(endInstant)
-//				 .interval(inter)
-//				 .build(),StockEODTimeSeriesPointAlphaVantage.class));
+		 listQueries.add(new TimeSeriesRequestIdAlphaVantage(Function.TIME_SERIES_DAILY,"C",new TimeSeriesIdImpl.Builder("C")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval(inter)
+				 .build(),StockEODTimeSeriesPointAlphaVantage.class));
 		 
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
