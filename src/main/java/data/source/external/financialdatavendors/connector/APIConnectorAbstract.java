@@ -54,6 +54,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 	  public abstract String getParameters(APIParameters... apiParameters);
 
 
+	  //TODO it is better using a builder pattern not a list of APIParams
 	public String call(APIParameters... apiParameters) {
 		String params = getParameters(apiParameters);
 	    try {
@@ -75,6 +76,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 	      bufferedReader.close();
 	      return responseBuilder.toString();
 	    } catch (IOException e) {
+	    	//TODO exception based on provider
 	         throw new AlphaVantageExceptions("failure sending request",e);
 	    }
 	}

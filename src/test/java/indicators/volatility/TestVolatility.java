@@ -3,24 +3,18 @@
  */
 package indicators.volatility;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import com.google.inject.Key;
 import controller.Controller;
-import data.source.external.database.influxdb.TimeSeriesRequestInfluxdb;
-import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
+import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
+import data.source.internal.dataset.DatasetI;
 import data.source.internal.dataset.DatasetImpl;
-import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
-import indicators.movingAverage.ExponentialMovingAverage;
+import data.source.internal.timeseries.standard.TimeSeriesImpl;
 import indicators.movingAverage.MACD;
 
 /**
@@ -31,117 +25,88 @@ class TestVolatility {
 
 	@Test
 	void testTrueRange() throws Exception {
-		 List<String> stocks = Arrays.asList("ACER");
-			
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+		Instant endInstant = null;
+		String inter = "1h";
 		
-		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
-		 Instant endInstant = null;
-		 String market = "NASDAQ_EOD";
-		 String inter = "1d";
-		
-		 Controller controller = new Controller();
-		 controller.run();
+		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+		listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval("1h")
+				 .build()));
 		 
-		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
-		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
-		 DatasetImpl dts = new DatasetImpl();
+		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 		 
-		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query =new TimeSeriesIdImpl.Builder(stock)
-					 .startInstant(startInstant)
-					 .endInstant(endInstant)
-					 .interval(inter)
-					 .build();
-			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
-		 }
-		 
-		 TrueRange tr = new TrueRange(dts,new TimeSeriesIdImpl.Builder("ACER")
+		 TimeSeriesImpl tr = new TrueRange.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval(inter)
-				 .build());
-         DatasetImpl ds = tr.create();
-		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
+				 .build()))
+				 .build()
+				 .run();
 		
 		System.out.println();
 	}
 	
 	@Test
 	void testAverageTrueRange() throws Exception {
-		 List<String> stocks = Arrays.asList("ACER");
-			
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+		Instant endInstant = null;
+		String inter = "1h";
 		
-		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
-		 Instant endInstant = null;
-		 String market = "NASDAQ_EOD";
-		 String inter = "1d";
-		
-		 Controller controller = new Controller();
-		 controller.run();
+		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+		listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval("1h")
+				 .build()));
 		 
-		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
-		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
-		 DatasetImpl dts = new DatasetImpl();
+		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 		 
-		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl.Builder(stock)
-					 .startInstant(startInstant)
-					 .endInstant(endInstant)
-					 .interval(inter)
-					 .build();
-			 //dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
-		 }
-		 
-		 AverageTrueRange atr = new AverageTrueRange(dts,new TimeSeriesIdImpl.Builder("ACER")
+		 TimeSeriesImpl atr = new AverageTrueRange.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval(inter)
-				 .build(),14);
-         DatasetImpl ds = atr.create();
-		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
-		
+				 .build()))
+				 .length(12)
+				 .build()
+				 .run();
 		System.out.println();
 	}
 	
 	@Test
 	void testMACD() throws Exception {
-		 List<String> stocks = Arrays.asList("ACER");
-			
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+		Instant endInstant = null;
+		String inter = "1h";
 		
-		 Instant startInstant = (sdf.parse("2020/10/19 00:00:00")).toInstant();
-		 Instant endInstant = null;
-		 String market = "NASDAQ_EOD";
-		 String inter = "1d";
-		
-		 Controller controller = new Controller();
-		 controller.run();
+		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+		listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval("1h")
+				 .build()));
 		 
-		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
-		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
-		 DatasetImpl dts = new DatasetImpl();
+		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 		 
-		 for(String stock: stocks) {
-			 TimeSeriesIdImpl  query = new TimeSeriesIdImpl.Builder(stock)
-					 .startInstant(startInstant)
-					 .endInstant(endInstant)
-					 .interval(inter)
-					 .build();
-		 }
-		 
-		 MACD macd = new MACD(dts,new TimeSeriesIdImpl.Builder("ACER")
+		 DatasetImpl macd = new MACD.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval(inter)
-				 .build(),"close", 12,26,9);
-         DatasetImpl ds = macd.create();
-		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
-		
+				 .build()))
+				 .source("close")
+				 .fastEMALength(12)
+				 .slowEMALength(26)
+				 .signalLineLength(9)
+				 .build()
+				 .run();
 		System.out.println();
 	}
 

@@ -11,8 +11,12 @@ import data.source.internal.dataset.DatasetI;
  */
 public abstract class IndicatorAbstract implements IndicatorI {
 
-    protected final DatasetI dataSet;
+    protected DatasetI dataSet;
 	
+    public IndicatorAbstract() {
+		
+	}
+    
 	public IndicatorAbstract(DatasetI dataSet) {
 		this.dataSet = dataSet;
 		if(!dataSetCheck()) {

@@ -18,8 +18,8 @@ import data.source.external.financialdatavendors.parameters.APIParametersBuilder
  */
 public class EODHistoricalDataConnector extends APIConnectorAbstract {
 
-	private String BASE_URL = "https://eodhistoricaldata.com/api/";
-	private String apiKeyId = "api_token";
+	private final String BASE_URL = "https://eodhistoricaldata.com/api/";
+	private final String apiKeyId = "api_token";
 	/**
 	 * @param apiKey
 	 * @param timeOut

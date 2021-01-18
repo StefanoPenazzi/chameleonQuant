@@ -10,6 +10,7 @@ import java.util.List;
 
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
 import data.source.internal.timeseries.point.SingleTagPoint;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
@@ -17,37 +18,35 @@ import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
 import data.source.internal.timeseries.standard.TimeSeriesImpl;
 import data.source.internal.timeseries.structure.RBTree;
 import indicators.IndicatorAbstract;
+import indicators.IndicatorI;
+import indicators.movingAverage.MACD;
+import indicators.movingAverage.MACD.Builder;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class TrueRange extends IndicatorAbstract {
+public class TrueRange implements IndicatorI {
 
-	private final TimeSeriesImpl itsRef;
-	private TimeSeriesImpl itsRes;
+	private TimeSeriesI itsRef;
 	
-	/**
-	 * @param dataSet
-	 */
-	public TrueRange(DatasetI dataSet,TimeSeriesIdAbstract id) {
-		super(dataSet);
-		this.itsRef = (TimeSeriesImpl) this.dataSet.getTimeSeries(id);
+	
+	 public static class Builder {
 		
+		private TimeSeriesI ts;
+		 
+		public Builder(TimeSeriesI ts) {
+	        this.ts = ts;
+	    }
+		
+		 public TrueRange build(){
+			TrueRange tr = new TrueRange();
+			tr.itsRef = this.ts;
+            return tr;
+		}		
 	}
 	
-	public TrueRange(DatasetI dataSet) {
-		super(dataSet);
-		itsRef = (TimeSeriesImpl) this.dataSet.iterator().next();
-	}
-
-	@Override
-	public boolean dataSetCheck() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public DatasetImpl create() throws Exception {
+	public TimeSeriesImpl run() throws Exception {
 		   List<TimeSeriesPointI> itsRefList = (List<TimeSeriesPointI>) itsRef.getList();
 		   List<SingleTagPoint<Double>> res = new ArrayList<>(); 
 //		   // reflection invoked just once
@@ -77,10 +76,8 @@ public class TrueRange extends IndicatorAbstract {
 					 .startInstant(itsRef.getFirstInstant())
 					 .endInstant(itsRef.getLastInstant())
 					 .build();
-		   itsRes = new TimeSeriesImpl(new RBTree(res),id);
-		   DatasetImpl ds = new DatasetImpl();
-		   ds.addTimeSeries(itsRes);
-		   return ds;
+		   TimeSeriesImpl itsRes = new TimeSeriesImpl(new RBTree(res),id);
+		   return  itsRes;
 		}
 
 }

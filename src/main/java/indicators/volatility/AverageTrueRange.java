@@ -3,61 +3,50 @@
  */
 package indicators.volatility;
 
-import data.source.internal.dataset.DatasetI;
-import data.source.internal.dataset.DatasetImpl;
-import data.source.internal.timeseries.TimeSeriesIdAbstract;
-import data.source.internal.timeseries.point.SingleTagPoint;
-import data.source.internal.timeseries.point.TimeSeriesPointI;
+import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.standard.TimeSeriesImpl;
-import indicators.IndicatorAbstract;
+import indicators.IndicatorI;
 import indicators.movingAverage.SimpleMovingAverage;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class AverageTrueRange<T extends TimeSeriesPointI> extends IndicatorAbstract {
+public class AverageTrueRange implements IndicatorI {
 
-	private final int periods;
-	private final DatasetI dataSet;
-	private final TimeSeriesIdAbstract id;
+	private int length;
+	private TimeSeriesI itsRef;
 	
-	/**
-	 * @param dataSet
-	 */
-	public AverageTrueRange(DatasetI dataSet,int periods) {
-		super(dataSet);
-		this.periods = periods;
-		this.dataSet = dataSet;
-		this.id = null;
+	 public static class Builder {
+			
+			private TimeSeriesI ts;
+			private int len = 9;
+			 
+			public Builder(TimeSeriesI ts) {
+		        this.ts = ts;
+		    }
+			
+			public Builder length(int len) {
+				this.len = len;
+				return this;
+			}
+			
+			 public AverageTrueRange build(){
+				AverageTrueRange atr = new  AverageTrueRange();
+				atr.itsRef = this.ts;
+				atr.length = this.len;
+	            return atr;
+			}		
 	}
 	
-	public AverageTrueRange(DatasetI dataSet,TimeSeriesIdAbstract id,int periods) {
-		super(dataSet);
-		this.periods = periods;
-		this.dataSet = dataSet;
-		this.id = id;
-	}
+	public TimeSeriesImpl run() throws Exception {
 	
-	public DatasetImpl create() throws Exception {
-		DatasetImpl trRes;
-		if(this.id != null) {
-			TrueRange tr = new TrueRange(this.dataSet,this.id);
-			trRes = tr.create();
-		}
-		else {
-			TrueRange tr = new TrueRange(this.dataSet,this.id);
-			trRes = tr.create();
-		}
-		SimpleMovingAverage sma = new SimpleMovingAverage(trRes,"value",this.periods);
-		DatasetImpl atrRes = sma.create();
-		return atrRes;
+		TrueRange tr = new TrueRange.Builder(this.itsRef).build();	
+		TimeSeriesImpl trRes = tr.run();
+		SimpleMovingAverage sma = new SimpleMovingAverage.Builder(trRes)
+				.source("value")
+				.length(this.length)
+				.build();
+		return sma.run();
 	}
-
-	@Override
-	public boolean dataSetCheck() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
