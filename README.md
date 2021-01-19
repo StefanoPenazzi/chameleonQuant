@@ -25,6 +25,7 @@ The first steps are always the hardest. Do not give way to discouragement! There
 <h1> Prerequisites</h1>
 
 <h1> Installing</h1>
+Please note that this library is still in early development stages. Major API changes are expected in the near future.
 
 <h1>First step into the jungle</h1>
 <div align="justify">
