@@ -3,14 +3,10 @@
  */
 package data.source.external.financialdatavendors.alphavantage;
 
-import java.time.Instant;
-
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.internal.timeseries.TimeSeriesIdI;
 import data.source.internal.timeseries.TimeSeriesRequestIdAbstract;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
-import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
-import data.source.internal.timeseries.standard.TimeSeriesIdImpl.Builder;
 
 /**
  * @author stefanopenazzi
@@ -60,10 +56,10 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 		this.tsp = tsp;
 		this.exchange = exchange;
 		this.ticker = ticker;
-		this.id = convertId(this.timeSeriesId.getId());
-		this.interval = convertInterval(this.timeSeriesId.getInterval());
-		this.startTime = convertStartTime(this.timeSeriesId.getStartInstant());
-		this.endTime =  convertEndTime(this.timeSeriesId.getEndInstant());
+		this.id = this.timeSeriesId.getId();
+		this.interval = this.timeSeriesId.getInterval();
+		this.startTime = this.timeSeriesId.getStartInstant().toString();
+		this.endTime =  this.timeSeriesId.getEndInstant().toString();
 	}
 	
 	@Override
@@ -104,29 +100,6 @@ public class TimeSeriesRequestIdAlphaVantage extends TimeSeriesRequestIdAbstract
 	@Override
 	public Object getInterval() {
 		return this.interval;
-	}
-
-	@Override
-	protected String convertId(Object id) {
-		return id.toString();
-	}
-
-	@Override
-	protected String convertInterval(Object interval) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected String convertStartTime(Object startTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected String convertEndTime(Object endTime) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

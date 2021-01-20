@@ -25,17 +25,21 @@ class TestVolatility {
 
 	@Test
 	void testTrueRange() throws Exception {
+		
+		Controller.run();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
 		Instant endInstant = null;
 		String inter = "1h";
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
-		listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+		listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval("1h")
-				 .build()));
+				 .build())
+				.build());
 		 
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
@@ -53,17 +57,21 @@ class TestVolatility {
 	
 	@Test
 	void testAverageTrueRange() throws Exception {
+		
+		Controller.run();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
 		Instant endInstant = null;
 		String inter = "1h";
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
-		listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+		listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval("1h")
-				 .build()));
+				 .build())
+				.build());
 		 
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
@@ -81,17 +89,21 @@ class TestVolatility {
 	
 	@Test
 	void testMACD() throws Exception {
+		
+		Controller.run();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
 		Instant endInstant = null;
 		String inter = "1h";
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
-		listQueries.add(new TimeSeriesRequestIdInfluxdb(new TimeSeriesIdImpl.Builder("AMZN")
+		listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval("1h")
-				 .build()));
+				 .build())
+				.build());
 		 
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);

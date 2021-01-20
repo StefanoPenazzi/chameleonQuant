@@ -5,44 +5,42 @@ package data.source.external.database.influxdb;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-
-import data.source.annotations.InternalQueryAnnotation.InternalQueryInfo;
 import data.source.internal.timeseries.TimeSeriesIdI;
-import data.source.internal.timeseries.TimeSeriesRequestIdAbstract;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
+public class TimeSeriesRequestIdInfluxdb implements TimeSeriesRequestIdI{
 	
-	private final String source = "influxdb";
-	private final TimeSeriesIdI timeSeriesId;
-	private final Class<? extends TimeSeriesPointI> tsp;
-	private final String id;
-	private final String startTime;
-	private final String endTime;
-	private final String interval;
+	private final String SOURCE = "influxdb";
+	private TimeSeriesIdI timeSeriesId;
+	private Class<? extends TimeSeriesPointI> tspc;
+	
 	private final ArrayList<String> influxIntervalChar = new ArrayList<String>() {{add("s");add("m");add("h");add("d");add("w");add("mo");add("y");}};
-
-	public TimeSeriesRequestIdInfluxdb(TimeSeriesIdI timeSeriesId, Class<? extends TimeSeriesPointI> tsp) {
-		this.timeSeriesId = timeSeriesId;
-		this.tsp = tsp;
-		this.id = convertId(this.timeSeriesId.getId());
-		this.interval = convertInterval(this.timeSeriesId.getInterval());
-		this.startTime = convertStartTime(this.timeSeriesId.getStartInstant());
-		this.endTime =  convertEndTime(this.timeSeriesId.getEndInstant());
-	}
 	
-	public TimeSeriesRequestIdInfluxdb(TimeSeriesIdI timeSeriesId) {
-		this.timeSeriesId = timeSeriesId;
-		this.tsp = null;
-		this.id = convertId(timeSeriesId.getId());
-		this.interval = convertInterval(timeSeriesId.getInterval());
-		this.startTime = null;
-		this.endTime =  null;
+    public static class Builder {
+    	
+    	private TimeSeriesIdI timeSeriesId;
+    	private Class<? extends TimeSeriesPointI> tspc;
+		
+		public Builder(TimeSeriesIdI timeSeriesId) {
+	        this.timeSeriesId = timeSeriesId;
+	    }
+		
+		public Builder setTimeSeriesPointClass (Class<? extends TimeSeriesPointI> tspc) {
+	        this.tspc = tspc;
+	        return this;
+	    }
+		
+		public TimeSeriesRequestIdInfluxdb build(){
+			TimeSeriesRequestIdInfluxdb tsIdInflux = new TimeSeriesRequestIdInfluxdb(); 
+			tsIdInflux.timeSeriesId = this.timeSeriesId; 
+			tsIdInflux.tspc = this.tspc;
+            return tsIdInflux;
+		}		
 	}
 	
 	public TimeSeriesIdI timeSeriesId() {
@@ -51,7 +49,7 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	
 	@Override
 	public String getSource() {
-		return this.source;
+		return this.SOURCE;
 	}
 
 	@Override
@@ -61,37 +59,17 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 
 	@Override
 	public Class<? extends TimeSeriesPointI> getTimeSeriesPoint() {
-		return this.tsp;
+		return this.tspc;
 	}
 
 	@Override
 	public String getId() {
-		return this.id;
+		return this.timeSeriesId.getId();
 	}
 
 	@Override
 	public String getInterval() {
-		return this.interval;
-	}
-
-	@Override
-	public String getStartTime() {
-		return this.startTime;
-	}
-
-	@Override
-	public String getEndTime() {
-		return this.endTime;
-	}
-
-	@Override
-	protected String convertId(Object iid) {
-		return iid.toString();
-	}
-
-	@Override
-	protected String convertInterval(Object intervalInput) {
-		String interval = intervalInput.toString();
+		String interval = timeSeriesId.getInterval().toString();
 		//check if the interval is compatible with influx
 		String[] intervalParts = interval.split("(?<=\\d)(?=\\D)");
 		if(!influxIntervalChar.contains(intervalParts[1].toString())) {
@@ -101,10 +79,10 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	}
 
 	@Override
-	protected String convertStartTime(Object startTime) {
+	public String getStartTime() {
 		TimeSeriesPointI tspIst = null;
 		try {
-			tspIst = this.tsp.newInstance();
+			tspIst = this.tspc.newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,10 +95,10 @@ public class TimeSeriesRequestIdInfluxdb extends TimeSeriesRequestIdAbstract{
 	}
 
 	@Override
-	protected String convertEndTime(Object endTime) {
+	public String getEndTime() {
 		TimeSeriesPointI tspIst = null;
 		try {
-			tspIst = this.tsp.newInstance();
+			tspIst = this.tspc.newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

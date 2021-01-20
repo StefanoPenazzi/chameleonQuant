@@ -13,6 +13,6 @@ import data.source.internal.timeseries.TimeSeriesRequestIdI;
  */
 public interface DatasetFactoryI {
 	
-	public DatasetI create(List<TimeSeriesRequestIdI> listOfId);
+	public DatasetI create(List< TimeSeriesRequestIdI> listOfId);
 
 }

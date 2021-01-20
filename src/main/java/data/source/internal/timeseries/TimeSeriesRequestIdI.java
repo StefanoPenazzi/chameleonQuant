@@ -16,7 +16,6 @@ public interface TimeSeriesRequestIdI {
 	public String getSource();
 	public TimeSeriesIdI getTimeSeriesId();
 	public Class<? extends TimeSeriesPointI> getTimeSeriesPoint();
-	
 	public Object getId();
 	public Object getStartTime();
 	public Object getEndTime();  

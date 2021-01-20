@@ -109,7 +109,7 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		 if (res.charAt(res.length() - 1) == ' ' && res.charAt(res.length() - 2) ==',') {
 			 res = res.substring(0, res.length() - 2);
 		}
-		res = res + " FROM \""+iq.getId()+"\" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval()+")" ;
+		res = res + " FROM \""+iq.getId()+"\" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval()+") fill(none)" ;
 		return res;
 	}
 
@@ -118,7 +118,9 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		TimeSeriesRequestIdInfluxdb iq = (TimeSeriesRequestIdInfluxdb)iqp;
 		String db = getDatabaseFromSymbol(iq.getId());
 		if(iq.getTimeSeriesPoint() == null) { 
-			iq = new TimeSeriesRequestIdInfluxdb(iq.getTimeSeriesId(),classDatabaseMap.get(db));
+			iq = new TimeSeriesRequestIdInfluxdb.Builder(iq.getTimeSeriesId())
+					.setTimeSeriesPointClass(classDatabaseMap.get(db))
+					.build();
 		}
 		Influxdb idb = new Influxdb();
 		idb.connect();
