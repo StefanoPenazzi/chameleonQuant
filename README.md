@@ -9,7 +9,7 @@
 <body>
 
 <p align="center">
-  <img width="1000" height="500" src="src/main/resources/images/ChameleonQuantLogo.png">
+  <img width="800" height="500" src="src/main/resources/images/ChameleonQuantLogo.png">
 </p>
 
 <h1>Mission</h1>
