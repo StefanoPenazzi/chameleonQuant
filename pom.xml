@@ -10,6 +10,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
     </properties>
+    
+    <repositories>
+	    <repository>
+		    <id>nm-repo</id>
+		    <name>NM Maven Repository</name>
+		    <url>http://repo.nm.dev/maven/</url>
+		    <layout>default</layout>
+		</repository>
+	 </repositories>
 
     <dependencies>
 
@@ -54,6 +63,13 @@
 		    <groupId>org.jblas</groupId>
 		    <artifactId>jblas</artifactId>
 		    <version>1.2.5</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.tensorflow</groupId>
+		  <artifactId>tensorflow-core-platform</artifactId>
+		  <version>0.2.0</version>
+		  <classifier>linux-x86_64${javacpp.platform.extension}</classifier>
 		</dependency>
 
     </dependencies>
