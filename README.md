@@ -9,7 +9,7 @@
 <body>
 
 <p align="center">
-  <img width="800" height="400" src="src/main/resources/images/LogoSimple.png">
+  <img width="400" height="200" src="src/main/resources/images/LogoSimple.png">
 </p>
 
 <h1>Mission</h1>
