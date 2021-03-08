@@ -9,7 +9,9 @@ import java.util.List;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import indicators.movingAverage.SimpleMovingAverage;
-import strategies.Signal.Action;
+import strategies.Position.Action;
+import strategies.Position.PositionType;
+import strategies.Position.Signal;
 import strategies.SimpleMovingAverageStrategy.Builder;
 
 /**
@@ -89,20 +91,40 @@ public class DualSimpleMovingAverageCrossoverStrategy extends StrategyAbstract  
 		
 		boolean up = (double)stmaCopy.get(0).getTagValue("value") >= (double)ltmaCopy.get(0).getTagValue("value") ? false: true;
 		
+		int volume = 100;
+		
+		String secId = this.itsRef.getQuery().getId();
 		
 		for(int i = 1;i<stmaCopy.size();i++) {
 			if(up) {
 				if((double)stmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
 					up = false;
-					Signal signal = new Signal(Action.SELL,(double)itsRefCopy.get(i).getTagValue(this.source),1,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					
+					if(positions.size()>1) {
+						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
+					}
+					Position position = new Position.Builder(PositionType.SHORT)
+							.securityId(secId )
+							.price((double)itsRefCopy.get(i).getTagValue(this.source))
+							.initialVolume(volume)
+							.openInstant(itsRefCopy.get(i).getTime())
+							.build();
+					positions.add(position);
 				}
 			}
 			else {
 				if((double)ltmaCopy.get(i).getTagValue("value") < (double)stmaCopy.get(i).getTagValue("value")) {
 					up = true;
-					Signal signal = new Signal(Action.BUY,(double)itsRefCopy.get(i).getTagValue(this.source),1,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					if(positions.size()>1) {
+						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
+					}
+					Position position = new Position.Builder(PositionType.LONG)
+							.securityId(secId )
+							.price((double)itsRefCopy.get(i).getTagValue(this.source))
+							.initialVolume(volume)
+							.openInstant(itsRefCopy.get(i).getTime())
+							.build();
+					positions.add(position);
 				}
 			}
 		}

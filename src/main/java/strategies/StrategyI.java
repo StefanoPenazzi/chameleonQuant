@@ -32,10 +32,10 @@ public interface StrategyI {
 	public int getMaxConsecLosingTrades();
 	public double getPercOfTimeInTheMarket();
 	public double getMaxTradeDrawdown();
+	public String getPerformanceReport();
 	
+	public List<Position> getPositions();
 	
-	
-	
-	public List<Signal> getSignals();
+
 
 }

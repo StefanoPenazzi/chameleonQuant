@@ -3,6 +3,8 @@
  */
 package strategies;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import indicators.movingAverage.SimpleMovingAverage;
-import strategies.Signal.Action;
+import strategies.Position.PositionType;
 
 /**
  * @author stefanopenazzi
@@ -68,27 +70,59 @@ public class SimpleMovingAverageStrategy extends StrategyAbstract  {
 		List<TimeSeriesPointI> itsRefCopy = this.itsRef.getListFromTo(from,to);
 		List<TimeSeriesPointI> smaCopy = this.sma.getListFromTo(from,to);
 		
-//		itsRefCopy.forEach( (TimeSeriesPointI) -> System.out.println(TimeSeriesPointI.getString()) ); 
-//		System.out.println("MA");
-//		smaCopy.forEach( (TimeSeriesPointI) -> System.out.println(TimeSeriesPointI.getString()) ); 
-		
 		boolean up = (double)itsRefCopy.get(0).getTagValue(this.source) >= (double)smaCopy.get(0).getTagValue("value") ? false: true;
 		
-		double volume = 100;
+		int volume = 100;
+		
+		Method methodItsRef = itsRefCopy.get(0).getTagMethod(this.source);
+		Method methodSma = smaCopy.get(0).getTagMethod("value");
+		String secId = this.itsRef.getQuery().getId();
 		
 		for(int i = 1;i<smaCopy.size();i++) {
+			double refVal = 0;
+			double smaVal = 0;
+			try {
+				refVal = (double) methodItsRef.invoke(itsRefCopy.get(i));
+				smaVal = (double) methodSma.invoke(smaCopy.get(i));
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			if(up) {
-				if((double)itsRefCopy.get(i).getTagValue(this.source) < (double)smaCopy.get(i).getTagValue("value")) {
+				if(refVal < smaVal) {
 					up = false;
-					Signal signal = new Signal(Action.SELL,(double)itsRefCopy.get(i).getTagValue(this.source),volume,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					if(positions.size()>=1) {
+						positions.get(positions.size()-1).addNewSignal(refVal, volume, itsRefCopy.get(i).getTime());
+					}
+					Position position = new Position.Builder(PositionType.SHORT)
+							.securityId(secId)
+							.price(refVal)
+							.initialVolume(volume)
+							.openInstant(itsRefCopy.get(i).getTime())
+							.build();
+					positions.add(position);
 				}
 			}
 			else {
-				if((double)itsRefCopy.get(i).getTagValue(this.source) < (double)smaCopy.get(i).getTagValue("value")) {
+				if(refVal > smaVal) {
 					up = true;
-					Signal signal = new Signal(Action.BUY,(double)itsRefCopy.get(i).getTagValue(this.source),volume,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					if(positions.size()>=1) {
+						positions.get(positions.size()-1).addNewSignal(refVal, volume, itsRefCopy.get(i).getTime());
+					}
+					Position position = new Position.Builder(PositionType.LONG)
+							.securityId(secId)
+							.price(refVal)
+							.initialVolume(volume)
+							.openInstant(itsRefCopy.get(i).getTime())
+							.build();
+					positions.add(position);
 				}
 			}
 		}

@@ -9,7 +9,7 @@ import java.util.List;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import indicators.movingAverage.SimpleMovingAverage;
-import strategies.Signal.Action;
+import strategies.Position.PositionType;
 
 /**
  * @author stefanopenazzi
@@ -77,7 +77,7 @@ public class TripleSimpleMovingAverageCrossoverStrategy extends StrategyAbstract
         }
 		
 		 public TripleSimpleMovingAverageCrossoverStrategy build() throws Exception{
-			 TripleSimpleMovingAverageCrossoverStrategy  smas = new TripleSimpleMovingAverageCrossoverStrategy (); 
+			TripleSimpleMovingAverageCrossoverStrategy  smas = new TripleSimpleMovingAverageCrossoverStrategy (); 
 			smas.itsRef = this.ts;
 			smas.source = this.source;
 			smas.targetRange = this.targetRange;
@@ -126,6 +126,10 @@ public class TripleSimpleMovingAverageCrossoverStrategy extends StrategyAbstract
 		double targetPrice = 0;
 		double stopLoss = 0;
 		
+		int volume = 100;
+		
+		String secId = this.itsRef.getQuery().getId();
+		
 		
 		for(int i = 1;i<stmaCopy.size();i++) {
 			
@@ -152,25 +156,41 @@ public class TripleSimpleMovingAverageCrossoverStrategy extends StrategyAbstract
 			if(!inLong && !inShort) {
 				if(shortXlong == Cross.UP && shortXmedium == Cross.UP && mediumXlong == Cross.DOWN) {
 					inLong = true;
-					Signal signal = new Signal(Action.BUY,(double)itsRefCopy.get(i).getTagValue(this.source),1,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					
+					Position position = new Position.Builder(PositionType.LONG)
+							.securityId(secId)
+							.price((double)itsRefCopy.get(i).getTagValue(this.source))
+							.initialVolume(volume)
+							.openInstant(itsRefCopy.get(i).getTime())
+							.build();
+					positions.add(position);
+					
 					candleRange = (double)itsRefCopy.get(i).getTagValue("high") - (double)itsRefCopy.get(i).getTagValue("low");
 					targetPrice = (double)itsRefCopy.get(i).getTagValue("high") + (candleRange * this.targetRange);
 					stopLoss = (double)itsRefCopy.get(i).getTagValue("low");
 				}
 				if(shortXlong == Cross.DOWN && shortXmedium == Cross.DOWN && mediumXlong == Cross.UP) {
 					inShort = true;
-					Signal signal = new Signal(Action.SELL,(double)itsRefCopy.get(i).getTagValue(this.source),1,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					
+					Position position = new Position.Builder(PositionType.SHORT)
+							.securityId(secId)
+							.price((double)itsRefCopy.get(i).getTagValue(this.source))
+							.initialVolume(volume)
+							.openInstant(itsRefCopy.get(i).getTime())
+							.build();
+					positions.add(position);
+					
 					candleRange = (double)itsRefCopy.get(i).getTagValue("high") - (double)itsRefCopy.get(i).getTagValue("low");
+					targetPrice = (double)itsRefCopy.get(i).getTagValue("high") - (candleRange * this.targetRange);
 					stopLoss = (double)itsRefCopy.get(i).getTagValue("high");
 				}
 			}
 			else if(inLong && !inShort) {
 				if((mediumXlong == Cross.UP && (double)itsRefCopy.get(i).getTagValue(this.source) > targetPrice) ||
 						((double)itsRefCopy.get(i).getTagValue(this.source) < stopLoss)) {
-					Signal signal = new Signal(Action.SELL,(double)itsRefCopy.get(i).getTagValue(this.source),1,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					
+					positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
+
 					inLong = false;
 					shortXlong = Cross.NEUTRAL;
 					shortXmedium = Cross.NEUTRAL;
@@ -179,8 +199,9 @@ public class TripleSimpleMovingAverageCrossoverStrategy extends StrategyAbstract
             else if(!inLong && inShort) {
             	if((mediumXlong == Cross.DOWN && (double)itsRefCopy.get(i).getTagValue(this.source) < targetPrice) ||
 						((double)itsRefCopy.get(i).getTagValue(this.source) > stopLoss)) {
-					Signal signal = new Signal(Action.BUY,(double)itsRefCopy.get(i).getTagValue(this.source),1,itsRefCopy.get(i).getTime());
-					signals.add(signal);
+					
+            		positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
+            		
 					inShort = false;
 					shortXlong = Cross.NEUTRAL;
 					shortXmedium = Cross.NEUTRAL;
@@ -190,24 +211,6 @@ public class TripleSimpleMovingAverageCrossoverStrategy extends StrategyAbstract
             	//run exception
             }
 		}
-	}
-	
-	@Override
-	public double getReturnOnInitialCapital() {
-		
-		if(signals.size() <= 1) return 1.0;
-		double expRet = 1.0;
-		int lastSignal = (int) Math.floor(signals.size()/2);
-		
-		for(int i =0;i<signals.size();i+=2) {
-			if(signals.get(i).getAction() == Action.BUY) {
-				expRet = expRet * (1-((signals.get(i).getPrice()-signals.get(i+1).getPrice())/signals.get(i).getPrice()));
-			}
-			else {
-				expRet = expRet * (1+((signals.get(i).getPrice()-signals.get(i+1).getPrice())/signals.get(i).getPrice()));
-			}
-		}
-		return expRet;
 	}
 }
 

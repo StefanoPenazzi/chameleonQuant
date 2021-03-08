@@ -32,14 +32,14 @@ class TestStrategies {
         Controller.run();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+		Instant startInstant = (sdf.parse("2010-10-19 00:00:00")).toInstant();
 		Instant endInstant = null;
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
 		listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
-				 .interval("1h")
+				 .interval("1d")
 				 .build())
 				.build());
 		 
@@ -49,15 +49,14 @@ class TestStrategies {
 		 SimpleMovingAverageStrategy smas = new SimpleMovingAverageStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
-				 .interval("1h")
+				 .interval("1d")
 				 .build()))
 				 .source("close")
-				 .length(24)
+				 .length(200)
 				 .build();
 		 smas.run();
 		 
-		 List<Signal> signals = smas.getSignals();
-		 double res = smas.expectedReturn();
+		 double res = smas.getReturnOnInitialCapital();
 		
 		System.out.println();
 	}
@@ -92,7 +91,6 @@ class TestStrategies {
 				 .build();
 		 dsmac.run();
 		 
-		 List<Signal> signals = dsmac.getSignals();
 		 double res = dsmac.getReturnOnInitialCapital();
 		
 		System.out.println();
@@ -123,14 +121,13 @@ class TestStrategies {
 				 .interval("1d")
 				 .build()))
 				 .source("close")
-				 .lengthShortTermMA(12)
-				 .lengthMediumTermMA(24)
-				 .lengthLongTermMA(50)
+				 .lengthShortTermMA(10)
+				 .lengthMediumTermMA(20)
+				 .lengthLongTermMA(100)
 				 .build();
 		 tsmac.run();
 		 
-		 List<Signal> signals = tsmac.getSignals();
-		 double res = tsmac.expectedReturn();
+		 double res = tsmac.getReturnOnInitialCapital();
 		
 		System.out.println();
 	}

@@ -5,8 +5,8 @@ package strategies;
 
 import java.util.ArrayList;
 import java.util.List;
+import strategies.Position.PositionType;
 
-import strategies.Signal.Action;
 
 /**
  * @author stefanopenazzi
@@ -14,35 +14,21 @@ import strategies.Signal.Action;
  */
 public abstract class StrategyAbstract implements StrategyI {
 	
-	protected List<Signal> signals = new ArrayList<>();
+	protected List<Position> positions = new ArrayList<>();
 	
 	@Override
-	public List<Signal> getSignals() {
-		return this.signals;
+	public List<Position> getPositions() {
+		return this.positions;
 	}
+	
 	
 	@Override
 	public double getReturnOnInitialCapital() {
-		
-		if(signals.size() <= 1) return 1.0;
-		
-		double expRet = 1.0;
-		Action action = signals.get(0).getAction();
-		double prevPrice = signals.get(0).getPrice();
-		
-		for(int i =1;i<signals.size();i++) {
-			if(action == Action.BUY) {
-				expRet = expRet * (1-((prevPrice-signals.get(i).getPrice())/prevPrice));
-				action = Action.BUY;
-			}
-			else {
-				expRet = expRet * (1+((prevPrice-signals.get(i).getPrice())/prevPrice));
-				action = Action.SELL;
-			}
-			action = signals.get(i).getAction();
-			prevPrice = signals.get(i).getPrice();
+		double res = 0.0;
+		for(Position position: positions) {
+			res += position.getReturnOnInitialCapital();
 		}
-		return expRet;
+		return res;
 	}
 	
 	@Override
@@ -158,5 +144,13 @@ public abstract class StrategyAbstract implements StrategyI {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public String getPerformanceReport() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }
