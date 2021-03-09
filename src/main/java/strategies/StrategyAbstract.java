@@ -16,6 +16,8 @@ public abstract class StrategyAbstract implements StrategyI {
 	
 	protected List<Position> positions = new ArrayList<>();
 	
+	 protected static abstract class Builder <T extends StrategyAbstract, B extends Builder<T, B>> {}
+	
 	@Override
 	public List<Position> getPositions() {
 		return this.positions;

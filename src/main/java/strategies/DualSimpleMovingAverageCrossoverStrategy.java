@@ -3,30 +3,16 @@
  */
 package strategies;
 
-import java.time.Instant;
-import java.util.List;
-
 import data.source.internal.timeseries.TimeSeriesI;
-import data.source.internal.timeseries.point.TimeSeriesPointI;
 import indicators.movingAverage.SimpleMovingAverage;
-import strategies.Position.Action;
-import strategies.Position.PositionType;
-import strategies.Position.Signal;
-import strategies.SimpleMovingAverageStrategy.Builder;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class DualSimpleMovingAverageCrossoverStrategy extends StrategyAbstract  {
-
-	private TimeSeriesI itsRef;
-	private TimeSeriesI stma;
-	private TimeSeriesI ltma;
-	private String source;
+public final class DualSimpleMovingAverageCrossoverStrategy extends DualMovingAverageCrossoverStrategy  {
 	
-	
-    public static class Builder {
+    public final static class Builder extends DualMovingAverageCrossoverStrategy.Builder<DualSimpleMovingAverageCrossoverStrategy,Builder> {
 		
 		private TimeSeriesI ts;
 		private int lengthStma = 7;
@@ -78,58 +64,5 @@ public class DualSimpleMovingAverageCrossoverStrategy extends StrategyAbstract  
             return smas;
 		}		
 	}
-	
-	@Override
-	public void run() {
-		Instant from = this.stma.getFirstInstant().compareTo(this.ltma.getFirstInstant()) > 0 ? this.stma.getFirstInstant() : this.ltma.getFirstInstant();
-		Instant to = this.stma.getLastInstant().compareTo(this.ltma.getLastInstant()) > 0 ? this.ltma.getLastInstant() : this.stma.getLastInstant();
-		
-		List<TimeSeriesPointI> stmaCopy = this.stma.getListFromTo(from,to);
-		List<TimeSeriesPointI> ltmaCopy = this.ltma.getListFromTo(from,to);
-		List<TimeSeriesPointI> itsRefCopy = this.itsRef.getListFromTo(from,to);
-		
-		
-		boolean up = (double)stmaCopy.get(0).getTagValue("value") >= (double)ltmaCopy.get(0).getTagValue("value") ? false: true;
-		
-		int volume = 100;
-		
-		String secId = this.itsRef.getQuery().getId();
-		
-		for(int i = 1;i<stmaCopy.size();i++) {
-			if(up) {
-				if((double)stmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
-					up = false;
-					
-					if(positions.size()>1) {
-						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
-					}
-					Position position = new Position.Builder(PositionType.SHORT)
-							.securityId(secId )
-							.price((double)itsRefCopy.get(i).getTagValue(this.source))
-							.initialVolume(volume)
-							.openInstant(itsRefCopy.get(i).getTime())
-							.build();
-					positions.add(position);
-				}
-			}
-			else {
-				if((double)ltmaCopy.get(i).getTagValue("value") < (double)stmaCopy.get(i).getTagValue("value")) {
-					up = true;
-					if(positions.size()>1) {
-						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
-					}
-					Position position = new Position.Builder(PositionType.LONG)
-							.securityId(secId )
-							.price((double)itsRefCopy.get(i).getTagValue(this.source))
-							.initialVolume(volume)
-							.openInstant(itsRefCopy.get(i).getTime())
-							.build();
-					positions.add(position);
-				}
-			}
-		}
-		
-	}
-
 }
 

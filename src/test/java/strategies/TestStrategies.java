@@ -46,7 +46,7 @@ class TestStrategies {
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 		 
-		 SimpleMovingAverageStrategy smas = new SimpleMovingAverageStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
+		 SingleSimpleMovingAverageStrategy smas = new SingleSimpleMovingAverageStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval("1d")

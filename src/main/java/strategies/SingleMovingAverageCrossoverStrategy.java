@@ -6,69 +6,36 @@ package strategies;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import indicators.movingAverage.SimpleMovingAverage;
 import strategies.Position.PositionType;
+import strategies.SingleSimpleMovingAverageStrategy.Builder;
 
 /**
  * @author stefanopenazzi
  *
  */
-public class SimpleMovingAverageStrategy extends StrategyAbstract  {
+public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 
-	private TimeSeriesI itsRef;
-	private TimeSeriesI sma;
-	private String source;
+	protected TimeSeriesI itsRef;
+	protected TimeSeriesI ma;
+	protected String source;
 	
-	
-    public static class Builder {
-		
-		private TimeSeriesI ts;
-		private int length = 9;
-		private String source = "close";
-		private int offset = 0;
-		
-		public Builder(TimeSeriesI ts) {
-	        this.ts = ts;
-	    }
-		public Builder length(int length){
-            this.length = length;
-            return this;
-        }
-		public Builder source(String source){
-           this.source = source; 
-            return this;
-        }
-		public Builder offset(int offset){
-            this.offset = offset;
-            return this;
-        }
-		 public SimpleMovingAverageStrategy build() throws Exception{
-			 SimpleMovingAverageStrategy  smas = new SimpleMovingAverageStrategy (); 
-			smas.itsRef = this.ts;
-			smas.source = this.source;
-			smas.sma = new SimpleMovingAverage.Builder(this.ts)
-					.length(this.length)
-					.source(this.source)
-					.offset(this.offset)
-					.build()
-					.run();
-			
-            return smas;
-		}		
+	protected static abstract class Builder
+	    <T extends SingleMovingAverageCrossoverStrategy, B extends Builder<T, B>> extends StrategyAbstract.Builder<T, B> {
 	}
+	
 	
 	@Override
 	public void run() {
-		Instant from = this.itsRef.getFirstInstant().compareTo(this.sma.getFirstInstant()) > 0 ? this.itsRef.getFirstInstant() : this.sma.getFirstInstant();
-		Instant to = this.itsRef.getLastInstant().compareTo(this.sma.getLastInstant()) > 0 ? this.sma.getLastInstant() : this.itsRef.getLastInstant();
+		Instant from = this.itsRef.getFirstInstant().compareTo(this.ma.getFirstInstant()) > 0 ? this.itsRef.getFirstInstant() : this.ma.getFirstInstant();
+		Instant to = this.itsRef.getLastInstant().compareTo(this.ma.getLastInstant()) > 0 ? this.ma.getLastInstant() : this.itsRef.getLastInstant();
 		
 		List<TimeSeriesPointI> itsRefCopy = this.itsRef.getListFromTo(from,to);
-		List<TimeSeriesPointI> smaCopy = this.sma.getListFromTo(from,to);
+		List<TimeSeriesPointI> smaCopy = this.ma.getListFromTo(from,to);
 		
 		boolean up = (double)itsRefCopy.get(0).getTagValue(this.source) >= (double)smaCopy.get(0).getTagValue("value") ? false: true;
 		
@@ -130,3 +97,4 @@ public class SimpleMovingAverageStrategy extends StrategyAbstract  {
 	}
 
 }
+
