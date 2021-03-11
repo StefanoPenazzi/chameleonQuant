@@ -37,30 +37,18 @@ public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		List<TimeSeriesPointI> itsRefCopy = this.itsRef.getListFromTo(from,to);
 		List<TimeSeriesPointI> smaCopy = this.ma.getListFromTo(from,to);
 		
-		boolean up = (double)itsRefCopy.get(0).getTagValue(this.source) >= (double)smaCopy.get(0).getTagValue("value") ? false: true;
+		boolean up = (double)itsRefCopy.get(0).getTagValue(this.source) >= (double)smaCopy.get(0).getTagValue("value") ? true: false;
 		
 		int volume = 100;
 		
-		Method methodItsRef = itsRefCopy.get(0).getTagMethod(this.source);
-		Method methodSma = smaCopy.get(0).getTagMethod("value");
 		String secId = this.itsRef.getQuery().getId();
 		
-		for(int i = 1;i<smaCopy.size();i++) {
+		for(int i = 1;i<smaCopy.size();++i) {
 			double refVal = 0;
 			double smaVal = 0;
-			try {
-				refVal = (double) methodItsRef.invoke(itsRefCopy.get(i));
-				smaVal = (double) methodSma.invoke(smaCopy.get(i));
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			refVal = (double) itsRefCopy.get(i).getTagValue(this.source);
+			smaVal = (double) smaCopy.get(i).getTagValue("value");
 			
 			if(up) {
 				if(refVal < smaVal) {

@@ -4,6 +4,7 @@
 package strategies;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 import data.source.internal.timeseries.TimeSeriesI;
@@ -23,11 +24,29 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 	protected String source;
 	protected double targetRange;
 	
-	enum Cross{
+	enum CrossValue{
 		UP,
 		DOWN,
 		NEUTRAL
 	}
+	
+	enum CrossKey{
+		SHORTXLONG,
+		SHORTXMEDIUM,
+		MEDIUMXLONG
+	}
+	
+	private class CrossPair {
+		
+		public CrossKey key;
+	    public CrossValue value;
+		public CrossPair(CrossKey key,CrossValue value) {
+			this.key = key;
+			this.value = value;
+		}
+	}
+	
+	private List<CrossPair> crossList = new ArrayList<CrossPair>();
 	
 	protected static abstract class Builder
     <T extends TripleMovingAverageCrossoverStrategy, B extends Builder<T, B>> extends StrategyAbstract.Builder<T, B> {}
@@ -47,9 +66,13 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		boolean inLong = false;
 		boolean inShort = false;
 		
-		Cross shortXlong = Cross.NEUTRAL;
-		Cross shortXmedium = Cross.NEUTRAL;
-		Cross mediumXlong = (double)mtmaCopy.get(0).getTagValue("value") < (double)ltmaCopy.get(0).getTagValue("value") ? Cross.DOWN : Cross.UP ;
+		CrossValue shortXlong = (double)stmaCopy.get(0).getTagValue("value") < (double)ltmaCopy.get(0).getTagValue("value") ? CrossValue.DOWN : CrossValue.UP;
+		CrossValue shortXmedium = (double)stmaCopy.get(0).getTagValue("value") < (double)mtmaCopy.get(0).getTagValue("value") ? CrossValue.DOWN : CrossValue.UP;
+		CrossValue mediumXlong = (double)mtmaCopy.get(0).getTagValue("value") < (double)ltmaCopy.get(0).getTagValue("value") ? CrossValue.DOWN : CrossValue.UP;
+		
+		crossList.add(new CrossPair(CrossKey.SHORTXLONG,CrossValue.NEUTRAL));
+		crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,CrossValue.NEUTRAL));
+		crossList.add(new CrossPair(CrossKey.MEDIUMXLONG,CrossValue.NEUTRAL));
 		
 		double candleRange = 0;
 		double targetPrice = 0;
@@ -62,28 +85,47 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		
 		for(int i = 1;i<stmaCopy.size();i++) {
 			
-			if(shortXlong != Cross.UP && (double)stmaCopy.get(i).getTagValue("value") > (double)ltmaCopy.get(i).getTagValue("value")) {
-				shortXlong = Cross.UP;
+			//order is important
+			if(shortXmedium != CrossValue.UP && (double)stmaCopy.get(i).getTagValue("value") > (double)mtmaCopy.get(i).getTagValue("value")) {
+				shortXmedium = CrossValue.UP;
+				crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,shortXmedium));
 			}
-			if(shortXmedium != Cross.UP && (double)stmaCopy.get(i).getTagValue("value") > (double)mtmaCopy.get(i).getTagValue("value")) {
-				shortXmedium = Cross.UP;
+			
+			if(shortXmedium != CrossValue.DOWN && (double)stmaCopy.get(i).getTagValue("value") < (double)mtmaCopy.get(i).getTagValue("value")) {
+				shortXmedium = CrossValue.DOWN;
+				crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,shortXmedium));
 			}
-			if(mediumXlong != Cross.UP && (double)mtmaCopy.get(i).getTagValue("value") > (double)ltmaCopy.get(i).getTagValue("value")) {
-				mediumXlong = Cross.UP;
+			
+			if(shortXlong != CrossValue.UP && (double)stmaCopy.get(i).getTagValue("value") > (double)ltmaCopy.get(i).getTagValue("value")) {
+				shortXlong = CrossValue.UP;
+				crossList.add(new CrossPair(CrossKey.SHORTXLONG,shortXlong));
 			}
-			if(shortXlong != Cross.DOWN && (double)stmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
-				shortXlong = Cross.DOWN;
+			
+			if(shortXlong != CrossValue.DOWN && (double)stmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
+				shortXlong = CrossValue.DOWN;
+				crossList.add(new CrossPair(CrossKey.SHORTXLONG,shortXlong));
 			}
-			if(shortXmedium != Cross.DOWN && (double)stmaCopy.get(i).getTagValue("value") < (double)mtmaCopy.get(i).getTagValue("value")) {
-				shortXmedium = Cross.DOWN;
+			
+			if(mediumXlong != CrossValue.UP && (double)mtmaCopy.get(i).getTagValue("value") > (double)ltmaCopy.get(i).getTagValue("value")) {
+				mediumXlong = CrossValue.UP;
+				crossList.add(new CrossPair(CrossKey.MEDIUMXLONG,mediumXlong ));
 			}
-			if(mediumXlong != Cross.DOWN && (double)mtmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
-				mediumXlong = Cross.DOWN;
+			
+			if(mediumXlong != CrossValue.DOWN && (double)mtmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
+				mediumXlong = CrossValue.DOWN;
+				crossList.add(new CrossPair(CrossKey.MEDIUMXLONG,mediumXlong ));
 			}
+			
+			int crossListSize = crossList.size();
+			CrossPair crossPairFirst = crossList.get(crossListSize - 3);
+			CrossPair crossPairSecond = crossList.get(crossListSize - 2);
+			CrossPair crossPairThird = crossList.get(crossListSize - 1);
 			
 			
 			if(!inLong && !inShort) {
-				if(shortXlong == Cross.UP && shortXmedium == Cross.UP && mediumXlong == Cross.DOWN) {
+				if(crossPairFirst.key == CrossKey.SHORTXMEDIUM && crossPairFirst.value == CrossValue.UP &&
+						crossPairSecond.key == CrossKey.SHORTXLONG && crossPairSecond.value == CrossValue.UP &&
+						crossPairThird.key == CrossKey.MEDIUMXLONG && crossPairThird.value == CrossValue.UP) {
 					inLong = true;
 					
 					Position position = new Position.Builder(PositionType.LONG)
@@ -98,7 +140,9 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					targetPrice = (double)itsRefCopy.get(i).getTagValue("high") + (candleRange * this.targetRange);
 					stopLoss = (double)itsRefCopy.get(i).getTagValue("low");
 				}
-				if(shortXlong == Cross.DOWN && shortXmedium == Cross.DOWN && mediumXlong == Cross.UP) {
+				if(crossPairFirst.key == CrossKey.SHORTXMEDIUM && crossPairFirst.value == CrossValue.DOWN &&
+						crossPairSecond.key == CrossKey.SHORTXLONG && crossPairSecond.value == CrossValue.DOWN &&
+						crossPairThird.key == CrossKey.MEDIUMXLONG && crossPairThird.value == CrossValue.DOWN) {
 					inShort = true;
 					
 					Position position = new Position.Builder(PositionType.SHORT)
@@ -115,25 +159,23 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 				}
 			}
 			else if(inLong && !inShort) {
-				if((mediumXlong == Cross.UP && (double)itsRefCopy.get(i).getTagValue(this.source) > targetPrice) ||
+				if((double)itsRefCopy.get(i).getTagValue(this.source) > targetPrice ||
 						((double)itsRefCopy.get(i).getTagValue(this.source) < stopLoss)) {
-					
 					positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
-
 					inLong = false;
-					shortXlong = Cross.NEUTRAL;
-					shortXmedium = Cross.NEUTRAL;
+					crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,CrossValue.NEUTRAL));
+					crossList.add(new CrossPair(CrossKey.SHORTXLONG,CrossValue.NEUTRAL));
+					crossList.add(new CrossPair(CrossKey.MEDIUMXLONG,CrossValue.NEUTRAL));
 				}
 			}
             else if(!inLong && inShort) {
-            	if((mediumXlong == Cross.DOWN && (double)itsRefCopy.get(i).getTagValue(this.source) < targetPrice) ||
+            	if((double)itsRefCopy.get(i).getTagValue(this.source) < targetPrice ||
 						((double)itsRefCopy.get(i).getTagValue(this.source) > stopLoss)) {
-					
             		positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
-            		
 					inShort = false;
-					shortXlong = Cross.NEUTRAL;
-					shortXmedium = Cross.NEUTRAL;
+					crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,CrossValue.NEUTRAL));
+					crossList.add(new CrossPair(CrossKey.SHORTXLONG,CrossValue.NEUTRAL));
+					crossList.add(new CrossPair(CrossKey.MEDIUMXLONG,CrossValue.NEUTRAL));
 				}
 			}
             else {

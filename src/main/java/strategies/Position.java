@@ -5,9 +5,15 @@ package strategies;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 import data.source.internal.timeseries.TimeSeriesI;
 
 
@@ -28,7 +34,7 @@ public final class Position {
 	    SELL
 	}
 	
-	SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy HH:mm:ss");
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	private List<Signal> signals = new ArrayList<>();
 	private PositionType pt;
@@ -39,7 +45,8 @@ public final class Position {
 	private Instant openInst;
 	private Instant closeInst;
 	private boolean open;
-	private double currWinLoss;
+	private double currWinLoss = 0;
+	private String uuid;
 	
     public static class Builder {
 		
@@ -83,26 +90,35 @@ public final class Position {
 			 position.currVolume = this.initVolume;
 			 position.pr = this.pr;
 			 position.openInst = this.openInst;
-			 position.addNewSignal(this.pr,this.initVolume,this.openInst);
 			 position.open = true;
+			 position.uuid = UUID.randomUUID().toString();
+			 position.addNewSignal(this.pr,this.initVolume,this.openInst);
 			 return position;
 		}		
 	}
     
     public final class Signal {
     	
-    	SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy HH:mm:ss");
+    	DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd[ HH:mm:ss]")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                .toFormatter().withZone(ZoneOffset.UTC);
     	
     	private final double volume;
     	private final double price;
     	private final Action action;
     	private final Instant instant;
+    	private final String uuid;
+    	private final String sId;
     	
-    	public Signal(Action action,double price,double volume,Instant instant) {
+    	public Signal(String uuid,String sId,Action action,double price,double volume,Instant instant) {
     		this.action = action;
     		this.price = price;
     		this.volume = volume;
     		this.instant = instant;
+    		this.uuid = uuid;
+    		this.sId =sId;
     	}
     	
     	public double getVolume() {
@@ -123,8 +139,14 @@ public final class Position {
     	
     	public String print() {
     		Date date = Date.from(this.instant);
-    		String formattedDate = formatter.format(date);
+    		String formattedDate = formatter.format(this.instant);
     		String s = ">>> date: " + date.toString() + " ; price: " + String.valueOf(this.price) +" ; volume: "+ String.valueOf(this.volume) + " ; action: " +  String.valueOf(this.action)+"\n";
+    	    return s;
+    	}
+    	
+    	public String printCsv() {
+    		String formattedDate = formatter.format(this.instant);
+    		String s = this.uuid+";"+ this.sId+";"+ formattedDate + ";" + String.valueOf(this.price) +";"+ String.valueOf(this.volume) + ";" +  String.valueOf(this.action)+"\n";
     	    return s;
     	}
 
@@ -136,24 +158,25 @@ public final class Position {
     	} 
     	if(signals.size() == 0) {
     		if(this.pt == PositionType.LONG) {
-    			signals.add(new Signal(Action.BUY,price,volume,instant));
+    			signals.add(new Signal(this.uuid,this.sId,Action.BUY,price,volume,instant));
     		}
     		else {
-    			signals.add(new Signal(Action.SELL,price,volume,instant));
+    			signals.add(new Signal(this.uuid,this.sId,Action.SELL,price,volume,instant));
     		}
-    		return;
-    	}
-    	if(this.pt == PositionType.LONG) {
-    		this.currWinLoss += (price-pr)*volume;
-    		this.currVolume -= volume;
-    		open = this.currVolume <= 0 ? false:true;
-    		signals.add(new Signal(Action.SELL,price,volume,instant));
     	}
     	else {
-    		this.currVolume -= volume;
-    		this.currWinLoss += (pr-price)*volume;
-    		open = this.currVolume <= 0 ? false:true;
-    		signals.add(new Signal(Action.BUY,price,volume,instant));
+	    	if(this.pt == PositionType.LONG) {
+	    		this.currWinLoss += (price-pr)*volume;
+	    		this.currVolume -= volume;
+	    		open = this.currVolume <= 0 ? false:true;
+	    		signals.add(new Signal(this.uuid,this.sId,Action.SELL,price,volume,instant));
+	    	}
+	    	else {
+	    		this.currVolume -= volume;
+	    		this.currWinLoss -= (price - pr)*volume;
+	    		open = this.currVolume <= 0 ? false:true;
+	    		signals.add(new Signal(this.uuid,this.sId,Action.BUY,price,volume,instant));
+	    	}
     	}
     }
     
@@ -179,20 +202,26 @@ public final class Position {
     }
     
     public double getReturnOnInitialCapital() {
-    	
     	return this.getWinLoss()/(initVolume * pr);
- 
     }
     
     public String print() {
 		Date date = Date.from(this.openInst);
 		String formattedDate = formatter.format(date);
-		String s = "open date: " + date.toString() + " ; open price: " + String.valueOf(this.pr) +" ; open volume: "+ String.valueOf(this.initVolume) + " ; type: " +  String.valueOf(this.pt)+"\n";
+		String s = "open date: " + date.toString() + " ; open price: " + String.valueOf(this.pr) +" ; open volume: "+ String.valueOf(this.initVolume) + " ; type: " +  String.valueOf(this.pt)+" ; ROI: "+ String.valueOf(getReturnOnInitialCapital()) +"\n";
 		for(Signal sig: signals) {
 			s += sig.print();
 		}
 	    return s;
 	}
+    
+    public String printCsv() {
+    	String s = "";
+    	for(Signal sig: signals) {
+			s += sig.printCsv();
+		}
+	    return s;
+    }
     
     public PositionType getPositionType() {
     	return this.pt;

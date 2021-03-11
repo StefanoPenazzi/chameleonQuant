@@ -3,23 +3,17 @@
  */
 package strategies;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
 import controller.Controller;
 import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
 import data.source.internal.dataset.DatasetI;
+import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
-import data.source.internal.timeseries.standard.TimeSeriesImpl;
-import indicators.movingAverage.ExponentialMovingAverage;
 
 /**
  * @author stefanopenazzi
@@ -32,7 +26,7 @@ class TestStrategies {
         Controller.run();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Instant startInstant = (sdf.parse("2010-10-19 00:00:00")).toInstant();
+		Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
 		Instant endInstant = null;
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
@@ -46,18 +40,17 @@ class TestStrategies {
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 		 
-		 SingleSimpleMovingAverageStrategy smas = new SingleSimpleMovingAverageStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
+		 SingleExpMovingAverageStrategy smas = new SingleExpMovingAverageStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval("1d")
 				 .build()))
 				 .source("close")
-				 .length(200)
+				 .length(18)
 				 .build();
 		 smas.run();
 		 
-		 double res = smas.getReturnOnInitialCapital();
-		
+		double res = smas.getReturnOnInitialCapital();
 		System.out.println();
 	}
 	
@@ -66,14 +59,14 @@ class TestStrategies {
         Controller.run();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+		Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
 		Instant endInstant = null;
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
 		listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
-				 .interval("1h")
+				 .interval("1d")
 				 .build())
 				.build());
 		 
@@ -83,25 +76,26 @@ class TestStrategies {
 		 DualSimpleMovingAverageCrossoverStrategy dsmac = new DualSimpleMovingAverageCrossoverStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
-				 .interval("1h")
+				 .interval("1d")
 				 .build()))
 				 .source("close")
-				 .lengthShortTermMA(8)
-				 .lengthLongTermMA(16)
+				 .lengthShortTermMA(20)
+				 .lengthLongTermMA(50)
 				 .build();
 		 dsmac.run();
 		 
 		 double res = dsmac.getReturnOnInitialCapital();
+		 System.out.println(dsmac.printPositions());
 		
 		System.out.println();
 	}
 	
 	@Test
-	void testTripleSimpleMovingAverageCrossoverStrategy() throws Exception {
+	void testTripleMovingAverageCrossoverStrategy() throws Exception {
         Controller.run();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Instant startInstant = (sdf.parse("2010-01-01 00:00:00")).toInstant();
+		Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
 		Instant endInstant = null;
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
@@ -121,13 +115,14 @@ class TestStrategies {
 				 .interval("1d")
 				 .build()))
 				 .source("close")
-				 .lengthShortTermMA(10)
-				 .lengthMediumTermMA(20)
-				 .lengthLongTermMA(100)
+				 .lengthShortTermMA(14)
+				 .lengthMediumTermMA(28)
+				 .lengthLongTermMA(50)
 				 .build();
 		 tsmac.run();
 		 
 		 double res = tsmac.getReturnOnInitialCapital();
+		 System.out.println(tsmac.printPositions());
 		
 		System.out.println();
 	}

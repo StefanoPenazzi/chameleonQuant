@@ -35,7 +35,7 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		List<TimeSeriesPointI> itsRefCopy = this.itsRef.getListFromTo(from,to);
 		
 		
-		boolean up = (double)stmaCopy.get(0).getTagValue("value") >= (double)ltmaCopy.get(0).getTagValue("value") ? false: true;
+		boolean up = (double)stmaCopy.get(0).getTagValue("value") >= (double)ltmaCopy.get(0).getTagValue("value") ? true: false;
 		
 		int volume = 100;
 		
@@ -46,7 +46,7 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 				if((double)stmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
 					up = false;
 					
-					if(positions.size()>1) {
+					if(positions.size()>=1) {
 						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
 					}
 					Position position = new Position.Builder(PositionType.SHORT)
@@ -61,7 +61,7 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 			else {
 				if((double)ltmaCopy.get(i).getTagValue("value") < (double)stmaCopy.get(i).getTagValue("value")) {
 					up = true;
-					if(positions.size()>1) {
+					if(positions.size()>=1) {
 						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
 					}
 					Position position = new Position.Builder(PositionType.LONG)

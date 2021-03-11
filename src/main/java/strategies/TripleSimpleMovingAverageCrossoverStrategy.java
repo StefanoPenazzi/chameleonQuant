@@ -33,7 +33,7 @@ public class TripleSimpleMovingAverageCrossoverStrategy extends TripleMovingAver
             return this;
         }
 		public Builder lengthMediumTermMA(int length){
-            this.lengthStma = length;
+            this.lengthMtma = length;
             return this;
         }
 		public Builder lengthLongTermMA(int length){

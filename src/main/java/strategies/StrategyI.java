@@ -33,6 +33,7 @@ public interface StrategyI {
 	public double getPercOfTimeInTheMarket();
 	public double getMaxTradeDrawdown();
 	public String getPerformanceReport();
+	public String printPositions();
 	
 	public List<Position> getPositions();
 	

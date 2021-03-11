@@ -15,7 +15,7 @@ public final class SingleSimpleMovingAverageStrategy extends SingleMovingAverage
 	
 	 public static final class Builder extends SingleMovingAverageCrossoverStrategy.Builder<SingleSimpleMovingAverageStrategy,Builder> {
 		 private TimeSeriesI ts;
-			private int length = 9;
+			private int length = 50;
 			private String source = "close";
 			private int offset = 0;
 			
@@ -38,6 +38,7 @@ public final class SingleSimpleMovingAverageStrategy extends SingleMovingAverage
 				 SingleSimpleMovingAverageStrategy  smas = new SingleSimpleMovingAverageStrategy (); 
 				smas.itsRef = this.ts;
 				smas.source = this.source;
+				
 				try {
 					smas.ma = new SimpleMovingAverage.Builder(this.ts)
 							.length(this.length)

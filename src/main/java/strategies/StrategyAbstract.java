@@ -23,6 +23,15 @@ public abstract class StrategyAbstract implements StrategyI {
 		return this.positions;
 	}
 	
+	@Override
+	public String printPositions() {
+		String s = "id,security,date,price,volume,action \n";
+		for(Position position: positions) {
+			s += position.print();
+		}
+		return s;
+	}
+	
 	
 	@Override
 	public double getReturnOnInitialCapital() {
