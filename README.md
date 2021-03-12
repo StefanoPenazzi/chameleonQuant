@@ -102,7 +102,7 @@ The training camp is a safe environment in which you are able to test and train 
   </figure>
 </p>
 
-A well known and quite common strategy is the triple moving average trading. The method involves using a long term MA, a medium term MA and a short term MA. The moving averages can be exponential or simple. A particular crossing sequence of the 3 MA triggers long/short positions opening.
+A well known and quite common strategy is the triple moving average trading strategy. The method involves using a long term MA, a medium term MA and a short term MA. The moving averages can be exponential or simple. A particular crossing sequence of the 3 MA triggers long/short positions opening.
 
 ```
 
