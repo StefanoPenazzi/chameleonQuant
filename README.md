@@ -84,6 +84,7 @@ listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Bui
  DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 
 ```
+Another example, in this case, a new query for the database is built and a new dataset containing the output of the query is created. For more information go to <a href="https://github.com/StefanoPenazzi/chameleonQuant/blob/master/src/main/java/data/README.md">Dataset Tutorial</a>
 
 </div>
  
