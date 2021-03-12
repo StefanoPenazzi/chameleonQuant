@@ -44,7 +44,7 @@ A financial market map records the history of the securities and make them easil
  <figure align="center">
      <img width="950" height="200" src="src/main/resources/images/DataFlow.png" style="margin-right: 10px;" class="center" />
      <figcaption>
-     <p>Data Flow</p>
+     <p align="center">Data Flow</p>
      </figcaption>
   </figure>
 </p>
