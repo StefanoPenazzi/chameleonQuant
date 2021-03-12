@@ -51,6 +51,19 @@ A financial market map records the history of the securities and make them easil
 
 The user can access the map requiring to create a dataset. This latter contains a set of time series relevant for a specific analysis. The dataset can be built either directly requiring the data through the APIs of some data providers or through an intermediate database. The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. Using the intermediate database requires a further step, namely, download the necessary data into the database before making them available to the dataset builder. 
 
+
+```
+List<String> stocksList = new ArrayList<>();
+
+stocksList.add("AMZN");	 
+stocksList.add("AAPL");
+stocksList.add("FB");
+
+UpdateFromAlphaVantageStocksEOD upf = new UpdateFromAlphaVantageStocksEOD(5, 500, 5);
+upf.run(stocksList, "NASDAQ_EOD");
+
+```
+
 </div>
  
 <li>Swiss Army knife</li>
