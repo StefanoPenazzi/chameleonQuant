@@ -33,21 +33,22 @@ No one would step into the jungle without a survival kit!  chameleonQuant helps 
 </div>
 <h3>Your basic survival kit</h3>
 
+<ul>
+<li>Map</li>
+<div align="justify">
+An object that can not miss in a survival kit is a map. This is fundamental to navigate in the financial market. This map is not a classic map. If you use an old-school paper road map, this relies on a static environment. The financial market is poles apart. It is a very dynamic environment in which time plays a fundamental role. A static map would be useless because the financial market is in constant evolution. The financial market is composed by securities like a jungle is composed by plants. 
+Just like the water and the sun are the main resources a plant needs to growth, in the classic model of an efficient security market, prices move in response to new public information that causes traders to simultaneously revise their belief ( <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1298299">Why Do Security Prices Change? A Transaction-Level Analysis of Nyse Stocks</a> ).
+A financial market map records the history of the securities and make them easily available to the user in the form of time series. Forecast the future evolution of the map is the ultimate goal of the user that can use its history as an input for predictive models.  
+
 <p align="center">
  <figure align="center">
-     <img width="800" height="2301" src="src/main/resources/images/schema_overview.png" style="margin-right: 10px;" class="center" />
+     <img width="950" height="200" src="src/main/resources/images/DataFlow.png" style="margin-right: 10px;" class="center" />
      <figcaption>
      <p>Basic survival kit scheme</p>
      </figcaption>
   </figure>
 </p>
-<ul>
-<li>Map - Data block</li>
-<div align="justify">
-An object that can not miss in a survival kit is a map. This is fundamental to navigate in the financial market. This map is not a classic map. If you use an old-school paper road map, this relies on a static environment. The financial market is poles apart. It is a very dynamic environment in which time plays a fundamental role. A static map would be useless because the financial market is in constant evolution. The financial market is composed by securities like a jungle is composed by plants. 
-Just like the water and the sun are the main resources a plant needs to growth, in the classic model of an efficient security market, prices move in response to new public information that causes traders to simultaneously revise their belief ( <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1298299">Why Do Security Prices Change? A Transaction-Level Analysis of Nyse Stocks</a> ).
-A financial market map records the history of the securities and make them easily available to the user in the form of time series. Forecast the future evolution of the map is the ultimate goal of the user that can use its history as an input for predictive models.  
- 
+
 </div>
  
 <li>Swiss Army knife</li>
