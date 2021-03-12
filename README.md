@@ -90,14 +90,14 @@ Another example, in this case, a new query for the database is built and a new d
  
 <li>Swiss Army knife</li>
 <li>Training camp</li>
-<div align="justify"> Do you want to be sure your skills and tools are ready to face the jungle? Let's put them to the test in the training camp! 
+<div align="justify"> Do you want to be sure your strategies are ready to face the jungle? Let's put them to the test in the training camp! 
 The training camp is a safe environment in which you are able to...
 	
 <p align="center">
  <figure align="center">
      <img width="1000" height="550" src="src/main/resources/images/TripleMA.png" style="margin-right: 10px;" class="center" />
      <figcaption>
-     <p align="center">Data Flow</p>
+     <p align="center">Triple SMA</p>
      </figcaption>
   </figure>
 </p>
