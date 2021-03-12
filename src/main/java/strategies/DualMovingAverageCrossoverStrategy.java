@@ -16,6 +16,8 @@ import strategies.Position.PositionType;
  */
 public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 
+	private static final String strategyName = "DualMovingAverageCrossoverStrategy";
+	
 	protected TimeSeriesI itsRef;
 	protected TimeSeriesI stma;
 	protected TimeSeriesI ltma;
@@ -24,6 +26,11 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 	
 	protected static abstract class Builder
     <T extends DualMovingAverageCrossoverStrategy, B extends Builder<T, B>> extends StrategyAbstract.Builder<T, B> {}
+	
+	@Override
+	public String getStrategyName() {
+		return this.strategyName;
+	}
 	
 	@Override
 	public void run() {

@@ -81,6 +81,10 @@ class TestInfluxdb {
 	@Test
 	void testFOREXUpdateAlphaVantageEOD() {
         List<String> forexList = new ArrayList<>();
+        
+        List<String> currenciesList = Arrays.asList("AUD","BRL","CAD","CHF","CNH","CNY","EUR","GBP","HKD","JPY","MXN","NZD","RUB","SGD","USD"); 
+
+        
 		forexList.add("EUR-USD");
 		UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
 		upf.run(forexList, "FOREX_EOD");

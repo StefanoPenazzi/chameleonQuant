@@ -20,6 +20,8 @@ import strategies.SingleSimpleMovingAverageStrategy.Builder;
  */
 public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 
+	private static final String strategyName = "SingleMovingAverageCrossoverStrategy";
+	
 	protected TimeSeriesI itsRef;
 	protected TimeSeriesI ma;
 	protected String source;
@@ -28,6 +30,10 @@ public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 	    <T extends SingleMovingAverageCrossoverStrategy, B extends Builder<T, B>> extends StrategyAbstract.Builder<T, B> {
 	}
 	
+	@Override
+	public String getStrategyName() {
+		return this.strategyName;
+	}
 	
 	@Override
 	public void run() {

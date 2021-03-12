@@ -50,8 +50,7 @@ class TestStrategies {
 				 .build();
 		 smas.run();
 		 
-		double res = smas.getReturnOnInitialCapital();
-		System.out.println();
+		System.out.println(smas.getPerformanceReport());
 	}
 	
 	@Test
@@ -83,11 +82,8 @@ class TestStrategies {
 				 .lengthLongTermMA(50)
 				 .build();
 		 dsmac.run();
-		 
-		 double res = dsmac.getReturnOnInitialCapital();
-		 System.out.println(dsmac.printPositions());
 		
-		System.out.println();
+		System.out.println(dsmac.getPerformanceReport());
 	}
 	
 	@Test
@@ -115,14 +111,13 @@ class TestStrategies {
 				 .interval("1d")
 				 .build()))
 				 .source("close")
-				 .lengthShortTermMA(14)
-				 .lengthMediumTermMA(28)
-				 .lengthLongTermMA(50)
+				 .lengthShortTermMA(5)
+				 .lengthMediumTermMA(10)
+				 .lengthLongTermMA(20)
 				 .build();
 		 tsmac.run();
 		 
-		 double res = tsmac.getReturnOnInitialCapital();
-		 System.out.println(tsmac.printPositions());
+		 System.out.println(tsmac.getPerformanceReport());
 		
 		System.out.println();
 	}
