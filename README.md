@@ -92,6 +92,54 @@ Another example, in this case, a new query for the database is built and a new d
 <li>Training camp</li>
 <div align="justify"> Do you want to be sure your skills and tools are ready to face the jungle? Let's put them to the test in the training camp! 
 The training camp is a safe environment in which you are able to...
+	
+<p align="center">
+ <figure align="center">
+     <img width="700" height="450" src="src/main/resources/images/TripleMA.png" style="margin-right: 10px;" class="center" />
+     <figcaption>
+     <p align="center">Data Flow</p>
+     </figcaption>
+  </figure>
+</p>
+
+```
+
+@Test
+void testTripleMovingAverageCrossoverStrategy() throws Exception {
+	Controller.run();
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
+	Instant endInstant = null;
+
+	List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+	listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
+			 .startInstant(startInstant)
+			 .endInstant(endInstant)
+			 .interval("1d")
+			 .build())
+			.build());
+
+	 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+
+	 TripleSimpleMovingAverageCrossoverStrategy tsmac = new TripleSimpleMovingAverageCrossoverStrategy.Builder(
+			  dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
+			 .startInstant(startInstant)
+			 .endInstant(endInstant)
+			 .interval("1d")
+			 .build()))
+			 .source("close")
+			 .lengthShortTermMA(5)
+			 .lengthMediumTermMA(10)
+			 .lengthLongTermMA(20)
+			 .build();
+	 tsmac.run();
+
+	 System.out.println(tsmac.getPerformanceReport());
+}
+
+```
+
  </div>
 </ul>
 
