@@ -64,6 +64,26 @@ upf.run(stocksList, "NASDAQ_EOD");
 
 ```
 
+```
+Controller.run();
+		
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
+Instant endInstant = null;
+
+List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
+   .startInstant(startInstant)
+   .endInstant(endInstant)
+   .interval("1d")
+   .build())
+  .build());
+
+
+ DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+
+```
+
 </div>
  
 <li>Swiss Army knife</li>
