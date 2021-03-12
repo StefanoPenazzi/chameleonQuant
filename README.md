@@ -95,7 +95,7 @@ The training camp is a safe environment in which you are able to...
 	
 <p align="center">
  <figure align="center">
-     <img width="700" height="450" src="src/main/resources/images/TripleMA.png" style="margin-right: 10px;" class="center" />
+     <img width="1000" height="550" src="src/main/resources/images/TripleMA.png" style="margin-right: 10px;" class="center" />
      <figcaption>
      <p align="center">Data Flow</p>
      </figcaption>
