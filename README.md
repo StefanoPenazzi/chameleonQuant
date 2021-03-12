@@ -110,7 +110,18 @@ The training camp is a safe environment in which you are able to...
 
 <h1>References</h1>
 <a id="1">[1]</a> 
-Perry J. Kaufman. 2013. Trading Systems and Methods, + Website (5th. ed.). Wiley Publishing..
+Perry J. Kaufman. 2013. Trading Systems and Methods, + Website (5th. ed.). Wiley Publishing.
+<a id="2">[2]</a> 
+Trevor Hastie and Robert Tibshirani and Jerome Friedman. 2017. The Elements of Statistical Learning Data Mining, Inference, and Prediction
+<a id="3">[3]</a> 
+Ian Goodfellow and Yoshua Bengio and Aaron Courville. Deep Learning. Goodfellow-et-al-2016
+<a id="4">[4]</a> 
+Nishant Shukla. 2018. Machine Learning with TensorFlow
+<a id="4">[4]</a> 
+SS Rao. 2020. A course in Time Series Analysis
+<a id="5">[5]</a> 
+Cosma Rohilla Shalizi. Advanced Data Analysis from an Elementary Point of View
+
 
 </body>
 </html>
