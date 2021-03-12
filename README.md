@@ -91,7 +91,7 @@ Another example, in this case, a new query for the database is built and a new d
 <li>Swiss Army knife</li>
 <li>Training camp</li>
 <div align="justify"> Do you want to be sure your strategies are ready to face the jungle? Let's put them to the test in the training camp! 
-The training camp is a safe environment in which you are able to...
+The training camp is a safe environment in which you are able to test and train your tools on the historical data.
 	
 <p align="center">
  <figure align="center">
