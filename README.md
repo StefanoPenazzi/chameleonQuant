@@ -109,5 +109,8 @@ The training camp is a safe environment in which you are able to...
 <h1>Versioning and Packaging</h1>
 
 <h1>References</h1>
+<a id="1">[1]</a> 
+Perry J. Kaufman. 2013. Trading Systems and Methods, + Website (5th. ed.). Wiley Publishing..
+
 </body>
 </html>
