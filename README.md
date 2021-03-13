@@ -142,7 +142,7 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 
 ```
 <font size="3" face="Courier New" >
-<table>
+<table  width="50%">
     <thead>
         <tr>
             <th>Name</th>
