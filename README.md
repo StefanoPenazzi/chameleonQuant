@@ -239,6 +239,8 @@ This is just a simple example. Indeed, the strategy cannot be only tested on a s
   </figure>
 </p>
 
+The figure above shows the P&L of a strategy by varying two of its parameters. As you can notice, the objective function presents multiple feasible points in the domain space that correspond to sub-optimal values of the objective function.
+
 Do you want to know more about strategies, how to implement your own, how to optimize them and a lot of other funny things? Go to <a href="https://github.com/StefanoPenazzi/chameleonQuant/blob/master/src/main/java/strategies/README.md">Strategies</a>
 
  </div>
