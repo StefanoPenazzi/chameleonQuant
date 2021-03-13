@@ -30,72 +30,70 @@
    ```
    
    ```
-	@Test
-	void testFOREXUpdateAlphaVantageEOD() {
-      List<String> forexList = new ArrayList<>();
-		forexList.add("EUR-USD");
-		UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
-		upf.run(forexList, "FOREX_EOD");
-	}
+@Test
+void testFOREXUpdateAlphaVantageEOD() {
+	List<String> forexList = new ArrayList<>();
+	forexList.add("EUR-USD");
+	UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
+	upf.run(forexList, "FOREX_EOD");
+}
    
    ```
    
   
    ```
-   @Test
-	void testUpdateAlphaVantageID() {
-      List<String> stocksList = new ArrayList<>();
-      stocksList.add("BBSI");	 
-		stocksList.add("BCAB");
-		stocksList.add("BCBP");
-		
-		UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
-		upf.run(stocksList, "NASDAQ_ID");
-	}
-   
-   ```
+@Test
+void testUpdateAlphaVantageID() {
+       List<String> stocksList = new ArrayList<>();
+       stocksList.add("BBSI");	 
+       stocksList.add("BCAB");
+       stocksList.add("BCBP");
+       UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
+       upf.run(stocksList, "NASDAQ_ID");
+}
+
+```
    	
 ```
-	@Test
-	void testDatasetInfluxFactory() throws ParseException {
-		
-		Controller.run();
-		
-         List<String> stocks = Arrays.asList("AACG","AACQ","AACQU","AACQW","AAL");
-		
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		 Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
-		 Instant endInstant = null;
-		 String market = "NASDAQ_EOD";
-		 String inter = "1d";
-		 
-		  List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
-		 
-		 for(String stock: stocks) {
-			 listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder(stock)
-					 .startInstant(startInstant)
-					 .endInstant(endInstant)
-					 .interval(inter)
-					 .build())
-					 .build());
-		 }
-		 listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("EUR-USD")
+@Test
+void testDatasetInfluxFactory() throws ParseException {
+
+	Controller.run();
+
+	List<String> stocks = Arrays.asList("AACG","AACQ","AACQU","AACQW","AAL");
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
+	Instant endInstant = null;
+	String market = "NASDAQ_EOD";
+	String inter = "1d";
+
+	List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+
+	for(String stock: stocks) {
+		 listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder(stock)
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval(inter)
 				 .build())
 				 .build());
-		 
-		 listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
-				 .startInstant(startInstant)
-				 .endInstant(endInstant)
-				 .interval("1h")
-				 .build())
-				 .build());
-		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
-		
 	}
+	listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("EUR-USD")
+			 .startInstant(startInstant)
+			 .endInstant(endInstant)
+			 .interval(inter)
+			 .build())
+			 .build());
+
+	listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
+			 .startInstant(startInstant)
+			 .endInstant(endInstant)
+			 .interval("1h")
+			 .build())
+			 .build());
+
+	DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+}
    
    ```
       
