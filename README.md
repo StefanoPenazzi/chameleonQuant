@@ -141,7 +141,8 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 }
 
 ```
-<table class="styled-table">
+<font size="5" face="Courier New" >
+<table>
     <thead>
         <tr>
             <th>Name</th>
@@ -224,6 +225,7 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
         <!-- and so on... -->
     </tbody>
  </table>
+</font>
 
  </div>
 </ul>
