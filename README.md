@@ -255,7 +255,7 @@ Do you want to know more about strategies, how to implement your own, how to opt
 <h1>Contact</h1>
 <div align="justify">
 E-Mail Adresse: ste.penazzi1987@gmail.com <br />
-<a href="https://www.linkedin.com/in/stefano-penazzi-datascientist/>LinkedIn</a> <br />
+<a href="https://www.linkedin.com/in/stefano-penazzi-datascientist/">LinkedIn</a> <br />
 </div>
 
 <h1>References</h1>
