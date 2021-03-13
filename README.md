@@ -151,76 +151,76 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
     </thead>
     <tbody>
         <tr>
-		 <td>Tot. Net Profit</td>
-		 <td>-3721.1</td>
+		 <td><sub>Tot. Net Profit</sub></td>
+		 <td><sub>-3721.1</sub></td>
 	</tr>
 	<tr>
-		 <td>Gross Profit</td>
-		  <td>30241.9</td>
+		 <td><sub>Gross Profit</sub></td>
+		  <td><sub>30241.9</sub></td>
 	</tr>
 	<tr>
-		 <td>Gross Loss</td>
-		 <td>-33962</td>
+		 <td><sub>Gross Loss</sub></td>
+		 <td><sub>-33962</sub></td>
 	</tr>
 	<tr>
-		 <td>Profit Factor</td>
-		 <td>-0.8904</td>
+		 <td><sub>Profit Factor</sub></td>
+		 <td><sub>-0.8904</sub></td>
 	</tr>
 	<tr>
-		 <td>Tot. Num. Of Trades</td>
-		 <td>11</td>
+		 <td><sub>Tot. Num. Of Trades</sub></td>
+		 <td><sub>11</sub></td>
 	</tr>
 	<tr>
-		<td>Percet Profitable</td>
-		<td>0</td>
+		<td><sub>Percet Profitable</sub></td>
+		<td><sub>0</sub></td>
 	</tr>
 	<tr>
-		 <td>Winning Trades</td>
-		  <td>4</td>
+		 <td><sub>Winning Trades</sub></td>
+		  <td><sub>4</sub></td>
 	</tr>
 	<tr>
-		 <td>Losing Trades</td>
-		 <td>7</td>
+		 <td><sub>Losing Trades</sub></td>
+		 <td><sub>7</sub></td>
 	</tr>
 	<tr>
-		 <td>Even Trades</td>
-		  <td>0</td>
+		 <td><sub>Even Trades</sub></td>
+		  <td><sub>0</sub></td>
 	</tr>
 	<tr>
-		 <td>Avg. Trade Net Profit</td>
-		 <td>-338.2</td>
+		 <td><sub>Avg. Trade Net Profit</sub></td>
+		 <td><sub>-338.2</sub></td>
 	</tr>
 	<tr>
-		 <td>Avg. Winning Trade</td>
-		  <td>7560.5</td>
+		 <td><sub>Avg. Winning Trade</sub></td>
+		  <td><sub>7560.5</sub></td>
 	</tr>
 	<tr>
-		 <td>Avg. Losing Trade</td>
-		  <td>-4851.8</td>
+		 <td><sub>Avg. Losing Trade</sub></td>
+		  <td><sub>-4851.8</sub></td>
 	</tr>
 	<tr>
-		 <td>Ratio Avg. Win Avg. Loss</td>
-		 <td>-1.5</td>
+		 <td><sub>Ratio Avg. Win Avg. Loss</sub></td>
+		 <td><sub>-1.5</sub></td>
 	</tr>
 	<tr>
-		 <td>Largest Winnig Trade</td>
-		 <td>12971</td>
+		 <td><sub>Largest Winnig Trade</sub></td>
+		 <td><sub>12971</sub></td>
 	</tr>
 	<tr>
-		 <td>Largest Losing Trade</td>
-		 <td>-9924</td>
+		 <td><sub>Largest Losing Trade</sub></td>
+		 <td><sub>-9924</sub></td>
 	</tr>
 	<tr>
-		 <td>Max. Consecutive Winning Trades</td>
-		  <td>1</td>
+		 <td><sub>Max. Consecutive Winning Trades</sub></td>
+		  <td><sub>1</sub></td>
 	</tr>
 	<tr>
-		 <td>Max. Consecutive Losing Trades</td>
-		 <td>3</td>
+		 <td><sub>Max. Consecutive Losing Trades</sub></td>
+		 <td><sub>3</sub></td>
 	</tr>
 	<tr>
-		 <td>... </td>
-		 <td>...</td>
+		 <td><sub>...</sub></td>
+		 <td><sub>...</sub></td>
 	</tr>
         <!-- and so on... -->
     </tbody>
