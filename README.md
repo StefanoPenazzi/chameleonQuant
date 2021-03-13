@@ -228,7 +228,16 @@ As you can see in the code, the first step is to add a query with the necessary 
     </tbody>
  </table>
 
-This is just a simple example. Indeed, the strategy cannot be only tested on a single set of parameters, but also optimized, i.e., the most robust set of parameters must be selected.
+This is just a simple example. Indeed, the strategy cannot be only tested on a single set of parameters, but also optimized, i.e., the most robust set of parameters must be selected. Optimization has many pitfalls. There are many ways in which it can be done incorrectly. This is very dangerous and can lead to wrong conclusions (an example for all is the well known overfitting).
+
+<p align="center">
+ <figure align="center">
+     <img width="700" height="700" src="src/main/resources/images/OptP&L.png" style="margin-right: 10px;" class="center" />
+     <figcaption>
+     <p align="center">P&L optimization</p>
+     </figcaption>
+  </figure>
+</p>
 
 Do you want to know more about strategies, how to implement your own, how to optimize them and a lot of other funny things? Go to <a href="https://github.com/StefanoPenazzi/chameleonQuant/blob/master/src/main/java/strategies/README.md">Strategies</a>
 
