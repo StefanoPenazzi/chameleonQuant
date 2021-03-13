@@ -5,11 +5,10 @@
    </head>
 
    <body>
+      <h1>Download and install the database</h1>
    <div>
    A time series is a sequence taken at successive equally spaced points in time. Most of the data used in financial trading are time series.  InfluxDB is a high-performance data store written specifically for time series data. 
    </div>
-   
-      <h1>Download and install the database</h1>
       <h1>How to set up the database connection</h1>
       <p>
          Database supported are: 
