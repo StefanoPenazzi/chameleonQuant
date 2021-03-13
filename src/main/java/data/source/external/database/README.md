@@ -48,6 +48,7 @@ void testUpdateAlphaVantageID() {
        stocksList.add("BBSI");	 
        stocksList.add("BCAB");
        stocksList.add("BCBP");
+       
        UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
        upf.run(stocksList, "NASDAQ_ID");
 }
