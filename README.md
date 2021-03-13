@@ -252,6 +252,10 @@ Do you want to know more about strategies, how to implement your own, how to opt
 
 <h1>Versioning and Packaging</h1>
 
+<h1>Contact</h1>
+E-Mail Adresse: ste.penazzi1987@gmail.com
+<a href="https://www.linkedin.com/in/stefano-penazzi-datascientist/>LinkedIn</a>
+
 <h1>References</h1>
 <a id="1">[1]</a> 
 Perry J. Kaufman. 2013. Trading Systems and Methods, + Website (5th. ed.). Wiley Publishing.<br />
