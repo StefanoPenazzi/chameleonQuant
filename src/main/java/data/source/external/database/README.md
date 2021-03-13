@@ -16,10 +16,9 @@
    </div>
       <h3>How to set up the database connection</h3>
       
-      ```
+   ```
       chameleonQuant/src/main/resources/database.properties
-      
-      ```
+   ```
       
    </body>
 </html>
