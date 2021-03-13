@@ -118,8 +118,6 @@ class TestStrategies {
 		 tsmac.run();
 		 
 		 System.out.println(tsmac.getPerformanceReport());
-		
-		System.out.println();
 	}
 
 }
