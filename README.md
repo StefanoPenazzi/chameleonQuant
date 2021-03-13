@@ -89,7 +89,7 @@ Another example, in this case, a new query for the database is built and a new d
 </div>
  
 <li>Swiss Army knife</li>
-<li>Training camp</li>
+<li><h3>Training camp</h3></li>
 <div align="justify"> Do you want to be sure your strategies are ready to face the jungle? Let's put them into the training camp! 
 The training camp is a safe environment in which you are able to test and train your strategies on the historical data.
 	
@@ -102,7 +102,7 @@ The training camp is a safe environment in which you are able to test and train 
   </figure>
 </p>
 
-A well known and quite common strategy is the triple moving average trading strategy. The method involves using a long term MA, a medium term MA and a short term MA. The moving averages can be exponential or simple. A particular crossing sequence of the 3 MA triggers long/short positions opening.
+A well known and quite common strategy is the triple moving average trading strategy. The method involves using a long term MA, a medium term MA and a short term MA. The moving averages can be exponential or simple. A particular crossing sequence of the 3 MA triggers long/short positions opening. The position is closed based on a Trailing Stop Loss and Take Profit. Below is a simple simulation of this strategy applied to Amazon (from 2020-01-01 till 2020-12-31, 1d period), using 3 simple moving averages.
 
 ```
 
@@ -112,7 +112,7 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
-	Instant endInstant = null;
+	Instant endInstant = (sdf.parse("2020-12-31 00:00:00")).toInstant();;
 
 	List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
 	listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("AMZN")
@@ -141,6 +141,8 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 }
 
 ```
+As you can see in the code, the first step is to add a query with the necessary information to a list used in a call to the database to generate a Dataset object. Next, the strategy is built by passing the time series contained in the dataset and a set of parameters. The strategy is simulated on the time series using its run() method. Each strategy inherting the abstract class StrategyAbstract is evaluated by default using a set of indicators (see table below).
+
 
 <table>
     <thead>
