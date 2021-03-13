@@ -232,7 +232,7 @@ This is just a simple example. Indeed, the strategy cannot be only tested on a s
 
 <p align="center">
  <figure align="center">
-     <img width="700" height="700" src="src/main/resources/images/OptP&L.png" style="margin-right: 10px;" class="center" />
+     <img width="600" height="600" src="src/main/resources/images/OptP&L.png" class="center" />
      <figcaption>
      <p align="center">P&L optimization</p>
      </figcaption>
