@@ -49,7 +49,7 @@ A financial market map records the history of the securities and make them easil
   </figure>
 </p>
 
-The user can access the map requiring to create a dataset. This latter contains a set of time series relevant for a specific analysis. The dataset can be built either directly requiring the data through the APIs of some data providers or through an intermediate database (How to set up the database <a href="https://github.com/StefanoPenazzi/chameleonQuant/tree/master/src/main/java/data/source/external/database">How to set up the database</a>). The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. Using the intermediate database requires a further step, namely, download the necessary data into the database before making them available to the dataset builder. 
+The user can access the map requiring to create a dataset. This latter contains a set of time series relevant for a specific analysis. The dataset can be built either directly requiring the data through the APIs of some data providers or through an intermediate database (<a href="https://github.com/StefanoPenazzi/chameleonQuant/tree/master/src/main/java/data/source/external/database">How to set up the database</a>). The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. Using the intermediate database requires a further step, namely, download the necessary data into the database before making them available to the dataset builder. 
 
 
 ```
