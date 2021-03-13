@@ -141,7 +141,7 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 }
 
 ```
-<p>
+
 Tot. Net Profit : -3721.000000000049 <br />
 Gross Profit : 30241.99999999994 <br />
 Gross Loss : -33962.999999999985 <br />
@@ -160,7 +160,7 @@ Largest Losing Trade : -9923.999999999978 <br />
 Max. Consecutive Winning Trades : 1 <br />
 Max. Consecutive Losing Trades : 3 <br />
 ... <br />
-</p>
+
 
  </div>
 </ul>
