@@ -34,7 +34,7 @@ No one would step into the jungle without a survival kit!  chameleonQuant helps 
 <h3>Your basic survival kit</h3>
 
 <ul>
-<li>Map</li>
+<li><h2>Map<h2></li>
 <div align="justify">
 An object that can not miss in a survival kit is a map. This is fundamental to navigate in the financial market. This map is not a classic map. If you use an old-school paper road map, this relies on a static environment. The financial market is poles apart. It is a very dynamic environment in which time plays a fundamental role. A static map would be useless because the financial market is in constant evolution. The financial market is composed by securities like a jungle is composed by plants. 
 Just like the water and the sun are the main resources a plant needs to growth, in the classic model of an efficient security market, prices move in response to new public information that causes traders to simultaneously revise their belief ( <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1298299">Why Do Security Prices Change? A Transaction-Level Analysis of Nyse Stocks</a> ).
@@ -88,8 +88,8 @@ Another example, in this case, a new query for the database is built and a new d
 
 </div>
  
-<li>Swiss Army knife</li>
-<li><h3>Training camp</h3></li>
+<li><h2>Swiss Army knife<h2></li>
+<li><h2>Training camp</h2></li>
 <div align="justify"> Do you want to be sure your strategies are ready to face the jungle? Let's put them into the training camp! 
 The training camp is a safe environment in which you are able to test and train your strategies on the historical data.
 	
@@ -228,17 +228,13 @@ As you can see in the code, the first step is to add a query with the necessary 
     </tbody>
  </table>
 
+This is just a simple example. Indeed, the strategy cannot be only tested on a single set of parameters, but also optimized, i.e., the most robust set of parameters must be selected.
+
+Do you want to know more about strategies, how to implement your own, how to optimize them and a lot of other funny things? Go to <a href="https://github.com/StefanoPenazzi/chameleonQuant/blob/master/src/main/java/strategies/README.md">Strategies</a>
 
  </div>
 </ul>
 
-<h3>Expand the survival kit</h3>
-
-<ul>
-  <li>Expand the map</li>
-  <li>Expand Swiss Army knife tools</li>
-  <li>Training camp</li>
-</ul>
 
 <h3>Make some practice</h3>
 <h3>Share with friends</h3>
