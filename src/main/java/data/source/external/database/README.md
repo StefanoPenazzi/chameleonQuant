@@ -5,7 +5,8 @@
    </head>
 
    <body>
-      <h1>The framework provides a library to connect the chameleon to a database</h1>
+      <h1>Download and install the database</h1>
+      <h1>How to set up the database connection</h1>
       <p>
          Database supported are: 
       </p>
