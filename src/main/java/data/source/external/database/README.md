@@ -15,11 +15,11 @@
       
    </div>
       <h3>How to set up the database connection</h3>
-      <p>
-         Database supported are: 
-      </p>
-      <ul>
-        <li><a href="https://www.influxdata.com/">influxDb</a></li>
-      </ul>
+      
+      ```
+      chameleonQuant/src/main/resources/database.properties
+      
+      ```
+      
    </body>
 </html>
