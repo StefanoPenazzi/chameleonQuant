@@ -151,45 +151,76 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
     <tbody>
         <tr>
 		 <td>Tot. Net Profit</td>
+		 <td>-3721.1</td>
+	</tr>
+	<tr>
 		 <td>Gross Profit</td>
+		  <td>30241.9</td>
+	</tr>
+	<tr>
 		 <td>Gross Loss</td>
-		 <td>Profit Factor</td>
-		 <td>Tot. Num. Of Trades</td>
-		 <td>Percet Profitable</td>
-		 <td>Winning Trades</td>
-		 <td>Losing Trades</td>
-		 <td>Even Trades</td>
-		 <td>Avg. Trade Net Profit</td>
-		 <td>Avg. Winning Trade</td>
-		 <td>Avg. Losing Trade</td>
-		 <td>Ratio Avg. Win Avg. Loss</td>
-		 <td>Largest Winnig Trade</td>
-		 <td>Largest Losing Trade</td>
-		 <td>Max. Consecutive Winning Trades</td>
-		 <td>Max. Consecutive Losing Trades</td>
-		 <td>... </td>
-		
-        </tr>
-        <tr class="active-row">
-                 <td>-3721.1</td>
-		 <td>30241.9</td>
 		 <td>-33962</td>
+	</tr>
+	<tr>
+		 <td>Profit Factor</td>
 		 <td>-0.8904</td>
+	</tr>
+	<tr>
+		 <td>Tot. Num. Of Trades</td>
 		 <td>11</td>
-		 <td>0</td>
-		 <td>4</td>
+	</tr>
+	<tr>
+		<td>Percet Profitable</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		 <td>Winning Trades</td>
+		  <td>4</td>
+	</tr>
+	<tr>
+		 <td>Losing Trades</td>
 		 <td>7</td>
-		 <td>0</td>
+	</tr>
+	<tr>
+		 <td>Even Trades</td>
+		  <td>0</td>
+	</tr>
+	<tr>
+		 <td>Avg. Trade Net Profit</td>
 		 <td>-338.2</td>
-		 <td>7560.5</td>
-		 <td>-4851.8</td>
+	</tr>
+	<tr>
+		 <td>Avg. Winning Trade</td>
+		  <td>7560.5</td>
+	</tr>
+	<tr>
+		 <td>Avg. Losing Trade</td>
+		  <td>-4851.8</td>
+	</tr>
+	<tr>
+		 <td>Ratio Avg. Win Avg. Loss</td>
 		 <td>-1.5</td>
+	</tr>
+	<tr>
+		 <td>Largest Winnig Trade</td>
 		 <td>12971</td>
+	</tr>
+	<tr>
+		 <td>Largest Losing Trade</td>
 		 <td>-9924</td>
-		 <td>1</td>
+	</tr>
+	<tr>
+		 <td>Max. Consecutive Winning Trades</td>
+		  <td>1</td>
+	</tr>
+	<tr>
+		 <td>Max. Consecutive Losing Trades</td>
 		 <td>3</td>
+	</tr>
+	<tr>
+		 <td>... </td>
 		 <td>...</td>
-        </tr>
+	</tr>
         <!-- and so on... -->
     </tbody>
  </table>
