@@ -5,7 +5,10 @@
    </head>
 
    <body>
-   The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. <br />
+	
+<h2>DATABASE</h2>
+
+The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. <br />
 
 <hr>
      
