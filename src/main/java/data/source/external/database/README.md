@@ -44,13 +44,20 @@ void testPingInfluxdb() {
 	idb.ping();
 	idb.close();
 }
-   
 ```
 Be sure that Influxdb is the class in the package data.source.external.database.influxdb. If everything is ok you should receive this message: SUCCESSFUL CONNECTION
 
 <hr>
 
 <h3>Synchronize InfluxDB with chameleonQuant</h3>
+
+```
+chameleonQuant/src/main/resources/influx/databases.csv```
+```
+
+<hr>
+
+<h3>Insert new data</h3>
 
 ```
 @Test
@@ -60,11 +67,9 @@ void testFOREXUpdateAlphaVantageEOD() {
 	UpdateFromAlphaVantageFOREXEOD upf = new UpdateFromAlphaVantageFOREXEOD(5, 500, 5);
 	upf.run(forexList, "FOREX_EOD");
 }
-   
-   ```
-   
-  
-   ```
+```
+
+```
 @Test
 void testUpdateAlphaVantageID() {
        List<String> stocksList = new ArrayList<>();
@@ -75,8 +80,11 @@ void testUpdateAlphaVantageID() {
        UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
        upf.run(stocksList, "NASDAQ_ID");
 }
-
 ```
+
+<hr>
+
+<h3>Retrieve data</h3>
    	
 ```
 @Test
