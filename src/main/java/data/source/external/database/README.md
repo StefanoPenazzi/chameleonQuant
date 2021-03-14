@@ -55,9 +55,12 @@ SUCCESSFUL CONNECTION
 
 <h3>Synchronize InfluxDB with chameleonQuant</h3>
 
+First thing first, make sure that influxDB databases can be found by chameleonQuant. In order to do that it is necessary to specify their names and the classes representing the point of a single Measurement into each database. This can be done using the following file. 
+
 ```
 chameleonQuant/src/main/resources/influx/databases.csv
 ```
+If this file is not present yet, please create a new one. Below is an example with pre implemented points.
 
 ```
 name;class
@@ -66,6 +69,7 @@ FOREX_EOD;data.source.external.database.influxdb.mirrors.FOREXEODTimeSeriesPoint
 NASDAQ_ID;data.source.external.database.influxdb.mirrors.StockIDTimeSeriesPointInfluxdb
 FOREX_ID;data.source.external.database.influxdb.mirrors.FOREXIDTimeSeriesPointInfluxdb
 ```
+Make sure that the first line is the header. This example assumes that these 4 databases were already created in InfluxDB. You can add a new database following this tutorial  <a href="https://devconnected.com/how-to-create-a-database-on-influxdb-1-7-2-0/">How To Create a Database on InfluxDB 1.7 & 2.0</a>
 
 <hr>
 
