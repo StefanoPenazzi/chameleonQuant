@@ -42,6 +42,9 @@ void testPingInfluxdb() {
 ```
 Be sure that Influxdb is the class in the package data.source.external.database.influxdb. If everything is ok you should receive this message: SUCCESSFUL CONNECTION
 
+<hr>
+
+<h3>Synchronize InfluxDB with chameleonQuant</h3>
 
 ```
 @Test
