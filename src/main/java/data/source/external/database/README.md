@@ -75,6 +75,17 @@ New points and databases can be added following the same steps. Pay particular a
 <hr>
 
 <h3>Insert new data</h3>
+New data can be added to the database by using the APIs of a data provider. In this example we use <a href="https://www.alphavantage.co/">Alpha Vantage</a>, which provides free US stocks, FOREX and cryptocurrency data both intraday and daily. After you have created a new Alpha Vantage account, it is necessary to let chamaleonQuant access it. This can be easily done by putting your credential into this file
+
+```
+chameleonQuant/src/main/resources/apiKeys.properties
+```
+If this file is not present yet, please create a new one. Next, you need to add the following lines
+`
+```
+AlphaVantage=<yourkey>
+```
+If everthing went well you are now able to transfer data between Alpha Vantage and your database. Assuming that InfluxDB contains a database named FOREX_EOD, using the following code, you will be able to transfer the last 20 years of daily data of the EUR to USD exchange rate.  
 
 ```
 @Test
@@ -85,6 +96,29 @@ void testFOREXUpdateAlphaVantageEOD() {
 	upf.run(forexList, "FOREX_EOD");
 }
 ```
+In order to check if the data has been transferred, you can directly launch your Influx and then
+
+1) check if the database FOREX_EOD is present by using  
+```
+SHOW DATABASES
+```
+2) if it is present select it by using
+```
+USE FOREX_EOD
+```
+4) check if the measurement EUR-USD is present 
+```
+SHOW MEASUREMENTS
+```
+5)if it is present, query the measurement to show all its points 
+```
+SELECT * FROM "EUR-USD"
+```
+Extra tip. If you want to show the time in a human-understandable format
+```
+precision rfc3339
+```
+
 
 ```
 @Test
