@@ -56,7 +56,15 @@ SUCCESSFUL CONNECTION
 <h3>Synchronize InfluxDB with chameleonQuant</h3>
 
 ```
-chameleonQuant/src/main/resources/influx/databases.csv```
+chameleonQuant/src/main/resources/influx/databases.csv
+```
+
+```
+name;class
+NASDAQ_EOD;data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb
+FOREX_EOD;data.source.external.database.influxdb.mirrors.FOREXEODTimeSeriesPointInfluxdb
+NASDAQ_ID;data.source.external.database.influxdb.mirrors.StockIDTimeSeriesPointInfluxdb
+FOREX_ID;data.source.external.database.influxdb.mirrors.FOREXIDTimeSeriesPointInfluxdb
 ```
 
 <hr>
