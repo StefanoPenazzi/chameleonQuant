@@ -141,7 +141,7 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 }
 
 ```
-As you can see in the code, the first step is to add a query with the necessary information to a list used in a call to the database to generate a Dataset object. Next, the strategy is built by passing the time series contained in the dataset and a set of parameters. The strategy is simulated on the time series using its run() method. Each strategy inherting the abstract class StrategyAbstract is evaluated by default using a set of indicators (see table below).
+As you can see in the code, the first step is to add a query with the necessary information to a list used in a call to the database to generate a Dataset object. Next, the strategy is built by passing the time series contained in the dataset and a set of parameters. The strategy is simulated on the time series using the run() method. Each strategy inherting the abstract class StrategyAbstract is evaluated by default using a set of indicators (see table below).
 
 
 <table>
