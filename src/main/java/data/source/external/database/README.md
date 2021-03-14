@@ -6,15 +6,21 @@
 
    <body>
    The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. <br />
-      <h3>Download and install the database</h3>
-   <div>
-   A time series is a sequence taken at successive equally spaced points in time. Most of the data used in financial trading is comprised of time series. The database used by default is InfluxDB, and the following tutorial is based only on it. InfluxDB is a high-performance data store written specifically for time series data (<a href="https://www.influxdata.com/">influxdata</a>). Below is the link to install InfluxDB step by step. <br /> <br />
-       <ul>
-         <li><a href="https://docs.influxdata.com/influxdb/v2.0/get-started/?t=Linux">Get started with InfluxDB</a></li>
-       </ul> 
-   <br />
-   </div>
-      <h3>How to set up the default database connection</h3>
+
+<hr>
+     
+<h3>Download and install the database</h3>
+<div>
+A time series is a sequence taken at successive equally spaced points in time. Most of the data used in financial trading is comprised of time series. The database used by default is InfluxDB, and the following tutorial is based only on it. InfluxDB is a high-performance data store written specifically for time series data (<a href="https://www.influxdata.com/">influxdata</a>). Below is the link to install InfluxDB step by step. <br /> <br />
+<ul>
+ <li><a href="https://docs.influxdata.com/influxdb/v2.0/get-started/?t=Linux">Get started with InfluxDB</a></li>
+</ul> 
+<br />
+</div>
+
+<hr>	
+	
+<h3>How to set up the default database connection</h3>
 After than you have installed InfluxDB either on your local machine or on the cloud, it is time to instruct chameleon Quant on how to access it. A very useful Java client library for InfluxDB is mantained by the community here <a href="https://github.com/influxdata/influxdb-java">influxdata Java</a>. chameleonQuant exploits this library to query the database. The first and only step to let chameleonQuant accessing the database is to let it know its location and your credentials. These have to be added into the following file.
       
 ```
