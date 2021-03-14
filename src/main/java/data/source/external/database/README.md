@@ -69,7 +69,8 @@ FOREX_EOD;data.source.external.database.influxdb.mirrors.FOREXEODTimeSeriesPoint
 NASDAQ_ID;data.source.external.database.influxdb.mirrors.StockIDTimeSeriesPointInfluxdb
 FOREX_ID;data.source.external.database.influxdb.mirrors.FOREXIDTimeSeriesPointInfluxdb
 ```
-Make sure that the first line is the header. This example assumes that these 4 databases were already created in InfluxDB. You can add a new database following this tutorial  <a href="https://devconnected.com/how-to-create-a-database-on-influxdb-1-7-2-0/">How To Create a Database on InfluxDB 1.7 & 2.0</a>
+Make sure that the first line is the header. This example assumes that these 4 databases were already created in InfluxDB. You can add a new database following this tutorial  <a href="https://devconnected.com/how-to-create-a-database-on-influxdb-1-7-2-0/">How To Create a Database on InfluxDB 1.7 & 2.0</a>.
+New points and databases can be added following the same steps. Pay particular attention to the point class and the methods annotations, if you want to know more about this you can check here <a href="">How to create a new time series point</a>.
 
 <hr>
 
