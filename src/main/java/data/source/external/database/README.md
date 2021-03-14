@@ -27,13 +27,13 @@ After than you have installed InfluxDB either on your local machine or on the cl
    influx_serverURL=http://127.0.0.1:9065
    influx_username=username
    influx_password=password
+   ```
+   Now it is possible to access the database. You can easily test the connection by pinging the database in this way
    
    ```
-   Now it is possible to access the database. You can easily test the connection by using this
    
    ```
-   
-   ```
+   if everything is ok you should receive this message: SUCCESSFUL CONNECTION
    
    
    ```
