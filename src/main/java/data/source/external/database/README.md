@@ -48,7 +48,8 @@ void testPingInfluxdb() {
 	idb.close();
 }
 ```
-Be sure that Influxdb is the class in the package data.source.external.database.influxdb. If everything is ok you should receive this message: SUCCESSFUL CONNECTION
+Be sure that Influxdb is the class in the package data.source.external.database.influxdb. If everything is ok you should receive this message: <br />
+SUCCESSFUL CONNECTION
 
 <hr>
 
