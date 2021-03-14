@@ -110,7 +110,7 @@ USE FOREX_EOD
 ```
 SHOW MEASUREMENTS
 ```
-5)if it is present, query the measurement to show all its points 
+5) if it is present, query the measurement to show all its points 
 ```
 SELECT * FROM "EUR-USD"
 ```
@@ -118,7 +118,7 @@ Extra tip. If you want to show the time in a human-understandable format
 ```
 precision rfc3339
 ```
-
+Below an other example in which is used the database NASDAQ_ID and intraday points
 
 ```
 @Test
@@ -132,6 +132,7 @@ void testUpdateAlphaVantageID() {
        upf.run(stocksList, "NASDAQ_ID");
 }
 ```
+
 
 <hr>
 
