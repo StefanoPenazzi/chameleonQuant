@@ -23,7 +23,7 @@ A time series is a sequence taken at successive equally spaced points in time. M
 
 <hr>	
 	
-<h3>How to set up the default database connection</h3>
+<h3>How to set up InfluxDB connection</h3>
 After than you have installed InfluxDB either on your local machine or on the cloud, it is time to instruct chameleon Quant on how to access it. A very useful Java client library for InfluxDB is mantained by the community here <a href="https://github.com/influxdata/influxdb-java">influxdata Java</a>. chameleonQuant exploits this library to query the database. The first and only step to let chameleonQuant accessing the database is to let it know its location and your credentials. These have to be added into the following file.
       
 ```
