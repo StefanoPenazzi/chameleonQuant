@@ -12,9 +12,10 @@
        <ul>
          <li><a href="https://docs.influxdata.com/influxdb/v2.0/get-started/?t=Linux">Get started with InfluxDB</a></li>
        </ul> 
-   <br /> <br />
+   <br />
    </div>
       <h3>How to set up the database connection</h3>
+After than you have installed InfluxDB either on your local machine or on the cloud, it is time to instruct chameleon Quant on how to access it. A very useful Java client library for InfluxDB is mantained by the community here <a href="https://github.com/influxdata/influxdb-java">influxdata Java</a>. 
       
    ```
    chameleonQuant/src/main/resources/database.properties
