@@ -155,8 +155,8 @@ void testDatasetInfluxFactory() throws ParseException {
 	List<String> stocks = Arrays.asList("AACG","AACQ","AACQU","AACQW","AAL");
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
-	Instant endInstant = null;
+	Instant startInstant = (sdf.parse("2020-01-01 00:00:00")).toInstant();
+	Instant endInstant =  (sdf.parse("2021-01-01 00:00:00")).toInstant();
 	String market = "NASDAQ_EOD";
 	String inter = "1d";
 
@@ -188,6 +188,12 @@ void testDatasetInfluxFactory() throws ParseException {
 }
    
    ```
+      
+1) run the controller. If you are not familiar with it, you can find out more <a href="https://github.com/StefanoPenazzi/chameleonQuant/tree/master/src/main/java/controller">here</a>.
+2) create a List containing objects implementing TimeSeriesRequestIdI (in this specific case TimeSeriesRequestIdInfluxdb). Each object contains the information necessary to query the database (symbol, initial and final instant, time series interval). The interval follows the same nomenclature used by Influx. 
+3) create the dataset using the Controller and the list of requests
+
+If you want to know more about the Dataset, check out  <a href="">here</a>.
       
    </body>
 </html>
