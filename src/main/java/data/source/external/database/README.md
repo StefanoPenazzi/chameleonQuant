@@ -97,7 +97,14 @@ void testFOREXUpdateAlphaVantageEOD() {
 	upf.run(forexList, "FOREX_EOD");
 }
 ```
-In order to check if the data has been transferred, you can directly launch your Influx and then
+In order to check if the data has been transferred, you can directly <a href="https://docs.influxdata.com/influxdb/v2.0/get-started/?t=Linux">start Influxdb using the terminal </a></li> 
+
+```
+service influxdb start
+influx -port <portnumber>
+```
+
+and then
 
 1) check if the database FOREX_EOD is present by using  
 ```
