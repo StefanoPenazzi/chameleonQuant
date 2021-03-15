@@ -71,7 +71,7 @@ FOREX_ID;data.source.external.database.influxdb.mirrors.FOREXIDTimeSeriesPointIn
 ```
 Make sure that the first line is the header. This example assumes that these 4 databases were already created in InfluxDB. You can add a new database following this tutorial  <a href="https://devconnected.com/how-to-create-a-database-on-influxdb-1-7-2-0/">How To Create a Database on InfluxDB 1.7 & 2.0</a>.
 New points and databases can be added following the same steps. Pay particular attention to the point class and its methods annotations, if you want to know more about this you can check here <a href="https://github.com/StefanoPenazzi/chameleonQuant/tree/master/src/main/java/data/source/external/database/influxdb/mirrors">How to create a new time series point</a>.
-A convention that must be respected concerns the last part of the database name.  When the interval between two points of the time series is less than one day the database name has to finish with _ID (intraday) otherwise _EOD (end of day). 
+<b>A convention that must be respected concerns the last part of the database name.  When the interval between two points of the time series is less than one day the database name has to end up with _ID (intraday) otherwise _EOD (end of day).  </b>
 
 <hr>
 
