@@ -49,7 +49,7 @@ A financial market map records the history of the securities and make them easil
   </figure>
 </p>
 
-The user can access the map requiring to create a dataset. This latter contains a set of time series relevant for a specific analysis. The dataset can be built either directly requiring the data through the APIs of some data providers or through an intermediate database. The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. Using the intermediate database requires a further step, namely, download the necessary data into the database before making them available to the dataset builder. 
+The user can access the map requiring to create a dataset. This latter contains a set of time series relevant for a specific analysis. The dataset can be built either directly requiring the data through the APIs of some data providers or through an intermediate database (<a href="https://github.com/StefanoPenazzi/chameleonQuant/tree/master/src/main/java/data/source/external/database">How to set up the database</a>). The database proves particularly useful when the same data requests are repeated over time. Indeed, the external data providers usually charge the user based on the number of requests in a certain amount of time. Using the intermediate database requires a further step, namely, download the necessary data into the database before making them available to the dataset builder. 
 
 
 ```
@@ -141,7 +141,7 @@ void testTripleMovingAverageCrossoverStrategy() throws Exception {
 }
 
 ```
-As you can see in the code, the first step is to add a query with the necessary information to a list used in a call to the database to generate a Dataset object. Next, the strategy is built by passing the time series contained in the dataset and a set of parameters. The strategy is simulated on the time series using its run() method. Each strategy inherting the abstract class StrategyAbstract is evaluated by default using a set of indicators (see table below).
+As you can see in the code, the first step is to add a query with the necessary information to a list used in a call to the database to generate a Dataset object. Next, the strategy is built by passing the time series contained in the dataset and a set of parameters. The strategy is simulated on the time series using the run() method. Each strategy inherting the abstract class StrategyAbstract is evaluated by default using a set of indicators (see table below).
 
 
 <table>
@@ -228,9 +228,20 @@ As you can see in the code, the first step is to add a query with the necessary 
     </tbody>
  </table>
 
-This is just a simple example. Indeed, the strategy cannot be only tested on a single set of parameters, but also optimized, i.e., the most robust set of parameters must be selected.
+This is just a simple example. Indeed, the strategy cannot be only tested on a single set of parameters, but also optimized, i.e., the most robust set of parameters must be selected. Optimization has many pitfalls. There are many ways in which it can be done incorrectly. This is very dangerous and can lead to wrong conclusions (an example for all is the well known overfitting).
 
-Do you want to know more about strategies, how to implement your own, how to optimize them and a lot of other funny things? Go to <a href="https://github.com/StefanoPenazzi/chameleonQuant/blob/master/src/main/java/strategies/README.md">Strategies</a>
+<p align="center">
+ <figure align="center">
+     <img width="600" height="600" src="src/main/resources/images/OptP&L.png" class="center" />
+     <figcaption>
+     <p align="center">P&L optimization</p>
+     </figcaption>
+  </figure>
+</p>
+
+The figure above shows the P&L of a strategy by varying two of its parameters. As you can notice, the objective function presents multiple feasible points in the domain space that correspond to sub-optimal values of the objective function.
+
+Do you want to know more about strategies, how to implement your own, how to optimize them and a lot of other fancy things? Go to <a href="https://github.com/StefanoPenazzi/chameleonQuant/blob/master/src/main/java/strategies/README.md">Strategies</a>
 
  </div>
 </ul>
@@ -240,6 +251,12 @@ Do you want to know more about strategies, how to implement your own, how to opt
 <h3>Share with friends</h3>
 
 <h1>Versioning and Packaging</h1>
+
+<h1>Contact</h1>
+<div align="justify">
+E-Mail Adresse: ste.penazzi1987@gmail.com <br />
+<a href="https://www.linkedin.com/in/stefano-penazzi-datascientist/">LinkedIn</a> <br />
+</div>
 
 <h1>References</h1>
 <a id="1">[1]</a> 
