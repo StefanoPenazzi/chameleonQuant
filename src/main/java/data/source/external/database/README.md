@@ -193,7 +193,7 @@ void testDatasetInfluxFactory() throws ParseException {
 2) create a List containing objects implementing TimeSeriesRequestIdI (in this specific case TimeSeriesRequestIdInfluxdb). Each object contains the information necessary to query the database (symbol, initial and final instant, time series interval). The interval follows the same nomenclature used by Influx. 
 3) create the dataset using the Controller and the list of requests
 
-If you want to know more about the Dataset, check out  <a href="">here</a>.
+If you want to know more about the Dataset, check out  <a href="https://github.com/StefanoPenazzi/chameleonQuant/tree/master/src/main/java/data/source/internal/dataset">here</a>.
       
    </body>
 </html>
