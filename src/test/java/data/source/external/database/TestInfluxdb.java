@@ -133,5 +133,14 @@ class TestInfluxdb {
 		StructureQuery.getDatabaseMap();
 	}
 	
+	@Test
+	void testPingInfluxdb() {
+		Influxdb idb = new Influxdb();
+		idb.connect();
+		idb.ping();
+		idb.close();
+	}
+	
+	
 
 }

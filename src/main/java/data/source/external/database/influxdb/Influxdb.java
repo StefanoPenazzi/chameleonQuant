@@ -78,8 +78,12 @@ public class Influxdb extends DatabaseAbstract {
 		Pong response = this.influxDB.ping();
 		if (response.getVersion().equalsIgnoreCase("unknown")) {
 		    log.error("Error pinging server.");
+		    System.out.println("CONNECTION FAILED");
 		    return false;
 		} 
+		else {
+			System.out.println("SUCCESSFUL CONNECTION");
+		}
 		return true;
 	}
 
@@ -133,7 +137,7 @@ public class Influxdb extends DatabaseAbstract {
 
 	@Override
 	public void close() {
-		ping();
+		//ping();
 		influxDB.close();
 	}
 
