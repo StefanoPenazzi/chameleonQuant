@@ -77,6 +77,12 @@
 		    <version>3.6.1</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>io.jenetics</groupId>
+		    <artifactId>jenetics</artifactId>
+		    <version>6.2.0</version>
+		</dependency>
+		
 
     </dependencies>
     <build>

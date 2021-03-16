@@ -29,5 +29,11 @@ public interface StrategiesAnnotations {
 		String section() default "";
 		int position() default 0;
 	}
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface StrategyVariable {
+		String name() default "";
+	}
 
 }

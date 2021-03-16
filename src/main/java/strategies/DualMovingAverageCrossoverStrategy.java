@@ -9,6 +9,7 @@ import java.util.List;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import strategies.Position.PositionType;
+import strategies.StrategiesAnnotations.StrategyVariable;
 
 /**
  * @author stefanopenazzi
@@ -19,7 +20,9 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 	private static final String strategyName = "DualMovingAverageCrossoverStrategy";
 	
 	protected TimeSeriesI itsRef;
+	@StrategyVariable
 	protected TimeSeriesI stma;
+	@StrategyVariable
 	protected TimeSeriesI ltma;
 	protected String source;
 	

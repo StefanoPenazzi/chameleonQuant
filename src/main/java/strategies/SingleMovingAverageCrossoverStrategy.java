@@ -13,6 +13,7 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
 import indicators.movingAverage.SimpleMovingAverage;
 import strategies.Position.PositionType;
 import strategies.SingleSimpleMovingAverageStrategy.Builder;
+import strategies.StrategiesAnnotations.StrategyVariable;
 
 /**
  * @author stefanopenazzi
@@ -23,6 +24,7 @@ public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 	private static final String strategyName = "SingleMovingAverageCrossoverStrategy";
 	
 	protected TimeSeriesI itsRef;
+	@StrategyVariable
 	protected TimeSeriesI ma;
 	protected String source;
 	
