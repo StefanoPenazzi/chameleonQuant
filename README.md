@@ -267,9 +267,9 @@ Trevor Hastie and Robert Tibshirani and Jerome Friedman. 2017. The Elements of S
 Ian Goodfellow and Yoshua Bengio and Aaron Courville. Deep Learning. Goodfellow-et-al-2016. <br />
 <a id="4">[4]</a> 
 Nishant Shukla. 2018. Machine Learning with TensorFlow. <br />
-<a id="4">[4]</a> 
+<a id="4">[5]</a> 
 SS Rao. 2020. A course in Time Series Analysis. <br />
-<a id="5">[5]</a> 
+<a id="5">[6]</a> 
 Cosma Rohilla Shalizi. Advanced Data Analysis from an Elementary Point of View. <br />
 
 
