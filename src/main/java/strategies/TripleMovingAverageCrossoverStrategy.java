@@ -6,11 +6,11 @@ package strategies;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import strategies.Position.PositionType;
-import strategies.StrategiesAnnotations.StrategyVariable;
+import strategies.positionsizing.PositionSizingI;
+
 
 /**
  * @author stefanopenazzi
@@ -18,14 +18,18 @@ import strategies.StrategiesAnnotations.StrategyVariable;
  */
 public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 
+	/**
+	 * @param positionSizing
+	 */
+	public TripleMovingAverageCrossoverStrategy(PositionSizingI positionSizing) {
+		super(positionSizing);
+	}
+
 	private static final String strategyName = "TripleMovingAverageCrossoverStrategy";
 	
 	protected TimeSeriesI itsRef;
-	@StrategyVariable
 	protected TimeSeriesI stma;
-	@StrategyVariable
 	protected TimeSeriesI mtma;
-	@StrategyVariable
 	protected TimeSeriesI ltma;
 	protected String source;
 	protected double targetRange;
@@ -137,11 +141,11 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 						crossPairSecond.key == CrossKey.SHORTXLONG && crossPairSecond.value == CrossValue.UP &&
 						crossPairThird.key == CrossKey.MEDIUMXLONG && crossPairThird.value == CrossValue.UP) {
 					inLong = true;
-					
+					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					Position position = new Position.Builder(PositionType.LONG)
 							.securityId(secId)
 							.price((double)itsRefCopy.get(i).getTagValue(this.source))
-							.initialVolume(volume)
+							.initialVolume(this.positionSizing.getSize(this, price))
 							.openInstant(itsRefCopy.get(i).getTime())
 							.build();
 					positions.add(position);
@@ -154,11 +158,11 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 						crossPairSecond.key == CrossKey.SHORTXLONG && crossPairSecond.value == CrossValue.DOWN &&
 						crossPairThird.key == CrossKey.MEDIUMXLONG && crossPairThird.value == CrossValue.DOWN) {
 					inShort = true;
-					
+					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					Position position = new Position.Builder(PositionType.SHORT)
 							.securityId(secId)
 							.price((double)itsRefCopy.get(i).getTagValue(this.source))
-							.initialVolume(volume)
+							.initialVolume(this.positionSizing.getSize(this, price))
 							.openInstant(itsRefCopy.get(i).getTime())
 							.build();
 					positions.add(position);

@@ -5,6 +5,10 @@ package strategies;
 
 import data.source.internal.timeseries.TimeSeriesI;
 import indicators.movingAverage.ExponentialMovingAverage;
+import indicators.movingAverage.SimpleMovingAverage;
+import strategies.DualExpMovingAverageCrossoverStrategy.Builder;
+import strategies.positionsizing.FixedMoneyAmount;
+import strategies.positionsizing.PositionSizingI;
 
 
 /**
@@ -12,8 +16,8 @@ import indicators.movingAverage.ExponentialMovingAverage;
  *
  */
 public class TripleExpMovingAverageCrossoverStrategy extends TripleMovingAverageCrossoverStrategy  {
-	
-    public static class Builder extends TripleMovingAverageCrossoverStrategy.Builder<TripleExpMovingAverageCrossoverStrategy,Builder> {
+
+	public static class Builder extends TripleMovingAverageCrossoverStrategy.Builder<TripleExpMovingAverageCrossoverStrategy,Builder> {
 		
 		private TimeSeriesI ts;
 		private int lengthStma = 7;
@@ -25,6 +29,9 @@ public class TripleExpMovingAverageCrossoverStrategy extends TripleMovingAverage
 		private double smoothingLtma = 2;
 		
 		private double targetRange = 1;
+		private PositionSizingI ps = new FixedMoneyAmount.Builder()
+				.fixedMoneyAmount(10000)
+				.build();
 		
 		public Builder(TimeSeriesI ts) {
 	        this.ts = ts;
@@ -62,33 +69,61 @@ public class TripleExpMovingAverageCrossoverStrategy extends TripleMovingAverage
             this.targetRange = targetRange;
             return this;
         }
+		public Builder positionSizing(PositionSizingI ps){
+            this.ps = ps;
+            return this;
+        }
+		
     	
 		 public TripleExpMovingAverageCrossoverStrategy build() throws Exception{
-			 TripleExpMovingAverageCrossoverStrategy smas = new TripleExpMovingAverageCrossoverStrategy(); 
-			 smas.itsRef = this.ts;
-				smas.source = this.source;
-				smas.targetRange = this.targetRange;
-				smas.stma = new ExponentialMovingAverage.Builder(this.ts)
-						.length(this.lengthStma)
-						.source(this.source)
-						.smoothing(this.smoothingStma)
-						.build()
-						.run();
-				smas.mtma = new ExponentialMovingAverage.Builder(this.ts)
-						.length(this.lengthMtma)
-						.source(this.source)
-						.smoothing(this.smoothingMtma)
-						.build()
-						.run();
-				smas.ltma = new ExponentialMovingAverage.Builder(this.ts)
-						.length(this.lengthLtma)
-						.source(this.source)
-						.smoothing(this.smoothingLtma)
-						.build()
-						.run();
-			
+			 TripleExpMovingAverageCrossoverStrategy smas = new TripleExpMovingAverageCrossoverStrategy(this.ts,
+						this.lengthStma,
+						this.lengthMtma,
+						this.lengthLtma,
+						this.source,
+						this.smoothingStma,
+						this.smoothingMtma,
+						this.smoothingLtma,
+						this.targetRange,
+						this.ps);
             return smas;
 		}		
+	}
+	
+	public TripleExpMovingAverageCrossoverStrategy(TimeSeriesI ts,
+			int lengthShortTermMA,
+			int lengthMediumTermMA,
+			int lengthLongTermMA,
+			String source,
+			double smoothingShortTermMA,
+			double smoothingMediumTermMA,
+			double smoothingLongTermMA,
+			double targetRange,
+			PositionSizingI positionSizing) throws Exception {
+		super(positionSizing);
+		
+		this.itsRef = ts;
+		this.source = source;
+		this.targetRange = targetRange;
+		this.stma = new ExponentialMovingAverage.Builder(ts)
+				.length(lengthShortTermMA)
+				.source(source)
+				.smoothing(smoothingShortTermMA)
+				.build()
+				.run();
+		this.mtma = new ExponentialMovingAverage.Builder(ts)
+				.length(lengthMediumTermMA)
+				.source(source)
+				.smoothing(smoothingMediumTermMA)
+				.build()
+				.run();
+		this.ltma = new ExponentialMovingAverage.Builder(ts)
+				.length(lengthLongTermMA)
+				.source(source)
+				.smoothing(smoothingLongTermMA)
+				.build()
+				.run();
+		
 	}
 	
 }

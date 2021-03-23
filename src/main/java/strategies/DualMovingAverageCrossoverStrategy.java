@@ -5,11 +5,10 @@ package strategies;
 
 import java.time.Instant;
 import java.util.List;
-
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 import strategies.Position.PositionType;
-import strategies.StrategiesAnnotations.StrategyVariable;
+import strategies.positionsizing.PositionSizingI;
 
 /**
  * @author stefanopenazzi
@@ -17,12 +16,17 @@ import strategies.StrategiesAnnotations.StrategyVariable;
  */
 public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 
+	/**
+	 * @param positionSizing
+	 */
+	public DualMovingAverageCrossoverStrategy(PositionSizingI positionSizing) {
+		super(positionSizing);
+	}
+
 	private static final String strategyName = "DualMovingAverageCrossoverStrategy";
 	
 	protected TimeSeriesI itsRef;
-	@StrategyVariable
 	protected TimeSeriesI stma;
-	@StrategyVariable
 	protected TimeSeriesI ltma;
 	protected String source;
 	
@@ -59,10 +63,11 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					if(positions.size()>=1) {
 						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
 					}
+					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					Position position = new Position.Builder(PositionType.SHORT)
 							.securityId(secId )
-							.price((double)itsRefCopy.get(i).getTagValue(this.source))
-							.initialVolume(volume)
+							.price(price)
+							.initialVolume(this.positionSizing.getSize(this, price))
 							.openInstant(itsRefCopy.get(i).getTime())
 							.build();
 					positions.add(position);
@@ -74,10 +79,11 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					if(positions.size()>=1) {
 						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
 					}
+					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					Position position = new Position.Builder(PositionType.LONG)
 							.securityId(secId )
-							.price((double)itsRefCopy.get(i).getTagValue(this.source))
-							.initialVolume(volume)
+							.price(price)
+							.initialVolume(this.positionSizing.getSize(this, price))
 							.openInstant(itsRefCopy.get(i).getTime())
 							.build();
 					positions.add(position);
@@ -87,4 +93,5 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		
 	}
 
+	
 }

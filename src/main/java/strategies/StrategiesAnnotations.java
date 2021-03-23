@@ -31,7 +31,7 @@ public interface StrategiesAnnotations {
 	}
 	
 	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.FIELD)
+	@Target(ElementType.METHOD)
 	public @interface StrategyVariable {
 		String name() default "";
 	}

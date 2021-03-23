@@ -5,6 +5,8 @@ package strategies;
 
 import java.util.List;
 
+import strategies.positionsizing.PositionSizingI;
+
 /**
  * @author stefanopenazzi
  *
@@ -12,6 +14,7 @@ import java.util.List;
 public interface StrategyI {
 	
 	public void run();
+	public PositionSizingI getPositionSizing();
 	public String getStrategyName();
 	public Integer getTotNumOfTrades();
 	public Double getGrossProfit();

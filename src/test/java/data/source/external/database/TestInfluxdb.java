@@ -39,8 +39,8 @@ class TestInfluxdb {
 		//stocksList.add("ACIA");
 		//stocksList.add("AAL");
 		
-        stocksList.add("AMZN");
-        //stocksList.add("BAND");
+        stocksList.add("KO");
+        stocksList.add("KODK");
 		//stocksList.add("BANF");	 
 		//stocksList.add("BANFP");	 
 		//stocksList.add("BAN");

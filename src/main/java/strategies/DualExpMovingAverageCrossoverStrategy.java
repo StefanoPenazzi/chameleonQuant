@@ -5,6 +5,8 @@ package strategies;
 
 import data.source.internal.timeseries.TimeSeriesI;
 import indicators.movingAverage.ExponentialMovingAverage;
+import strategies.positionsizing.FixedMoneyAmount;
+import strategies.positionsizing.PositionSizingI;
 
 /**
  * @author stefanopenazzi
@@ -12,7 +14,8 @@ import indicators.movingAverage.ExponentialMovingAverage;
  */
 public class DualExpMovingAverageCrossoverStrategy extends DualMovingAverageCrossoverStrategy  {
 	
-    public final static class Builder extends DualMovingAverageCrossoverStrategy.Builder<DualExpMovingAverageCrossoverStrategy,Builder> {
+
+	public final static class Builder extends DualMovingAverageCrossoverStrategy.Builder<DualExpMovingAverageCrossoverStrategy,Builder> {
 		
 		private TimeSeriesI ts;
 		private int lengthStma = 7;
@@ -20,6 +23,9 @@ public class DualExpMovingAverageCrossoverStrategy extends DualMovingAverageCros
 		private String source = "close";
 		private double smoothingStma = 2;
 		private double smoothingLtma = 2;
+		private PositionSizingI ps = new FixedMoneyAmount.Builder()
+				.fixedMoneyAmount(10000)
+				.build();
 		
 		public Builder(TimeSeriesI ts) {
 	        this.ts = ts;
@@ -36,32 +42,61 @@ public class DualExpMovingAverageCrossoverStrategy extends DualMovingAverageCros
            this.source = source; 
             return this;
         }
-		public Builder offsetShortTermMA(double smoothingStma){
+		public Builder smoothingShortTermMA(double smoothingStma){
             this.smoothingStma = smoothingStma;
             return this;
         }
-		public Builder offsetLongTermMA(double smoothingLtma){
+		public Builder smoothingLongTermMA(double smoothingLtma){
             this.smoothingLtma = smoothingLtma;
             return this;
         }
+		public Builder positionSizing(PositionSizingI ps){
+            this.ps = ps;
+            return this;
+        }
 		 public DualExpMovingAverageCrossoverStrategy build() throws Exception{
-			 DualExpMovingAverageCrossoverStrategy  demac = new DualExpMovingAverageCrossoverStrategy (); 
-			 demac.itsRef = this.ts;
-			 demac.source = this.source;
-			 demac.stma = new ExponentialMovingAverage.Builder(this.ts)
-					.length(this.lengthStma)
-					.source(this.source)
-					.smoothing(this.smoothingStma)
-					.build()
-					.run();
-			 demac.ltma = new ExponentialMovingAverage.Builder(this.ts)
-					.length(this.lengthLtma)
-					.source(this.source)
-					.smoothing(this.smoothingLtma)
-					.build()
-					.run();
-			
+			 DualExpMovingAverageCrossoverStrategy  demac = new DualExpMovingAverageCrossoverStrategy (this.ts,
+					 this.lengthStma,
+					 this.lengthLtma,
+					 this.source,
+					 this.smoothingStma,
+					 this.smoothingLtma,
+					 this.ps); 
             return demac;
 		}		
+	}
+	
+	public DualExpMovingAverageCrossoverStrategy(TimeSeriesI ts,
+			int lengthShortTermMA,
+			int lengthLongTermMA,
+			String source,
+			double smoothingShortTermMA,
+			double smoothingLongTermMA,
+			PositionSizingI positionSizing) {
+		super(positionSizing);
+		
+		this.itsRef = ts;
+		this.source = source;
+		try {
+			this.stma = new ExponentialMovingAverage.Builder(ts)
+					.length(lengthShortTermMA)
+					.source(source)
+					.smoothing(smoothingShortTermMA)
+					.build()
+					.run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			this.ltma = new ExponentialMovingAverage.Builder(ts)
+					.length(lengthLongTermMA)
+					.source(source)
+					.smoothing(smoothingLongTermMA)
+					.build()
+					.run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

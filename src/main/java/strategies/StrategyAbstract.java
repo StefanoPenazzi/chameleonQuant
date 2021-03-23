@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import strategies.StrategiesAnnotations.InputStrategyReport;
 import strategies.StrategiesAnnotations.OutputStrategyReport;
+import strategies.positionsizing.PositionSizingI;
 
 
 /**
@@ -20,6 +21,8 @@ import strategies.StrategiesAnnotations.OutputStrategyReport;
 public abstract class StrategyAbstract implements StrategyI {
 	
 	protected List<Position> positions = new ArrayList<>();
+	
+	protected PositionSizingI positionSizing;
 	
 	protected static abstract class Builder <T extends StrategyAbstract, B extends Builder<T, B>> {}
 	
@@ -51,9 +54,18 @@ public abstract class StrategyAbstract implements StrategyI {
 		
 	}
 	
+	public StrategyAbstract(PositionSizingI positionSizing) {
+		this.positionSizing = positionSizing;
+	}
+	
 	@Override
 	public List<Position> getPositions() {
 		return this.positions;
+	}
+	
+	@Override
+	public PositionSizingI getPositionSizing() {
+		return this.positionSizing;
 	}
 	
 	@Override
@@ -107,7 +119,7 @@ public abstract class StrategyAbstract implements StrategyI {
 	@OutputStrategyReport(name = "Profit Factor",section="Main",position=3)
 	public Double getProfitFactor() {
 		
-		return getGrossProfit()/getGrossLoss();
+		return Math.abs(getGrossProfit()/getGrossLoss());
 	}
 
 	@Override
@@ -237,6 +249,15 @@ public abstract class StrategyAbstract implements StrategyI {
 	public Double getMaxTradeDrawdown() {
 		// TODO Auto-generated method stub
 		return 0.0;
+	}
+	
+	@OutputStrategyReport(name = "ROI",section="Main",position=19)
+	public Double getROI() {
+		Double res = 0.0;
+		for(Position position: positions) {
+			res += position.getInitPrice() * position.getInitVolume();
+		}
+		return getTotNetProfit()/res;
 	}
 	
 	@Override
