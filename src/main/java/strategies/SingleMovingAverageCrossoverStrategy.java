@@ -49,8 +49,6 @@ public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		
 		boolean up = (double)itsRefCopy.get(0).getTagValue(this.source) <= (double)smaCopy.get(0).getTagValue("value") ? true: false;
 		
-		int volume = 100;
-		
 		String secId = this.itsRef.getQuery().getId();
 		
 		for(int i = 1;i<smaCopy.size();++i) {
@@ -64,7 +62,7 @@ public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 				if(smaVal<refVal) {
 					up = false;
 					if(positions.size()>=1) {
-						positions.get(positions.size()-1).addNewSignal(refVal, volume, itsRefCopy.get(i).getTime());
+						positions.get(positions.size()-1).addNewSignal(refVal, this.positionSizing.getSize(this, refVal), itsRefCopy.get(i).getTime());
 					}
 					Position position = new Position.Builder(PositionType.SHORT)
 							.securityId(secId)
@@ -79,7 +77,7 @@ public class SingleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 				if(smaVal > refVal) {
 					up = true;
 					if(positions.size()>=1) {
-						positions.get(positions.size()-1).addNewSignal(refVal, volume, itsRefCopy.get(i).getTime());
+						positions.get(positions.size()-1).addNewSignal(refVal, this.positionSizing.getSize(this, refVal), itsRefCopy.get(i).getTime());
 					}
 					Position position = new Position.Builder(PositionType.LONG)
 							.securityId(secId)

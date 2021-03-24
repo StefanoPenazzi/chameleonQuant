@@ -59,11 +59,10 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 			if(up) {
 				if((double)stmaCopy.get(i).getTagValue("value") < (double)ltmaCopy.get(i).getTagValue("value")) {
 					up = false;
-					
-					if(positions.size()>=1) {
-						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
-					}
 					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
+					if(positions.size()>=1) {
+						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), this.positionSizing.getSize(this, price), itsRefCopy.get(i).getTime());
+					}
 					Position position = new Position.Builder(PositionType.SHORT)
 							.securityId(secId )
 							.price(price)
@@ -76,10 +75,11 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 			else {
 				if((double)ltmaCopy.get(i).getTagValue("value") < (double)stmaCopy.get(i).getTagValue("value")) {
 					up = true;
-					if(positions.size()>=1) {
-						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
-					}
 					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
+					if(positions.size()>=1) {
+						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source),this.positionSizing.getSize(this, price), itsRefCopy.get(i).getTime());
+					}
+					
 					Position position = new Position.Builder(PositionType.LONG)
 							.securityId(secId )
 							.price(price)

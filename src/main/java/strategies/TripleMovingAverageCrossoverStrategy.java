@@ -92,7 +92,7 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		double targetPrice = 0;
 		double stopLoss = 0;
 		
-		int volume = 100;
+		
 		
 		String secId = this.itsRef.getQuery().getId();
 		
@@ -144,7 +144,7 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					Position position = new Position.Builder(PositionType.LONG)
 							.securityId(secId)
-							.price((double)itsRefCopy.get(i).getTagValue(this.source))
+							.price(price)
 							.initialVolume(this.positionSizing.getSize(this, price))
 							.openInstant(itsRefCopy.get(i).getTime())
 							.build();
@@ -161,7 +161,7 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					Position position = new Position.Builder(PositionType.SHORT)
 							.securityId(secId)
-							.price((double)itsRefCopy.get(i).getTagValue(this.source))
+							.price(price)
 							.initialVolume(this.positionSizing.getSize(this, price))
 							.openInstant(itsRefCopy.get(i).getTime())
 							.build();
@@ -175,6 +175,7 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 			else if(inLong && !inShort) {
 				if((double)itsRefCopy.get(i).getTagValue(this.source) > targetPrice ||
 						((double)itsRefCopy.get(i).getTagValue(this.source) < stopLoss)) {
+					int volume  = positions.get(positions.size()-1).getCurrVolume();
 					positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
 					inLong = false;
 					crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,CrossValue.NEUTRAL));
@@ -185,6 +186,7 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
             else if(!inLong && inShort) {
             	if((double)itsRefCopy.get(i).getTagValue(this.source) < targetPrice ||
 						((double)itsRefCopy.get(i).getTagValue(this.source) > stopLoss)) {
+            		int volume  = positions.get(positions.size()-1).getCurrVolume();
             		positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), volume, itsRefCopy.get(i).getTime());
 					inShort = false;
 					crossList.add(new CrossPair(CrossKey.SHORTXMEDIUM,CrossValue.NEUTRAL));

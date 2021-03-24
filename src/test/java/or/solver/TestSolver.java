@@ -14,7 +14,9 @@ import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
+import or.model.ESMASJeneticModel;
 import or.model.SSMASJeneticModel;
+import strategies.SingleExpMovingAverageStrategy;
 import strategies.SingleSimpleMovingAverageStrategy;
 
 /**
