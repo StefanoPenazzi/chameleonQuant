@@ -18,13 +18,13 @@ import strategies.positionsizing.PositionSizingI;
  * @author stefanopenazzi
  *
  */
-public class ESMASJeneticModel extends StrategyJeneticModelAbstract {
+public class SEMASJeneticModel extends StrategyJeneticModelAbstract {
 
 	/**
 	 * @param strategyC
 	 * @param ts
 	 */
-	public ESMASJeneticModel(Class<SingleExpMovingAverageStrategy> strategyC, TimeSeriesI ts) {
+	public SEMASJeneticModel(Class<SingleExpMovingAverageStrategy> strategyC, TimeSeriesI ts) {
 		super(strategyC, ts);
 		// TODO Auto-generated constructor stub
 	}

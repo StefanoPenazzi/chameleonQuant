@@ -14,8 +14,8 @@ import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
-import or.model.ESMASJeneticModel;
-import or.model.SDMASJeneticsModel;
+import or.model.SEMASJeneticModel;
+import or.model.DSMASJeneticsModel;
 import or.model.SSMASJeneticModel;
 import strategies.DualSimpleMovingAverageCrossoverStrategy;
 import strategies.SingleExpMovingAverageStrategy;
@@ -77,13 +77,13 @@ class TestSolver {
 		 
 		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
 		
-		SDMASJeneticsModel jModel = new SDMASJeneticsModel(DualSimpleMovingAverageCrossoverStrategy.class,dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
+		DSMASJeneticsModel jModel = new DSMASJeneticsModel(DualSimpleMovingAverageCrossoverStrategy.class,dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval("1d")
 				 .build()));
 		
-		Jenetics<SDMASJeneticsModel> jen = new Jenetics<SDMASJeneticsModel>(jModel);
+		Jenetics<DSMASJeneticsModel> jen = new Jenetics<DSMASJeneticsModel>(jModel);
 		jen.run();
 	}
 

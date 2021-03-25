@@ -21,7 +21,7 @@ import java.util.Random;
  * @author stefanopenazzi
  *
  */
-public class SDMASJeneticsModel extends StrategyJeneticModelAbstract {
+public class DSMASJeneticsModel extends StrategyJeneticModelAbstract {
 
 	Random rand = new Random();
 	
@@ -29,7 +29,7 @@ public class SDMASJeneticsModel extends StrategyJeneticModelAbstract {
 	 * @param strategyC
 	 * @param ts
 	 */
-	public SDMASJeneticsModel(Class<DualSimpleMovingAverageCrossoverStrategy> strategyC, TimeSeriesI ts) {
+	public DSMASJeneticsModel(Class<DualSimpleMovingAverageCrossoverStrategy> strategyC, TimeSeriesI ts) {
 		super(strategyC, ts);
 	}
 	
