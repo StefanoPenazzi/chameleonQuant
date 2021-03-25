@@ -15,7 +15,9 @@ import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
 import or.model.ESMASJeneticModel;
+import or.model.SDMASJeneticsModel;
 import or.model.SSMASJeneticModel;
+import strategies.DualSimpleMovingAverageCrossoverStrategy;
 import strategies.SingleExpMovingAverageStrategy;
 import strategies.SingleSimpleMovingAverageStrategy;
 
@@ -52,6 +54,36 @@ class TestSolver {
 				 .build()));
 		
 		Jenetics<SSMASJeneticModel> jen = new Jenetics<SSMASJeneticModel>(jModel);
+		jen.run();
+	}
+	
+	@Test
+	void testJeneticsSDMAS() throws ParseException {
+		
+        Controller.run();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Instant startInstant = (sdf.parse("2015-01-01 00:00:00")).toInstant();
+		Instant endInstant = null;
+		
+		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
+		listQueries.add(new TimeSeriesRequestIdInfluxdb.Builder(new TimeSeriesIdImpl.Builder("KO")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval("1d")
+				 .build())
+				.build());
+		 
+		 
+		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		
+		SDMASJeneticsModel jModel = new SDMASJeneticsModel(DualSimpleMovingAverageCrossoverStrategy.class,dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
+				 .startInstant(startInstant)
+				 .endInstant(endInstant)
+				 .interval("1d")
+				 .build()));
+		
+		Jenetics<SDMASJeneticsModel> jen = new Jenetics<SDMASJeneticsModel>(jModel);
 		jen.run();
 	}
 

@@ -61,7 +61,7 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					up = false;
 					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					if(positions.size()>=1) {
-						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), this.positionSizing.getSize(this, price), itsRefCopy.get(i).getTime());
+						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source), positions.get(positions.size()-1).getInitVolume(), itsRefCopy.get(i).getTime());
 					}
 					Position position = new Position.Builder(PositionType.SHORT)
 							.securityId(secId )
@@ -77,7 +77,7 @@ public class DualMovingAverageCrossoverStrategy extends StrategyAbstract  {
 					up = true;
 					double price = (double)itsRefCopy.get(i).getTagValue(this.source);
 					if(positions.size()>=1) {
-						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source),this.positionSizing.getSize(this, price), itsRefCopy.get(i).getTime());
+						positions.get(positions.size()-1).addNewSignal((double)itsRefCopy.get(i).getTagValue(this.source),positions.get(positions.size()-1).getInitVolume(), itsRefCopy.get(i).getTime());
 					}
 					
 					Position position = new Position.Builder(PositionType.LONG)

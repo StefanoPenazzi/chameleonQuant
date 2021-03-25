@@ -36,7 +36,7 @@ public final class Jenetics <T extends JeneticsModelI> implements SolverI<T> {
 		Engine engine = Engine
             .builder(this.modelC.getFitnessFunction(),this.modelC.getEncoding())
             .constraint(this.modelC.getConstraint())
-            .populationSize(30)
+            .populationSize(200)
             .offspringFraction(0.7)
             .survivorsSelector(new RouletteWheelSelector<>())
 			.offspringSelector(new TournamentSelector<>())
@@ -49,7 +49,7 @@ public final class Jenetics <T extends JeneticsModelI> implements SolverI<T> {
         //     collect the result.
         @SuppressWarnings({ "unchecked", "rawtypes" })
 		final Phenotype best = (Phenotype)engine.stream()
-    			.limit(60)
+    			.limit(6000)
     			.peek(statistics)
     			.collect(EvolutionResult.toBestPhenotype());
         System.out.println("Best phenotype: ");

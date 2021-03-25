@@ -7,6 +7,7 @@ import data.source.internal.timeseries.TimeSeriesI;
 import indicators.movingAverage.SimpleMovingAverage;
 import strategies.SingleExpMovingAverageStrategy.Builder;
 import strategies.positionsizing.FixedMoneyAmount;
+import strategies.positionsizing.InitialMoneyAmount;
 import strategies.positionsizing.PositionSizingI;
 
 
@@ -25,8 +26,8 @@ public final class DualSimpleMovingAverageCrossoverStrategy extends DualMovingAv
 		private String source = "close";
 		private int offsetStma = 0;
 		private int offsetLtma = 0;
-		private PositionSizingI ps = new FixedMoneyAmount.Builder()
-				.fixedMoneyAmount(10000)
+		private PositionSizingI ps = new InitialMoneyAmount.Builder()
+				.initialMoneyAmount(10000)
 				.build();
 		
 		public Builder(TimeSeriesI ts) {

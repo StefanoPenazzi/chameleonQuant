@@ -65,7 +65,7 @@ public class ESMASJeneticModel extends StrategyJeneticModelAbstract {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Genotype getEncoding() {
-		return Genotype.of((Chromosome)IntegerChromosome.of(1, 200, 1));
+		return Genotype.of(IntegerChromosome.of(1, 200, 1));
 	}
 
 }
