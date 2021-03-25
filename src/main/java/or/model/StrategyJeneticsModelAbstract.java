@@ -16,12 +16,12 @@ import strategies.StrategyI;
  * @author stefanopenazzi
  *
  */
-public abstract class StrategyJeneticModelAbstract implements JeneticsModelI {
+public abstract class StrategyJeneticsModelAbstract implements JeneticsModelI {
     
 	protected final Class<? extends StrategyI> strategyC;
 	protected final List<TimeSeriesI> tsl; 
 	
-	public StrategyJeneticModelAbstract(Class<? extends StrategyI> strategyC, TimeSeriesI... tsl) {
+	public StrategyJeneticsModelAbstract(Class<? extends StrategyI> strategyC, TimeSeriesI... tsl) {
 		this.strategyC = strategyC;
 		this.tsl = Arrays.asList(tsl);
 	}

@@ -21,7 +21,7 @@ import java.util.Random;
  * @author stefanopenazzi
  *
  */
-public class DSMASJeneticsModel extends StrategyJeneticModelAbstract {
+public class DSMASJeneticsModel extends StrategyJeneticsModelAbstract {
 
 	Random rand = new Random();
 	
