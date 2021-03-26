@@ -14,6 +14,7 @@ import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
+import strategies.positionsizing.InitialMoneyAmount;
 
 /**
  * @author stefanopenazzi
@@ -91,7 +92,7 @@ class TestStrategies {
         Controller.run();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Instant startInstant = (sdf.parse("2018-01-01 00:00:00")).toInstant();
+		Instant startInstant = (sdf.parse("2015-01-01 00:00:00")).toInstant();
 		Instant endInstant = null;
 		
 		List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
@@ -112,8 +113,11 @@ class TestStrategies {
 				 .build()))
 				 .source("close")
 				 .lengthShortTermMA(5)
-				 .lengthMediumTermMA(10)
-				 .lengthLongTermMA(20)
+				 .lengthMediumTermMA(11)
+				 .lengthLongTermMA(13)
+				 .positionSizing(new InitialMoneyAmount.Builder()
+						.initialMoneyAmount(10000)
+						.build())
 				 .build();
 		 tsmac.run();
 		 

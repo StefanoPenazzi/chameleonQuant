@@ -68,8 +68,8 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 	
 	@Override
 	public void run() {
-		Instant from = this.stma.getFirstInstant().compareTo(this.ltma.getFirstInstant()) > 0 ? this.stma.getFirstInstant() : this.ltma.getFirstInstant();
-		Instant to = this.stma.getLastInstant().compareTo(this.ltma.getLastInstant()) > 0 ? this.ltma.getLastInstant() : this.stma.getLastInstant();
+		Instant from = this.ltma.getFirstInstant();
+		Instant to = this.ltma.getLastInstant();
 		
 		List<TimeSeriesPointI> stmaCopy = this.stma.getListFromTo(from,to);
 		List<TimeSeriesPointI> ltmaCopy = this.ltma.getListFromTo(from,to);
@@ -97,7 +97,7 @@ public class TripleMovingAverageCrossoverStrategy extends StrategyAbstract  {
 		String secId = this.itsRef.getQuery().getId();
 		
 		
-		for(int i = 1;i<stmaCopy.size();i++) {
+		for(int i = 1;i<ltmaCopy.size();i++) {
 			
 			//order is important
 			if(shortXmedium != CrossValue.UP && (double)stmaCopy.get(i).getTagValue("value") > (double)mtmaCopy.get(i).getTagValue("value")) {
