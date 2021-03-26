@@ -7,6 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 import java.util.function.Function;
 import data.source.internal.timeseries.TimeSeriesI;
+import io.jenetics.Chromosome;
+import io.jenetics.DoubleChromosome;
 import io.jenetics.Genotype;
 import io.jenetics.IntegerChromosome;
 import io.jenetics.IntegerGene;
@@ -38,11 +40,14 @@ public class TSMASJeneticsModel extends StrategyJeneticsModelAbstract {
 			int lengthS = ((IntegerChromosome)gt.get(0)).get(0).intValue();
 			int lengthM = ((IntegerChromosome)gt.get(0)).get(1).intValue();
 		    int lengthL = ((IntegerChromosome)gt.get(0)).get(2).intValue();
+		    
+		    double targetRange = ((DoubleChromosome)gt.get(1)).get(0).doubleValue();
+		    
 		    TripleSimpleMovingAverageCrossoverStrategy strategy = null;
 			try {
 				strategy = (TripleSimpleMovingAverageCrossoverStrategy) this.strategyC
 						.getConstructor(TimeSeriesI.class,Integer.TYPE,Integer.TYPE,Integer.TYPE,String.class,Integer.TYPE,Integer.TYPE,Integer.TYPE,Double.TYPE,PositionSizingI.class)
-						.newInstance(this.tsl.get(0),lengthS,lengthM,lengthL,"close",0,0,0,1,new InitialMoneyAmount.Builder()
+						.newInstance(this.tsl.get(0),lengthS,lengthM,lengthL,"close",0,0,0,targetRange,new InitialMoneyAmount.Builder()
 						.initialMoneyAmount(10000)
 						.build());
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -68,6 +73,7 @@ public class TSMASJeneticsModel extends StrategyJeneticsModelAbstract {
 		return (c1 && c2 && c3 && c4 && c5);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Genotype<IntegerGene> repairGenotype(Genotype gt) {
 		
@@ -78,7 +84,8 @@ public class TSMASJeneticsModel extends StrategyJeneticsModelAbstract {
 		IntegerGene[] itga = {IntegerGene.of(lengthS,1,200),
 				IntegerGene.of(lengthM,1,200),
 				IntegerGene.of(lengthL,1,200)};
-		return Genotype.of(IntegerChromosome.of(itga));
+		return Genotype.of(IntegerChromosome.of(itga),
+				gt.get(1));
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -92,7 +99,8 @@ public class TSMASJeneticsModel extends StrategyJeneticsModelAbstract {
 		 IntegerGene[] itga = {IntegerGene.of(lengthS,1,200),
 				 IntegerGene.of(lengthM,1,200),
 				 IntegerGene.of(lengthL,1,200)}; 
-		 return Genotype.of(IntegerChromosome.of(itga));
+		 return Genotype.of(IntegerChromosome.of(itga),
+				 (Chromosome)DoubleChromosome.of(0, 10, 1));
 		 
 	}
 

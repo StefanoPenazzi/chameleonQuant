@@ -56,7 +56,7 @@ public final class Jenetics <T extends JeneticsModelI> implements SolverI<T> {
         //     collect the result.
         
 		engine.stream()
-    			.limit(300)
+    			.limit(3000)
     			.peek(statistics)
     			.peek(res -> {
     				EvolutionResult result = (EvolutionResult)res; 
