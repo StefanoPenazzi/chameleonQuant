@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+
+import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.utils.queries.StructureQuery;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageStocksEOD;
