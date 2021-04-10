@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import data.source.internal.timeseries.cleaning.TimeSeriesCleanerI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
@@ -144,6 +145,24 @@ public abstract class TimeSeriesAbstract implements TimeSeriesI {
 	@Override
 	public List<TimeSeriesPointI> getList() {
 		return tsd.getList();
+	}
+	
+	@Override
+	public List<TimeSeriesPointI> getListFrom(Instant time){
+		List<TimeSeriesPointI> res = tsd.getList().stream().filter(c -> c.getTime().compareTo(time) >= 0).collect(Collectors.toList());
+		return res;
+	}
+	
+	@Override
+	public List<TimeSeriesPointI> getListTo(Instant time){
+		List<TimeSeriesPointI> res = tsd.getList().stream().filter(c -> c.getTime().compareTo(time) <= 0).collect(Collectors.toList());
+		return res;
+	}
+	
+	@Override
+	public List<TimeSeriesPointI> getListFromTo(Instant timeFrom, Instant timeTo){
+		List<TimeSeriesPointI> res = tsd.getList().stream().filter(c -> c.getTime().compareTo(timeFrom) >= 0 && c.getTime().compareTo(timeTo) <= 0).collect(Collectors.toList());
+		return res;
 	}
 	
 	@Override

@@ -80,7 +80,8 @@ public class SimpleMovingAverage implements IndicatorI {
 	   int firstRemoveIndex = 0;
 //	   // reflection invoked just once
        Method method = itsRef.getTagMethod(source);
-	   double count = itsRefList.stream().limit(length).mapToDouble(point -> {
+	   
+       double count = itsRefList.stream().limit(length).mapToDouble(point -> {
            try { 
         	   Double result = (Double) method.invoke(point);
                return result != null ? result : 0;
@@ -88,16 +89,20 @@ public class SimpleMovingAverage implements IndicatorI {
         	   return 0;
            }
        }).sum();
+       
 	   res.add(new SingleTagPoint<Double>(itsRefList.get(length-1).getTime(),count/length));
+	   
 	   for(int i = length;i<itsRefList.size();i++) {
 	        count = count -  (Double)method.invoke(itsRefList.get(firstRemoveIndex)) + (Double)method.invoke(itsRefList.get(i));
 	        res.add(new SingleTagPoint<Double>(itsRefList.get(i).getTime(),count/length));
 	        firstRemoveIndex++;
 	   }
+	   
 	   TimeSeriesIdImpl id = new TimeSeriesIdImpl.Builder("MA")
 				 .startInstant(itsRef.getFirstInstant())
 				 .endInstant(itsRef.getLastInstant())
 				 .build();
+	   
 	   TimeSeriesImpl itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   return itsRes;
 	}

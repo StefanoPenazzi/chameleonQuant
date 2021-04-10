@@ -94,4 +94,6 @@ public class FOREXEODTimeSeriesPointInfluxdb extends TimeSeriesPointAbstract  {
 		return formatter;
 		//return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	}
+
+
 }

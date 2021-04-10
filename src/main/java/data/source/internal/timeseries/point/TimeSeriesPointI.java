@@ -19,6 +19,4 @@ public interface TimeSeriesPointI {
 	public Method getTagMethod(String tagName);
 	public Object getTagValue(String tagName);
 	public DateTimeFormatter getTimeFormat();
-	
-
 }

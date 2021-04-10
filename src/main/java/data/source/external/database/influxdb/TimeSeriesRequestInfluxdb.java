@@ -116,7 +116,7 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 	@Override
 	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iqp) {
 		TimeSeriesRequestIdInfluxdb iq = (TimeSeriesRequestIdInfluxdb)iqp;
-		String db = getDatabaseFromSymbol(iq.getId());
+		String db = getDatabaseFromSymbol(iq.getInterval(),iq.getId());
 		if(iq.getTimeSeriesPoint() == null) { 
 			iq = new TimeSeriesRequestIdInfluxdb.Builder(iq.getTimeSeriesId())
 					.setTimeSeriesPointClass(classDatabaseMap.get(db))
@@ -133,16 +133,16 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		return results;
 	}
 	
-	private String getDatabaseFromSymbol(String s){
+	private String getDatabaseFromSymbol(String s,String id){
 		String db = null;
-		if(s.equals("d") || s.equals("w") || s.equals("mo") || s.equals("y")) {
-			 db = this.measureDatabaseMapEOD.get(s);
+		if(s.contains("d") || s.contains("w") || s.contains("mo") || s.contains("y")) {
+			 db = this.measureDatabaseMapEOD.get(id);
 		}
 		else {
-			db = this.measureDatabaseMapID.get(s);
+			db = this.measureDatabaseMapID.get(id);
 		}
 		if (db == null) {
-			db = measureDatabaseMap.get(s);
+			db = measureDatabaseMap.get(id);
 		}
 		if(db == null) {
 			throw new NullPointerException("Symbol not found");

@@ -22,30 +22,21 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
 public interface TimeSeriesI {
 	
 	public TimeSeriesDataStructureI getRange(Instant timeStart, Instant timeEnd);
-	
-	
 	public TimeSeriesPointI getPoint(Instant time);
-	
-	
 	public TimeSeriesPointI getCeilingPoint(Instant time);
-	
-	
 	public TimeSeriesPointI getFloorPoint(Instant time);
-	
-	
 	public boolean getSingleInterval();
-	
 	public Duration getInterval();
 	public Instant getFirstInstant();
 	public Instant getLastInstant();
 	public int hashCode();
-	
 	public TimeSeriesIdI getQuery();
-	
 	public Iterator<TimeSeriesPointI> iterator();
-	
 	public List<TimeSeriesPointI> getList();
+	public List<TimeSeriesPointI> getListFrom(Instant time);
+	public List<TimeSeriesPointI> getListTo(Instant time);
+	public List<TimeSeriesPointI> getListFromTo(Instant timeFrom,Instant timeTo);
 	public String getString();
-	
 	public Method getTagMethod(String tagName);
+	
 }
