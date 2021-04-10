@@ -42,5 +42,16 @@ public class Differencing {
 	   TimeSeriesImpl itsRes = new TimeSeriesImpl(new RBTree(res),id);
 	   return itsRes;
 	}
+	
+	
+	public static TimeSeriesImpl firstOrderdifferencing(TimeSeriesI ts, String source) {
+		   return differencing(ts,source,1);
+	}
+	
+	public static TimeSeriesImpl secondOrderdifferencing(TimeSeriesI ts, String source) {
+		   return differencing(differencing(ts,source,1),source,1);
+	}
+	
+	
 
 }
