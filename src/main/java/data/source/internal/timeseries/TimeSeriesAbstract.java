@@ -166,6 +166,39 @@ public abstract class TimeSeriesAbstract implements TimeSeriesI {
 	}
 	
 	@Override
+	public List<TimeSeriesPointI> getComparableList(TimeSeriesI ts){
+		List<TimeSeriesPointI> _ts = ts.getList();
+		return getComparableList(_ts);
+	}
+	
+	@Override
+	public List<TimeSeriesPointI> getComparableList(List<TimeSeriesPointI> _ts){
+		List<TimeSeriesPointI> th = getListFromTo(_ts.get(0).getTime(),_ts.get(_ts.size()-1).getTime());
+		List<TimeSeriesPointI> res = new ArrayList<>();
+		
+		int j = 0;
+		boolean pass = true;
+		for(int i = 0;i<_ts.size();i++) {
+			boolean find = false;
+			Instant ins = _ts.get(i).getTime();
+			while(!find && j < th.size()) {
+				if(ins.compareTo(th.get(j).getTime())==0) {
+					find = true;
+					res.add(th.get(j));
+					j++;
+					break;
+				}
+				j++;
+			}
+			if(!find) {
+				pass = false;
+				break;
+			}
+		}
+		return pass == true? res:null;
+	}
+	
+	@Override
 	public String getString() {
 		String s = itsq.getString() + "\n";
 		for(TimeSeriesPointI point: getList()) {

@@ -36,6 +36,8 @@ public interface TimeSeriesI {
 	public List<TimeSeriesPointI> getListFrom(Instant time);
 	public List<TimeSeriesPointI> getListTo(Instant time);
 	public List<TimeSeriesPointI> getListFromTo(Instant timeFrom,Instant timeTo);
+	public List<TimeSeriesPointI> getComparableList(TimeSeriesI ts);
+	public List<TimeSeriesPointI> getComparableList(List<TimeSeriesPointI> ts);
 	public String getString();
 	public Method getTagMethod(String tagName);
 	
