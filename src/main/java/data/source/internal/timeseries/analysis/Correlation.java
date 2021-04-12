@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -21,11 +22,11 @@ public class Correlation {
 	
 	/**
 	 * 
-	 * @param ts Time-series implementing the interface TimeSeriesI
-	 * @param source Name of one of the methods in the time-series with annotation @see data.source.annotations.TimeSeriesAnnotations#TagName
-	 * @param maxLag
-	 * 
 	 * <b>Note:</b> Upper and lower bounds for autocorrelation consider a significance level equals to 0.05. The time-series is considered Gaussian. 
+	 * 
+	 * @param ts Time-series implementing the interface TimeSeriesI
+	 * @param source Name of one of the methods in the time-series with annotation {@link data.source.annotations.TimeSeriesAnnotations#TagName}
+	 * @param maxLag .
 	 * 
 	 * @return List of Double containing for each lag: autocorrelation coefficient, standard error lower bound, standard error upper bound, autocorrelation upper bound, autocorrelation lower bound.
 	 *
@@ -86,7 +87,7 @@ public class Correlation {
 			riRes.add(ub);
 			riRes.add(lb);
 			
-			res.put(i,riRes);
+			res.put(i,Collections.unmodifiableList(riRes));
 				               
 		}
 		
@@ -94,7 +95,22 @@ public class Correlation {
 		
 	}
 	
-public static TreeMap<Integer,List<Double>> crossCorrelation(TimeSeriesI ts1, TimeSeriesI ts2 ,String source, int maxLag){
+	/**
+	 * 
+	 * <b>Note:</b> Upper and lower bounds for cross-correlation consider a significance level equals to 0.05.
+	 * The time-series is considered Gaussian.
+	 * ts2 must be a sub-list of ts1 in terms of times.
+	 * 
+	 * @param ts1 Time-series implementing the interface TimeSeriesI
+	 * @param ts2 Time-series implementing the interface TimeSeriesI
+	 * @param source Name of one of the methods in the time-series with annotation {@link data.source.annotations.TimeSeriesAnnotations#TagName}
+	 * @param maxLag .
+	 * 
+	 * @return List of Double containing for each lag: cross-correlation coefficient, standard error lower bound, standard error upper bound, cross-correlation upper bound, cross-correlation lower bound.
+	 *
+	 */
+	
+     public static TreeMap<Integer,List<Double>> crossCorrelation(TimeSeriesI ts1, TimeSeriesI ts2 ,String source, int maxLag){
 		
 		TreeMap<Integer,List<Double>> res = new TreeMap<Integer,List<Double>>();
 		
@@ -163,7 +179,7 @@ public static TreeMap<Integer,List<Double>> crossCorrelation(TimeSeriesI ts1, Ti
 			riRes.add(ub);
 			riRes.add(lb);
 			
-			res.put(i,riRes);
+			res.put(i,Collections.unmodifiableList(riRes));
 				               
 		}
 		
