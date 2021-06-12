@@ -14,5 +14,19 @@ public class Stationarity {
 		
 		return Collections.unmodifiableList(res);
 	}
+	
+	public static List<Double> adf(TimeSeriesI ts){
+		List<Double> res = new ArrayList<>();
+		
+		
+		return Collections.unmodifiableList(res);
+	}
+	
+	public static List<Double> df(TimeSeriesI ts){
+		List<Double> res = new ArrayList<>();
+		
+		
+		return Collections.unmodifiableList(res);
+	}
 
 }
