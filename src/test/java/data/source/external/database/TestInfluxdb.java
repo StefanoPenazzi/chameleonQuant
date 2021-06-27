@@ -43,6 +43,7 @@ class TestInfluxdb {
 		
         stocksList.add("KO");
         stocksList.add("KODK");
+        stocksList.add("AMZN");
 		//stocksList.add("BANF");	 
 		//stocksList.add("BANFP");	 
 		//stocksList.add("BAN");

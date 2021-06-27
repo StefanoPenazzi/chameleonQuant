@@ -14,6 +14,7 @@ import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
+import strategies.hmm.Nguyen2018;
 import strategies.positionsizing.InitialMoneyAmount;
 
 /**
@@ -122,6 +123,15 @@ class TestStrategies {
 		 tsmac.run();
 		 
 		 System.out.println(tsmac.getPerformanceReport());
+	}
+	
+	@Test
+	void hmm() throws Exception {
+		
+		Controller.run();
+		
+		
+	
 	}
 
 }
