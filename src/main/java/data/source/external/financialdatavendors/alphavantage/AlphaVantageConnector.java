@@ -3,7 +3,6 @@
  */
 package data.source.external.financialdatavendors.alphavantage;
 
-import java.io.FileNotFoundException;
 
 import data.source.external.financialdatavendors.alphavantage.parameters.APIParameterBuilderAlphaVantage;
 import data.source.external.financialdatavendors.connector.APIConnectorAbstract;

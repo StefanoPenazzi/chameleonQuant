@@ -8,8 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.Properties;
 
 import data.source.external.financialdatavendors.alphavantage.AlphaVantageExceptions;
@@ -59,7 +62,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 		String params = getParameters(apiParameters);
 	    try {
 	      URL request = new URL(getBaseUrl() + params);
-	      URLConnection connection = request.openConnection();
+	      HttpURLConnection connection = (HttpURLConnection)request.openConnection();
 	      connection.setConnectTimeout(timeOut);
 	      connection.setReadTimeout(timeOut);
 
@@ -80,4 +83,34 @@ public abstract class APIConnectorAbstract implements APIConnector {
 	         throw new AlphaVantageExceptions("failure sending request",e);
 	    }
 	}
+	
+	public Properties getProperties() {
+		
+		Properties properties = new Properties();
+	    InputStream inputStream = getClass().getClassLoader().getResourceAsStream("apiKeys.properties");
+		
+		try {
+			properties.load(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return properties;
 	}
+	
+	public String ParameterStringBuilder(String key, String value) throws UnsupportedEncodingException {
+		StringBuilder result = new StringBuilder();
+		
+		result.append(URLEncoder.encode(key, "UTF-8"));
+        result.append("=");
+        result.append(URLEncoder.encode(value, "UTF-8"));
+        result.append("&");
+		
+        String resultString = result.toString();
+        return resultString.length() > 0
+          ? resultString.substring(0, resultString.length() - 1)
+          : resultString;
+	}
+	
+}
