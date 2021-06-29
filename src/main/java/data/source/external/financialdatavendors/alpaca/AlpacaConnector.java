@@ -10,6 +10,12 @@ import data.source.utils.IO.PropertiesUtils;
 
 public class AlpacaConnector extends APIConnectorAbstract {
 	
+	public enum url{
+		HISTORICAL_DATA,
+		REALTIME_DATA,
+		PAPER_API
+	}
+	
 	public enum query{
 		ORDERS,
 		ACCOUNT,
@@ -33,13 +39,30 @@ public class AlpacaConnector extends APIConnectorAbstract {
 		private String qy = null;
 		private List<String> symbols = new ArrayList<>();
 		private String hd = null;
+		private String url = null;
 		
 		
 
 		public Builder() {
-			super("https://data.alpaca.markets/v2");
+			super();
 			this.addHeader("APCA-API-KEY-ID",PropertiesUtils.getPropertyValue("APCA-API-KEY-ID"));
 			this.addHeader("APCA-API-SECRET-KEY",PropertiesUtils.getPropertyValue("APCA-API-SECRET-KEY"));
+		}
+		
+		public Builder setUrl(url ur) {
+			switch(ur){
+			case HISTORICAL_DATA:
+				url = "https://data.alpaca.markets/v2";
+				break;
+			case REALTIME_DATA:
+				url = "wss://stream.data.alpaca.markets/v2";
+				break;
+			case PAPER_API:
+				url = "https://paper-api.alpaca.markets/v2";
+				break;
+			}
+			
+			return this;
 		}
 		
 		public Builder setQuery(query q) {

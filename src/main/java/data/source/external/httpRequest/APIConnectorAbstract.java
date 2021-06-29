@@ -23,16 +23,21 @@ public abstract class APIConnectorAbstract implements APIConnector {
 	private Map<String, String> headers = new HashMap<>(); 
 	private Map<String, String> body = new HashMap<>(); 
 	
-	protected static abstract class Builder {
+	public static abstract class Builder {
 			
 		protected Map<String, String> parameters = new HashMap<>();
 		protected Map<String, String> headers = new HashMap<>(); 
 		protected Map<String, String> body = new HashMap<>(); 
 		protected String url;
 			
-		public Builder(String url) {
-	        this.url = url;
+		public Builder() {
+	        
 	    }
+		
+		public Builder setUrl(String url) {
+			this.url = url;
+			return this;
+		}
 		
 		public Builder addParameters(String key, String value){
             this.parameters.put(key, value);
@@ -128,9 +133,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 		    result.append(ParameteStringBuilder(entry.getKey(),entry.getValue()));  
 		}
 		String resultString = result.toString();
-		return resultString.length() > 0
-		    ? resultString.substring(0, resultString.length() - 1)
-		    : resultString;
+		return resultString;
 	}
 	
 	public String ParameteStringBuilder(String key, String value) throws UnsupportedEncodingException {
@@ -142,7 +145,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 	    result.append("&");
 			
 	    String resultString = result.toString();
-	    return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1): resultString;
+	    return resultString;
 	}
 	
 }

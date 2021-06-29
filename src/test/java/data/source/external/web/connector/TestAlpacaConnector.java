@@ -8,10 +8,14 @@ class TestAlpacaConnector {
 
 	@Test
 	void test() {
-		AlpacaConnector ac =new AlpacaConnector.Builder()
+		AlpacaConnector ac =(AlpacaConnector) new AlpacaConnector.Builder()
+				.setUrl(AlpacaConnector.url.HISTORICAL_DATA)
 				.setQuery(AlpacaConnector.query.STOCKS)
-				.setHistData(AlpacaConnector.histData.QUOTES_LATEST)
+				.setHistData(AlpacaConnector.histData.BARS)
 				.setSymbol("GOOGL")
+				.addParameters("start","2019-10-12T07:20:50.52Z")
+				.addParameters("end","2020-10-12T07:20:50.52Z")
+				.addParameters("timeframe","1Day")
 				.build();
 		
 		String a = ac.get();
