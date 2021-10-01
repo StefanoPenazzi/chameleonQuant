@@ -10,16 +10,14 @@ class TestAlpacaConnector {
 	void test() {
 		AlpacaConnector ac =(AlpacaConnector) new AlpacaConnector.Builder()
 				.setUrl(AlpacaConnector.url.HISTORICAL_DATA)
-				.setQuery(AlpacaConnector.query.STOCKS)
 				.setHistData(AlpacaConnector.histData.BARS)
 				.setSymbol("GOOGL")
-				.addParameters("start","2019-10-12T07:20:50.52Z")
-				.addParameters("end","2020-10-12T07:20:50.52Z")
-				.addParameters("timeframe","1Day")
+				.addParameter("start","2019-10-12T07:20:50.52Z")
+				.addParameter("end","2020-10-12T07:20:50.52Z")
+				.addParameter("timeframe","1Day")
 				.build();
 		
 		String a = ac.get();
 		System.out.println(a);
 	}
-
 }

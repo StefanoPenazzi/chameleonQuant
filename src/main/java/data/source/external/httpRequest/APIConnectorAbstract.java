@@ -39,7 +39,7 @@ public abstract class APIConnectorAbstract implements APIConnector {
 			return this;
 		}
 		
-		public Builder addParameters(String key, String value){
+		public Builder addParameter(String key, String value){
             this.parameters.put(key, value);
             return this;
         }

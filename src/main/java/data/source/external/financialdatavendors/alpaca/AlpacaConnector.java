@@ -21,7 +21,6 @@ public class AlpacaConnector extends APIConnectorAbstract {
 		ACCOUNT,
 		ASSETS,
 		POSITIONS,
-		STOCKS
 	}
 	
 	public enum histData{
@@ -52,7 +51,7 @@ public class AlpacaConnector extends APIConnectorAbstract {
 		public Builder setUrl(url ur) {
 			switch(ur){
 			case HISTORICAL_DATA:
-				url = "https://data.alpaca.markets/v2";
+				url = "https://data.alpaca.markets/v2/stocks";
 				break;
 			case REALTIME_DATA:
 				url = "wss://stream.data.alpaca.markets/v2";
@@ -69,9 +68,6 @@ public class AlpacaConnector extends APIConnectorAbstract {
 			switch(q){
 			case ORDERS:
 				qy = "orders";
-				break;
-			case STOCKS:
-				qy = "stocks";
 				break;
 			case ACCOUNT:
 				qy = "account";
@@ -109,7 +105,7 @@ public class AlpacaConnector extends APIConnectorAbstract {
 
 		@Override
 		public AlpacaConnector build() {
-			this.url = this.url +"/"+this.qy+"/"+this.symbols.get(0)+"/"+this.hd;
+			this.url = this.url+"/"+this.symbols.get(0)+"/"+this.hd;
 			return new AlpacaConnector(this.url,this.parameters,this.headers,this.body);
 		}
 		
@@ -126,6 +122,11 @@ public class AlpacaConnector extends APIConnectorAbstract {
 	public Boolean post() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private String getUrlHistoricalData() {
+		
+		return "";
 	}
 
 }
