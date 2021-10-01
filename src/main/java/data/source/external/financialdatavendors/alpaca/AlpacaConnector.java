@@ -40,7 +40,6 @@ public class AlpacaConnector extends APIConnectorAbstract {
 		private String hd = null;
 		private String url = null;
 		
-		
 
 		public Builder() {
 			super();
