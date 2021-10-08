@@ -70,6 +70,7 @@ public class Influxdb extends DatabaseAbstract {
 	@Override
 	public void connect() {
 		influxDB = InfluxDBFactory.connect(serverURL, username, password);
+		ping();
 	}
 
 	@Override
@@ -138,6 +139,7 @@ public class Influxdb extends DatabaseAbstract {
 	@Override
 	public void close() {
 		influxDB.close();
+		System.out.println("SUCCESSFUL DISCONNECTED");
 	}
 
 	@Override

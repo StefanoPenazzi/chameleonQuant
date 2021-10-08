@@ -13,15 +13,11 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import data.source.external.database.influxdb.Influxdb;
 
-
-
 /**
  * @author stefanopenazzi
  *
  */
 public abstract class UpdateAbstract implements UpdateI {
-	
-	
 	
 	public UpdateAbstract() {
 		
@@ -81,6 +77,7 @@ public abstract class UpdateAbstract implements UpdateI {
 		
 	}
 	
+	
 	public synchronized void run(List<String> series, String database) {
 		try(Influxdb idb = new Influxdb()){
 			idb.connect();
@@ -88,10 +85,11 @@ public abstract class UpdateAbstract implements UpdateI {
 		} 
 	}
 	
+	
 	public abstract Callable<Boolean> getWorker(String serie, String database,Influxdb idb);
 	public abstract void beforeUpdate(List<String> series, String database ,int maxReqPerMin, int maxReqPerDay, int nThreads);
 	public abstract void afterUpdate(Object ...objects);
 	public abstract void runUpdate(List<String> series, String database,Influxdb idb );
-	
+		
 	
 }

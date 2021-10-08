@@ -97,25 +97,7 @@ class TestInfluxdb {
 		//stocksList.add("ACIA");
 		//stocksList.add("AAL");
 		
-		stocksList.add("BAND");
-		stocksList.add("BANF");	 
-		stocksList.add("BANFP");	 
-		stocksList.add("BAN");
-		stocksList.add("BANX"); 
-		stocksList.add("BASI"); 
-		stocksList.add("BATRA");	 
-		stocksList.add("BATRK"); 
-		stocksList.add("BBB");
-		stocksList.add("BBCP"); 
-		stocksList.add("BBGI");
-		stocksList.add("BBH");
-		stocksList.add("BBI");	 
-		stocksList.add("BBIG"); 
-		stocksList.add("BBIO");	 
-		stocksList.add("BBQ");
-		stocksList.add("BBSI");	 
-		stocksList.add("BCAB");
-		stocksList.add("BCBP");
+		stocksList.add("AAPL");
 		
 		UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
 		upf.run(stocksList, "NASDAQ_ID");
