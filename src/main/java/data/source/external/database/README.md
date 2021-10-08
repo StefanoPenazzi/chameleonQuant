@@ -103,7 +103,12 @@ In order to check if the data has been transferred, you can directly <a href="ht
 service influxdb start
 influx -port <portnumber>
 ```
-
+in case you don't know the port
+	   
+```
+sudo lsof -i -P -n | grep LISTEN
+```
+	   
 and then
 
 1) check if the database FOREX_EOD is present by using  
