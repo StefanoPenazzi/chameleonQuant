@@ -12,7 +12,7 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  * @author stefanopenazzi
  *
  */
-public interface DatabaseI {
+public interface DatabaseI extends AutoCloseable{
 
 	public void connect();
 	
@@ -21,7 +21,5 @@ public interface DatabaseI {
 	public void update(String database,  String series , Class<? extends TimeSeriesPointI> mirror ,List<Map<String,String>> csvMap);
 	
 	public List<? extends TimeSeriesPointI>  select(String query,String database,Class<? extends TimeSeriesPointI> cl);
-	
-	public void close();
 	
 }

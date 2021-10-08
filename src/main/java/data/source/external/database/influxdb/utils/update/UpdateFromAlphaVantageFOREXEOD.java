@@ -41,8 +41,8 @@ public class UpdateFromAlphaVantageFOREXEOD extends UpdateFromAlphaVantageAbstra
 	}
 
 	@Override
-	public Callable<Boolean> getWorker(String serie, String database) {
-		return new WorkerAlphaVantageFOREXEOD(serie,database,this.getAlphaVantageConnector(),this.getInfluxdb());
+	public Callable<Boolean> getWorker(String serie, String database,Influxdb idb) {
+		return new WorkerAlphaVantageFOREXEOD(serie,database,this.getAlphaVantageConnector(),idb);
 	}
 
 }

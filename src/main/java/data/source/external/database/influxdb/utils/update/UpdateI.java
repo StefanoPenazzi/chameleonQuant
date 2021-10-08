@@ -11,6 +11,10 @@ import java.util.List;
  */
 public interface UpdateI {
 	
+	/**
+	 * @param series List of tickers. The tickers must be present in the database.  
+	 * @param database Name of the database in which save the tickers values.
+	 */
 	public void run(final List<String> series,final String database);
 
 }

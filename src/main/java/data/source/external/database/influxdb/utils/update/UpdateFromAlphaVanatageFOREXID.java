@@ -37,15 +37,15 @@ public class UpdateFromAlphaVanatageFOREXID extends UpdateFromAlphaVantageAbstra
 	}
 
 	@Override
-	public Callable<Boolean> getWorker(String serie, String database) {
-		return new WorkerAlphaVantageFOREXEID(serie,database,this.getAlphaVantageConnector(),this.getInfluxdb());
+	public Callable<Boolean> getWorker(String serie, String database, Influxdb idb) {
+		return new WorkerAlphaVantageFOREXEID(serie,database,this.getAlphaVantageConnector(),idb);
 	}
 
 }
 
 class WorkerAlphaVantageFOREXEID implements Callable<Boolean>{
 	
-	private static final Logger log = LogManager.getLogger(WorkerAlphaVantageFOREXEOD.class);
+	private static final Logger log = LogManager.getLogger(WorkerAlphaVantageFOREXEID.class);
 	private final String serie;
 	private final AlphaVantageConnector avc;
 	private final Influxdb idb;

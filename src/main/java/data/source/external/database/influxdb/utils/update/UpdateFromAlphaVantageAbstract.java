@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import data.source.external.database.influxdb.Influxdb;
 import data.source.external.financialdatavendors.alphavantage.AlphaVantageConnector;
 
 
@@ -44,8 +45,8 @@ public abstract class UpdateFromAlphaVantageAbstract extends UpdateAbstract {
 	}
 
 	@Override
-	public void runUpdate(final List<String> series,final String database) {
-		this.updateMultiThreadingStopwatch_m_d(series,database,this.maxReqPerMin,this.maxReqPerDay,this.nThreads);
+	public void runUpdate(final List<String> series,final String database, final Influxdb idb) {
+		this.updateMultiThreadingStopwatch_m_d(series,database,idb,this.maxReqPerMin,this.maxReqPerDay,this.nThreads);
 	}
 }
 	

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import data.source.internal.timeseries.TimeSeriesAbstract;
 import data.source.internal.timeseries.TimeSeriesI;
@@ -21,7 +22,7 @@ import data.source.internal.timeseries.point.TimeSeriesPointI;
  */
 public class DatasetImpl implements DatasetI {
 
-	private Map<TimeSeriesIdI,TimeSeriesI> datasetMap = new HashMap<TimeSeriesIdI,TimeSeriesI>();
+	private Map<TimeSeriesIdI,TimeSeriesI> datasetMap = new ConcurrentHashMap<TimeSeriesIdI,TimeSeriesI>();
 	
 	@Override
 	public void addTimeSeries(TimeSeriesI its) {

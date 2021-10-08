@@ -137,7 +137,6 @@ public class Influxdb extends DatabaseAbstract {
 
 	@Override
 	public void close() {
-		//ping();
 		influxDB.close();
 	}
 

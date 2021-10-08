@@ -21,17 +21,13 @@ import data.source.external.database.influxdb.Influxdb;
  */
 public abstract class UpdateAbstract implements UpdateI {
 	
-	private final Influxdb idb;
+	
 	
 	public UpdateAbstract() {
-		idb = new Influxdb();
+		
 	}
 	
-	protected Influxdb getInfluxdb() {
-		return this.idb;
-	}
-	
-	public synchronized void updateMultiThreadingStopwatch_m_d(List<String> series, String database ,int maxReqPerMin, int maxReqPerDay, int nThreads) {
+	public synchronized void updateMultiThreadingStopwatch_m_d(List<String> series, String database,Influxdb idb,int maxReqPerMin, int maxReqPerDay, int nThreads) {
 		
 		beforeUpdate(series,database,maxReqPerMin,maxReqPerDay,nThreads);
 		ExecutorService service = Executors.newFixedThreadPool(nThreads);
@@ -44,7 +40,7 @@ public abstract class UpdateAbstract implements UpdateI {
 			for(List<String> ltm: minTickersSet) {
 				List<Future<Boolean>> futureResultList = new ArrayList<>();
 				for(String tic: ltm ) {
-					Future<Boolean> future = service.submit(getWorker(tic,database));
+					Future<Boolean> future = service.submit(getWorker(tic,database,idb));
 					futureResultList.add(future);
 				}
 				boolean done = false;
@@ -86,15 +82,16 @@ public abstract class UpdateAbstract implements UpdateI {
 	}
 	
 	public synchronized void run(List<String> series, String database) {
-		idb.connect();
-		runUpdate(series,database);
-		idb.close();
+		try(Influxdb idb = new Influxdb()){
+			idb.connect();
+			runUpdate(series,database,idb);
+		} 
 	}
 	
-	public abstract Callable<Boolean> getWorker(String serie, String database);
+	public abstract Callable<Boolean> getWorker(String serie, String database,Influxdb idb);
 	public abstract void beforeUpdate(List<String> series, String database ,int maxReqPerMin, int maxReqPerDay, int nThreads);
 	public abstract void afterUpdate(Object ...objects);
-	public abstract void runUpdate(List<String> series, String database);
+	public abstract void runUpdate(List<String> series, String database,Influxdb idb );
 	
 	
 }

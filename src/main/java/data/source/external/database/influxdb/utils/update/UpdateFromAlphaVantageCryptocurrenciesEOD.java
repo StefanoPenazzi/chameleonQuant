@@ -33,8 +33,8 @@ public class UpdateFromAlphaVantageCryptocurrenciesEOD extends UpdateFromAlphaVa
 	}
 
 	@Override
-	public Callable<Boolean> getWorker(String serie, String database) {
-		return new WorkerAlphaVantageCryptocurrenciesEOD(serie,database,this.getAlphaVantageConnector(),this.getInfluxdb());
+	public Callable<Boolean> getWorker(String serie, String database,Influxdb idb) {
+		return new WorkerAlphaVantageCryptocurrenciesEOD(serie,database,this.getAlphaVantageConnector(),idb);
 	}
 
 }
