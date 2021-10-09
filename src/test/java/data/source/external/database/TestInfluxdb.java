@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import data.source.external.database.influxdb.Influxdb;
 import data.source.external.database.influxdb.utils.queries.StructureQuery;
+import data.source.external.database.influxdb.utils.update.ContinuousUpdateFromAlphaVantageStockID;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageFOREXEOD;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageStocksEOD;
 import data.source.external.database.influxdb.utils.update.UpdateFromAlphaVantageStocksID;
@@ -97,10 +98,20 @@ class TestInfluxdb {
 		//stocksList.add("ACIA");
 		//stocksList.add("AAL");
 		
-		stocksList.add("AAPL");
+        stocksList.add("AAPL");
+        stocksList.add("AMZN");
+        stocksList.add("BAND");
+        stocksList.add("BATRA");
+        stocksList.add("BATRK");
 		
 		UpdateFromAlphaVantageStocksID upf = new UpdateFromAlphaVantageStocksID(5, 500, 5);
 		upf.run(stocksList, "NASDAQ_ID");
+	}
+	
+	@Test
+	void testContinuousUpdateAlphaVantageID() {
+        ContinuousUpdateFromAlphaVantageStockID upf = new ContinuousUpdateFromAlphaVantageStockID(60000);
+		upf.run("AAPL", "NASDAQ_ID");
 	}
 	
 	
@@ -117,6 +128,8 @@ class TestInfluxdb {
 		idb.ping();
 		idb.close();
 	}
+	
+	
 	
 	
 

@@ -70,7 +70,7 @@ public class Influxdb extends DatabaseAbstract {
 	@Override
 	public void connect() {
 		influxDB = InfluxDBFactory.connect(serverURL, username, password);
-		ping();
+		//ping();
 	}
 
 	@Override
@@ -91,10 +91,10 @@ public class Influxdb extends DatabaseAbstract {
 	
 	@Override
 	public void update( String database,  String measurement , Class<? extends TimeSeriesPointI> mirror ,List<Map<String,String>> csvMap) {
-		boolean pingCheck = ping();
-		if (!pingCheck) {
+		//boolean pingCheck = ping();
+		//if (!pingCheck) {
 			//run exception
-		}
+		//}
 		String timeDaily = "time";
 		Map<String,Class<?>> mirrorMapType =  getMapTypes(mirror);
 		DateTimeFormatter formatter = null;

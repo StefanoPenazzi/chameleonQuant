@@ -33,7 +33,6 @@ public class UpdateFromAlphaVantageStocksID extends UpdateFromAlphaVantageAbstra
 	 */
 	public UpdateFromAlphaVantageStocksID(int maxReqPerMin, int maxReqPerDay, int nThreads) {
 		super(maxReqPerMin, maxReqPerDay, nThreads);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -61,7 +60,7 @@ class WorkerAlphaVantageStocksID implements Callable<Boolean>{
 
 	@Override
 	public Boolean call() throws Exception {
-		String apiRes = avc.call(Function.TIME_SERIES_INTRADAY_EXTENDED,new Symbol(stock),Interval.ONE_MIN,Slice.YEAR1MONTH1,OutputSize.FULL,OutputType.CSV);
+		String apiRes = avc.call(Function.TIME_SERIES_INTRADAY_EXTENDED,new Symbol(stock),Interval.ONE_MIN,OutputSize.COMPACT,OutputType.CSV);
 		apiRes = apiRes.replaceFirst("timestamp", "time");
 		idb.update(database, stock,StockIDTimeSeriesPointInfluxdb.class ,CSVUtils.parseCsv2Map(apiRes,true,',','"'));
 		return true;
