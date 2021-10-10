@@ -42,7 +42,8 @@ class TestVolatility {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TimeSeriesImpl tr = new TrueRange.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
@@ -74,7 +75,8 @@ class TestVolatility {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TimeSeriesImpl atr = new AverageTrueRange.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
@@ -106,9 +108,10 @@ class TestVolatility {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
-		 DatasetImpl macd = new MACD.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
+		 DatasetImpl macd = (DatasetImpl) new MACD.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval(inter)

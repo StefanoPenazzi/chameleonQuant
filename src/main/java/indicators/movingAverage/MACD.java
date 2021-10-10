@@ -6,6 +6,7 @@ package indicators.movingAverage;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Controller;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.dataset.DatasetImpl;
 import data.source.internal.timeseries.TimeSeriesAbstract;
@@ -72,7 +73,7 @@ public class MACD implements IndicatorI {
 		}		
 	}
 	
-	public DatasetImpl run() throws Exception { 
+	public DatasetI run() throws Exception { 
 		
 		//TODO bypassare il dataset come ?
 		ExponentialMovingAverage fastEMA = new ExponentialMovingAverage.Builder(itsRef)
@@ -118,7 +119,7 @@ public class MACD implements IndicatorI {
 		 
 		 TimeSeriesImpl hist =  new TimeSeriesImpl(new RBTree(histRes),new TimeSeriesIdImpl.Builder("histogramMacd").build());
 		 
-		 DatasetImpl resDs = new DatasetImpl();
+		 DatasetI resDs = Controller.getDataset();
 		 resDs.addTimeSeries(macd);
 		 resDs.addTimeSeries(signalLine);
 		 resDs.addTimeSeries(hist);

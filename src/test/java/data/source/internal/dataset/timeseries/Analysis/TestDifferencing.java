@@ -45,7 +45,8 @@ class TestDifferencing {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TimeSeriesImpl diff = Differencing.differencing(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)

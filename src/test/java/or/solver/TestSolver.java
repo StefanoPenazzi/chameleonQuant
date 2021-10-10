@@ -47,7 +47,8 @@ class TestSolver {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		
 		SSMASJeneticsModel jModel = new SSMASJeneticsModel(SingleSimpleMovingAverageStrategy.class,dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
 				 .startInstant(startInstant)
@@ -77,7 +78,8 @@ class TestSolver {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		
 		DSMASJeneticsModel jModel = new DSMASJeneticsModel(DualSimpleMovingAverageCrossoverStrategy.class,dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
 				 .startInstant(startInstant)
@@ -107,7 +109,8 @@ class TestSolver {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		
 		TSMASJeneticsModel jModel = new TSMASJeneticsModel(TripleSimpleMovingAverageCrossoverStrategy.class,dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)

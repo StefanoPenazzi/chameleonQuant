@@ -3,12 +3,22 @@
  */
 package data.source.internal.dataset;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.google.inject.Inject;
+import com.google.inject.Key;
+
+import controller.Controller;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
 import data.source.internal.timeseries.TimeSeriesIdI;
+import data.source.internal.timeseries.TimeSeriesRequestI;
+import data.source.internal.timeseries.TimeSeriesRequestIdI;
+import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
 
 
 /**
@@ -18,7 +28,13 @@ import data.source.internal.timeseries.TimeSeriesIdI;
 public class DatasetImpl implements DatasetI {
 
 	private Map<TimeSeriesIdI,TimeSeriesI> datasetMap = new ConcurrentHashMap<TimeSeriesIdI,TimeSeriesI>();
+	private final Map<String,TimeSeriesRequestI> mapTimeSeriesRequest;
 	
+	@Inject
+	public DatasetImpl(Map<String,TimeSeriesRequestI> mapTimeSeriesRequest) {
+		this.mapTimeSeriesRequest = mapTimeSeriesRequest;
+	}
+    
 	@Override
 	public void addTimeSeries(TimeSeriesI its) {
 		datasetMap.put(its.getQuery(), its);
@@ -56,5 +72,21 @@ public class DatasetImpl implements DatasetI {
 	@Override
 	public void update() {
 		
+	}
+
+
+	@Override
+	public void addTimeSeries(List<TimeSeriesRequestIdI> listOfId) {
+		for(TimeSeriesRequestIdI id : listOfId) {
+			addTimeSeries(id);
+		}
+	}
+
+
+	@Override
+	public void addTimeSeries(TimeSeriesRequestIdI id) {
+		TimeSeriesFactoryImpl itsf  = Controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
+		TimeSeriesRequestI itsq = mapTimeSeriesRequest.get(id.getSource());
+		this.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,id));
 	}
 }

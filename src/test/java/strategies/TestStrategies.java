@@ -39,7 +39,8 @@ class TestStrategies {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 SingleSimpleMovingAverageStrategy smas = new SingleSimpleMovingAverageStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
 				 .startInstant(startInstant)
@@ -71,7 +72,8 @@ class TestStrategies {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 DualSimpleMovingAverageCrossoverStrategy dsmac = new DualSimpleMovingAverageCrossoverStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("KO")
 				 .startInstant(startInstant)
@@ -104,7 +106,8 @@ class TestStrategies {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TripleSimpleMovingAverageCrossoverStrategy tsmac = new TripleSimpleMovingAverageCrossoverStrategy.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)

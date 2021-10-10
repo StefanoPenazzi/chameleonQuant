@@ -39,7 +39,8 @@ class TestCorrelation {
 				 .build())
 				.build());
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TreeMap<Integer,List<Double>> res = Correlation.correlogram(Differencing.differencing(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("EUR-USD")
 				 .startInstant(startInstant)
@@ -82,7 +83,8 @@ class TestCorrelation {
 				 .build())
 				.build());
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TreeMap<Integer,List<Double>> res = Correlation.crossCorrelation(Differencing.differencing(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("EUR-USD")
 				 .startInstant(startInstant)

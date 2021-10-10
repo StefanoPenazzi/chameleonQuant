@@ -5,17 +5,12 @@ package controller;
 
 import java.util.Collections;
 import java.util.List;
-
-import com.google.inject.Guice;
 import com.google.inject.TypeLiteral;
 import com.google.inject.multibindings.MapBinder;
-
 import controller.defaults.ControllerDefaultsModule;
 import data.source.external.database.influxdb.utils.adjustments.TimeSeriesCleanerNullValuesStockInfluxdb;
-import data.source.internal.dataset.DatasetFactoryI;
+import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.timeseries.point.TimeSeriesPointI;
-
 
 /**
  * @author stefanopenazzi
@@ -46,8 +41,8 @@ public final class Controller implements ControllerI {
 		return injector;
 	}
 	
-	public static DatasetFactoryI getDatasetFactory() {
-		return getInjector().getInstance(DatasetFactoryI.class);
+	public static DatasetI getDataset() {
+		return getInjector().getInstance(DatasetI.class);
 	}
 	
 	public class BasicModule extends com.google.inject.AbstractModule {

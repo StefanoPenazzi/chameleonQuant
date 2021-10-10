@@ -4,16 +4,15 @@
 package controller.defaults;
 
 import controller.AbstractModule;
-import data.source.internal.dataset.DatasetFactoryImpl;
+import data.source.internal.dataset.DatasetImpl;
 
 /**
  * @author stefanopenazzi
  *
  */
 public class DatasetModule extends AbstractModule {
-
 	@Override
 	public void install() {
-		bindDatasetFactory().to(DatasetFactoryImpl.class);
+		bindDataset().to(DatasetImpl.class);
 	}
 }

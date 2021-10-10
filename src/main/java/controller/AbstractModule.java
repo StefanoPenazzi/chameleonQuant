@@ -5,20 +5,16 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.google.inject.Binder;
-import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.binder.LinkedBindingBuilder;
 import com.google.inject.multibindings.MapBinder;
 import com.google.inject.util.Modules;
-
-import data.source.internal.dataset.DatasetFactoryI;
+import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesRequestI;
 import data.source.internal.timeseries.cleaning.TimeSeriesCleanerI;
-import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
@@ -67,8 +63,8 @@ public abstract class AbstractModule implements Module {
 		return mapbinderTimeSeriesRequest.addBinding(name);
 	}
 	
-	protected final LinkedBindingBuilder<DatasetFactoryI> bindDatasetFactory() {
-		return bind(DatasetFactoryI.class);
+	protected final LinkedBindingBuilder<DatasetI> bindDataset() {
+		return bind(DatasetI.class);
 	}
 	
 	protected <T> AnnotatedBindingBuilder<T> bind(Class<T> aClass) {

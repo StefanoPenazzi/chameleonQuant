@@ -75,7 +75,8 @@ class TestDataset {
 //				 .build(),StockEODTimeSeriesPointAlphaVantage.class));
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		 DatasetI dts = Controller.getDataset();
+		 dts.addTimeSeries(listQueries);
 //		 TimeSeriesI its = dts.getTimeSeries(new TimeSeriesIdImpl.Builder("C")
 //				 .startInstant(startInstant)
 //				 .endInstant(endInstant)

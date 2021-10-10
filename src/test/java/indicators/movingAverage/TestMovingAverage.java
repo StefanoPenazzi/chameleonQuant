@@ -48,7 +48,7 @@ class TestMovingAverage {
 		 TimeSeriesFactoryImpl itsf  = controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
-		 DatasetImpl dts = new DatasetImpl();
+		 DatasetI dts = Controller.getDataset();
 		
 		System.out.println();
 	}
@@ -71,7 +71,8 @@ class TestMovingAverage {
 				.build());
 		 
 		 
-		 DatasetI dts = Controller.getDatasetFactory().create(listQueries);
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(listQueries);
 		 
 		 TimeSeriesImpl ema = new ExponentialMovingAverage.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
