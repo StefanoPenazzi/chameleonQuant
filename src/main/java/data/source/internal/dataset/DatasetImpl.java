@@ -3,17 +3,12 @@
  */
 package data.source.internal.dataset;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import data.source.internal.timeseries.TimeSeriesAbstract;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
 import data.source.internal.timeseries.TimeSeriesIdI;
-import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 
 /**
@@ -56,5 +51,10 @@ public class DatasetImpl implements DatasetI {
 			//TODO what happens if the id of a new internal time series is the same of one already in the map???
 			this.addTimeSeries(tailIterator.next());
 		}
+	}
+
+	@Override
+	public void update() {
+		
 	}
 }

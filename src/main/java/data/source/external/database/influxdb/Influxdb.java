@@ -65,12 +65,12 @@ public class Influxdb extends DatabaseAbstract {
 		this.serverURL = properties.getProperty("influx_serverURL");
 	    this.username = properties.getProperty("influx_username");
 	    this.password = properties.getProperty("influx_password");
+	    this.connect();
 	}
 	
 	@Override
 	public void connect() {
 		influxDB = InfluxDBFactory.connect(serverURL, username, password);
-		//ping();
 	}
 
 	@Override
@@ -153,7 +153,4 @@ public class Influxdb extends DatabaseAbstract {
 	public InfluxDB getInfluxDB() {
 		return this.influxDB;
 	}
-
-	
-	
 }

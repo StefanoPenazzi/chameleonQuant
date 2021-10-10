@@ -49,15 +49,6 @@ class TestMovingAverage {
 		 TimeSeriesRequestInfluxdb itsq = new TimeSeriesRequestInfluxdb();
 		 
 		 DatasetImpl dts = new DatasetImpl();
-		 
-		 //for(String stock: stocks) {
-		//	 TimeSeriesId  query = new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class);
-		//	 dts.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,query));
-		 //}
-		 
-		 //SimpleMovingAverage sma = new SimpleMovingAverage(dts,new TimeSeriesId (startInstant,endInstant,market,"TSLA",inter,StockEODTimeSeriesPointInfluxdb.class),"low",7);
-		 //sma.create();
-		 //InternalTimeSeriesI<? extends InternalTimeSeriesPoint> its = dts.getTimeSeries(new InternalStockTimeSeriesQueryInfluxdb (startDate,endDate,market,"AAPL",inter));
 		
 		System.out.println();
 	}

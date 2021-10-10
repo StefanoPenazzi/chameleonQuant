@@ -35,7 +35,7 @@ public class DatasetFactoryImpl implements DatasetFactoryI {
 	}
 
 	@Override
-	public DatasetI create(List< TimeSeriesRequestIdI> listOfId) {
+	public DatasetI create(List<TimeSeriesRequestIdI> listOfId) {
 		DatasetImpl dts = new DatasetImpl();
 		for(TimeSeriesRequestIdI id : listOfId) {
 			TimeSeriesFactoryImpl itsf  = Controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});

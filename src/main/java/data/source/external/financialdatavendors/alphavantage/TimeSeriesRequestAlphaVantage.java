@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
+import data.source.SourceI;
 import data.source.external.financialdatavendors.alphavantage.mirrors.StockEODTimeSeriesPointAlphaVantage;
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.external.financialdatavendors.alphavantage.parameters.output.OutputSize;
@@ -25,7 +26,7 @@ import data.source.utils.IO.CSVUtils;
 public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 
 	@Override
-	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
+	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq,SourceI source) {
 		TimeSeriesRequestIdAlphaVantage tsrId = (TimeSeriesRequestIdAlphaVantage)iq;
 		AlphaVantageConnector avc = new AlphaVantageConnector(60000);
 		String apiRes = avc.call(tsrId.getExchange(),new Symbol(tsrId.getId()),OutputSize.FULL,OutputType.CSV);
@@ -41,6 +42,21 @@ public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 		return res;
 	}
 
-	
+	@Override
+	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp,SourceI source) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

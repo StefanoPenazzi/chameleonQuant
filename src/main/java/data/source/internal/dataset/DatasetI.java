@@ -22,6 +22,7 @@ public interface DatasetI {
 	public TimeSeriesI getTimeSeries(TimeSeriesIdAbstract itq);
 	public Iterator<? extends TimeSeriesI> iterator();
 	public void merge(DatasetI tail);
+	public void update();
 	
 	
 

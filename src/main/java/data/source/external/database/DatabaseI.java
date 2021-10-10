@@ -6,15 +6,14 @@ package data.source.external.database;
 import java.util.List;
 import java.util.Map;
 
+import data.source.SourceI;
 import data.source.internal.timeseries.point.TimeSeriesPointI;
 
 /**
  * @author stefanopenazzi
  *
  */
-public interface DatabaseI extends AutoCloseable{
-
-	public void connect();
+public interface DatabaseI extends SourceI{
 	
 	public boolean ping();
 	

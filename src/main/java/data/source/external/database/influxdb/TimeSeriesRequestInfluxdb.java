@@ -23,6 +23,7 @@ import org.influxdb.impl.InfluxDBResultMapper;
 
 import com.google.inject.Inject;
 
+import data.source.SourceI;
 import data.source.annotations.TimeSeriesAnnotations.Function;
 import data.source.external.database.influxdb.utils.queries.StructureQuery;
 import data.source.internal.timeseries.TimeSeriesRequestI;
@@ -73,6 +74,7 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		measureDatabaseMapEOD = StructureQuery.getDatabaseMap(databasesListEOD);
 		measureDatabaseMapID = StructureQuery.getDatabaseMap(databasesListID);
 		measureDatabaseMap = StructureQuery.getDatabaseMap(databasesList);
+		
 	}
 	
 	private String getStringQuery(TimeSeriesRequestIdInfluxdb iq) {
@@ -112,9 +114,43 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 		res = res + " FROM \""+iq.getId()+"\" WHERE time > '" + st + "' and time < '"+ et + "' GROUP BY time("+iq.getInterval()+") fill(none)" ;
 		return res;
 	}
+	
+    private String getLastPointStringQuery(TimeSeriesRequestIdInfluxdb iq) {
+		
+		String res ="SELECT ";
+		
+		Field[] fields = iq.getTimeSeriesPoint().getDeclaredFields();
+		for(Field field: fields) {
+			Annotation[] annotations = field.getDeclaredAnnotations();
+			String function = "";
+			String column = "";
+			for(Annotation annotation : annotations){
+			    if(annotation instanceof Function){
+			    	Function myAnnotation = (Function) annotation;
+			        function =  myAnnotation.name();
+			    }
+			    if(annotation instanceof Column){
+			    	Column myAnnotation = (Column) annotation;
+			        column =  myAnnotation.name();
+			    }
+			}
+			if(column == "time" || column == "") {
+				continue;
+			}
+			else if(function != "") {
+				res = res+ " "+function+"("+column+") AS " + column+", ";
+			}
+		}
+		if (res.charAt(res.length() - 1) == ' ' && res.charAt(res.length() - 2) ==',') {
+			 res = res.substring(0, res.length() - 2);
+		}
+		res = res + " FROM \""+iq.getId()+"\" ORDER BY desc LIMIT 1" ;
+		return res;
+	}
 
+	//TODO open connection for future requests??
 	@Override
-	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iqp) {
+	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iqp, SourceI idb ) {
 		TimeSeriesRequestIdInfluxdb iq = (TimeSeriesRequestIdInfluxdb)iqp;
 		String db = getDatabaseFromSymbol(iq.getInterval(),iq.getId());
 		if(iq.getTimeSeriesPoint() == null) { 
@@ -122,14 +158,35 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 					.setTimeSeriesPointClass(classDatabaseMap.get(db))
 					.build();
 		}
-		Influxdb idb = new Influxdb();
-		idb.connect();
+		List<? extends TimeSeriesPointI> results= null;
+		
+		Influxdb idb_ = (Influxdb)idb;
 		Query query = new Query(getStringQuery(iq),db);
-		QueryResult queryResult = idb.getInfluxDB().query(query);
+		QueryResult queryResult = idb_.getInfluxDB().query(query);
 		String measurement = iq.getId();
 		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-		List<? extends TimeSeriesPointI> results = resultMapper.toPOJO(queryResult,iq.getTimeSeriesPoint(), measurement );   
-		idb.close();
+		results = resultMapper.toPOJO(queryResult,iq.getTimeSeriesPoint(), measurement );   
+		
+		return results;
+	}
+	
+	@Override
+	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp,SourceI idb) {
+		TimeSeriesRequestIdInfluxdb iq = (TimeSeriesRequestIdInfluxdb)iqp;
+		String db = getDatabaseFromSymbol(iq.getInterval(),iq.getId());
+		if(iq.getTimeSeriesPoint() == null) { 
+			iq = new TimeSeriesRequestIdInfluxdb.Builder(iq.getTimeSeriesId())
+					.setTimeSeriesPointClass(classDatabaseMap.get(db))
+					.build();
+		}
+		TimeSeriesPointI results= null;
+		Influxdb idb_ = (Influxdb)idb;
+		Query query = new Query(getLastPointStringQuery(iq),db);
+		QueryResult queryResult = idb_.getInfluxDB().query(query);
+		String measurement = iq.getId();
+		InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
+		results = resultMapper.toPOJO(queryResult,iq.getTimeSeriesPoint(), measurement ).get(0);   
+		
 		return results;
 	}
 	
@@ -148,7 +205,24 @@ public class TimeSeriesRequestInfluxdb implements TimeSeriesRequestI {
 			throw new NullPointerException("Symbol not found");
 		}
 		return db;
-		
+	}
+
+	@Override
+	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iqp) {
+		List<? extends TimeSeriesPointI> results= null;
+		try(Influxdb source = new Influxdb()){
+			results =getTimeSeries(iqp,source);
+		}
+		return results;
+	}
+
+	@Override
+	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp) {
+		TimeSeriesPointI results= null;
+        try(Influxdb source = new Influxdb()){
+        	results = getLastPoint(iqp,source);
+		}
+		return results;
 	}
 }
 

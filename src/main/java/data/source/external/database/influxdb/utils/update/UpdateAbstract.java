@@ -104,14 +104,12 @@ public abstract class UpdateAbstract implements UpdateI {
 	
 	public synchronized void run(List<String> series, String database) {
 		try(Influxdb idb = new Influxdb()){
-			idb.connect();
 			runUpdate(series,database,idb);
 		} 
 	}
 	
 	public synchronized void run(String serie, String database) {
 		try(Influxdb idb = new Influxdb()){
-			idb.connect();
 			List<String> series = new ArrayList<>();
 			series.add(serie);
 			runUpdate(series,database,idb);

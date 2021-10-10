@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import com.google.inject.Inject;
 
+import data.source.SourceI;
+import data.source.external.database.influxdb.Influxdb;
 import data.source.internal.timeseries.TimeSeriesAbstract;
 import data.source.internal.timeseries.TimeSeriesFactoryI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
