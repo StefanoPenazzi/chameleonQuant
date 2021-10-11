@@ -8,7 +8,7 @@ import java.util.List;
 
 import controller.Controller;
 import data.source.internal.dataset.DatasetI;
-import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.dataset.DatasetHistoricalImpl;
 import data.source.internal.timeseries.TimeSeriesAbstract;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data.source.internal.dataset.DatasetI;
-import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.dataset.DatasetHistoricalImpl;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesIdAbstract;
 import data.source.internal.timeseries.point.SingleTagPoint;

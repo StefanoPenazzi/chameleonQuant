@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import controller.Controller;
 import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
 import data.source.internal.dataset.DatasetI;
-import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.dataset.DatasetHistoricalImpl;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;
 import data.source.internal.timeseries.standard.TimeSeriesImpl;
@@ -111,7 +111,7 @@ class TestVolatility {
 		DatasetI dts = Controller.getDataset();
 		dts.addTimeSeries(listQueries);
 		 
-		 DatasetImpl macd = (DatasetImpl) new MACD.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
+		 DatasetHistoricalImpl macd = (DatasetHistoricalImpl) new MACD.Builder(dts.getTimeSeries(new TimeSeriesIdImpl.Builder("AMZN")
 				 .startInstant(startInstant)
 				 .endInstant(endInstant)
 				 .interval(inter)

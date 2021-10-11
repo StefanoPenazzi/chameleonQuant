@@ -4,7 +4,7 @@
 package controller.defaults;
 
 import controller.AbstractModule;
-import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.dataset.DatasetHistoricalImpl;
 
 /**
  * @author stefanopenazzi
@@ -13,6 +13,6 @@ import data.source.internal.dataset.DatasetImpl;
 public class DatasetModule extends AbstractModule {
 	@Override
 	public void install() {
-		bindDataset().to(DatasetImpl.class);
+		bindDataset().to(DatasetHistoricalImpl.class);
 	}
 }

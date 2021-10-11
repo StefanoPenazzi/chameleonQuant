@@ -20,7 +20,7 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  */
 
 
-public class TimeSeriesImpl extends TimeSeriesAbstract {
+public final class TimeSeriesImpl extends TimeSeriesAbstract {
 	
 //	 @Inject private Map<String,TimeSeriesCleanerI> cleaners;
 	

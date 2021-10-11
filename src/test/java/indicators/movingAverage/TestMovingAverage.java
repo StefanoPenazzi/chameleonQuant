@@ -19,7 +19,7 @@ import data.source.external.financialdatavendors.alphavantage.TimeSeriesRequestI
 import data.source.external.financialdatavendors.alphavantage.mirrors.StockEODTimeSeriesPointAlphaVantage;
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
 import data.source.internal.dataset.DatasetI;
-import data.source.internal.dataset.DatasetImpl;
+import data.source.internal.dataset.DatasetHistoricalImpl;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
 import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
 import data.source.internal.timeseries.standard.TimeSeriesIdImpl;

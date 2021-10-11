@@ -25,14 +25,12 @@ import data.source.internal.timeseries.standard.TimeSeriesFactoryImpl;
  * @author stefanopenazzi
  *
  */
-public class DatasetImpl implements DatasetI {
+public class DatasetHistoricalImpl implements DatasetI {
 
 	private Map<TimeSeriesIdI,TimeSeriesI> datasetMap = new ConcurrentHashMap<TimeSeriesIdI,TimeSeriesI>();
-	private final Map<String,TimeSeriesRequestI> mapTimeSeriesRequest;
 	
 	@Inject
-	public DatasetImpl(Map<String,TimeSeriesRequestI> mapTimeSeriesRequest) {
-		this.mapTimeSeriesRequest = mapTimeSeriesRequest;
+	public DatasetHistoricalImpl() {
 	}
     
 	@Override
@@ -70,23 +68,16 @@ public class DatasetImpl implements DatasetI {
 	}
 
 	@Override
-	public void update() {
-		
-	}
-
-
-	@Override
 	public void addTimeSeries(List<TimeSeriesRequestIdI> listOfId) {
 		for(TimeSeriesRequestIdI id : listOfId) {
 			addTimeSeries(id);
 		}
 	}
 
-
 	@Override
 	public void addTimeSeries(TimeSeriesRequestIdI id) {
 		TimeSeriesFactoryImpl itsf  = Controller.getInjector().getInstance(new Key<TimeSeriesFactoryImpl>() {});
-		TimeSeriesRequestI itsq = mapTimeSeriesRequest.get(id.getSource());
-		this.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},itsq,id));
+		this.addTimeSeries(itsf.createTimeSeriesQueryRequest(new ArrayList<String>(){{add("NULL_INFLUXDB");}},id));
 	}
+
 }

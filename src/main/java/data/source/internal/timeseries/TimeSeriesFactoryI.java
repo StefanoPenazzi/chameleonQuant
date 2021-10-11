@@ -14,7 +14,7 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
  */
 public interface TimeSeriesFactoryI {
 	
-	public TimeSeriesI createTimeSeriesQueryRequest(List<String> cleanersId, TimeSeriesRequestI itsReq ,TimeSeriesRequestIdI iq);
+	public TimeSeriesI createTimeSeriesQueryRequest(List<String> cleanersId,TimeSeriesRequestIdI iq);
 	public TimeSeriesI createTimeSeries(TimeSeriesDataStructureI tsd,TimeSeriesIdI iq);
 	public TimeSeriesI createTimeSeries(TimeSeriesDataStructureI tsd,TimeSeriesIdI iq,List<String> cleanersId);
 

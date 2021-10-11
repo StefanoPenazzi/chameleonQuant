@@ -211,4 +211,9 @@ public abstract class TimeSeriesAbstract implements TimeSeriesI {
 	public Method getTagMethod(String tagName) {
 		return tsd.getFirst().getTagMethod(tagName);
 	}
+	
+	@Override
+	public void add(TimeSeriesPointI ts) {
+		tsd.addPoint(ts);
+	}
 }

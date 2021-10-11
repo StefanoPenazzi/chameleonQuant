@@ -25,6 +25,8 @@ import data.source.internal.timeseries.structure.TimeSeriesDataStructureI;
 
 /**
  * @author stefanopenazzi
+ * 
+ * This class helps in defining the cleaners
  *
  */
 public class TimeSeriesFactoryImpl implements TimeSeriesFactoryI {
@@ -32,17 +34,19 @@ public class TimeSeriesFactoryImpl implements TimeSeriesFactoryI {
 	private Map<String,TimeSeriesCleanerI> cleaners;
 	
 	private List<TimeSeriesCleanerI> cleanersList;
+	private final Map<String,TimeSeriesRequestI> mapTimeSeriesRequest;
 	
 	
 	//would it be better to have cleaners in enum?
 	//should we have default cleaners?
 	@Inject
-	public TimeSeriesFactoryImpl(Map<String,TimeSeriesCleanerI> cleaners) {
+	public TimeSeriesFactoryImpl(Map<String,TimeSeriesCleanerI> cleaners,Map<String,TimeSeriesRequestI> mapTimeSeriesRequest) {
 		this.cleaners = cleaners;
+		this.mapTimeSeriesRequest = mapTimeSeriesRequest;
 	}
 	
 	@Override
-	public TimeSeriesImpl createTimeSeriesQueryRequest(List<String> cleanersId, TimeSeriesRequestI itsReq ,TimeSeriesRequestIdI iq) {
+	public TimeSeriesImpl createTimeSeriesQueryRequest(List<String> cleanersId,TimeSeriesRequestIdI id) {
 		
 		this.cleanersList = new ArrayList<>();
 		
@@ -52,7 +56,8 @@ public class TimeSeriesFactoryImpl implements TimeSeriesFactoryI {
 				cleanersList.add(tsc);
 			}
 		}
-		return new TimeSeriesImpl(new RBTree(itsReq.getTimeSeries(iq)) ,iq.getTimeSeriesId(),cleanersList);
+		TimeSeriesRequestI itsq = mapTimeSeriesRequest.get(id.getSource());
+		return new TimeSeriesImpl(new RBTree(itsq.getTimeSeries(id)) ,id.getTimeSeriesId(),cleanersList);
 	}
 
 	@Override

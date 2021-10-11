@@ -15,7 +15,6 @@ import data.source.internal.timeseries.TimeSeriesRequestIdI;
  *
  */
 public interface DatasetI {
-	
 	public void addTimeSeries(TimeSeriesI its);
 	public void addTimeSeries(List<TimeSeriesRequestIdI> listOfId);
 	public void addTimeSeries(TimeSeriesRequestIdI listOfId);
@@ -23,8 +22,4 @@ public interface DatasetI {
 	public TimeSeriesI getTimeSeries(TimeSeriesIdAbstract itq);
 	public Iterator<? extends TimeSeriesI> iterator();
 	public void merge(DatasetI tail);
-	public void update();
-	
-	
-
 }
