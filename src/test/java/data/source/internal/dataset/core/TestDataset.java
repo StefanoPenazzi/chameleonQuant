@@ -15,8 +15,10 @@ import data.source.external.database.influxdb.TimeSeriesRequestIdInfluxdb;
 import data.source.external.database.influxdb.mirrors.FOREXEODTimeSeriesPointInfluxdb;
 import data.source.external.database.influxdb.mirrors.StockEODTimeSeriesPointInfluxdb;
 import data.source.external.financialdatavendors.alphavantage.TimeSeriesRequestIdAlphaVantage;
-import data.source.external.financialdatavendors.alphavantage.mirrors.StockEODTimeSeriesPointAlphaVantage;
+import data.source.external.financialdatavendors.alphavantage.mirrors.StockIDTimeSeriesPointAlphaVantage;
 import data.source.external.financialdatavendors.alphavantage.parameters.functions.Function;
+import data.source.external.financialdatavendors.alphavantage.parameters.intradaytimeseries.Interval;
+import data.source.external.financialdatavendors.alphavantage.parameters.output.OutputSize;
 import data.source.internal.dataset.DatasetI;
 import data.source.internal.timeseries.TimeSeriesI;
 import data.source.internal.timeseries.TimeSeriesRequestIdI;
@@ -66,22 +68,10 @@ class TestDataset {
 				 .endInstant(endInstant)
 				 .interval("1h")
 				 .build())
-				 .build());
-		 
-//		 listQueries.add(new TimeSeriesRequestIdAlphaVantage(Function.TIME_SERIES_DAILY,"C",new TimeSeriesIdImpl.Builder("C")
-//				 .startInstant(startInstant)
-//				 .endInstant(endInstant)
-//				 .interval(inter)
-//				 .build(),StockEODTimeSeriesPointAlphaVantage.class));
-		 
+				 .build());	 
 		 
 		 DatasetI dts = Controller.getDataset();
 		 dts.addTimeSeries(listQueries);
-//		 TimeSeriesI its = dts.getTimeSeries(new TimeSeriesIdImpl.Builder("C")
-//				 .startInstant(startInstant)
-//				 .endInstant(endInstant)
-//				 .interval(inter)
-//				 .build());
 		 
 		 System.out.println();
 		
@@ -89,28 +79,18 @@ class TestDataset {
 	
 	@Test
 	void testDatasetAlphaVantageFactory() throws ParseException {
-		
-         List<String> stocks = Arrays.asList("AACG");
-		
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		 Instant startInstant = (sdf.parse("2020-10-19 00:00:00")).toInstant();
-		 Instant endInstant = null;
-		 String market = "NASDAQ_EOD";
-		 String inter = "1d";
-		 
-		  List<TimeSeriesRequestIdI> listQueries = new ArrayList<>();
-		 
-		 for(String stock: stocks) {
-			 //listQueries.add(new TimeSeriesRequestIdAlphaVantage("alphavantage","NASDAQ_EOD",stock,new TimeSeriesId (startInstant,endInstant,market,stock,inter,StockEODTimeSeriesPointInfluxdb.class),StockEODTimeSeriesPointInfluxdb.class));
+		Controller.run();
+		TimeSeriesRequestIdAlphaVantage tr = new TimeSeriesRequestIdAlphaVantage.Builder()
+				.id("AMZN")
+				.exchange(Function.TIME_SERIES_INTRADAY)
+				.outputSize(OutputSize.COMPACT)
+				.interval(Interval.ONE_MIN)
+				.timeSeriesPoint(StockIDTimeSeriesPointAlphaVantage.class)
+				.build();
 				
-			 //listQueries.add(new TimeSeriesId (startInstant,endInstant,stock,inter));
-		 }
-		
-		 Controller.run();
-		 //DatasetI dts = Controller.getDatasetFactory().create(listQueries);
-		 //TimeSeriesI<? extends TimeSeriesPointI> its = dts.getTimeSeries(new TimeSeriesId (startInstant,endInstant,market,"AACG",inter,StockEODTimeSeriesPointAlphaVantage.class));
-		 System.out.println();
-		
+		DatasetI dts = Controller.getDataset();
+		dts.addTimeSeries(tr);	
+		System.out.println();
 	}
 	
 	//TODO

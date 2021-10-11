@@ -113,4 +113,16 @@ public abstract class APIConnectorAbstract implements APIConnector {
           : resultString;
 	}
 	
+	@Override
+	public void connect() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void close() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -47,4 +47,5 @@ public class AlphaVantageConnector extends APIConnectorAbstract {
 	     
 	     return urlBuilder.getUrl();
 	}
+
 }

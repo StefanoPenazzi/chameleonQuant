@@ -27,15 +27,41 @@ public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 
 	@Override
 	public List<TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq,SourceI source) {
+		return null;
+	}
+
+	@Override
+	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp,SourceI source) {
+		return null;
+	}
+
+	@Override
+	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
 		TimeSeriesRequestIdAlphaVantage tsrId = (TimeSeriesRequestIdAlphaVantage)iq;
 		AlphaVantageConnector avc = new AlphaVantageConnector(60000);
-		String apiRes = avc.call(tsrId.getExchange(),new Symbol(tsrId.getId()),OutputSize.FULL,OutputType.CSV);
+		
+		String apiRes = "";
+		
+		if(tsrId.getExchange().equals(Function.TIME_SERIES_INTRADAY) || 
+				tsrId.getExchange().equals(Function.DIGITAL_CURRENCY_INTRADAY) || 
+				tsrId.getExchange().equals(Function.FX_INTRADAY) ||
+				tsrId.getExchange().equals(Function.TIME_SERIES_DAILY_ADJUSTED)) {
+			if(tsrId.getSlice() == null) {
+				apiRes = avc.call(tsrId.getExchange(),new Symbol(tsrId.getId()),tsrId.getInterval(),tsrId.getOutputsize(),OutputType.CSV);
+			}
+			else {
+				apiRes = avc.call(tsrId.getExchange(),new Symbol(tsrId.getId()),tsrId.getInterval(),tsrId.getSlice(),tsrId.getOutputsize(),OutputType.CSV);
+			}
+		}
+		else {
+			apiRes = avc.call(tsrId.getExchange(),new Symbol(tsrId.getId()),tsrId.getOutputsize(),OutputType.CSV);
+		}
+		
 		apiRes = apiRes.replaceFirst("timestamp", "time");
 		List<Map<String,String>> apiResMap = null;
 		try {
 			apiResMap = CSVUtils.parseCsv2Map(apiRes, true,',','"');
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		List<TimeSeriesPointI> res = Utils.map2PointsList(apiResMap,iq.getTimeSeriesPoint());
@@ -43,20 +69,7 @@ public class TimeSeriesRequestAlphaVantage implements TimeSeriesRequestI  {
 	}
 
 	@Override
-	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp,SourceI source) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<? extends TimeSeriesPointI> getTimeSeries(TimeSeriesRequestIdI iq) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public TimeSeriesPointI getLastPoint(TimeSeriesRequestIdI iqp) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

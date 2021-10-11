@@ -3,6 +3,7 @@
  */
 package data.source.external.financialdatavendors.connector;
 
+import data.source.SourceI;
 import data.source.external.financialdatavendors.parameters.APIParameters;
 
 /**
@@ -11,7 +12,7 @@ import data.source.external.financialdatavendors.parameters.APIParameters;
  * This representŝ the connection to an API end point
  *
  */
-public interface APIConnector {
+public interface APIConnector extends SourceI {
 	
 
 	/**
